@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import IQKeyboardManagerSwift
-
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
+        
+        GMSServices.provideAPIKey(GOOGLE_API_KEY)
+//        GMSPlacesClient.provideAPIKey(GOOGLE_API_KEY)
+        
         return true
     }
 
