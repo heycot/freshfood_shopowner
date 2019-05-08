@@ -69,6 +69,9 @@ class SignUpController: UIViewController {
                         "name": self.nameTxt.text,
                         "email": self.emailTxt.text,
                         "password": self.passTxt.text,
+                        "phone": "",
+                        "address": "",
+                        "birthday": Date(),
                         "create_date": Date(),
                         "token": ""
                     ]) { err in
