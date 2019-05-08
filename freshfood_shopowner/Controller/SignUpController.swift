@@ -77,7 +77,7 @@ class SignUpController: UIViewController {
                         }
                     }
                     
-                    self.navigationController?.popViewController(animated: true)
+                    self.performSegue(withIdentifier: SegueIdentifier.signupToListShop.rawValue, sender: nil)
                 }
             }
         }
