@@ -26,7 +26,7 @@ class LoginController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is UIViewController {
+        if segue.destination is ListShopController {
             
         }
     }
@@ -37,13 +37,12 @@ class LoginController: UIViewController {
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
             self.present(alert, animated: true)
-            
-            //        } else if !(passwordTF.text?.isValidPassword())! {
-            //            let alert = UIAlertController(title: Notification.password.title.rawValue, message: Notification.password.detail.rawValue, preferredStyle: .alert)
-            //            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-            //            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-            //            self.present(alert, animated: true)
-            
+    
+        } else if !(passwordTxt.text?.isValidPassword())! {
+            let alert = UIAlertController(title: Notification.password.title.rawValue, message: Notification.password.detail.rawValue, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
             
         } else {
             

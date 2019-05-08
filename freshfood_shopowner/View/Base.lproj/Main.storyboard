@@ -123,10 +123,10 @@
             </objects>
             <point key="canvasLocation" x="1482" y="261"/>
         </scene>
-        <!--View Controller-->
+        <!--List Shop Controller-->
         <scene sceneID="Wwi-aL-Qbg">
             <objects>
-                <viewController id="26J-nC-1jE" customClass="ViewController" customModule="freshfood_shopowner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="26J-nC-1jE" customClass="ListShopController" customModule="freshfood_shopowner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rO1-Bb-86V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
