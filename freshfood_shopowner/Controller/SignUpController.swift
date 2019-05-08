@@ -60,16 +60,17 @@ class SignUpController: UIViewController {
             
             Auth.auth().createUser(withEmail: emailTxt.text!, password: passTxt.text!) { authResult, error in
                 if (error != nil) {
-                    print(error)
+                    print(error as Any)
                 }
                 else{
                     
                     let db = Firestore.firestore()
                     db.collection("user_profile").document(authResult!.user.uid).setData([
-                        "name": self.nameTxt.text,
-                        "email": self.emailTxt.text,
+                        "name": self.nameTxt.text as Any,
+                        "email": self.emailTxt.text as Any,
                         "phone": "",
                         "address": "",
+                        "avatar": "logo",
                         "birthday": Date(),
                         "create_date": Date()
                     ]) { err in
