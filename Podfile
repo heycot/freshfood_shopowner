@@ -8,6 +8,7 @@ target 'freshfood_shopowner' do
   # Pods for freshfood_shopowner
 
     pod 'Firebase/Core'
+    pod 'Firebase/Firestore'
     pod 'Firebase/Analytics'
     pod 'Firebase/Auth'
 
