@@ -13,7 +13,6 @@ class AddNewShopController: UIViewController {
     
     @IBOutlet weak var notification: UILabel!
     @IBOutlet weak var nameTxt: UITextField!
-    @IBOutlet weak var sellTxt: UITextField!
     @IBOutlet weak var timeOpen: UITextField!
     @IBOutlet weak var timeClose: UITextField!
     @IBOutlet weak var addresstxt: UITextField!
@@ -36,13 +35,14 @@ class AddNewShopController: UIViewController {
     
     func configsMapp() {
         addMap()
+        
+        configLocationManager()
     }
     
     func addMap() {
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
     }
-    
 
     func configCamera(location: CLLocation, zoomLevel: Float) {
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: zoomLevel)
@@ -94,10 +94,6 @@ extension AddNewShopController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         print("didTap marker")
-//        if let shop = marker.userData as? ShopResponse {
-//            configShopInfo(shop)
-//            showShopInfo(true)
-//        }
         
         return false
     }
