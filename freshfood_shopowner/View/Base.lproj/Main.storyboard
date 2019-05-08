@@ -62,14 +62,14 @@
                                                 <state key="normal" title="Login">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="loginPressed:" destination="BRF-39-A5s" eventType="touchUpInside" id="yeA-Si-HBN"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8i-55-yfk">
                                                 <rect key="frame" x="50" y="165" width="255" height="40"/>
                                                 <color key="tintColor" red="0.17254901959999999" green="0.65098039220000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Need an account? Sign up"/>
+                                                <connections>
+                                                    <segue destination="wvc-SJ-pSy" kind="show" identifier="LoginToSignup" animates="NO" id="yVV-wZ-ftl"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -100,15 +100,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="28t-Y4-CRE"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bQb-m9-RVy"/>
-                    <connections>
-                        <outlet property="emailTF" destination="aXD-up-Ndu" id="wsS-kF-ItC"/>
-                        <outlet property="passwordTF" destination="E6a-l6-NHb" id="v0L-cE-jTI"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i93-Tt-EUz" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-969" y="576"/>
+            <point key="canvasLocation" x="684" y="568"/>
+        </scene>
+        <!--SignUpStoryBoardID-->
+        <scene sceneID="O1k-WG-hiL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SignUp" referencedIdentifier="SignUpStoryBoardID" id="wvc-SJ-pSy" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ytc-vG-sSe"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3AZ-ZD-kba" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1482" y="261"/>
         </scene>
     </scenes>
     <resources>
