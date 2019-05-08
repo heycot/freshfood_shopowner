@@ -102,90 +102,11 @@ let HEADER_COLOR = UIColor(red: CGFloat(82/255.0), green: CGFloat(196/255.0), bl
 let BORDER_TEXT_COLOR = UIColor(red: CGFloat(154/255.0), green: CGFloat(154/255.0), blue: CGFloat(154/255.0), alpha: CGFloat(0.25))
 
 
-enum CellClassName: String {
-    case generalInfor   = "GeneralInforItemCell"
-    case generalValue   = "GeneralValueCell"
-    case listComment    = "ViewCommentCell"
-    case addNewComment  = "AddNewCommentCell"
-    case category       = "CategoryCell"
-    case headerCollection = "HeaderView"
-    case addCommentBtn = "AddCommentBtnCell"
-    case actionCell = "ActionCell"
-    case mapCell = "MapCell"
-    case accountLogedIn = "AccountLogedInCell"
-    case activityCell = "ActivityCell"
-    case inforCell = "InforCell"
-}
-
-enum CellIdentifier: String {
-    case generalInfor = "GeneralInforItemCell"
-    case generalvalue = "GeneralValueCell"
-    case listComment = "ListCommentCell"
-    case newComment = "NewCommentCell"
-    case imageCollectionCell = "ImageCollectionCell"
-    case photoItem = "PhotoCell"
-    case DetailPhoto = "DetailPhotoCell"
-    case favoritesItem = "FavoritesCellID"
-    case category = "CategoryCellID"
-    case highRatingItem = "ItemCell"
-    case headerCollection = "HeaderCellID"
-    case shop = "ShopCell"
-    case searchCell = "SearchCell"
-    case categoryShopItemCell = "CategoryShopItemCell"
-    case addCommentBtn = "AddCommentBtn"
-    case actionCell = "ActionCell"
-    case itemInShop = "ItemInShopCell"
-    case mapCell = "MapCell"
-    case accountCell = "AccountCell"
-    case accountLogedIn = "AccountLogedInCell"
-    case accountInforCell = "accountInforCell"
-    case activityCell = "ActivityCell"
-    case inforCell = "InforCell"
-}
 
 enum SegueIdentifier: String {
-    //detail storyboard
-    case detailItem = "ViewDetalFoodID"
-    case detailFoodToPhoto = "DetailFoodToPhoto"
-    case photosToDetailPhoto = "PhotosToDetailPhoto"
-    case detailFoodToLogin = "DetailFoodToLogin"
-    case detailToLocation = "DetailToLocation"
-    case detailToComment = "DetailToComment"
-    case detailToShop = "DetailToItemInShop"
-    case detailToDelivery = "DetailToDelivery"
-    
-    // hight rating
-    case highRatingToCategory = "HaighRatingToCategory"
-    case categoryToDetail = "CategoryToDetail"
-    case highRatingToSearch = "HighRatingSearch"
-    case highRatingToDetail = "HighRatingToDetail"
-    case categoryToSearch = "CategoryToSearch"
-    
-    //search
-    case searchToDetaild = "SearchToDetaild"
-    case searchToShop = "SearchToItemInShop"
-    
-    
-    // shop
-    case shopToSearch = "ShopSeachVC"
-    case shopToGoogleMap = "ShopToGoogleMap"
-    case shopToItemInShop = "ShopToItemInShop"
-    
-    case favoriteToDetail = "FavoritesToDetail"
-    case favoritesToLogIn = "FavoritesToLogIn"
-    case favoritesToSearch = "FavoritesSearchVC"
-    
-    // Acount
-    case accountToDetail = "AccountToDetail"
-    case accountToLogin = "AccountToLogin"
-    case accountToComment = "AccountToComment"
-    case accountToPassword = "AccountToPassword"
-    case accountToEditInfor = "AccountToEditInfor"
+    case loginToView = "LoginToView"
 }
 
-enum StoryboardID : String {
-    case loginLogout = "LoginLogoutStoryboardID"
-}
 
 // google map API key
 //let GOOGLE_API_KEY = "AIzaSyAgIJ_N3H3LVx_afClZancU_0Ec6gjpUVA"

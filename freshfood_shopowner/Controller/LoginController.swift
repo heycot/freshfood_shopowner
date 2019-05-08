@@ -24,6 +24,12 @@ class LoginController: UIViewController {
         passwordTxt.setBottomBorder(color: APP_COLOR)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is UIViewController {
+            
+        }
+    }
+    
     @IBAction func loginBtnPressed(_ sender: Any) {
         if !(emailTxt.text?.isValidEmail())! {
             let alert = UIAlertController(title: Notification.email.title.rawValue, message: Notification.email.detail.rawValue, preferredStyle: .alert)
@@ -71,6 +77,7 @@ class LoginController: UIViewController {
                                 print("User have no profile")
                             }
                         })
+                    }
                     }
                 }
             }
