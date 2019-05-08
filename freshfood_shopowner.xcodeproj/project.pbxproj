@@ -35,6 +35,7 @@
 		23075B892282B3F00088AB24 /* ListShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B882282B3F00088AB24 /* ListShopController.swift */; };
 		23075B8B2282C0AF0088AB24 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B8A2282C0AF0088AB24 /* UserResponse.swift */; };
 		23075B8E2282C9A00088AB24 /* ShopResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B8D2282C9A00088AB24 /* ShopResponse.swift */; };
+		23075B902282CACC0088AB24 /* AddNewShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B8F2282CACC0088AB24 /* AddNewShopController.swift */; };
 		2332DD9122827F3D008F0CBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DD9022827F3D008F0CBE /* AppDelegate.swift */; };
 		2332DD9622827F3D008F0CBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2332DD9422827F3D008F0CBE /* Main.storyboard */; };
 		2332DD9822827F40008F0CBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2332DD9722827F40008F0CBE /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		23075B882282B3F00088AB24 /* ListShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListShopController.swift; sourceTree = "<group>"; };
 		23075B8A2282C0AF0088AB24 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		23075B8D2282C9A00088AB24 /* ShopResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopResponse.swift; sourceTree = "<group>"; };
+		23075B8F2282CACC0088AB24 /* AddNewShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewShopController.swift; sourceTree = "<group>"; };
 		2332DD8D22827F3D008F0CBE /* freshfood_shopowner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freshfood_shopowner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2332DD9022827F3D008F0CBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2332DD9522827F3D008F0CBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				23075B882282B3F00088AB24 /* ListShopController.swift */,
+				23075B8F2282CACC0088AB24 /* AddNewShopController.swift */,
 			);
 			path = shop;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				23075B802282A94F0088AB24 /* Shop.swift in Sources */,
 				23075B6E228295E80088AB24 /* CustomImageView.swift in Sources */,
 				23075B8B2282C0AF0088AB24 /* UserResponse.swift in Sources */,
+				23075B902282CACC0088AB24 /* AddNewShopController.swift in Sources */,
 				23075B852282A94F0088AB24 /* User.swift in Sources */,
 				23075B622282957E0088AB24 /* ExtensionTextField.swift in Sources */,
 				2332DD9122827F3D008F0CBE /* AppDelegate.swift in Sources */,
