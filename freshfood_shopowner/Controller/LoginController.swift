@@ -73,11 +73,12 @@ class LoginController: UIViewController {
 //                                } catch let jsonError {
 //                                    print("Error serializing json:", jsonError)
 //                                }
+                                
+                                 self?.performSegue(withIdentifier: SegueIdentifier.loginToView.rawValue, sender: nil)
                             } else {
                                 print("User have no profile")
                             }
                         })
-                    }
                     }
                 }
             }
