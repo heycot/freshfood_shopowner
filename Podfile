@@ -13,6 +13,6 @@ target 'freshfood_shopowner' do
     pod 'Firebase/Auth'
     pod 'IQKeyboardManagerSwift'
     pod 'GoogleMaps'
-
+    pod 'Alamofire'
 
 end
