@@ -68,12 +68,10 @@ class SignUpController: UIViewController {
                     db.collection("user_profile").document(authResult!.user.uid).setData([
                         "name": self.nameTxt.text,
                         "email": self.emailTxt.text,
-                        "password": self.passTxt.text,
                         "phone": "",
                         "address": "",
                         "birthday": Date(),
-                        "create_date": Date(),
-                        "token": ""
+                        "create_date": Date()
                     ]) { err in
                         if let err = err {
                             print("Error writing document: \(err)")
