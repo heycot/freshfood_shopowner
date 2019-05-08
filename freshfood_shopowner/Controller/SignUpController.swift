@@ -10,7 +10,7 @@ import UIKit
 import Photos
 import Firebase
 import FirebaseFirestore
-
+import FirebaseAuth
 
 class SignUpController: UIViewController {
     // Outlets
@@ -59,32 +59,28 @@ class SignUpController: UIViewController {
             }
             
             Auth.auth().createUser(withEmail: emailTxt.text!, password: passTxt.text!) { authResult, error in
-                if (error != nil) {
-                    print(error)
+                if let err = error {
+                    print(err.localizedDescription)
                 }
                 else{
+                    let userProfile = ["name": self.nameTxt.text!,
+                                       "email": self.emailTxt.text!] as [String : Any]
                     
                     let db = Firestore.firestore()
-                    db.collection("user_profile").document(authResult!.user.uid).setData([
-                        "name": self.nameTxt.text,
-                        "email": self.emailTxt.text,
-                        "password": self.passTxt.text,
-                        "create_date": Date(),
-                        "token": ""
-                    ]) { err in
+                    db.collection("user_profile").document(authResult!.user.uid).setData(userProfile) { err in
                         if let err = err {
                             print("Error writing document: \(err)")
                         } else {
                             print("Document successfully written!")
+                            //Đoạn này em có thể lưu user profile vào user default rồi nhảy tiếp qua home screen
+                            //Ở bước này thì em có thể lưu user email, user name, user avatar. Hết. Ko đc lưu mật khẩu nha
                         }
                     }
                     
                     self.navigationController?.popViewController(animated: true)
                 }
             }
-            
         }
-        
     }
     
     func backTwoViewController() {
@@ -93,13 +89,13 @@ class SignUpController: UIViewController {
     }
     
     func checkInputData() -> Bool {
-        guard let name = nameTxt.text, nameTxt.text!.isValidUserName() else{
+        guard let _ = nameTxt.text, nameTxt.text!.isValidUserName() else{
             notification.text = Notification.username.title.rawValue
             detailNotifi.text = Notification.username.detail.rawValue
             return false
         }
         
-        guard let email = emailTxt.text , emailTxt.text!.isValidEmail() else {
+        guard let _ = emailTxt.text , emailTxt.text!.isValidEmail() else {
             notification.text = Notification.email.title.rawValue
             detailNotifi.text = Notification.email.detail.rawValue
             return false

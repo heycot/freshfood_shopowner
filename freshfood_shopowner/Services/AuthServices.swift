@@ -21,34 +21,17 @@ class AuthServices {
     
     var isLoggedIn : Bool {
         get {
-            return defaults.bool(forKey: LOGGED_IN_KEY)
-        }
-        
-        set {
-            defaults.set(newValue, forKey: LOGGED_IN_KEY)
-        }
-    }
-    
-    var authToken : String {
-        get {
-            return defaults.value(forKey: TOKEN_KEY) as! String
-        }
-        
-        set {
-            defaults.set(newValue, forKey: TOKEN_KEY)
+            return (Auth.auth().currentUser != nil)
         }
     }
     
     var userEmail : String {
-        get {
-            return defaults.value(forKey: USER_EMAIL) as! String
-        }
-        
-        set {
-            defaults.set(newValue, forKey: USER_EMAIL)
-        }
+        return (Auth.auth().currentUser?.email ?? "")
     }
     
+    var authToken : String {
+        return (Auth.auth().currentUser?.refreshToken ?? "")
+    }
     
     func registerUser(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
