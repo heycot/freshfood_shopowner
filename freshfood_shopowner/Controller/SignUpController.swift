@@ -64,6 +64,21 @@ class SignUpController: UIViewController {
                 }
                 else{
                     
+                    let db = Firestore.firestore()
+                    db.collection("user_profile").document(authResult!.user.uid).setData([
+                        "name": self.nameTxt.text,
+                        "email": self.emailTxt.text,
+                        "password": self.passTxt.text,
+                        "create_date": Date(),
+                        "token": ""
+                    ]) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+                    
                     self.navigationController?.popViewController(animated: true)
                 }
             }
