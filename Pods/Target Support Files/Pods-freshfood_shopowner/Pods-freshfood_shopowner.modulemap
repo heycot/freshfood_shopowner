@@ -1,0 +1,6 @@
+framework module Pods_freshfood_shopowner {
+  umbrella header "Pods-freshfood_shopowner-umbrella.h"
+
+  export *
+  module * { export * }
+}
