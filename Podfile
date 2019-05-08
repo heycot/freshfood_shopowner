@@ -11,6 +11,7 @@ target 'freshfood_shopowner' do
     pod 'Firebase/Firestore'
     pod 'Firebase/Analytics'
     pod 'Firebase/Auth'
+    pod 'IQKeyboardManagerSwift'
 
 
 end
