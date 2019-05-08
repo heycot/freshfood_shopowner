@@ -14,5 +14,6 @@ target 'freshfood_shopowner' do
     pod 'IQKeyboardManagerSwift'
     pod 'GoogleMaps'
     pod 'Alamofire'
+    pod 'ObjectMapper'
 
 end

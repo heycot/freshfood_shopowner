@@ -31,7 +31,7 @@ class AddNewShopController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configsMapp()
     }
     
     func configsMapp() {

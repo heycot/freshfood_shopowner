@@ -136,7 +136,7 @@
                     <navigationItem key="navigationItem" id="rcQ-Io-JjK">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="epn-Ss-HJ7">
                             <connections>
-                                <segue destination="mlr-eN-Vad" kind="show" id="xB8-zM-bu5"/>
+                                <segue destination="mlr-eN-Vad" kind="show" identifier="ListShopToAdd" id="Erk-Vw-m4h"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -277,7 +277,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlY-62-Xoa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3381.5999999999999" y="710.19490254872574"/>
+            <point key="canvasLocation" x="3500" y="716"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="l9G-Fh-SKf">
