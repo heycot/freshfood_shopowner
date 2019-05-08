@@ -24,9 +24,12 @@ class AddNewShopController: UIViewController {
     var didUpdateLocation: Bool = false
     
     var currentLocation: CLLocation?
+    var marker: GMSMarker?
     
     var originCoordinate: CLLocationCoordinate2D!
     var originAddress: String!
+    
+    var newShop = ShopResponse()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +46,21 @@ class AddNewShopController: UIViewController {
         mapView.delegate = self
         mapView.isMyLocationEnabled = true
     }
+    
+    func showMarker(location: CLLocation) {
+        let currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
+        // clear before show new one
+        marker?.map = nil
+        
+        marker = GMSMarker(position: currentLocation)
+        marker?.map = mapView
+    }
 
     func configCamera(location: CLLocation, zoomLevel: Float) {
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: zoomLevel)
         mapView.camera = camera
+        
     }
 
     func configLocationManager() {
@@ -90,13 +104,16 @@ extension AddNewShopController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("tap")
+        self.newShop.latitude = coordinate.latitude
+        self.newShop.longitude = coordinate.longitude
+        
+        self.currentLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        guard let location = self.currentLocation else { return }
+        configCamera(location: location, zoomLevel: zoomLevel)
+        
+        showMarker(location: location)
     }
     
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print("didTap marker")
-        
-        return false
-    }
 }
 
 extension AddNewShopController: CLLocationManagerDelegate {
