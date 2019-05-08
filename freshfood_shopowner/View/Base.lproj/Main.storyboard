@@ -133,10 +133,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zYy-9e-aa6"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rcQ-Io-JjK"/>
-                    <connections>
-                        <segue destination="mlr-eN-Vad" kind="push" id="3CQ-En-ZZ2"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="rcQ-Io-JjK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="epn-Ss-HJ7">
+                            <connections>
+                                <segue destination="mlr-eN-Vad" kind="show" id="xB8-zM-bu5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bWH-uu-2dX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -262,6 +265,15 @@
                     <navigationItem key="navigationItem" id="CZ6-9p-mVp">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="xEz-MZ-bp0"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addresstxt" destination="dX7-33-gFR" id="c6J-4y-OMQ"/>
+                        <outlet property="mapView" destination="PEA-Go-G6O" id="9ig-jQ-x7K"/>
+                        <outlet property="nameTxt" destination="hAF-zm-GRx" id="lxx-8M-aht"/>
+                        <outlet property="notification" destination="fWT-Iv-tRS" id="ZTm-yK-iVz"/>
+                        <outlet property="sellTxt" destination="caD-4I-pfU" id="OBs-u5-nr4"/>
+                        <outlet property="timeClose" destination="bxn-Jr-8mz" id="Vey-Bf-zkJ"/>
+                        <outlet property="timeOpen" destination="tMQ-pe-Zz1" id="w91-PH-gAb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlY-62-Xoa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
