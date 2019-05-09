@@ -31,11 +31,93 @@ class AddNewShopController: UIViewController {
     
     var newShop = ShopResponse()
     
+    
+    var openTimePicker = UIDatePicker()
+    var closeTimePicker = UIDatePicker()
+    let dateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configsMapp()
+        showTimeOpenPicker()
+        showTimeClosePicker()
+        dateFormatter.dateFormat =  "HH:mm"
     }
     
+    
+}
+
+// extension for datepicker
+extension AddNewShopController {
+    func showTimeOpenPicker() {
+        //Formate Date
+        openTimePicker.datePickerMode = .time
+        openTimePicker.locale = Locale(identifier: "en_GB")
+        openTimePicker.minuteInterval = 5;
+//        closeTimePicker.date = dateFormatter.date(from: "07:00") ??
+        
+        //ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneTimeOpenPicker));
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTimeOpenPicker));
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        
+        timeOpen.inputAccessoryView = toolbar
+        timeOpen.inputView = openTimePicker
+    }
+    
+    @IBAction func doneTimeOpenPicker(_ sender: Any) {
+        dateFormatter.dateFormat = "HH:mm"
+        timeOpen.text = dateFormatter.string(from: openTimePicker.date)
+        // khongar cách its nhất 1h
+        closeTimePicker.minimumDate = openTimePicker.date + 3600
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func cancelTimeOpenPicker(_ sender: Any) {
+        
+        self.view.endEditing(true)
+    }
+    
+    func showTimeClosePicker() {
+        //Formate Date
+        closeTimePicker.datePickerMode = .time
+        closeTimePicker.locale = Locale(identifier: "en_GB")
+        closeTimePicker.minuteInterval = 5;
+//        closeTimePicker.date = dateFormatter.date(from: "19:00")!
+        
+        //ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneTimeClosePicker));
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTimeClosePicker));
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        
+        timeClose.inputAccessoryView = toolbar
+        timeClose.inputView = closeTimePicker
+    }
+    
+    @IBAction func doneTimeClosePicker(_ sender: Any) {
+        dateFormatter.dateFormat = "HH:mm"
+        timeClose.text = dateFormatter.string(from: closeTimePicker.date)
+        // cách nhau ít nhất 1h
+        openTimePicker.maximumDate = closeTimePicker.date - 3600
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func cancelTimeClosePicker(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+}
+
+
+// extension for map
+extension AddNewShopController {
     func configsMapp() {
         addMap()
         
@@ -56,13 +138,13 @@ class AddNewShopController: UIViewController {
         marker = GMSMarker(position: currentLocation)
         marker?.map = mapView
     }
-
+    
     func configCamera(location: CLLocation, zoomLevel: Float) {
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: zoomLevel)
         mapView.camera = camera
         
     }
-
+    
     func configLocationManager() {
         // User Location
         locationManager.delegate = self
@@ -81,7 +163,6 @@ class AddNewShopController: UIViewController {
         locationManager.stopUpdatingLocation()
     }
 }
-
 
 extension AddNewShopController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
