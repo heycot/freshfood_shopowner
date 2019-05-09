@@ -30,6 +30,7 @@ class AddNewShopController: UIViewController {
     var originAddress: String!
     
     var newShop = ShopResponse()
+    var isTapMap = false
     
     
     var openTimePicker = UIDatePicker()
@@ -38,12 +39,57 @@ class AddNewShopController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        notification.isHidden = true
         configsMapp()
         showTimeOpenPicker()
         showTimeClosePicker()
         dateFormatter.dateFormat =  "HH:mm"
     }
     
+    @IBAction func doneBtnPressed(_ sender: Any) {
+        if checkValidateInput() {
+            
+        }
+    }
+    
+    
+    func checkValidateInput() -> Bool {
+        guard let name = nameTxt.text, nameTxt.text != "" else{
+            notification.text = Notification.newShop.rawValue
+            notification.isHidden = false
+            return false
+        }
+        
+        guard let time_open = timeOpen.text , timeOpen.text != "" else {
+            notification.text = Notification.newShop.rawValue
+            notification.isHidden = false
+            return false
+        }
+        
+        guard let time_close = timeClose.text, timeClose.text != "" else {
+            notification.text = Notification.newShop.rawValue
+            notification.isHidden = false
+            return false
+        }
+        
+        guard  let address = addresstxt.text, addresstxt.text != "" else {
+            notification.text = Notification.newShop.rawValue
+            notification.isHidden = false
+            return false
+        }
+        
+        if !isTapMap {
+            notification.text = "Please mark your shop's location on the map."
+            notification.isHidden = false
+            return false
+        }
+        
+        self.newShop.name = name
+        self.newShop.time_open = time_open
+        self.newShop.time_close = time_close
+        self.newShop.address = address
+        return true
+    }
     
 }
 
@@ -185,6 +231,7 @@ extension AddNewShopController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("tap")
+        self.isTapMap = true
         self.newShop.latitude = coordinate.latitude
         self.newShop.longitude = coordinate.longitude
         

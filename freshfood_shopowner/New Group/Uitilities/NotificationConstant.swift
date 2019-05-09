@@ -19,7 +19,7 @@ enum Notification : String {
     
     case notLogedIn = "Please login to use this task."
     
-    
+    case newShop = "All the information are required."
     
     
     enum comment : String {

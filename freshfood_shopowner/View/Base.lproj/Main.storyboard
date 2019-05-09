@@ -236,7 +236,11 @@
                         <viewLayoutGuide key="safeArea" id="0tp-pw-C8b"/>
                     </view>
                     <navigationItem key="navigationItem" id="CZ6-9p-mVp">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="xEz-MZ-bp0"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="xEz-MZ-bp0">
+                            <connections>
+                                <action selector="doneBtnPressed:" destination="mlr-eN-Vad" id="iDu-e7-ZLj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addresstxt" destination="dX7-33-gFR" id="c6J-4y-OMQ"/>
