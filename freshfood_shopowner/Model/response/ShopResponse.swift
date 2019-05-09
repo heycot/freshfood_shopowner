@@ -23,8 +23,9 @@ struct ShopResponse: Decodable {
     var sell: String?
     var longitude: Double?
     var latitude: Double?
+    var address: String?
     
-    init(id: Int, user_id: Int, name: String, rating: Double, time_open: String, time_close: String, create_date: Date, status: Int, phone: String, avatar: String, sell: String, longitude: Double, latitude: Double) {
+    init(id: Int, user_id: Int, name: String, rating: Double, time_open: String, time_close: String, create_date: Date, status: Int, phone: String, avatar: String, sell: String, longitude: Double, latitude: Double, address: String) {
         self.id = id
         self.user_id = user_id
         self.name = name
@@ -38,10 +39,11 @@ struct ShopResponse: Decodable {
         self.sell = sell
         self.longitude = longitude
         self.latitude = latitude
+        self.address = address
     }
     
     init(){
-        self.init(id: 0, user_id: 0, name: "", rating: 0.0, time_open: "", time_close: "", create_date: Date(), status: 1, phone: "", avatar: "", sell: "", longitude: 0.0, latitude: 0.0)
+        self.init(id: 0, user_id: 0, name: "", rating: 0.0, time_open: "", time_close: "", create_date: Date(), status: 1, phone: "", avatar: "", sell: "", longitude: 0.0, latitude: 0.0, address: "")
     }
     
     init(name: String, longitude: Double, latitude: Double) {
