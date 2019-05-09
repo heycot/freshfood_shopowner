@@ -52,6 +52,16 @@ class AddNewShopController: UIViewController {
         }
     }
     
+    func afterAddFinish() {
+        nameTxt.isEnabled = false
+        timeClose.isEnabled = false
+        timeOpen.isEnabled = false
+        addresstxt.isEnabled = false
+        notification.text = "Add success, We will contract with you soon."
+        notification.isHidden = false
+        notification.textColor = .green 
+    }
+    
     
     func checkValidateInput() -> Bool {
         guard let name = nameTxt.text, nameTxt.text != "" else{

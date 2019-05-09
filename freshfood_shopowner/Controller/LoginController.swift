@@ -16,6 +16,11 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if AuthServices.instance.isLoggedIn {
+            performSegue(withIdentifier: SegueIdentifier.loginToView.rawValue, sender: nil)
+        }
+        
         setUpUI()
     }
     
