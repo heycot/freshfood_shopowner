@@ -52,32 +52,7 @@ class AddNewShopController: UIViewController {
         if checkValidateInput() {
             
             
-            let userID = Auth.auth().currentUser!.uid
-            //Truy cập vào user_profile để lấy user profile với uid
-            let db = Firestore.firestore()
-            let shop = [
-                        "user_id": userID,
-                        "name": self.nameTxt.text!,
-                        "rating": 0.0,
-                        "time_open": self.timeOpen.text!,
-                        "time_close": self.timeClose.text!,
-                        "create_date": Date(),
-                        "status": 0,
-                        "phone": "",
-                        "avatar": "",
-                        "sell": "",
-                        "longitude": self.newShop.longitude as Any,
-                        "latitude": self.newShop.latitude as Any,
-                        "address": self.addresstxt.text!] as [String : Any]
             
-            db.collection("shop").document().setData(shop) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
-                    self.afterAddFinish()
-                }
-            }
         }
     }
     
