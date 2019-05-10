@@ -51,7 +51,13 @@ class AddNewShopController: UIViewController {
     @IBAction func doneBtnPressed(_ sender: Any) {
         if checkValidateInput() {
             
-            
+            ShopService.instance.addNewShop(shop: self.newShop) { (data) in
+                guard let data = data else { return }
+                
+                if data {
+                    self.afterAddFinish()
+                }
+            }
             
         }
     }

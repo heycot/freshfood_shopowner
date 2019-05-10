@@ -59,14 +59,14 @@ class ShopService {
     
     func addNewShop(shop: ShopResponse, completion: @escaping (Bool?) -> Void) {
         let userID = Auth.auth().currentUser!.uid
-        //Truy cập vào user_profile để lấy user profile với uid
         let db = Firestore.firestore()
+        
         let shop = [
             "user_id": userID,
-            "name": shop.name,
+            "name": shop.name as Any,
             "rating": 0.0,
-            "time_open": shop.time_open,
-            "time_close": shop.time_close,
+            "time_open": shop.time_open as Any,
+            "time_close": shop.time_close as Any,
             "create_date": Date(),
             "status": 0,
             "phone": "",
@@ -74,7 +74,7 @@ class ShopService {
             "sell": "",
             "longitude": shop.longitude as Any,
             "latitude": shop.latitude as Any,
-            "address": shop.address] as [String : Any]
+            "address": shop.address as Any] as [String : Any]
         
         db.collection("shop").document().setData(shop) { err in
             var result = true
