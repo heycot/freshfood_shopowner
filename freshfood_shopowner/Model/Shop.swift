@@ -7,21 +7,23 @@
 //
 
 import Foundation
+import Firebase
 
 public class Shop {
-    var id: Int
+    var id: String
     var name: String
     var rating: Double
-    var time_open: Date
-    var time_close: Date
-    var create_date: Date
+    var time_open: String
+    var time_close: String
+    var create_date: TimeInterval
     var phone: String
-    var location_id: Int
+    var location: GeoPoint
     var avatar: String
     var user_id: Int
     var status: Int
     
-    init(id: Int, name: String, rating: Double, time_open: Date, time_close: Date, create_date: Date, phone: String, location_id: Int, avatar: String, user_id: Int, status: Int) {
+  
+    init(id: String, name: String, rating: Double, time_open: String, time_close: String, create_date: TimeInterval, phone: String, location: GeoPoint, avatar: String, user_id: Int, status: Int) {
         self.id = id
         self.name = name
         self.rating = rating
@@ -29,13 +31,13 @@ public class Shop {
         self.time_close = time_close
         self.create_date = create_date
         self.phone = phone
-        self.location_id = location_id
+        self.location = location
         self.avatar = avatar
         self.user_id = user_id
         self.status = status
     }
     
     convenience init() {
-        self.init(id: 0, name: "", rating: 0.0, time_open: Date(), time_close: Date(), create_date: Date(), phone: "", location_id: 0, avatar: "", user_id: 0, status: 0)
+        self.init(id: "", name: "", rating: 0.0, time_open: "07:00 AM", time_close: "07:00 PM", create_date: Date().timeIntervalSince1970, phone: "", location:GeoPoint(latitude: 0, longitude: 0), avatar: "", user_id: 0, status: 0)
     }
 }

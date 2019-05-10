@@ -50,8 +50,6 @@ class AddNewShopController: UIViewController {
     
     @IBAction func doneBtnPressed(_ sender: Any) {
         if checkValidateInput() {
-            
-            
             let userID = Auth.auth().currentUser!.uid
             //Truy cập vào user_profile để lấy user profile với uid
             let db = Firestore.firestore()
@@ -61,7 +59,7 @@ class AddNewShopController: UIViewController {
                         "rating": 0.0,
                         "time_open": self.timeOpen.text!,
                         "time_close": self.timeClose.text!,
-                        "create_date": Date(),
+                        "create_date": Date().timeIntervalSince1970,
                         "status": 0,
                         "phone": "",
                         "avatar": "",

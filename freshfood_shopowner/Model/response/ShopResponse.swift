@@ -8,15 +8,16 @@
 
 import Foundation
 import CoreLocation
+import Firebase
 
 struct ShopResponse: Decodable {
     var id: Int?
-    var user_id: Int?
+    var user_id: String?
     var name: String?
     var rating: Double?
     var time_open: String?
     var time_close: String?
-    var create_date: Date?
+    var create_date: TimeInterval?
     var status: Int?
     var phone: String?
     var avatar: String?
@@ -25,7 +26,7 @@ struct ShopResponse: Decodable {
     var latitude: Double?
     var address: String?
     
-    init(id: Int, user_id: Int, name: String, rating: Double, time_open: String, time_close: String, create_date: Date, status: Int, phone: String, avatar: String, sell: String, longitude: Double, latitude: Double, address: String) {
+    init(id: Int, user_id: String, name: String, rating: Double, time_open: String, time_close: String, create_date: TimeInterval, status: Int, phone: String, avatar: String, sell: String, longitude: Double, latitude: Double, address: String) {
         self.id = id
         self.user_id = user_id
         self.name = name
@@ -43,14 +44,13 @@ struct ShopResponse: Decodable {
     }
     
     init(){
-        self.init(id: 0, user_id: 0, name: "", rating: 0.0, time_open: "", time_close: "", create_date: Date(), status: 1, phone: "", avatar: "", sell: "", longitude: 0.0, latitude: 0.0, address: "")
+        self.init(id: 0, user_id: "", name: "", rating: 0.0, time_open: "", time_close: "", create_date: NSDate().timeIntervalSince1970, status: 1, phone: "", avatar: "", sell: "",longitude: 0.0, latitude: 0.0, address: "")
     }
     
     init(name: String, longitude: Double, latitude: Double) {
         self.init()
         self.longitude = longitude
         self.latitude = latitude
-//        self.location = LocationResponse(longitude: longitude, latitude: latitude)
         self.name = name
     }
     
@@ -70,8 +70,6 @@ struct ShopResponse: Decodable {
         
         return distance
     }
-    
-    
 }
 
 extension CLLocationDistance {
