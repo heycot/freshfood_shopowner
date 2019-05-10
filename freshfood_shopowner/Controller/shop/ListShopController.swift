@@ -12,6 +12,7 @@ import Firebase
 import FirebaseCore
 
 class ListShopController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     
     var listItem = [ShopResponse]()
@@ -46,27 +47,9 @@ class ListShopController: UIViewController {
     }
     
     func getAllShop() {
-        let userID = Auth.auth().currentUser!.uid
-        
-        let db = Firestore.firestore()
-        let docRef = db.collection("shop").document(userID)
-        
-        docRef.getDocument(completion: { (document, error) in
-            if let document = document, document.exists {
-//                _ = document.data().map(String.init(describing:)) ?? "nil"
-                
-                let jsonData = try? JSONSerialization.data(withJSONObject: document.data() as Any)
-                do {
-                    self.listItem = try JSONDecoder().decode([ShopResponse].self, from: jsonData!)
-                   
-                } catch let jsonError {
-                    print("Error serializing json:", jsonError)
-                }
-                
-            } else {
-                print("User have no profile")
-            }
-        })
+        ShopService.instance.getListShop { (data) in
+            print(data)
+        }
     }
 }
 
@@ -93,6 +76,7 @@ extension ListShopController: UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getAllShop()
         super.viewWillAppear(true)
         tableView.reloadData()
     }

@@ -49,6 +49,7 @@
 		2354F011228290C500AC9BC1 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F010228290C500AC9BC1 /* SignUpController.swift */; };
 		2354F0142282922F00AC9BC1 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F0132282922F00AC9BC1 /* AuthServices.swift */; };
 		235E144B22852886009109EC /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144A22852886009109EC /* ShopCell.swift */; };
+		235E144D22854DAF009109EC /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144C22854DAF009109EC /* ShopService.swift */; };
 		236E3501228285E00031E02B /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 236E3500228285E00031E02B /* SignUp.storyboard */; };
 		236E35032282885B0031E02B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236E35022282885B0031E02B /* LoginController.swift */; };
 		23B4AF6E2282838F00638A09 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23B4AF6D2282838F00638A09 /* GoogleService-Info.plist */; };
@@ -98,6 +99,7 @@
 		2354F010228290C500AC9BC1 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		2354F0132282922F00AC9BC1 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
 		235E144A22852886009109EC /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
+		235E144C22854DAF009109EC /* ShopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopService.swift; sourceTree = "<group>"; };
 		236E3500228285E00031E02B /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		236E35022282885B0031E02B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		23B4AF6D2282838F00638A09 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			children = (
 				23075B912282D1C10088AB24 /* MapServices */,
 				2354F0132282922F00AC9BC1 /* AuthServices.swift */,
+				235E144C22854DAF009109EC /* ShopService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				23075B802282A94F0088AB24 /* Shop.swift in Sources */,
 				23075B992282D22D0088AB24 /* MapTaskManager.swift in Sources */,
 				23075B6E228295E80088AB24 /* CustomImageView.swift in Sources */,
+				235E144D22854DAF009109EC /* ShopService.swift in Sources */,
 				23075B8B2282C0AF0088AB24 /* UserResponse.swift in Sources */,
 				23075B902282CACC0088AB24 /* AddNewShopController.swift in Sources */,
 				23075B852282A94F0088AB24 /* User.swift in Sources */,

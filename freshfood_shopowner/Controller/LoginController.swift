@@ -70,6 +70,7 @@ class LoginController: UIViewController {
                                 let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
 
                                 print("Document data: \(dataDescription)")
+                                print(document.data())
                                 //Đoạn này em maping cái profile thành User object của em nha, hoặc lưu vào
                                 //em thử map Data vào như em làm bên app kia coi có đc ko:
                                 let jsonData = try? JSONSerialization.data(withJSONObject: document.data() as Any)
