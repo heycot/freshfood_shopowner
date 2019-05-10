@@ -68,6 +68,14 @@ class AddNewShopController: UIViewController {
                         "latitude": self.newShop.latitude as Any,
                         "address": self.addresstxt.text!] as [String : Any]
             
+            db.collection("shop").document().setData(shop) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                    self.afterAddFinish()
+                }
+            }
         }
     }
     
