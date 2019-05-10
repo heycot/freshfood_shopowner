@@ -25,7 +25,6 @@
 		23075B7D2282A94F0088AB24 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B732282A94E0088AB24 /* Comment.swift */; };
 		23075B7E2282A94F0088AB24 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B742282A94E0088AB24 /* Item.swift */; };
 		23075B7F2282A94F0088AB24 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B752282A94E0088AB24 /* Area.swift */; };
-		23075B802282A94F0088AB24 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B762282A94E0088AB24 /* Shop.swift */; };
 		23075B812282A94F0088AB24 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B772282A94E0088AB24 /* Location.swift */; };
 		23075B822282A94F0088AB24 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B782282A94E0088AB24 /* Favorites.swift */; };
 		23075B832282A94F0088AB24 /* ShopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B792282A94E0088AB24 /* ShopItem.swift */; };
@@ -73,7 +72,6 @@
 		23075B732282A94E0088AB24 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		23075B742282A94E0088AB24 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		23075B752282A94E0088AB24 /* Area.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
-		23075B762282A94E0088AB24 /* Shop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		23075B772282A94E0088AB24 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		23075B782282A94E0088AB24 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		23075B792282A94E0088AB24 /* ShopItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopItem.swift; sourceTree = "<group>"; };
@@ -206,7 +204,6 @@
 				23075B782282A94E0088AB24 /* Favorites.swift */,
 				23075B742282A94E0088AB24 /* Item.swift */,
 				23075B772282A94E0088AB24 /* Location.swift */,
-				23075B762282A94E0088AB24 /* Shop.swift */,
 				23075B792282A94E0088AB24 /* ShopItem.swift */,
 				23075B7B2282A94E0088AB24 /* User.swift */,
 			);
@@ -496,7 +493,6 @@
 				23075B7F2282A94F0088AB24 /* Area.swift in Sources */,
 				23075B5C228294D70088AB24 /* StringLibrary.swift in Sources */,
 				23075B9B2282D2510088AB24 /* MapResponseDirection.swift in Sources */,
-				23075B802282A94F0088AB24 /* Shop.swift in Sources */,
 				23075B992282D22D0088AB24 /* MapTaskManager.swift in Sources */,
 				23075B6E228295E80088AB24 /* CustomImageView.swift in Sources */,
 				235E144D22854DAF009109EC /* ShopService.swift in Sources */,

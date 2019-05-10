@@ -11,7 +11,7 @@ import CoreLocation
 import Firebase
 
 struct ShopResponse: Decodable {
-    var id: Int?
+    var id: String?
     var user_id: String?
     var name: String?
     var rating: Double?
@@ -26,7 +26,7 @@ struct ShopResponse: Decodable {
     var latitude: Double?
     var address: String?
     
-    init(id: Int, user_id: String, name: String, rating: Double, time_open: String, time_close: String, create_date: TimeInterval, status: Int, phone: String, avatar: String, sell: String, longitude: Double, latitude: Double, address: String) {
+    init(id: String, user_id: String, name: String, rating: Double, time_open: String, time_close: String, create_date: TimeInterval, status: Int, phone: String, avatar: String, sell: String, longitude: Double, latitude: Double, address: String) {
         self.id = id
         self.user_id = user_id
         self.name = name
@@ -44,7 +44,7 @@ struct ShopResponse: Decodable {
     }
     
     init(){
-        self.init(id: 0, user_id: "", name: "", rating: 0.0, time_open: "", time_close: "", create_date: NSDate().timeIntervalSince1970, status: 1, phone: "", avatar: "", sell: "",longitude: 0.0, latitude: 0.0, address: "")
+        self.init(id: "", user_id: "", name: "", rating: 0.0, time_open: "", time_close: "", create_date: NSDate().timeIntervalSince1970, status: 1, phone: "", avatar: "", sell: "",longitude: 0.0, latitude: 0.0, address: "")
     }
     
     init(name: String, longitude: Double, latitude: Double) {

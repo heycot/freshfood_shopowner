@@ -48,7 +48,33 @@ class ListShopController: UIViewController {
     
     func getAllShop() {
         ShopService.instance.getListShop { (data) in
-            print(data)
+            let userID = Auth.auth().currentUser!.uid
+            
+            let db = Firestore.firestore()
+            let docRef = db.collection("shop").whereField("user_id", isEqualTo: userID)
+            
+            docRef.getDocuments(completion: { (document, error) in
+                if let document = document {
+                    print(document.documents)
+                    var shopList = [ShopResponse]()
+                    for shopDoct in document.documents{
+                        let jsonData = try? JSONSerialization.data(withJSONObject: shopDoct.data() as Any)
+                        do {
+                            var shop = try JSONDecoder().decode(ShopResponse.self, from: jsonData!)
+                            shop.id = shopDoct.documentID
+                            shopList.append(shop)
+                        }
+                        catch let jsonError {
+                            print("Error serializing json:", jsonError)
+                        }
+                    }
+                    
+                    self.listItem = shopList
+   
+                } else {
+                    print("User have no profile")
+                }
+            })
         }
     }
 }
