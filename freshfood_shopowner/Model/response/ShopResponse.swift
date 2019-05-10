@@ -54,5 +54,32 @@ struct ShopResponse: Decodable {
         self.name = name
     }
     
+    func getDistance(currlocation: CLLocation?) -> String {
+        var distance =  ""
+        if self.latitude == 0.0, self.longitude == 0.0 { return "Unknown" }
+        guard let userLocation = currlocation else {  return "Unknown"  }
+        
+        let coordinate₀ = CLLocation(latitude: self.latitude ?? 0.0, longitude: self.longitude ?? 0.0)
+        
+        let distanceInMeters = coordinate₀.distance(from: userLocation)
+        if distanceInMeters < 1000 {
+            distance = String(format: " %.2f ", distanceInMeters) + " M"
+        } else {
+            distance = String(format: " %.2f ", distanceInMeters.inKilometers()) + " KM"
+        }
+        
+        return distance
+    }
     
+    
+}
+
+extension CLLocationDistance {
+    func inMiles() -> CLLocationDistance {
+        return self*0.00062137
+    }
+    
+    func inKilometers() -> CLLocationDistance {
+        return self/1000
+    }
 }
