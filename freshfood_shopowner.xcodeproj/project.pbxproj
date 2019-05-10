@@ -169,9 +169,8 @@
 		23075B6F2282A50E0088AB24 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				235E144E228552DD009109EC /* auth */,
 				23075B872282B3D60088AB24 /* shop */,
-				2354F010228290C500AC9BC1 /* SignUpController.swift */,
-				236E35022282885B0031E02B /* LoginController.swift */,
 				2332DD9022827F3D008F0CBE /* AppDelegate.swift */,
 			);
 			path = Controller;
@@ -318,6 +317,15 @@
 				235E144A22852886009109EC /* ShopCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		235E144E228552DD009109EC /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				2354F010228290C500AC9BC1 /* SignUpController.swift */,
+				236E35022282885B0031E02B /* LoginController.swift */,
+			);
+			path = auth;
 			sourceTree = "<group>";
 		};
 		23DA2771CF5FA53A4FA8A14A /* Frameworks */ = {
