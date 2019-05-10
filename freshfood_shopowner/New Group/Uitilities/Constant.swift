@@ -109,6 +109,10 @@ enum SegueIdentifier: String {
     case signupToListShop = "SignUpToListShop"
 }
 
+enum  CellIdentifier: String {
+    case shop = "ShopCell"
+}
+
 
 // google map API key
 //let GOOGLE_API_KEY = "AIzaSyAgIJ_N3H3LVx_afClZancU_0Ec6gjpUVA"

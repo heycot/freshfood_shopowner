@@ -8,10 +8,13 @@
 
 import UIKit
 import GoogleMaps
+import Firebase
+import FirebaseCore
 
 class ListShopController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
+    var listItem = [ShopResponse]()
     // location manager
     var locationManager = CLLocationManager()
     var didUpdateLocation: Bool = false
@@ -19,8 +22,21 @@ class ListShopController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCurrentLocation()
+        setupView()
     }
     
+    func setupView() {
+        navigationController?.navigationBar.barTintColor = APP_COLOR
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        
+        self.tableView.reloadData()
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.rowHeight = 90
+        
+    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -29,7 +45,59 @@ class ListShopController: UIViewController {
         }
     }
     
+    func getAllShop() {
+        let userID = Auth.auth().currentUser!.uid
+        
+        let db = Firestore.firestore()
+        let docRef = db.collection("shop").document(userID)
+        
+        docRef.getDocument(completion: { (document, error) in
+            if let document = document, document.exists {
+//                _ = document.data().map(String.init(describing:)) ?? "nil"
+                
+                let jsonData = try? JSONSerialization.data(withJSONObject: document.data() as Any)
+                do {
+                    self.listItem = try JSONDecoder().decode([ShopResponse].self, from: jsonData!)
+                   
+                } catch let jsonError {
+                    print("Error serializing json:", jsonError)
+                }
+                
+            } else {
+                print("User have no profile")
+            }
+        })
+    }
+}
 
+// extention for uitableview
+extension ListShopController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+//        getShopInfor(id: listItem[indexPath.row].id!)
+    }
+}
+
+extension ListShopController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listItem.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.shop.rawValue, for: indexPath) as! ShopCell
+        
+        
+        cell.updateView(shop: listItem[indexPath.row])
+        
+        return cell
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
+    
+    
 }
 
 // extention for location
