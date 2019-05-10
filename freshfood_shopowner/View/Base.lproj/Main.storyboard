@@ -244,6 +244,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addresstxt" destination="dX7-33-gFR" id="c6J-4y-OMQ"/>
+                        <outlet property="doneBtn" destination="xEz-MZ-bp0" id="ZMG-4t-lv5"/>
                         <outlet property="mapView" destination="PEA-Go-G6O" id="9ig-jQ-x7K"/>
                         <outlet property="nameTxt" destination="hAF-zm-GRx" id="lxx-8M-aht"/>
                         <outlet property="notification" destination="fWT-Iv-tRS" id="ZTm-yK-iVz"/>
@@ -392,7 +393,7 @@
                     <navigationItem key="navigationItem" id="fdb-ta-PpM">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="gxc-7B-wfN">
                             <connections>
-                                <action selector="donePressed:" destination="BlV-vs-ZYp" id="pWd-3t-wZt"/>
+                                <action selector="doneBtn:" destination="DhX-qY-6cm" id="48S-q0-p6Q"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -408,6 +409,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WOK-Jv-AZk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="DhX-qY-6cm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2664.8000000000002" y="34.632683658170919"/>
         </scene>
