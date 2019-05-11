@@ -16,6 +16,8 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTxt.text = "callie@enclave.vn"
+        passwordTxt.text = "Q!123456"
         
         if AuthServices.instance.isLoggedIn {
             performSegue(withIdentifier: SegueIdentifier.loginToView.rawValue, sender: nil)

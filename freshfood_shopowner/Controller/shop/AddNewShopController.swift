@@ -31,7 +31,6 @@ class AddNewShopController: UIViewController {
     var originCoordinate: CLLocationCoordinate2D!
     var originAddress: String!
     
-    var newShop = ShopResponse()
     var isTapMap = false
     
     
@@ -65,7 +64,7 @@ class AddNewShopController: UIViewController {
         
         showMarker(location: location)
         
-        if shop.status == 0 {
+        if shop.status != 1 {
             disbaleView()
         }
     }
@@ -75,7 +74,7 @@ class AddNewShopController: UIViewController {
             
             if isNew {
                 
-                ShopService.instance.addNewShop(shop: newShop) { (data) in
+                ShopService.instance.addNewShop(shop: shop) { (data) in
                     guard let data = data else { return }
                     
                     if data {
@@ -87,7 +86,17 @@ class AddNewShopController: UIViewController {
                     }
                 }
             } else {
-                
+                ShopService.instance.editShop(shop: shop) { (data) in
+                    guard let data = data else { return }
+                    
+                    if data {
+                        self.afterAddFinish()
+                    } else {
+                        self.notification.text = "Something went wrong. Please try again"
+                        self.notification.textColor = .red
+                        self.notification.isHidden = false
+                    }
+                }
             }
         }
     }
@@ -140,10 +149,10 @@ class AddNewShopController: UIViewController {
             return false
         }
         
-        self.newShop.name = name
-        self.newShop.time_open = time_open
-        self.newShop.time_close = time_close
-        self.newShop.address = address
+        self.shop.name = name
+        self.shop.time_open = time_open
+        self.shop.time_close = time_close
+        self.shop.address = address
         return true
     }
     
@@ -288,8 +297,8 @@ extension AddNewShopController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("tap")
         self.isTapMap = true
-        self.newShop.latitude = coordinate.latitude
-        self.newShop.longitude = coordinate.longitude
+        self.shop.latitude = coordinate.latitude
+        self.shop.longitude = coordinate.longitude
         
         self.currentLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         guard let location = self.currentLocation else { return }
