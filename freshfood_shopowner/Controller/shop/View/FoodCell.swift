@@ -26,7 +26,9 @@ class FoodCell: UITableViewCell {
     
     
     func updateView(item: ShopItemResponse) {
-        let price = "VND " + (item.price?.formatPrice())! + "/\(item.unit!)"
+        let priceFormat = (item.price?.formatPrice())!
+//        let newStr = priceFormat.substring(from: 1) // Swift 3
+        let price = "VND " + String(priceFormat) + "/\(item.unit!)"
         
         
         nameTxt.text = item.name
@@ -39,7 +41,7 @@ class FoodCell: UITableViewCell {
             ratingTxt.text = "No comment yet"
             ratingTxt.textColor = .gray
         } else {
-            ratingTxt.text = String(format: "0.2f", rating) + " (\(cmt))"
+            ratingTxt.text = String(format: "%0.2f", rating) + " (\(cmt))"
             
             if rating < 2.5 {
                 ratingTxt.textColor = .red
