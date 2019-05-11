@@ -36,7 +36,7 @@ class ListFoodsController: UIViewController {
 extension ListFoodsController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
+        //
     }
     
     
@@ -45,14 +45,13 @@ extension ListFoodsController : UITableViewDelegate {
 extension ListFoodsController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         <#code#>
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.viewDidLoad()
         super.viewWillAppear(true)
         tableView.reloadData()
     }

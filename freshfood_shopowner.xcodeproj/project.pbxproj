@@ -47,6 +47,7 @@
 		2332DD9B22827F40008F0CBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2332DD9922827F40008F0CBE /* LaunchScreen.storyboard */; };
 		2337F7742286DD0800D9E35F /* ListFoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7732286DD0700D9E35F /* ListFoodsController.swift */; };
 		2337F7762286DE9300D9E35F /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7752286DE9300D9E35F /* FoodCell.swift */; };
+		2337F7782286E4E700D9E35F /* ShopItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7772286E4E700D9E35F /* ShopItemResponse.swift */; };
 		2354F011228290C500AC9BC1 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F010228290C500AC9BC1 /* SignUpController.swift */; };
 		2354F0142282922F00AC9BC1 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F0132282922F00AC9BC1 /* AuthServices.swift */; };
 		235E144B22852886009109EC /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144A22852886009109EC /* ShopCell.swift */; };
@@ -98,6 +99,7 @@
 		2332DD9C22827F40008F0CBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2337F7732286DD0700D9E35F /* ListFoodsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoodsController.swift; sourceTree = "<group>"; };
 		2337F7752286DE9300D9E35F /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
+		2337F7772286E4E700D9E35F /* ShopItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItemResponse.swift; sourceTree = "<group>"; };
 		2354F010228290C500AC9BC1 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		2354F0132282922F00AC9BC1 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
 		235E144A22852886009109EC /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			children = (
 				23075B8A2282C0AF0088AB24 /* UserResponse.swift */,
 				23075B8D2282C9A00088AB24 /* ShopResponse.swift */,
+				2337F7772286E4E700D9E35F /* ShopItemResponse.swift */,
 			);
 			path = response;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				23075B542282945E0088AB24 /* Constant.swift in Sources */,
 				2337F7762286DE9300D9E35F /* FoodCell.swift in Sources */,
 				23075B812282A94F0088AB24 /* Location.swift in Sources */,
+				2337F7782286E4E700D9E35F /* ShopItemResponse.swift in Sources */,
 				23075B972282D21A0088AB24 /* MapRouter.swift in Sources */,
 				23075B66228295A50088AB24 /* ExtensionButton.swift in Sources */,
 				23075B8E2282C9A00088AB24 /* ShopResponse.swift in Sources */,
