@@ -24,6 +24,7 @@ class AddNewShopController: UIViewController {
     
     @IBOutlet weak var changeAvatarBtn: UIButton!
     @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var checkFoodsBtn: UIButton!
     
     var locationManager = CLLocationManager()
     var zoomLevel: Float = 15.0
@@ -53,9 +54,12 @@ class AddNewShopController: UIViewController {
         showTimeClosePicker()
         dateFormatter.dateFormat =  "HH:mm"
         phoneTxt.keyboardType = .numberPad
+        checkFoodsBtn.isEnabled = false
         
         if !isNew {
+            checkFoodsBtn.isEnabled = true
             showInforShop()
+            
         }
     }
     
@@ -73,6 +77,14 @@ class AddNewShopController: UIViewController {
         if shop.status != 1 {
             disbaleView()
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+    
+    @IBAction func checkFoodBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: SegueIdentifier.shoptoListFood.rawValue, sender: nil)
     }
     
     @IBAction func doneBtnPressed(_ sender: Any) {
