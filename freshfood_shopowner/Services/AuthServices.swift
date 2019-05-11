@@ -40,15 +40,15 @@ class AuthServices {
 
     }
     
-    func signup(email: String, password: String, completion: @escaping (Bool?) -> Void) {
+    func signup(name: String, email: String, password: String, completion: @escaping (Bool?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let err = error {
                 print(err.localizedDescription)
             }
             else{
                 let date = Date().timeIntervalSince1970
-                let userProfile = ["name": email,
-                                   "email": password,
+                let userProfile = ["name": name,
+                                   "email": email,
                                    "phone": "",
                                    "birthday": "",
                                    "create_date": date,

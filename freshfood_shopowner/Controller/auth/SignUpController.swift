@@ -58,7 +58,7 @@ class SignUpController: UIViewController {
                 image = UIImage(named: "logo")
             }
             
-            AuthServices.instance.signup(email: emailTxt.text!, password: passTxt.text!) { (data) in
+            AuthServices.instance.signup(name: nameTxt.text!, email: emailTxt.text!, password: passTxt.text!) { (data) in
                 guard let data = data else { return }
                 if data {
                     self.performSegue(withIdentifier: SegueIdentifier.signupToListShop.rawValue, sender: nil)

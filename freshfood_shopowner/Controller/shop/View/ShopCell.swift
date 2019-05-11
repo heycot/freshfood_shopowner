@@ -30,7 +30,7 @@ class ShopCell: UITableViewCell {
     
     func updateView(shop: ShopResponse) {
                 
-        shopImage.loadImageUsingUrlString(urlString: BASE_URL_IMAGE + shop.avatar!)
+//        shopImage.loadImageUsingUrlString(urlString: BASE_URL_IMAGE + shop.avatar!)
         shopName.text = shop.name!
         shopAddress.text = shop.address
         if shop.status == 0 {
