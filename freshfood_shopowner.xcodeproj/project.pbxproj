@@ -46,6 +46,7 @@
 		2332DD9822827F40008F0CBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2332DD9722827F40008F0CBE /* Assets.xcassets */; };
 		2332DD9B22827F40008F0CBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2332DD9922827F40008F0CBE /* LaunchScreen.storyboard */; };
 		2337F7742286DD0800D9E35F /* ListFoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7732286DD0700D9E35F /* ListFoodsController.swift */; };
+		2337F7762286DE9300D9E35F /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7752286DE9300D9E35F /* FoodCell.swift */; };
 		2354F011228290C500AC9BC1 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F010228290C500AC9BC1 /* SignUpController.swift */; };
 		2354F0142282922F00AC9BC1 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F0132282922F00AC9BC1 /* AuthServices.swift */; };
 		235E144B22852886009109EC /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144A22852886009109EC /* ShopCell.swift */; };
@@ -96,6 +97,7 @@
 		2332DD9A22827F40008F0CBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2332DD9C22827F40008F0CBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2337F7732286DD0700D9E35F /* ListFoodsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoodsController.swift; sourceTree = "<group>"; };
+		2337F7752286DE9300D9E35F /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		2354F010228290C500AC9BC1 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		2354F0132282922F00AC9BC1 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
 		235E144A22852886009109EC /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				235E144A22852886009109EC /* ShopCell.swift */,
+				2337F7752286DE9300D9E35F /* FoodCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				23075B5A228294C90088AB24 /* GeneralValueItem.swift in Sources */,
 				2337F7742286DD0800D9E35F /* ListFoodsController.swift in Sources */,
 				23075B542282945E0088AB24 /* Constant.swift in Sources */,
+				2337F7762286DE9300D9E35F /* FoodCell.swift in Sources */,
 				23075B812282A94F0088AB24 /* Location.swift in Sources */,
 				23075B972282D21A0088AB24 /* MapRouter.swift in Sources */,
 				23075B66228295A50088AB24 /* ExtensionButton.swift in Sources */,
