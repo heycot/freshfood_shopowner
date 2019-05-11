@@ -33,7 +33,16 @@ class ShopCell: UITableViewCell {
         shopImage.loadImageUsingUrlString(urlString: BASE_URL_IMAGE + shop.avatar!)
         shopName.text = shop.name!
         shopAddress.text = shop.address
-        infor.text =  "Distance : " + (shop.getDistance(currlocation: AuthServices.instance.currentLocation))
+        if shop.status == 0 {
+            infor.text = "Waiting"
+            infor.textColor = UIColor.lightGray
+        } else if shop.status == 1 {
+            infor.text = "Selling"
+        } else {
+            infor.text = "Stoped"
+            infor.textColor = .red
+        }
+//        infor.text =  "Distance : " + (shop.getDistance(currlocation: AuthServices.instance.currentLocation))
     }
 
 }
