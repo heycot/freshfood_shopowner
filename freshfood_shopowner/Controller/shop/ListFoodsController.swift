@@ -16,22 +16,44 @@ class ListFoodsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupView()
     }
     
     func setupView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        
+        self.tableView.reloadData()
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.rowHeight = 90
     }
     
 
 }
 
 
-extension ListShopController : UITableViewDelegate {
+extension ListFoodsController : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
+    }
+    
     
 }
 
-extension ListShopController : UITableViewDataSource {
+extension ListFoodsController : UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.viewDidLoad()
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
 }
