@@ -48,6 +48,7 @@
 		2337F7742286DD0800D9E35F /* ListFoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7732286DD0700D9E35F /* ListFoodsController.swift */; };
 		2337F7762286DE9300D9E35F /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7752286DE9300D9E35F /* FoodCell.swift */; };
 		2337F7782286E4E700D9E35F /* ShopItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7772286E4E700D9E35F /* ShopItemResponse.swift */; };
+		2337F77A2286EE0A00D9E35F /* ShopItemServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7792286EE0A00D9E35F /* ShopItemServices.swift */; };
 		2354F011228290C500AC9BC1 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F010228290C500AC9BC1 /* SignUpController.swift */; };
 		2354F0142282922F00AC9BC1 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F0132282922F00AC9BC1 /* AuthServices.swift */; };
 		235E144B22852886009109EC /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144A22852886009109EC /* ShopCell.swift */; };
@@ -100,6 +101,7 @@
 		2337F7732286DD0700D9E35F /* ListFoodsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFoodsController.swift; sourceTree = "<group>"; };
 		2337F7752286DE9300D9E35F /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		2337F7772286E4E700D9E35F /* ShopItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItemResponse.swift; sourceTree = "<group>"; };
+		2337F7792286EE0A00D9E35F /* ShopItemServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItemServices.swift; sourceTree = "<group>"; };
 		2354F010228290C500AC9BC1 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		2354F0132282922F00AC9BC1 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
 		235E144A22852886009109EC /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				23075B912282D1C10088AB24 /* MapServices */,
 				2354F0132282922F00AC9BC1 /* AuthServices.swift */,
 				235E144C22854DAF009109EC /* ShopService.swift */,
+				2337F7792286EE0A00D9E35F /* ShopItemServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				23075B902282CACC0088AB24 /* AddNewShopController.swift in Sources */,
 				23075B852282A94F0088AB24 /* User.swift in Sources */,
 				23075B622282957E0088AB24 /* ExtensionTextField.swift in Sources */,
+				2337F77A2286EE0A00D9E35F /* ShopItemServices.swift in Sources */,
 				23075B9D2282D2680088AB24 /* MapRequestBodyDirection.swift in Sources */,
 				2332DD9122827F3D008F0CBE /* AppDelegate.swift in Sources */,
 				235E144B22852886009109EC /* ShopCell.swift in Sources */,
