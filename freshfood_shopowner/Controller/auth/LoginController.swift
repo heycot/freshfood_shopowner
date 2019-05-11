@@ -13,10 +13,10 @@ class LoginController: UIViewController {
     
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var loginBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showBKImage()
         emailTxt.text = "callie@enclave.vn"
         passwordTxt.text = "Q!123456"
         
@@ -28,17 +28,11 @@ class LoginController: UIViewController {
         setUpUI()
     }
     
-    func showBKImage() {
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "bk.pjpg")?.drawAsPattern(in: self.view.bounds)
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        self.view.backgroundColor = UIColor(patternImage: image)
-    }
     
     func setUpUI() {
         emailTxt.setBottomBorder(color: APP_COLOR)
         passwordTxt.setBottomBorder(color: APP_COLOR)
+        loginBtn.setBorderRadious(radious: 10)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
