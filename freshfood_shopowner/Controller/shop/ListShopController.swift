@@ -46,7 +46,14 @@ class ListShopController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is AddNewShopController {
-            
+            if sender == nil {
+                
+            } else {
+                let index = sender as! Int
+                let vc = segue.destination as? AddNewShopController
+                vc?.isNew = false
+                vc?.shop = listItem[index]
+            }
         }
     }
     
@@ -88,7 +95,7 @@ class ListShopController: UIViewController {
 extension ListShopController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        getShopInfor(id: listItem[indexPath.row].id!)
+        self.performSegue(withIdentifier: SegueIdentifier.listShopToNew.rawValue, sender: indexPath.row)
     }
 }
 

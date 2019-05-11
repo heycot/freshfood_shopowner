@@ -39,7 +39,8 @@ class AddNewShopController: UIViewController {
     var closeTimePicker = UIDatePicker()
     let dateFormatter = DateFormatter()
     
-    var isNew = false
+    var isNew = true
+    var shop = ShopResponse()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,48 +49,63 @@ class AddNewShopController: UIViewController {
         showTimeOpenPicker()
         showTimeClosePicker()
         dateFormatter.dateFormat =  "HH:mm"
+        
+        if !isNew {
+            showInforShop()
+        }
+    }
+    
+    func showInforShop() {
+        nameTxt.text = shop.name
+        timeOpen.text = shop.time_open
+        timeClose.text = shop.time_close
+        addresstxt.text = shop.address
+        let location = CLLocation(latitude: shop.latitude ?? 0.0, longitude: shop.longitude ?? 0.0)
+        configCamera(location: location, zoomLevel: zoomLevel)
+        
+        showMarker(location: location)
+        
+        if shop.status == 0 {
+            disbaleView()
+        }
     }
     
     @IBAction func doneBtnPressed(_ sender: Any) {
         if checkValidateInput() {
-            let userID = Auth.auth().currentUser!.uid
-            //Truy cập vào user_profile để lấy user profile với uid
-            let db = Firestore.firestore()
-            let shop = [
-                        "user_id": userID,
-                        "name": self.nameTxt.text!,
-                        "rating": 0.0,
-                        "time_open": self.timeOpen.text!,
-                        "time_close": self.timeClose.text!,
-                        "create_date": Date().timeIntervalSince1970,
-                        "status": 0,
-                        "phone": "",
-                        "avatar": "",
-                        "sell": "",
-                        "longitude": self.newShop.longitude as Any,
-                        "latitude": self.newShop.latitude as Any,
-                        "address": self.addresstxt.text!] as [String : Any]
             
-            db.collection("shop").addDocument(data: shop) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
-                    self.afterAddFinish()
+            if isNew {
+                
+                ShopService.instance.addNewShop(shop: newShop) { (data) in
+                    guard let data = data else { return }
+                    
+                    if data {
+                        self.afterAddFinish()
+                    } else {
+                        self.notification.text = "Something went wrong. Please try again"
+                        self.notification.textColor = .red
+                        self.notification.isHidden = false
+                    }
                 }
+            } else {
+                
             }
         }
     }
     
-    func afterAddFinish() {
+    func disbaleView() {
+        
         doneBtn.isEnabled = false
         nameTxt.isEnabled = false
         timeClose.isEnabled = false
         timeOpen.isEnabled = false
         addresstxt.isEnabled = false
-        notification.text = "Add success, We will contract with you soon."
+    }
+    
+    func afterAddFinish() {
+        notification.text = "Add success, We will contact you soon."
         notification.isHidden = false
-        notification.textColor = .green 
+        notification.textColor = APP_COLOR
+        disbaleView()
     }
     
     
