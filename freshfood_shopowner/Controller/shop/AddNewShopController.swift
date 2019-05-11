@@ -52,6 +52,7 @@ class AddNewShopController: UIViewController {
         showTimeOpenPicker()
         showTimeClosePicker()
         dateFormatter.dateFormat =  "HH:mm"
+        phoneTxt.keyboardType = .numberPad
         
         if !isNew {
             showInforShop()
@@ -63,6 +64,7 @@ class AddNewShopController: UIViewController {
         timeOpen.text = shop.time_open
         timeClose.text = shop.time_close
         addresstxt.text = shop.address
+        phoneTxt.text = shop.phone
         let location = CLLocation(latitude: shop.latitude ?? 0.0, longitude: shop.longitude ?? 0.0)
         configCamera(location: location, zoomLevel: zoomLevel)
         
@@ -82,11 +84,11 @@ class AddNewShopController: UIViewController {
                     guard let data = data else { return }
                     
                     if data {
-                        self.afterAddFinish()
+                        self.showNotification(mess: "Add success, We will contact you soon", color: APP_COLOR)
+                        self.disbaleView()
+                        
                     } else {
-                        self.notification.text = "Something went wrong. Please try again"
-                        self.notification.textColor = .red
-                        self.notification.isHidden = false
+                        self.showNotification(mess: "Something went wrong. Please try again", color: .red)
                     }
                 }
             } else {
@@ -94,11 +96,11 @@ class AddNewShopController: UIViewController {
                     guard let data = data else { return }
                     
                     if data {
-                        self.afterAddFinish()
+                        self.showNotification(mess: "Edit success, We will contact you soon", color: APP_COLOR)
+                        self.disbaleView()
                     } else {
-                        self.notification.text = "Something went wrong. Please try again"
-                        self.notification.textColor = .red
-                        self.notification.isHidden = false
+                        
+                        self.showNotification(mess: "Something went wrong. Please try again", color: .red)
                     }
                 }
             }
@@ -112,52 +114,57 @@ class AddNewShopController: UIViewController {
         timeClose.isEnabled = false
         timeOpen.isEnabled = false
         addresstxt.isEnabled = false
+        phoneTxt.isEnabled = false
+        changeAvatarBtn.isEnabled = false
     }
     
-    func afterAddFinish() {
-        notification.text = "Add success, We will contact you soon."
-        notification.isHidden = false
-        notification.textColor = APP_COLOR
-        disbaleView()
-    }
     
     
     func checkValidateInput() -> Bool {
         guard let name = nameTxt.text, nameTxt.text != "" else{
-            notification.text = Notification.newShop.rawValue
-            notification.isHidden = false
+            showNotification(mess: Notification.newShop.rawValue, color: APP_COLOR)
             return false
         }
         
         guard let time_open = timeOpen.text , timeOpen.text != "" else {
-            notification.text = Notification.newShop.rawValue
-            notification.isHidden = false
+            showNotification(mess: Notification.newShop.rawValue, color: APP_COLOR)
             return false
         }
         
         guard let time_close = timeClose.text, timeClose.text != "" else {
-            notification.text = Notification.newShop.rawValue
-            notification.isHidden = false
+            showNotification(mess: Notification.newShop.rawValue, color: APP_COLOR)
             return false
         }
         
         guard  let address = addresstxt.text, addresstxt.text != "" else {
-            notification.text = Notification.newShop.rawValue
-            notification.isHidden = false
+            showNotification(mess: Notification.newShop.rawValue, color: APP_COLOR)
             return false
         }
         
-        if !isTapMap {
-            notification.text = "Please mark your shop's location on the map."
-            notification.isHidden = false
+        guard  let phone = phoneTxt.text, phoneTxt.text != "" else {
+            showNotification(mess: Notification.newShop.rawValue, color: APP_COLOR)
             return false
         }
         
+        if !isTapMap && isNew {
+            showNotification(mess: "Please mark your shop's location on the map.", color: APP_COLOR)
+            return false
+        }
+        
+        self.shop.avatar = "logo.jpg"
         self.shop.name = name
         self.shop.time_open = time_open
         self.shop.time_close = time_close
         self.shop.address = address
+        self.shop.phone = phone
         return true
+    }
+    
+    func showNotification(mess: String, color: UIColor) {
+        notification.text = mess
+        notification.textColor = color
+        self.notificationHeight.constant = 30
+        notification.isHidden = false
     }
     
 }

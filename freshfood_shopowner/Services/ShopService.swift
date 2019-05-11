@@ -13,38 +13,6 @@ import Firebase
 class ShopService {
     static let instance = ShopService()
     
-//    func getListShop( completion: @escaping ([ShopResponse]?) -> Void) {
-//
-//        let userID = Auth.auth().currentUser!.uid
-//
-//        let db = Firestore.firestore()
-//        let docRef = db.collection("shop").whereField("user_id", isEqualTo: userID)
-//
-//        docRef.getDocuments(completion: { (document, error) in
-//            if let document = document {
-//                //                    print(document.documents)
-//                var shopList = [ShopResponse]()
-//                for shopDoct in document.documents{
-//                    let jsonData = try? JSONSerialization.data(withJSONObject: shopDoct.data() as Any)
-//                    do {
-//                        var shop = try JSONDecoder().decode(ShopResponse.self, from: jsonData!)
-//                        shop.id = shopDoct.documentID
-//                        shopList.append(shop)
-//                    }
-//                    catch let jsonError {
-//                        print("Error serializing json:", jsonError)
-//                    }
-//                }
-//
-//                DispatchQueue.main.async {
-//                    completion(shopList)
-//                }
-//
-//            } else {
-//                print("User have no profile")
-//            }
-//        })
-//    }
     
     func getListShop( completion: @escaping ([ShopResponse]?) -> Void) {
         let userID = Auth.auth().currentUser!.uid
@@ -89,8 +57,8 @@ class ShopService {
             "time_close": shop.time_close as Any,
             "create_date": Date().timeIntervalSince1970,
             "status": 0,
-            "phone": "",
-            "avatar": "logo.jpg",
+            "phone": shop.phone as Any,
+            "avatar": shop.avatar as Any,
             "sell": "",
             "longitude": shop.longitude as Any,
             "latitude": shop.latitude as Any,
