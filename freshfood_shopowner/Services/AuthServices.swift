@@ -39,4 +39,36 @@ class AuthServices {
         }
 
     }
+    
+    func signup(email: String, password: String, completion: @escaping (Bool?) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let err = error {
+                print(err.localizedDescription)
+            }
+            else{
+                let userProfile = ["name": email,
+                                   "email": password] as [String : Any]
+                
+                let db = Firestore.firestore()
+                db.collection("user_profile").document(authResult!.user.uid).setData(userProfile) { err in
+                    var result = true
+                    if let err = err {
+                        result = false
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                        //Đoạn này em có thể lưu user profile vào user default rồi nhảy tiếp qua home screen
+                        //Ở bước này thì em có thể lưu user email, user name, user avatar. Hết. Ko đc lưu mật khẩu nha
+                    }
+                    
+                    DispatchQueue.main.async {
+                        completion(result)
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    
 }

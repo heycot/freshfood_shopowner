@@ -167,10 +167,10 @@
 		23075B6F2282A50E0088AB24 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				235A440622867C89000AC7DA /* auth */,
 				23075B872282B3D60088AB24 /* shop */,
-				2354F010228290C500AC9BC1 /* SignUpController.swift */,
-				236E35022282885B0031E02B /* LoginController.swift */,
 				2332DD9022827F3D008F0CBE /* AppDelegate.swift */,
+				23075B702282A5250088AB24 /* View */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -260,6 +260,7 @@
 		23075B9E2282D2770088AB24 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				23075B4F2282939C0088AB24 /* Libraries */,
 				23075B9F2282D2930088AB24 /* LocationServicesProtocol.swift */,
 			);
 			path = Protocol;
@@ -288,11 +289,9 @@
 			children = (
 				23075B9E2282D2770088AB24 /* Protocol */,
 				23075B722282A8CC0088AB24 /* Model */,
-				23075B712282A5360088AB24 /* Resource */,
-				23075B702282A5250088AB24 /* View */,
-				23075B6F2282A50E0088AB24 /* Controller */,
-				23075B4F2282939C0088AB24 /* Libraries */,
 				2354F0122282921800AC9BC1 /* Services */,
+				23075B712282A5360088AB24 /* Resource */,
+				23075B6F2282A50E0088AB24 /* Controller */,
 				2332DD9C22827F40008F0CBE /* Info.plist */,
 				23B4AF6D2282838F00638A09 /* GoogleService-Info.plist */,
 			);
@@ -307,6 +306,15 @@
 				235E144C22854DAF009109EC /* ShopService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		235A440622867C89000AC7DA /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				2354F010228290C500AC9BC1 /* SignUpController.swift */,
+				236E35022282885B0031E02B /* LoginController.swift */,
+			);
+			path = auth;
 			sourceTree = "<group>";
 		};
 		235E14492285285F009109EC /* View */ = {
