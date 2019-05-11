@@ -49,44 +49,17 @@ class LoginController: UIViewController {
             self.present(alert, animated: true)
             
         } else {
-            Auth.auth().signIn(withEmail: emailTxt.text!, password: passwordTxt.text!) { [weak self] authResult, error in
-                guard let strongSelf = self else { return }
+            
+            AuthServices.instance.signin(email: emailTxt.text!, password: passwordTxt.text!) { (data) in
+                guard let data = data else { return }
                 
-                if error != nil {
+                if !data {
                     let alert = UIAlertController(title: "Can not log in!", message: "Your email and password do not match any account.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
                     alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-                    strongSelf.present(alert, animated: true)
+                    self.present(alert, animated: true)
                 } else {
-                    if let user = authResult?.user {
-                        let uid = user.uid
-                
-                        //Truy cập vào user_profile để lấy user profile với uid
-                        let db = Firestore.firestore()
-                        let docRef = db.collection("user_profile").document(uid)
-                        
-                        docRef.getDocument(completion: { (document, error) in
-                            if let document = document, document.exists {
-                                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-
-                                print("Document data: \(dataDescription)")
-                                print(document.data())
-                                //Đoạn này em maping cái profile thành User object của em nha, hoặc lưu vào
-                                //em thử map Data vào như em làm bên app kia coi có đc ko:
-                                let jsonData = try? JSONSerialization.data(withJSONObject: document.data() as Any)
-                                do {
-                                    _ = try JSONDecoder().decode(UserResponse.self, from: jsonData!)
-                                    print(String(AuthServices.instance.isLoggedIn) + " " + AuthServices.instance.userEmail)
-                                } catch let jsonError {
-                                    print("Error serializing json:", jsonError)
-                                }
-                                
-                                 self?.performSegue(withIdentifier: SegueIdentifier.loginToView.rawValue, sender: nil)
-                            } else {
-                                print("User have no profile")
-                            }
-                        })
-                    }
+                    self.performSegue(withIdentifier: SegueIdentifier.loginToView.rawValue, sender: nil)
                 }
             }
         }

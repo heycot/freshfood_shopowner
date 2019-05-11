@@ -70,6 +70,9 @@
                                                 <rect key="frame" x="50" y="165" width="255" height="40"/>
                                                 <color key="tintColor" red="0.17254901959999999" green="0.65098039220000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Need an account? Sign up"/>
+                                                <connections>
+                                                    <segue destination="b1B-ht-ATI" kind="show" animates="NO" id="jq1-fV-I7Z"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -103,8 +106,7 @@
                     <connections>
                         <outlet property="emailTxt" destination="aXD-up-Ndu" id="IW3-oV-LhH"/>
                         <outlet property="passwordTxt" destination="E6a-l6-NHb" id="vwM-h2-lp5"/>
-                        <segue destination="F6V-mH-ITv" kind="show" identifier="LoginToListShop" id="L2i-3x-tLB"/>
-                        <segue destination="b1B-ht-ATI" kind="push" identifier="LoginToSignUP" id="ZOb-3I-RXP"/>
+                        <segue destination="F6V-mH-ITv" kind="show" identifier="LoginToListShop" animates="NO" id="L2i-3x-tLB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i93-Tt-EUz" sceneMemberID="firstResponder"/>
@@ -133,7 +135,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zun-Qt-ztP">
                                                     <rect key="frame" x="10" y="10" width="365" height="80.5"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nm3-2S-dgG" customClass="CustomImageView" customModule="notritionVendorsAPP" customModuleProvider="target">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nm3-2S-dgG" customClass="CustomImageView" customModule="freshfood_shopowner" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="80.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" priority="999" constant="70" id="Imv-Uq-tEo"/>
@@ -207,7 +209,7 @@
                     <navigationItem key="navigationItem" id="rcQ-Io-JjK">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="epn-Ss-HJ7">
                             <connections>
-                                <segue destination="mlr-eN-Vad" kind="show" identifier="ListShopToAdd" id="Erk-Vw-m4h"/>
+                                <segue destination="mlr-eN-Vad" kind="show" identifier="ListShopToAdd" animates="NO" id="Erk-Vw-m4h"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -479,7 +481,7 @@
                     <navigationItem key="navigationItem" id="fdb-ta-PpM">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="gxc-7B-wfN">
                             <connections>
-                                <action selector="doneBtn:" destination="DhX-qY-6cm" id="48S-q0-p6Q"/>
+                                <action selector="donePressed:" destination="BlV-vs-ZYp" id="bKA-Ia-CWM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -491,11 +493,10 @@
                         <outlet property="nameTxt" destination="o1m-yj-Twb" id="bev-ah-BhW"/>
                         <outlet property="notification" destination="QpB-81-3bZ" id="O0l-n1-pne"/>
                         <outlet property="passTxt" destination="oKd-cg-cOu" id="Uoi-HM-x2V"/>
-                        <segue destination="26J-nC-1jE" kind="show" identifier="SignUpToListShop" id="d0J-32-YWZ"/>
+                        <segue destination="26J-nC-1jE" kind="show" identifier="SignUpToListShop" animates="NO" id="d0J-32-YWZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WOK-Jv-AZk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="DhX-qY-6cm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2664.8000000000002" y="34.632683658170919"/>
         </scene>
