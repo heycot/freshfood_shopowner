@@ -80,7 +80,10 @@ class AddNewShopController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.destination is ListFoodsController {
+            let vc = segue.destination as? ListFoodsController
+            vc?.shopID = shop.id ?? ""
+        }
     }
     
     @IBAction func checkFoodBtnPressed(_ sender: Any) {

@@ -66,6 +66,7 @@ extension ListFoodsController : UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getList()
         super.viewWillAppear(true)
         tableView.reloadData()
     }

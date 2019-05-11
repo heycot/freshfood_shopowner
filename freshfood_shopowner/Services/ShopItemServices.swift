@@ -22,10 +22,11 @@ class ShopItemService {
         
         docRef.getDocuments(completion: { (document, error) in
             if let document = document {
-                print(document.documents)
                 var shopItemList = [ShopItemResponse]()
+                
                 for shopItemDoct in document.documents{
                     let jsonData = try? JSONSerialization.data(withJSONObject: shopItemDoct.data() as Any)
+                    
                     do {
                         var shopItem = try JSONDecoder().decode(ShopItemResponse.self, from: jsonData!)
                         shopItem.id = shopItemDoct.documentID
