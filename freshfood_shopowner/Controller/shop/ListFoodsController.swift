@@ -15,6 +15,7 @@ class ListFoodsController: UIViewController {
     @IBOutlet weak var notificationHeight: NSLayoutConstraint!
     
     var listItem = [ShopItemResponse]()
+    var shopID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,14 @@ class ListFoodsController: UIViewController {
         tableView.rowHeight = 90
     }
     
+    func getList() {
+        ShopItemService.instance.getListShopItem(shopID: shopID) { (data) in
+            guard let data = data else { return }
+            
+            self.listItem = data
+            self.tableView.reloadData()
+        }
+    }
 
 }
 
