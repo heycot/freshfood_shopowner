@@ -107,6 +107,7 @@ enum SegueIdentifier: String {
     case loginToView = "LoginToListShop"
     case loginToSignup = "LoginToSignUP"
     case signupToListShop = "SignUpToListShop"
+    case listShopToNew = "ListShopToNew"
 }
 
 enum  CellIdentifier: String {

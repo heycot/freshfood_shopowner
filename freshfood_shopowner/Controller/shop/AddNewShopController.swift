@@ -39,6 +39,8 @@ class AddNewShopController: UIViewController {
     var closeTimePicker = UIDatePicker()
     let dateFormatter = DateFormatter()
     
+    var isNew = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         notification.isHidden = true

@@ -39,6 +39,10 @@ class ListShopController: UIViewController {
         
     }
     
+    @IBAction func addBtnPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: SegueIdentifier.listShopToNew.rawValue, sender: nil)
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is AddNewShopController {
