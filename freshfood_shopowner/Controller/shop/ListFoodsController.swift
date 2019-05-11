@@ -14,6 +14,8 @@ class ListFoodsController: UIViewController {
     @IBOutlet weak var notification: UILabel!
     @IBOutlet weak var notificationHeight: NSLayoutConstraint!
     
+    var listItem = [ShopItemResponse]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -45,10 +47,13 @@ extension ListFoodsController : UITableViewDelegate {
 extension ListFoodsController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return listItem.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.food.rawValue, for: indexPath) as! FoodCell
+        cell.updateView(item: listItem[indexPath.row])
+        return cell
     }
     
     override func viewWillAppear(_ animated: Bool) {

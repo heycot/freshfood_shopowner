@@ -10,6 +10,7 @@ import Foundation
 
 struct ShopItemResponse: Decodable{
     var id: String?
+    var shop_id: String?
     var price: Double?
     var status: Int?
     var rating: Double?
@@ -22,8 +23,9 @@ struct ShopItemResponse: Decodable{
 //    var location : GeoPoint
     
     // Constructor.
-    init(id: String, price: Double, status: Int, rating: Double, comment_number: Int, favorites_number: Int, name: String, shop_name: String, avatar: String, unit : String) {
+    init(id: String, shop_id: String, price: Double, status: Int, rating: Double, comment_number: Int, favorites_number: Int, name: String, shop_name: String, avatar: String, unit : String) {
         self.id = id
+        self.shop_id = shop_id
         self.price = price
         self.status = status
         self.rating = rating
@@ -36,6 +38,6 @@ struct ShopItemResponse: Decodable{
     }
     
     init() {
-        self.init(id: "", price: 0.0, status: 1, rating: 0, comment_number: 0, favorites_number: 0, name: "", shop_name: "", avatar: "", unit: "")
+        self.init(id: "", shop_id: "", price: 0.0, status: 1, rating: 0, comment_number: 0, favorites_number: 0, name: "", shop_name: "", avatar: "", unit: "")
     }
 }

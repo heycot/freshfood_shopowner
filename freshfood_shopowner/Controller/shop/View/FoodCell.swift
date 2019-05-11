@@ -25,7 +25,30 @@ class FoodCell: UITableViewCell {
     }
     
     
-    func updateView() {
+    func updateView(item: ShopItemResponse) {
+        let price = "VND " + (item.price?.formatPrice())! + "/\(item.unit!)"
+        
+        
+        nameTxt.text = item.name
+        priceTxt.text = price
+        viewRating(rating: item.rating ?? 0.0, cmt: item.comment_number!)
+    }
+    
+    func viewRating(rating: Double, cmt: Int) {
+        if rating == 0.0 {
+            ratingTxt.text = "No comment yet"
+            ratingTxt.textColor = .gray
+        } else {
+            ratingTxt.text = String(format: "0.2f", rating) + " (\(cmt))"
+            
+            if rating < 2.5 {
+                ratingTxt.textColor = .red
+            } else if rating >= 4 {
+                ratingTxt.textColor = .green
+            } else if rating <= 5  {
+                ratingTxt.textColor = .orange
+            }
+        }
         
     }
     

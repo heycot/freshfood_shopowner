@@ -113,6 +113,7 @@ enum SegueIdentifier: String {
 
 enum  CellIdentifier: String {
     case shop = "ShopCell"
+    case food = "FoodCell"
 }
 
 
