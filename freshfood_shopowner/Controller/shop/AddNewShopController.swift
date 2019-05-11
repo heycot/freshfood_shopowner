@@ -16,10 +16,14 @@ class AddNewShopController: UIViewController {
     @IBOutlet weak var nameTxt: UITextField!
     @IBOutlet weak var timeOpen: UITextField!
     @IBOutlet weak var timeClose: UITextField!
+    @IBOutlet weak var phoneTxt: UITextField!
     @IBOutlet weak var addresstxt: UITextField!
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var doneBtn: UIBarButtonItem!
+    @IBOutlet weak var notificationHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var changeAvatarBtn: UIButton!
+    @IBOutlet weak var avatar: UIImageView!
     
     var locationManager = CLLocationManager()
     var zoomLevel: Float = 15.0

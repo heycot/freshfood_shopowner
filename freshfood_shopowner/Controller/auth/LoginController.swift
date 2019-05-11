@@ -16,14 +16,24 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showBKImage()
         emailTxt.text = "callie@enclave.vn"
         passwordTxt.text = "Q!123456"
+        
         
         if AuthServices.instance.isLoggedIn {
             performSegue(withIdentifier: SegueIdentifier.loginToView.rawValue, sender: nil)
         }
         
         setUpUI()
+    }
+    
+    func showBKImage() {
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "bk.pjpg")?.drawAsPattern(in: self.view.bounds)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self.view.backgroundColor = UIColor(patternImage: image)
     }
     
     func setUpUI() {
