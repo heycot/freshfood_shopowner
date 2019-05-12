@@ -41,6 +41,9 @@
 		23075B9B2282D2510088AB24 /* MapResponseDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B9A2282D2510088AB24 /* MapResponseDirection.swift */; };
 		23075B9D2282D2680088AB24 /* MapRequestBodyDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B9C2282D2680088AB24 /* MapRequestBodyDirection.swift */; };
 		23075BA02282D2930088AB24 /* LocationServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B9F2282D2930088AB24 /* LocationServicesProtocol.swift */; };
+		232274EE2287FB2A002EE964 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274ED2287FB2A002EE964 /* AccountController.swift */; };
+		232274F02287FB3E002EE964 /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274EF2287FB3E002EE964 /* ChangePasswordController.swift */; };
+		232274F22287FB4F002EE964 /* EditInforController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274F12287FB4F002EE964 /* EditInforController.swift */; };
 		2332DD9122827F3D008F0CBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DD9022827F3D008F0CBE /* AppDelegate.swift */; };
 		2332DD9622827F3D008F0CBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2332DD9422827F3D008F0CBE /* Main.storyboard */; };
 		2332DD9822827F40008F0CBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2332DD9722827F40008F0CBE /* Assets.xcassets */; };
@@ -93,6 +96,9 @@
 		23075B9A2282D2510088AB24 /* MapResponseDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapResponseDirection.swift; sourceTree = "<group>"; };
 		23075B9C2282D2680088AB24 /* MapRequestBodyDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRequestBodyDirection.swift; sourceTree = "<group>"; };
 		23075B9F2282D2930088AB24 /* LocationServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServicesProtocol.swift; sourceTree = "<group>"; };
+		232274ED2287FB2A002EE964 /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
+		232274EF2287FB3E002EE964 /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
+		232274F12287FB4F002EE964 /* EditInforController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInforController.swift; sourceTree = "<group>"; };
 		2332DD8D22827F3D008F0CBE /* freshfood_shopowner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freshfood_shopowner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2332DD9022827F3D008F0CBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2332DD9522827F3D008F0CBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -327,6 +333,9 @@
 			children = (
 				2354F010228290C500AC9BC1 /* SignUpController.swift */,
 				236E35022282885B0031E02B /* LoginController.swift */,
+				232274ED2287FB2A002EE964 /* AccountController.swift */,
+				232274EF2287FB3E002EE964 /* ChangePasswordController.swift */,
+				232274F12287FB4F002EE964 /* EditInforController.swift */,
 			);
 			path = auth;
 			sourceTree = "<group>";
@@ -518,6 +527,7 @@
 				23075B9B2282D2510088AB24 /* MapResponseDirection.swift in Sources */,
 				23075B992282D22D0088AB24 /* MapTaskManager.swift in Sources */,
 				23075B6E228295E80088AB24 /* CustomImageView.swift in Sources */,
+				232274EE2287FB2A002EE964 /* AccountController.swift in Sources */,
 				235E144D22854DAF009109EC /* ShopService.swift in Sources */,
 				23075B8B2282C0AF0088AB24 /* UserResponse.swift in Sources */,
 				23075B902282CACC0088AB24 /* AddNewShopController.swift in Sources */,
@@ -541,6 +551,7 @@
 				2337F7762286DE9300D9E35F /* FoodCell.swift in Sources */,
 				23075B812282A94F0088AB24 /* Location.swift in Sources */,
 				2337F7782286E4E700D9E35F /* ShopItemResponse.swift in Sources */,
+				232274F02287FB3E002EE964 /* ChangePasswordController.swift in Sources */,
 				23075B972282D21A0088AB24 /* MapRouter.swift in Sources */,
 				23075B66228295A50088AB24 /* ExtensionButton.swift in Sources */,
 				23075B8E2282C9A00088AB24 /* ShopResponse.swift in Sources */,
@@ -553,6 +564,7 @@
 				2354F011228290C500AC9BC1 /* SignUpController.swift in Sources */,
 				23075B7D2282A94F0088AB24 /* Comment.swift in Sources */,
 				23075B822282A94F0088AB24 /* Favorites.swift in Sources */,
+				232274F22287FB4F002EE964 /* EditInforController.swift in Sources */,
 				2354F0142282922F00AC9BC1 /* AuthServices.swift in Sources */,
 				23075B842282A94F0088AB24 /* City.swift in Sources */,
 				23075B6C228295D70088AB24 /* ExtensionUiLable.swift in Sources */,
