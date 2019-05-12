@@ -114,11 +114,14 @@ enum SegueIdentifier: String {
     //account
     case accountToPassword = "AccountToPassword"
     case accountToEditInfor = "AccountToEditInfor"
+    case accountToComment = "AccountToComment"
 }
 
 enum  CellIdentifier: String {
     case shop = "ShopCell"
     case food = "FoodCell"
+    case userComment = "UserCommentCell"
+    case account = "AccountCell"
 }
 
 
