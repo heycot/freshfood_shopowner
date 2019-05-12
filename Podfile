@@ -17,5 +17,7 @@ target 'freshfood_shopowner' do
     pod 'GoogleMaps'
     pod 'Alamofire'
     pod 'ObjectMapper'
+    pod 'Firebase/Storage'
+
 
 end

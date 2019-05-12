@@ -55,6 +55,7 @@
 		235E144D22854DAF009109EC /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144C22854DAF009109EC /* ShopService.swift */; };
 		236E3501228285E00031E02B /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 236E3500228285E00031E02B /* SignUp.storyboard */; };
 		236E35032282885B0031E02B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236E35022282885B0031E02B /* LoginController.swift */; };
+		2383FCF22287B950004A403A /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2383FCF12287B950004A403A /* ImageServices.swift */; };
 		23B4AF6E2282838F00638A09 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23B4AF6D2282838F00638A09 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		235E144C22854DAF009109EC /* ShopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopService.swift; sourceTree = "<group>"; };
 		236E3500228285E00031E02B /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		236E35022282885B0031E02B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		2383FCF12287B950004A403A /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
 		23B4AF6D2282838F00638A09 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F0DE686F0108FD94A40D130 /* Pods_freshfood_shopowner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_freshfood_shopowner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80208177153C8BB3C9A1E25 /* Pods-freshfood_shopowner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freshfood_shopowner.release.xcconfig"; path = "Pods/Target Support Files/Pods-freshfood_shopowner/Pods-freshfood_shopowner.release.xcconfig"; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				2354F0132282922F00AC9BC1 /* AuthServices.swift */,
 				235E144C22854DAF009109EC /* ShopService.swift */,
 				2337F7792286EE0A00D9E35F /* ShopItemServices.swift */,
+				2383FCF12287B950004A403A /* ImageServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				23075B66228295A50088AB24 /* ExtensionButton.swift in Sources */,
 				23075B8E2282C9A00088AB24 /* ShopResponse.swift in Sources */,
 				23075B602282956B0088AB24 /* ExtensionUIImage.swift in Sources */,
+				2383FCF22287B950004A403A /* ImageServices.swift in Sources */,
 				23075B892282B3F00088AB24 /* ListShopController.swift in Sources */,
 				23075B68228295B80088AB24 /* ExtensionUICollectionView.swift in Sources */,
 				23075BA02282D2930088AB24 /* LocationServicesProtocol.swift in Sources */,

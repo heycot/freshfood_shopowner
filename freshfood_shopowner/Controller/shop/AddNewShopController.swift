@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import Firebase
+import Photos
 
 class AddNewShopController: UIViewController {
     
@@ -45,6 +46,7 @@ class AddNewShopController: UIViewController {
     
     var isNew = true
     var shop = ShopResponse()
+    var image = UIImage(named: "logo")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +64,7 @@ class AddNewShopController: UIViewController {
             
         }
     }
+    
     
     func showInforShop() {
         nameTxt.text = shop.name
@@ -90,22 +93,42 @@ class AddNewShopController: UIViewController {
         performSegue(withIdentifier: SegueIdentifier.shoptoListFood.rawValue, sender: nil)
     }
     
+    @IBAction func chooseAvatarpressed(_ sender: Any) {
+        let myPickerController = UIImagePickerController()
+        myPickerController.delegate = self;
+        myPickerController.sourceType =  UIImagePickerController.SourceType.photoLibrary
+        self.present(myPickerController, animated: true, completion: nil)
+    }
+    
+//    let imageStorageRef = Storage.storage().reference(forURL: imageDownloadURL)
+//    imageStorageRef.downloadURL(completion: { (url, error) in
+//    let data = Data(contentsOf: url!)
+//    let image = UIImage(data: data! as Data)
+    
     @IBAction func doneBtnPressed(_ sender: Any) {
         if checkValidateInput() {
             
             if isNew {
-                
-                ShopService.instance.addNewShop(shop: shop) { (data) in
+                ImageServices.instance.uploadMedia(image: image!, fileName: "logo", completion: { (data) in
                     guard let data = data else { return }
+                    print("seccuess upload image")
+                    self.shop.avatar = data
                     
-                    if data {
-                        self.showNotification(mess: "Add success, We will contact you soon", color: APP_COLOR)
-                        self.disbaleView()
+                    ShopService.instance.addNewShop(shop: self.shop) { (data) in
+                        guard let data = data else { return }
                         
-                    } else {
-                        self.showNotification(mess: "Something went wrong. Please try again", color: .red)
+                        if data {
+                            
+                            self.showNotification(mess: "Add success, We will contact you soon", color: APP_COLOR)
+                            self.disbaleView()
+                            
+                        } else {
+                            self.showNotification(mess: "Something went wrong. Please try again", color: .red)
+                        }
                     }
-                }
+                })
+                
+                
             } else {
                 ShopService.instance.editShop(shop: shop) { (data) in
                     guard let data = data else { return }
@@ -183,6 +206,74 @@ class AddNewShopController: UIViewController {
     }
     
 }
+
+extension AddNewShopController {
+    func generateNameForImage() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "AVATAR_hh.mm.ss.dd.MM.yyyy"
+        return formatter.string(from: date)
+    }
+    
+    @objc func dismisHandle() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func getImageFormatFromUrl(url : URL) -> String {
+        
+        if url.absoluteString.hasSuffix("JPG") {
+            return"JPG"
+        }
+        else if url.absoluteString.hasSuffix("PNG") {
+            return "PNG"
+        }
+        else if url.absoluteString.hasSuffix("GIF") {
+            return "GIF"
+        }
+        else {
+            return "jpg"
+        }
+    }
+}
+
+extension AddNewShopController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        
+        var fileName = ""
+        
+        if let url = info[UIImagePickerController.InfoKey.phAsset] as? URL {
+            let assets = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
+            // get for mat of image
+            let imageFormat = getImageFormatFromUrl(url: url)
+            
+            if let firstAsset = assets.firstObject,
+                let firstResource = PHAssetResource.assetResources(for: firstAsset).first {
+                fileName = firstResource.originalFilename
+            } else {
+                fileName = generateNameForImage() + "." + imageFormat
+            }
+        } else {
+            fileName = generateNameForImage() + ".jpg"
+        }
+        
+        if (fileName != "") {
+            self.image = selectedImage
+            self.avatar.image = selectedImage
+            self.avatar.setRounded(color: .white)
+        }
+        self.dismisHandle()
+    }
+}
+
+
 
 // extension for datepicker
 extension AddNewShopController {
