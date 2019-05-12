@@ -46,7 +46,8 @@ class AddNewShopController: UIViewController {
     
     var isNew = true
     var shop = ShopResponse()
-    var image = UIImage(named: "logo")
+    var image : UIImage?
+    var fileName = "logo"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,19 +101,20 @@ class AddNewShopController: UIViewController {
         self.present(myPickerController, animated: true, completion: nil)
     }
     
-//    let imageStorageRef = Storage.storage().reference(forURL: imageDownloadURL)
-//    imageStorageRef.downloadURL(completion: { (url, error) in
-//    let data = Data(contentsOf: url!)
-//    let image = UIImage(data: data! as Data)
     
     @IBAction func doneBtnPressed(_ sender: Any) {
         if checkValidateInput() {
             
-            if isNew {
-                ImageServices.instance.uploadMedia(image: image!, fileName: "logo", completion: { (data) in
-                    guard let data = data else { return }
-                    print("seccuess upload image")
-                    self.shop.avatar = data
+            if image == nil {
+                image = UIImage(named: fileName)
+            }
+            
+            ImageServices.instance.uploadMedia(image: image!, fileName: fileName, completion: { (data) in
+                guard let data = data else { return }
+                self.shop.avatar = data
+                
+                
+                if self.isNew {
                     
                     ShopService.instance.addNewShop(shop: self.shop) { (data) in
                         guard let data = data else { return }
@@ -126,22 +128,21 @@ class AddNewShopController: UIViewController {
                             self.showNotification(mess: "Something went wrong. Please try again", color: .red)
                         }
                     }
-                })
-                
-                
-            } else {
-                ShopService.instance.editShop(shop: shop) { (data) in
-                    guard let data = data else { return }
-                    
-                    if data {
-                        self.showNotification(mess: "Edit success, We will contact you soon", color: APP_COLOR)
-                        self.disbaleView()
-                    } else {
+                } else {
+                    ShopService.instance.editShop(shop: self.shop) { (data) in
+                        guard let data = data else { return }
                         
-                        self.showNotification(mess: "Something went wrong. Please try again", color: .red)
+                        if data {
+                            self.showNotification(mess: "Edit success, We will contact you soon", color: APP_COLOR)
+                            self.disbaleView()
+                        } else {
+                            
+                            self.showNotification(mess: "Something went wrong. Please try again", color: .red)
+                        }
                     }
                 }
-            }
+            })
+            
         }
     }
     
@@ -247,7 +248,6 @@ extension AddNewShopController : UIImagePickerControllerDelegate, UINavigationCo
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         
-        var fileName = ""
         
         if let url = info[UIImagePickerController.InfoKey.phAsset] as? URL {
             let assets = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)

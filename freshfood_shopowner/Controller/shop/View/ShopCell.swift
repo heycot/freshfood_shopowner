@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class ShopCell: UITableViewCell {
 
@@ -21,16 +22,24 @@ class ShopCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBOutlet weak var shopImage: CustomImageView!
+    @IBOutlet weak var shopImage: UIImageView!
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var shopAddress: UILabel!
     @IBOutlet weak var infor: UILabel!
-    @IBOutlet weak var viewInMapBtn: UIButton!
     
     
     func updateView(shop: ShopResponse) {
-                
-//        shopImage.loadImageUsingUrlString(urlString: BASE_URL_IMAGE + shop.avatar!)
+        
+        let imageStorageRef = Storage.storage().reference(forURL: shop.avatar!)
+        imageStorageRef.downloadURL(completion: { (url, error) in
+            do {
+                let data = try Data(contentsOf: url!)
+                self.shopImage.image = UIImage(data: data as Data)
+            } catch let error {
+                print("Error with load image: \(error)")
+            }
+        })
+            
         shopName.text = shop.name!
         shopAddress.text = shop.address
         if shop.status == 0 {
@@ -42,7 +51,6 @@ class ShopCell: UITableViewCell {
             infor.text = "Stoped"
             infor.textColor = .red
         }
-//        infor.text =  "Distance : " + (shop.getDistance(currlocation: AuthServices.instance.currentLocation))
     }
 
 }

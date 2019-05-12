@@ -10,7 +10,7 @@ import UIKit
 
 class FoodCell: UITableViewCell {
     
-    @IBOutlet weak var avatar: CustomImageView!
+    @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var nameTxt: UILabel!
     @IBOutlet weak var priceTxt: UILabel!
     @IBOutlet weak var ratingTxt: UILabel!
