@@ -759,7 +759,7 @@
                     <connections>
                         <segue destination="F6V-mH-ITv" kind="relationship" relationship="viewControllers" id="e9r-cK-WS9"/>
                         <segue destination="Nu5-JP-vyC" kind="relationship" relationship="viewControllers" id="Tld-WX-Mdq"/>
-                        <segue destination="iST-Kd-kAv" kind="relationship" relationship="viewControllers" id="tKn-hN-Cbi"/>
+                        <segue destination="T9p-4D-9y4" kind="relationship" relationship="viewControllers" id="6yO-va-VFC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXV-EW-j5Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -785,10 +785,10 @@
             </objects>
             <point key="canvasLocation" x="2716" y="1604.3478260869567"/>
         </scene>
-        <!--View Controller-->
+        <!--Account Controller-->
         <scene sceneID="yin-r1-8aq">
             <objects>
-                <viewController storyboardIdentifier="AccountDetailStoryboardID" id="GPF-kT-2qF" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountDetailStoryboardID" id="GPF-kT-2qF" customClass="AccountController" customModule="freshfood_shopowner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R9X-6H-sCh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -834,9 +834,6 @@
                                         <state key="normal" title="Activities">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="activitiesBtnPressed:" destination="GPF-kT-2qF" eventType="touchUpInside" id="Zq2-gh-iWF"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="erc-Ho-Yh8">
                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="30"/>
@@ -844,14 +841,11 @@
                                         <state key="normal" title="Account">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="accountBtnPressed:" destination="GPF-kT-2qF" eventType="touchUpInside" id="xKw-uW-44R"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gVW-LF-XDN">
-                                <rect key="frame" x="0.0" y="304" width="375" height="363"/>
+                                <rect key="frame" x="0.0" y="304" width="375" height="314"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="accountInforCell" textLabel="XrM-OH-ySz" detailTextLabel="SMZ-Ug-HSt" style="IBUITableViewCellStyleValue1" id="CLE-Nw-de2">
@@ -905,43 +899,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="HdE-KD-gFA"/>
                     <connections>
-                        <outlet property="accountBtn" destination="erc-Ho-Yh8" id="LXT-ds-xVU"/>
-                        <outlet property="activitiesBtn" destination="Rtz-mc-xbV" id="dDS-bq-tsw"/>
-                        <outlet property="inforUser" destination="iJZ-3S-Vma" id="96t-bk-23g"/>
-                        <outlet property="tableView" destination="gVW-LF-XDN" id="YAW-qo-ZtR"/>
-                        <outlet property="userAvatar" destination="lvb-HW-fbw" id="xZP-cQ-fXw"/>
-                        <outlet property="username" destination="hN8-yK-xMs" id="L7g-4y-Vix"/>
                         <segue destination="tiG-oq-kCA" kind="show" identifier="AccountToPassword" id="DV6-wp-uPR"/>
                         <segue destination="HTh-OC-glk" kind="show" identifier="AccountToEditÌnor" id="PCH-HI-PZL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggG-Vt-uTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4388" y="2524"/>
-        </scene>
-        <!--Account-->
-        <scene sceneID="1Wk-L6-wiU">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iST-Kd-kAv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Account" image="man-user" id="E2L-Sa-1oN"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d1N-sE-rUD">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="7q2-C9-4gw" kind="show" id="UDY-aV-WH8"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lmu-ah-UQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2716" y="2523.6881559220392"/>
+            <point key="canvasLocation" x="3566" y="2524"/>
         </scene>
         <!--Change Password Controller-->
         <scene sceneID="AEM-Jy-FIg">
             <objects>
-                <viewController id="tiG-oq-kCA" customClass="ChangePasswordController" customModule="notritionVendorsAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tiG-oq-kCA" customClass="ChangePasswordController" customModule="freshfood_shopowner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l4W-9f-kQ3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1033,30 +1002,19 @@
                     <navigationItem key="navigationItem" id="VMV-w7-kvP">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="PhY-Sy-NmH">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="doneBtnPressed:" destination="tiG-oq-kCA" id="fIM-6E-gvT"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="confirmPass" destination="iba-2w-Hh5" id="H8K-y4-Jea"/>
-                        <outlet property="currentPass" destination="gan-32-eAu" id="M7u-vA-emW"/>
-                        <outlet property="doneBtn" destination="PhY-Sy-NmH" id="woe-3u-ex5"/>
-                        <outlet property="newPass" destination="1Hm-or-Hls" id="EbE-SW-bbO"/>
-                        <outlet property="notification" destination="cQu-Bl-dSK" id="ohY-ea-QWt"/>
-                        <outlet property="titleNotification" destination="Lor-qm-FYC" id="Beb-Tw-tj7"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCq-Hs-DMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="RK6-k5-a3k" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5430" y="2524"/>
+            <point key="canvasLocation" x="4407" y="2524"/>
         </scene>
-        <!--Edit Infor User Controller-->
+        <!--Edit Infor Controller-->
         <scene sceneID="vVO-eH-Lim">
             <objects>
-                <viewController id="HTh-OC-glk" customClass="EditInforUserController" customModule="notritionVendorsAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HTh-OC-glk" customClass="EditInforController" customModule="freshfood_shopowner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P12-MW-IHb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1172,44 +1130,33 @@
                     <navigationItem key="navigationItem" id="Y9g-Gx-Yuo">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="5jR-7W-8DP">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="doneBtnPressed:" destination="HTh-OC-glk" id="vkx-Ev-BPX"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="addressTxt" destination="FPf-fz-ZKw" id="2ca-ma-jUr"/>
-                        <outlet property="birthdayTxt" destination="hu3-4J-lT1" id="FmG-C9-1Mt"/>
-                        <outlet property="detailNotification" destination="Z27-jb-aW2" id="zk8-XG-5vP"/>
-                        <outlet property="emailTxt" destination="bUv-Dx-Yw1" id="2xb-on-neE"/>
-                        <outlet property="nameTxt" destination="fyJ-X9-Bxh" id="7Iw-1U-NYd"/>
-                        <outlet property="notification" destination="k6g-j5-ETM" id="qDd-Sa-gLo"/>
-                        <outlet property="phoneTxt" destination="yUO-NI-izo" id="nAu-Wt-hCp"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hbr-T0-66N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5465" y="3287"/>
+            <point key="canvasLocation" x="4407" y="3293"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xI4-JB-tAw">
+        <!--Account-->
+        <scene sceneID="PHb-hQ-XAR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7q2-C9-4gw" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T9p-4D-9y4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Account" image="man-user" id="U1z-zi-UEV"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d6W-n5-VMh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QQ1-UZ-nlx">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.25490196079999999" green="0.66274509800000003" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="GPF-kT-2qF" kind="relationship" relationship="rootViewController" id="7YY-Tz-Tv3"/>
+                        <segue destination="GPF-kT-2qF" kind="relationship" relationship="rootViewController" id="uKh-z1-40L"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yu6-5V-dkT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vHf-FP-WKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3538" y="2524"/>
+            <point key="canvasLocation" x="2676" y="2524"/>
         </scene>
     </scenes>
     <resources>
