@@ -49,6 +49,8 @@
 		232274FA228826F8002EE964 /* AddFoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274F9228826F8002EE964 /* AddFoodController.swift */; };
 		232274FE22882941002EE964 /* NewFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274FC22882941002EE964 /* NewFoodCell.swift */; };
 		232274FF22882941002EE964 /* NewFoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 232274FD22882941002EE964 /* NewFoodCell.xib */; };
+		2322750422883004002EE964 /* FoodImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2322750222883004002EE964 /* FoodImageCell.swift */; };
+		2322750522883004002EE964 /* FoodImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2322750322883004002EE964 /* FoodImageCell.xib */; };
 		2332DD9122827F3D008F0CBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DD9022827F3D008F0CBE /* AppDelegate.swift */; };
 		2332DD9622827F3D008F0CBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2332DD9422827F3D008F0CBE /* Main.storyboard */; };
 		2332DD9822827F40008F0CBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2332DD9722827F40008F0CBE /* Assets.xcassets */; };
@@ -109,6 +111,8 @@
 		232274F9228826F8002EE964 /* AddFoodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodController.swift; sourceTree = "<group>"; };
 		232274FC22882941002EE964 /* NewFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFoodCell.swift; sourceTree = "<group>"; };
 		232274FD22882941002EE964 /* NewFoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewFoodCell.xib; sourceTree = "<group>"; };
+		2322750222883004002EE964 /* FoodImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImageCell.swift; sourceTree = "<group>"; };
+		2322750322883004002EE964 /* FoodImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodImageCell.xib; sourceTree = "<group>"; };
 		2332DD8D22827F3D008F0CBE /* freshfood_shopowner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freshfood_shopowner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2332DD9022827F3D008F0CBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2332DD9522827F3D008F0CBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -317,6 +321,8 @@
 			children = (
 				232274FC22882941002EE964 /* NewFoodCell.swift */,
 				232274FD22882941002EE964 /* NewFoodCell.xib */,
+				2322750222883004002EE964 /* FoodImageCell.swift */,
+				2322750322883004002EE964 /* FoodImageCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -471,6 +477,7 @@
 				23B4AF6E2282838F00638A09 /* GoogleService-Info.plist in Resources */,
 				2332DD9822827F40008F0CBE /* Assets.xcassets in Resources */,
 				232274F72287FF57002EE964 /* UserCommentCell.xib in Resources */,
+				2322750522883004002EE964 /* FoodImageCell.xib in Resources */,
 				232274FF22882941002EE964 /* NewFoodCell.xib in Resources */,
 				2332DD9622827F3D008F0CBE /* Main.storyboard in Resources */,
 			);
@@ -577,6 +584,7 @@
 				232274FE22882941002EE964 /* NewFoodCell.swift in Sources */,
 				23075B622282957E0088AB24 /* ExtensionTextField.swift in Sources */,
 				2337F77A2286EE0A00D9E35F /* ShopItemServices.swift in Sources */,
+				2322750422883004002EE964 /* FoodImageCell.swift in Sources */,
 				23075B9D2282D2680088AB24 /* MapRequestBodyDirection.swift in Sources */,
 				2332DD9122827F3D008F0CBE /* AppDelegate.swift in Sources */,
 				235E144B22852886009109EC /* ShopCell.swift in Sources */,
