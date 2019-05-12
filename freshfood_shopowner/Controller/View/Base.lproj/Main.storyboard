@@ -243,7 +243,7 @@
                                         <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FDZ-en-5Zv">
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FDZ-en-5Zv">
                                         <rect key="frame" x="0.0" y="5" width="355" height="70"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="WmE-FJ-mGM">
@@ -254,14 +254,14 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3px-cn-wQt">
-                                                <rect key="frame" x="90" y="0.0" width="125" height="70"/>
+                                                <rect key="frame" x="90" y="0.0" width="158" height="70"/>
                                                 <state key="normal" title="Change avatar here"/>
                                                 <connections>
                                                     <action selector="chooseAvatarpressed:" destination="mlr-eN-Vad" eventType="touchUpInside" id="ost-ee-kom"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDN-gY-0hA">
-                                                <rect key="frame" x="235" y="0.0" width="120" height="70"/>
+                                                <rect key="frame" x="268" y="0.0" width="87" height="70"/>
                                                 <state key="normal" title="Check foods"/>
                                                 <connections>
                                                     <action selector="checkFoodBtnPressed:" destination="mlr-eN-Vad" eventType="touchUpInside" id="DAz-cv-5E8"/>
@@ -270,6 +270,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="Mqx-OJ-L2n"/>
+                                            <constraint firstAttribute="trailing" secondItem="3px-cn-wQt" secondAttribute="trailing" constant="107" id="Pca-9k-ey5"/>
                                             <constraint firstItem="FDN-gY-0hA" firstAttribute="height" secondItem="FDZ-en-5Zv" secondAttribute="height" id="U3E-Vv-ocg"/>
                                             <constraint firstItem="3px-cn-wQt" firstAttribute="height" secondItem="FDZ-en-5Zv" secondAttribute="height" id="bcg-ij-fAT"/>
                                         </constraints>

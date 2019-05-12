@@ -62,8 +62,21 @@ class AddNewShopController: UIViewController {
         if !isNew {
             checkFoodsBtn.isEnabled = true
             showInforShop()
-            
+            showImage()
         }
+    }
+    
+    func showImage() {
+        let imageStorageRef = Storage.storage().reference(forURL: shop.avatar!)
+        imageStorageRef.downloadURL(completion: { (url, error) in
+            do {
+                let data = try Data(contentsOf: url!)
+                self.avatar.image = UIImage(data: data as Data)
+                self.avatar.setRounded(color: .white)
+            } catch let error {
+                print("Error with load image: \(error)")
+            }
+        })
     }
     
     
