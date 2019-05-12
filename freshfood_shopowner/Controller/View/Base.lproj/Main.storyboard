@@ -831,7 +831,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rtz-mc-xbV">
                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Activities">
+                                        <state key="normal" title="Comments">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -899,6 +899,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="HdE-KD-gFA"/>
                     <connections>
+                        <outlet property="accountBtn" destination="erc-Ho-Yh8" id="FGJ-QG-jHJ"/>
+                        <outlet property="commentBtn" destination="Rtz-mc-xbV" id="7D1-n5-oD7"/>
+                        <outlet property="tableView" destination="gVW-LF-XDN" id="F9K-Xh-EfP"/>
+                        <outlet property="userAvatar" destination="lvb-HW-fbw" id="JFT-nK-kYF"/>
+                        <outlet property="userDescription" destination="iJZ-3S-Vma" id="rFn-Le-a4k"/>
+                        <outlet property="userName" destination="hN8-yK-xMs" id="xJa-IU-7No"/>
                         <segue destination="tiG-oq-kCA" kind="show" identifier="AccountToPassword" id="DV6-wp-uPR"/>
                         <segue destination="HTh-OC-glk" kind="show" identifier="AccountToEditÌnor" id="PCH-HI-PZL"/>
                     </connections>
@@ -1002,9 +1008,20 @@
                     <navigationItem key="navigationItem" id="VMV-w7-kvP">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="PhY-Sy-NmH">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="doneBtnPressed:" destination="tiG-oq-kCA" id="7e6-0a-d2q"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="confPass" destination="iba-2w-Hh5" id="eVg-Td-acp"/>
+                        <outlet property="currentPass" destination="gan-32-eAu" id="kat-F5-W5B"/>
+                        <outlet property="doneBtn" destination="PhY-Sy-NmH" id="5ud-VV-FaU"/>
+                        <outlet property="newPass" destination="1Hm-or-Hls" id="YwZ-I4-t3B"/>
+                        <outlet property="notiDetail" destination="cQu-Bl-dSK" id="mPw-uS-8Vv"/>
+                        <outlet property="notiTitle" destination="Lor-qm-FYC" id="bfF-Nl-IwN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCq-Hs-DMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="RK6-k5-a3k" userLabel="Exit" sceneMemberID="exit"/>

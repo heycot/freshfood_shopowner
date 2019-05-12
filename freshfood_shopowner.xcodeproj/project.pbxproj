@@ -44,6 +44,8 @@
 		232274EE2287FB2A002EE964 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274ED2287FB2A002EE964 /* AccountController.swift */; };
 		232274F02287FB3E002EE964 /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274EF2287FB3E002EE964 /* ChangePasswordController.swift */; };
 		232274F22287FB4F002EE964 /* EditInforController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274F12287FB4F002EE964 /* EditInforController.swift */; };
+		232274F62287FF57002EE964 /* UserCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274F42287FF57002EE964 /* UserCommentCell.swift */; };
+		232274F72287FF57002EE964 /* UserCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 232274F52287FF57002EE964 /* UserCommentCell.xib */; };
 		2332DD9122827F3D008F0CBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332DD9022827F3D008F0CBE /* AppDelegate.swift */; };
 		2332DD9622827F3D008F0CBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2332DD9422827F3D008F0CBE /* Main.storyboard */; };
 		2332DD9822827F40008F0CBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2332DD9722827F40008F0CBE /* Assets.xcassets */; };
@@ -99,6 +101,8 @@
 		232274ED2287FB2A002EE964 /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		232274EF2287FB3E002EE964 /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
 		232274F12287FB4F002EE964 /* EditInforController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInforController.swift; sourceTree = "<group>"; };
+		232274F42287FF57002EE964 /* UserCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentCell.swift; sourceTree = "<group>"; };
+		232274F52287FF57002EE964 /* UserCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCommentCell.xib; sourceTree = "<group>"; };
 		2332DD8D22827F3D008F0CBE /* freshfood_shopowner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freshfood_shopowner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2332DD9022827F3D008F0CBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2332DD9522827F3D008F0CBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -283,6 +287,15 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		232274F32287FF03002EE964 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				232274F42287FF57002EE964 /* UserCommentCell.swift */,
+				232274F52287FF57002EE964 /* UserCommentCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		2332DD8422827F3D008F0CBE = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +344,7 @@
 		235A440622867C89000AC7DA /* auth */ = {
 			isa = PBXGroup;
 			children = (
+				232274F32287FF03002EE964 /* view */,
 				2354F010228290C500AC9BC1 /* SignUpController.swift */,
 				236E35022282885B0031E02B /* LoginController.swift */,
 				232274ED2287FB2A002EE964 /* AccountController.swift */,
@@ -431,6 +445,7 @@
 				2332DD9B22827F40008F0CBE /* LaunchScreen.storyboard in Resources */,
 				23B4AF6E2282838F00638A09 /* GoogleService-Info.plist in Resources */,
 				2332DD9822827F40008F0CBE /* Assets.xcassets in Resources */,
+				232274F72287FF57002EE964 /* UserCommentCell.xib in Resources */,
 				2332DD9622827F3D008F0CBE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -555,6 +570,7 @@
 				23075B972282D21A0088AB24 /* MapRouter.swift in Sources */,
 				23075B66228295A50088AB24 /* ExtensionButton.swift in Sources */,
 				23075B8E2282C9A00088AB24 /* ShopResponse.swift in Sources */,
+				232274F62287FF57002EE964 /* UserCommentCell.swift in Sources */,
 				23075B602282956B0088AB24 /* ExtensionUIImage.swift in Sources */,
 				2383FCF22287B950004A403A /* ImageServices.swift in Sources */,
 				23075B892282B3F00088AB24 /* ListShopController.swift in Sources */,
