@@ -145,3 +145,7 @@ enum Icon : String{
     case category_icon = "grid"
     case picture = "picture"
 }
+
+enum ReferenceImage : String {
+    case shop = "shop_images"
+}

@@ -30,18 +30,10 @@ class ShopCell: UITableViewCell {
     
     func updateView(shop: ShopResponse) {
         
-        let imageStorageRef = Storage.storage().reference(forURL: shop.avatar!)
-        imageStorageRef.downloadURL(completion: { (url, error) in
-            do {
-                let data = try Data(contentsOf: url!)
-                self.shopImage.image = UIImage(data: data as Data)
-            } catch let error {
-                print("Error with load image: \(error)")
-            }
-        })
-            
+        showImage(id: shop.id ?? "", avatar: shop.avatar ?? "" )
         shopName.text = shop.name!
         shopAddress.text = shop.address
+        
         if shop.status == 0 {
             infor.text = "Waiting"
             infor.textColor = UIColor.lightGray
@@ -50,6 +42,15 @@ class ShopCell: UITableViewCell {
         } else {
             infor.text = "Stoped"
             infor.textColor = .red
+        }
+    }
+    
+    func showImage(id: String, avatar: String) {
+        let folderPath = "/images/\(ReferenceImage.shop.rawValue)/\(id)/\(avatar)"
+        ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
+            self.shopImage.image = data
+        }) { (error) in
+            print("something wrong with url imgae")
         }
     }
 

@@ -13,14 +13,14 @@ import FirebaseStorage
 class ImageServices {
      static let instance =  ImageServices()
     
-    func uploadMedia(image: UIImage, fileName: String, completion: @escaping (_ url: String?) -> Void) {
+    func uploadMedia(image: UIImage, reference: String, completion: @escaping (_ url: String?) -> Void) {
         // Points to the root reference
         let storageRef = Storage.storage().reference()
         
         let data = image.jpeg(UIImage.JPEGQuality.lowest)
         
         // Create a reference to the file you want to upload
-        let riversRef = storageRef.child("images/" + fileName)
+        let riversRef = storageRef.child("images/" + reference)
         
         // Upload the file to the path "images/rivers.jpg"
         _ = riversRef.putData(data!, metadata: nil) { (metadata, error) in
@@ -47,6 +47,21 @@ class ImageServices {
             }
         }
 
+    }
+    
+    func downloadImages( folderPath: String, success:@escaping (_ image:UIImage)->(),failure:@escaping (_ error:Error)->()){
+        let reference = Storage.storage().reference(withPath: "\(folderPath)")
+        reference.getData(maxSize: (1 * 1024 * 1024)) { (data, error) in
+            if let _error = error{
+                print(_error)
+                failure(_error)
+            } else {
+                if let _data  = data {
+                    let myImage:UIImage! = UIImage(data: _data)
+                    success(myImage)
+                }
+            }
+        }
     }
     
 }

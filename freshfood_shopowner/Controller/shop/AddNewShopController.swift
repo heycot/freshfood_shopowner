@@ -49,7 +49,7 @@ class AddNewShopController: UIViewController {
     var isChange = false
     var isChangeImage = false
     var image : UIImage?
-    var fileName = "logo"
+    var fileName = "logo.jpg"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,21 +62,17 @@ class AddNewShopController: UIViewController {
         if !isNew {
             checkFoodsBtn.isEnabled = true
             showInforShop()
-            showImage()
+            showImage(shop: shop)
         }
     }
     
-    func showImage() {
-        let imageStorageRef = Storage.storage().reference(forURL: shop.avatar!)
-        imageStorageRef.downloadURL(completion: { (url, error) in
-            do {
-                let data = try Data(contentsOf: url!)
-                self.avatar.image = UIImage(data: data as Data)
-                self.avatar.setRounded(color: .white)
-            } catch let error {
-                print("Error with load image: \(error)")
-            }
-        })
+    func showImage(shop: ShopResponse) {
+        let folderPath = "/images/\(ReferenceImage.shop.rawValue)/\(shop.id ?? "" )/\(shop.avatar ?? "")"
+        ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
+            self.avatar.image = data
+        }) { (error) in
+            print("something wrong with url imgae")
+        }
     }
     
     
@@ -131,52 +127,45 @@ class AddNewShopController: UIViewController {
         if checkValidateInput() {
             
             startSpinnerActivity()
-        
-            // if update any feild => update, else check update image
-            if isChange {
-                if self.isNew {
+            if self.isNew {
+                
+                ShopService.instance.addNewShop(shop: self.shop) { (data) in
+                    guard let data = data else { return }
                     
-                    ShopService.instance.addNewShop(shop: self.shop) { (data) in
-                        guard let data = data else { return }
+                    if data {
                         
-                        if data {
-                            
-                            self.showNotification(mess: "Add success, We will contact you soon", color: APP_COLOR)
-                            self.disbaleView()
-                            if self.isChangeImage {
-                                self.uploadImage()
-                            }
-                            
-                        } else {
-                            self.showNotification(mess: "Something went wrong. Please try again", color: .red)
+                        self.showNotification(mess: "Add success, We will contact you soon", color: APP_COLOR)
+                        self.disbaleView()
+                        if self.isChangeImage {
+                            self.uploadImage()
                         }
-                    }
-                } else {
-                    ShopService.instance.editShop(shop: self.shop) { (data) in
-                        guard let data = data else { return }
                         
-                        if data {
-                            self.showNotification(mess: "Edit success", color: APP_COLOR)
-                            self.disbaleView()
-                            if self.isChangeImage {
-                                self.uploadImage()
-                            }
-                        } else {
-                            
-                            self.showNotification(mess: "Something went wrong. Please try again", color: .red)
-                        }
+                    } else {
+                        self.showNotification(mess: "Something went wrong. Please try again", color: .red)
                     }
                 }
             } else {
-                if self.isChangeImage {
-                    self.uploadImage()
+                ShopService.instance.editShop(shop: self.shop) { (data) in
+                    guard let data = data else { return }
+                    
+                    if data {
+                        self.showNotification(mess: "Edit success", color: APP_COLOR)
+                        self.disbaleView()
+                        if self.isChangeImage {
+                            self.uploadImage()
+                        }
+                    } else {
+                        
+                        self.showNotification(mess: "Something went wrong. Please try again", color: .red)
+                    }
                 }
             }
         }
     }
     
     func uploadImage() {
-        ImageServices.instance.uploadMedia(image: image!, fileName: fileName, completion: { (data) in
+        let reference = "\(ReferenceImage.shop.rawValue)/\(shop.id ?? "")/\(fileName)"
+        ImageServices.instance.uploadMedia(image: image!, reference: reference, completion: { (data) in
             guard let data = data else { return }
             self.shop.avatar = data
             self.stopSpinnerActivity()
