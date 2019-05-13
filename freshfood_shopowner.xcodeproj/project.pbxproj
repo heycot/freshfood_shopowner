@@ -60,6 +60,7 @@
 		2337F7782286E4E700D9E35F /* ShopItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7772286E4E700D9E35F /* ShopItemResponse.swift */; };
 		2337F77A2286EE0A00D9E35F /* ShopItemServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7792286EE0A00D9E35F /* ShopItemServices.swift */; };
 		233B40A3228911E70041D562 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 233B40A2228911E70041D562 /* MBProgressHUD.m */; };
+		233B40A522893BAB0041D562 /* OneFoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233B40A422893BAB0041D562 /* OneFoodController.swift */; };
 		2354F011228290C500AC9BC1 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F010228290C500AC9BC1 /* SignUpController.swift */; };
 		2354F0142282922F00AC9BC1 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F0132282922F00AC9BC1 /* AuthServices.swift */; };
 		235C921F2289054A00059D5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235C921E2289054A00059D5C /* GoogleService-Info.plist */; };
@@ -126,6 +127,7 @@
 		2337F7792286EE0A00D9E35F /* ShopItemServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItemServices.swift; sourceTree = "<group>"; };
 		233B40A1228911E30041D562 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		233B40A2228911E70041D562 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		233B40A422893BAB0041D562 /* OneFoodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneFoodController.swift; sourceTree = "<group>"; };
 		2354F010228290C500AC9BC1 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		2354F0132282922F00AC9BC1 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
 		235C921E2289054A00059D5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				232274FB22882924002EE964 /* view */,
 				2337F7732286DD0700D9E35F /* ListFoodsController.swift */,
 				232274F9228826F8002EE964 /* AddFoodController.swift */,
+				233B40A422893BAB0041D562 /* OneFoodController.swift */,
 			);
 			path = food;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				2337F7742286DD0800D9E35F /* ListFoodsController.swift in Sources */,
 				23075B542282945E0088AB24 /* Constant.swift in Sources */,
 				2337F7762286DE9300D9E35F /* FoodCell.swift in Sources */,
+				233B40A522893BAB0041D562 /* OneFoodController.swift in Sources */,
 				23075B812282A94F0088AB24 /* Location.swift in Sources */,
 				2337F7782286E4E700D9E35F /* ShopItemResponse.swift in Sources */,
 				232274F02287FB3E002EE964 /* ChangePasswordController.swift in Sources */,
