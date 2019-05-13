@@ -20,12 +20,22 @@ class LoginController: UIViewController {
         emailTxt.text = "callie@enclave.vn"
         passwordTxt.text = "Q!123456"
         
+        checkIfUserIsSignedIn()
+    }
+    
+    private func checkIfUserIsSignedIn() {
         
-        if AuthServices.instance.isLoggedIn {
-            performSegue(withIdentifier: SegueIdentifier.loginToView.rawValue, sender: nil)
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                // user is signed in
+                // go to feature controller
+                self.performSegue(withIdentifier: SegueIdentifier.loginToView.rawValue, sender: nil)
+            } else {
+                // user is not signed in
+                // go to login controller
+                self.setUpUI()
+            }
         }
-        
-        setUpUI()
     }
     
     

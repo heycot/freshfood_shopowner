@@ -35,10 +35,11 @@ class AddFoodController: UIViewController {
     
     @IBAction func newFoodPressed(_ sender: Any) {
         
-        tableView.beginUpdates()
-        tableView.insertRows(at: [IndexPath(row: arrayCount - 1, section: 0)], with: .automatic)
-        tableView.endUpdates()
+//        tableView.beginUpdates()
+//        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+//        tableView.endUpdates()
         arrayCount += 1
+        tableView.reloadData()
     }
     
     @IBAction func doneBtnPressed(_ sender: Any) {

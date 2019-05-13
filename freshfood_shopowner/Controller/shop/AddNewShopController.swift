@@ -122,6 +122,7 @@ class AddNewShopController: UIViewController {
                 image = UIImage(named: fileName)
             }
             
+            
             ImageServices.instance.uploadMedia(image: image!, fileName: fileName, completion: { (data) in
                 guard let data = data else { return }
                 self.shop.avatar = data

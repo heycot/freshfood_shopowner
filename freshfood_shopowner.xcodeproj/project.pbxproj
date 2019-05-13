@@ -61,12 +61,12 @@
 		2337F77A2286EE0A00D9E35F /* ShopItemServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2337F7792286EE0A00D9E35F /* ShopItemServices.swift */; };
 		2354F011228290C500AC9BC1 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F010228290C500AC9BC1 /* SignUpController.swift */; };
 		2354F0142282922F00AC9BC1 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F0132282922F00AC9BC1 /* AuthServices.swift */; };
+		235C921F2289054A00059D5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235C921E2289054A00059D5C /* GoogleService-Info.plist */; };
 		235E144B22852886009109EC /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144A22852886009109EC /* ShopCell.swift */; };
 		235E144D22854DAF009109EC /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144C22854DAF009109EC /* ShopService.swift */; };
 		236E3501228285E00031E02B /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 236E3500228285E00031E02B /* SignUp.storyboard */; };
 		236E35032282885B0031E02B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236E35022282885B0031E02B /* LoginController.swift */; };
 		2383FCF22287B950004A403A /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2383FCF12287B950004A403A /* ImageServices.swift */; };
-		23B4AF6E2282838F00638A09 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23B4AF6D2282838F00638A09 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,12 +125,12 @@
 		2337F7792286EE0A00D9E35F /* ShopItemServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItemServices.swift; sourceTree = "<group>"; };
 		2354F010228290C500AC9BC1 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		2354F0132282922F00AC9BC1 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
+		235C921E2289054A00059D5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		235E144A22852886009109EC /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
 		235E144C22854DAF009109EC /* ShopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopService.swift; sourceTree = "<group>"; };
 		236E3500228285E00031E02B /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		236E35022282885B0031E02B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		2383FCF12287B950004A403A /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
-		23B4AF6D2282838F00638A09 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F0DE686F0108FD94A40D130 /* Pods_freshfood_shopowner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_freshfood_shopowner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80208177153C8BB3C9A1E25 /* Pods-freshfood_shopowner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freshfood_shopowner.release.xcconfig"; path = "Pods/Target Support Files/Pods-freshfood_shopowner/Pods-freshfood_shopowner.release.xcconfig"; sourceTree = "<group>"; };
 		EDFE7BE66087E41D0EF6BA31 /* Pods-freshfood_shopowner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freshfood_shopowner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-freshfood_shopowner/Pods-freshfood_shopowner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -356,7 +356,7 @@
 				23075B712282A5360088AB24 /* Resource */,
 				23075B6F2282A50E0088AB24 /* Controller */,
 				2332DD9C22827F40008F0CBE /* Info.plist */,
-				23B4AF6D2282838F00638A09 /* GoogleService-Info.plist */,
+				235C921E2289054A00059D5C /* GoogleService-Info.plist */,
 			);
 			path = freshfood_shopowner;
 			sourceTree = "<group>";
@@ -473,8 +473,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				236E3501228285E00031E02B /* SignUp.storyboard in Resources */,
+				235C921F2289054A00059D5C /* GoogleService-Info.plist in Resources */,
 				2332DD9B22827F40008F0CBE /* LaunchScreen.storyboard in Resources */,
-				23B4AF6E2282838F00638A09 /* GoogleService-Info.plist in Resources */,
 				2332DD9822827F40008F0CBE /* Assets.xcassets in Resources */,
 				232274F72287FF57002EE964 /* UserCommentCell.xib in Resources */,
 				2322750522883004002EE964 /* FoodImageCell.xib in Resources */,
