@@ -46,6 +46,8 @@ class AddNewShopController: UIViewController {
     
     var isNew = true
     var shop = ShopResponse()
+    var isChange = false
+    var isChangeImage = false
     var image : UIImage?
     var fileName = "logo"
     
@@ -55,9 +57,7 @@ class AddNewShopController: UIViewController {
         configsMapp()
         showTimeOpenPicker()
         showTimeClosePicker()
-        dateFormatter.dateFormat =  "HH:mm"
-        phoneTxt.keyboardType = .numberPad
-        checkFoodsBtn.isEnabled = false
+        setupView()
         
         if !isNew {
             checkFoodsBtn.isEnabled = true
@@ -79,22 +79,6 @@ class AddNewShopController: UIViewController {
         })
     }
     
-    func startSpinnerActivity() {
-        let spinnerActivity = MBProgressHUD.showAdded(to: self.view, animated: true);
-        
-        spinnerActivity.label.text = "Loading";
-        spinnerActivity.detailsLabel.text = "Please Wait!";
-        spinnerActivity.isUserInteractionEnabled = false;
-        
-        DispatchQueue.main.async {
-            spinnerActivity.hide(animated: true);
-        }
-    }
-    
-    func stopSpinnerActivity() {
-        MBProgressHUD.hide(for: self.view, animated: true);
-    }
-    
     
     func showInforShop() {
         nameTxt.text = shop.name
@@ -110,6 +94,18 @@ class AddNewShopController: UIViewController {
         if shop.status != 1 {
             disbaleView()
         }
+    }
+    
+    func setupView() {
+        dateFormatter.dateFormat =  "HH:mm"
+        phoneTxt.keyboardType = .numberPad
+        checkFoodsBtn.isEnabled = false
+        
+        nameTxt.delegate = self
+        timeOpen.delegate = self
+        timeClose.delegate = self
+        phoneTxt.delegate = self
+        addresstxt.delegate = self
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -134,16 +130,10 @@ class AddNewShopController: UIViewController {
     @IBAction func doneBtnPressed(_ sender: Any) {
         if checkValidateInput() {
             
-            if image == nil {
-                image = UIImage(named: fileName)
-            }
             startSpinnerActivity()
-            
-            ImageServices.instance.uploadMedia(image: image!, fileName: fileName, completion: { (data) in
-                guard let data = data else { return }
-                self.shop.avatar = data
-                
-                
+        
+            // if update any feild => update, else check update image
+            if isChange {
                 if self.isNew {
                     
                     ShopService.instance.addNewShop(shop: self.shop) { (data) in
@@ -153,6 +143,9 @@ class AddNewShopController: UIViewController {
                             
                             self.showNotification(mess: "Add success, We will contact you soon", color: APP_COLOR)
                             self.disbaleView()
+                            if self.isChangeImage {
+                                self.uploadImage()
+                            }
                             
                         } else {
                             self.showNotification(mess: "Something went wrong. Please try again", color: .red)
@@ -163,20 +156,31 @@ class AddNewShopController: UIViewController {
                         guard let data = data else { return }
                         
                         if data {
-                            self.showNotification(mess: "Edit success, We will contact you soon", color: APP_COLOR)
+                            self.showNotification(mess: "Edit success", color: APP_COLOR)
                             self.disbaleView()
+                            if self.isChangeImage {
+                                self.uploadImage()
+                            }
                         } else {
                             
                             self.showNotification(mess: "Something went wrong. Please try again", color: .red)
                         }
                     }
                 }
-                
-                
-                self.stopSpinnerActivity()
-            })
-            
+            } else {
+                if self.isChangeImage {
+                    self.uploadImage()
+                }
+            }
         }
+    }
+    
+    func uploadImage() {
+        ImageServices.instance.uploadMedia(image: image!, fileName: fileName, completion: { (data) in
+            guard let data = data else { return }
+            self.shop.avatar = data
+            self.stopSpinnerActivity()
+        })
     }
     
     func disbaleView() {
@@ -223,7 +227,7 @@ class AddNewShopController: UIViewController {
             return false
         }
         
-        self.shop.avatar = "logo.jpg"
+        self.shop.avatar = fileName
         self.shop.name = name
         self.shop.time_open = time_open
         self.shop.time_close = time_close
@@ -240,6 +244,13 @@ class AddNewShopController: UIViewController {
     }
     
 }
+
+extension AddNewShopController :  UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.isChange = true
+    }
+}
+
 
 extension AddNewShopController {
     func generateNameForImage() -> String {
@@ -301,6 +312,7 @@ extension AddNewShopController : UIImagePickerControllerDelegate, UINavigationCo
             self.image = selectedImage
             self.avatar.image = selectedImage
             self.avatar.setRounded(color: .white)
+            self.isChangeImage = true
         }
         self.dismisHandle()
     }
