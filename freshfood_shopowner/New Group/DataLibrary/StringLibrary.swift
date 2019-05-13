@@ -70,27 +70,36 @@ extension String {
         return self.replacingOccurrences(of: target, with: withString, options: NSString.CompareOptions.literal, range: nil)
     }
     
-    
-    
-    // do not completed
-    static func createKeyword(array: [String]) -> [String] {
-        var result = [String]()
+    static func gennerateKeywords(_ inputs:[String]) -> [String] {
+        //1. first remove "," from address
+        var newArray = [Substring]()
+        for string in inputs {
+            //2.1. get list of words by seperate string with space character
+            let string = ConverHelper.convertVietNam(text: string)
+            let subStrings = string.split(separator: ",")
+            newArray += subStrings
+        }
         
-        for item in array {
-            let itemArr = item.components(separatedBy: " ")
-            var key_arr = [String]()
+        //2. Then generate permutations from newArray
+        var permutations = [String]()
+        for string in newArray {
+            //2.1. get list of words by seperate string with space character
+            let subStrings = string.split(separator: " ")
             
-            for key in itemArr {
-                let key_no_accent  = ConverHelper.convertVietNam(text: key)
-                key_arr.append(key_no_accent)
-            }
-            
-            for i in 1 ..< key_arr.count {
-                result.append(key_arr[i])
+            //2.2. Then double loop for generate permutations
+            for index in 0..<subStrings.count {
+                var word = subStrings[index].lowercased()
+                permutations.append(String(word))
+                
+                for nextIndex in index+1..<subStrings.count{
+                    let nextWords = subStrings[nextIndex].lowercased()
+                    word += " " + nextWords
+                    permutations.append(String(word))
+                }
             }
         }
         
-        return result
+        return permutations
     }
     
 }

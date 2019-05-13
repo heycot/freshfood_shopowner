@@ -220,7 +220,7 @@ class AddNewShopController: UIViewController {
         self.shop.address = address
         self.shop.phone = phone
         let keyword_arr = [name, address]
-        self.shop.keyword = String.createKeyword(array: keyword_arr)
+        self.shop.keyword = String.gennerateKeywords(keyword_arr)
         return true
     }
     
