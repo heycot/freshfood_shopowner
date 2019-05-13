@@ -19,5 +19,4 @@ target 'freshfood_shopowner' do
     pod 'ObjectMapper'
     pod 'Firebase/Storage'
 
-
 end

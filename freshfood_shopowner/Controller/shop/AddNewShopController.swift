@@ -79,6 +79,22 @@ class AddNewShopController: UIViewController {
         })
     }
     
+    func startSpinnerActivity() {
+        let spinnerActivity = MBProgressHUD.showAdded(to: self.view, animated: true);
+        
+        spinnerActivity.label.text = "Loading";
+        spinnerActivity.detailsLabel.text = "Please Wait!";
+        spinnerActivity.isUserInteractionEnabled = false;
+        
+        DispatchQueue.main.async {
+            spinnerActivity.hide(animated: true);
+        }
+    }
+    
+    func stopSpinnerActivity() {
+        MBProgressHUD.hide(for: self.view, animated: true);
+    }
+    
     
     func showInforShop() {
         nameTxt.text = shop.name
@@ -121,7 +137,7 @@ class AddNewShopController: UIViewController {
             if image == nil {
                 image = UIImage(named: fileName)
             }
-            
+            startSpinnerActivity()
             
             ImageServices.instance.uploadMedia(image: image!, fileName: fileName, completion: { (data) in
                 guard let data = data else { return }
@@ -155,6 +171,9 @@ class AddNewShopController: UIViewController {
                         }
                     }
                 }
+                
+                
+                self.stopSpinnerActivity()
             })
             
         }

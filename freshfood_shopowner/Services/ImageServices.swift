@@ -23,8 +23,8 @@ class ImageServices {
         let riversRef = storageRef.child("images/" + fileName)
         
         // Upload the file to the path "images/rivers.jpg"
-        let uploadTask = riversRef.putData(data!, metadata: nil) { (metadata, error) in
-            guard let metadata = metadata else {
+        _ = riversRef.putData(data!, metadata: nil) { (metadata, error) in
+            guard metadata != nil else {
                 DispatchQueue.main.async {
                     completion(nil)
                 }
