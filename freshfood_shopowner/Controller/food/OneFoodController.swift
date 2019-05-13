@@ -9,22 +9,65 @@
 import UIKit
 
 class OneFoodController: UIViewController {
-
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var price: UITextField!
+    @IBOutlet weak var unit: UITextField!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var item = ShopItemResponse()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupView()
+        updateView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setupView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.tableFooterView = UIView()
     }
-    */
+    
+    func updateView() {
+        let priceFormat = (item.price?.formatPrice())!
+        let priceStr = "VND " + String(priceFormat).replace(target: "$", withString: "")    + "/\(item.unit!)"
+        
+        name.text = item.name
+        price.text = priceStr
+        unit.text = item.unit
+        
+    }
+    
+    func getAllComment() {
+        
+    }
+    
+    
+    @IBAction func photosPressed(_ sender: Any) {
+    }
+    
+    
+    func registerCell() {
+        
+    }
+    
+}
 
+extension OneFoodController : UITableViewDelegate {
+    
+}
+
+
+extension OneFoodController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    
 }
