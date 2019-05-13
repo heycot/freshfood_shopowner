@@ -16,6 +16,7 @@ class OneFoodController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var item = ShopItemResponse()
+    var comments = [CommentResponse]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
