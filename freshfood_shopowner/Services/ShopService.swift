@@ -59,6 +59,7 @@ class ShopService {
             "status": 0,
             "phone": shop.phone as Any,
             "avatar": shop.avatar as Any,
+            "keyword": shop.keyword as Any,
             "sell": "",
             "longitude": shop.longitude as Any,
             "latitude": shop.latitude as Any,
@@ -90,6 +91,7 @@ class ShopService {
                       "longitude": shop.longitude as Any,
                       "latitude": shop.latitude as Any,
                       "phone": shop.phone as Any,
+                      "keyword": shop.keyword as Any,
                       "address": shop.address as Any ] as [String : Any]
         
         db.collection("shop").document(shop.id!).updateData(values) { err in

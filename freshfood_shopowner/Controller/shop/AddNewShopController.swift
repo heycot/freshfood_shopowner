@@ -136,10 +136,7 @@ class AddNewShopController: UIViewController {
                         
                         self.showNotification(mess: "Add success, We will contact you soon", color: APP_COLOR)
                         self.disbaleView()
-                        if self.isChangeImage {
-                            self.uploadImage()
-                        }
-                        
+                        self.uploadImage()
                     } else {
                         self.showNotification(mess: "Something went wrong. Please try again", color: .red)
                     }
@@ -222,8 +219,11 @@ class AddNewShopController: UIViewController {
         self.shop.time_close = time_close
         self.shop.address = address
         self.shop.phone = phone
+        let keyword_arr = [name, address]
+        self.shop.keyword = String.createKeyword(array: keyword_arr)
         return true
     }
+    
     
     func showNotification(mess: String, color: UIColor) {
         notification.text = mess
