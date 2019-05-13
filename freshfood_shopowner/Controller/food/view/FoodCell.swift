@@ -27,8 +27,7 @@ class FoodCell: UITableViewCell {
     
     func updateView(item: ShopItemResponse) {
         let priceFormat = (item.price?.formatPrice())!
-//        let newStr = priceFormat.substring(from: 1) // Swift 3
-        let price = "VND " + String(priceFormat) + "/\(item.unit!)"
+        let price = "VND " + String(priceFormat).replace(target: "$", withString: "")    + "/\(item.unit!)"
         
         
         nameTxt.text = item.name

@@ -319,6 +319,7 @@
 		232274FB22882924002EE964 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				2337F7752286DE9300D9E35F /* FoodCell.swift */,
 				232274FC22882941002EE964 /* NewFoodCell.swift */,
 				232274FD22882941002EE964 /* NewFoodCell.xib */,
 				2322750222883004002EE964 /* FoodImageCell.swift */,
@@ -389,7 +390,6 @@
 			isa = PBXGroup;
 			children = (
 				235E144A22852886009109EC /* ShopCell.swift */,
-				2337F7752286DE9300D9E35F /* FoodCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
