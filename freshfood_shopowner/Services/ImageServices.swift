@@ -17,7 +17,7 @@ class ImageServices {
         // Points to the root reference
         let storageRef = Storage.storage().reference()
         
-        let data = image.pngData()
+        let data = image.jpeg(UIImage.JPEGQuality.lowest)
         
         // Create a reference to the file you want to upload
         let riversRef = storageRef.child("images/" + fileName)
