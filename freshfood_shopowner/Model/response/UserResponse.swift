@@ -8,7 +8,7 @@
 
 import Foundation
 class UserResponse:Decodable {
-    
+    var id: String?
     var name: String?
     var email: String?
     var phone: String?
@@ -17,9 +17,6 @@ class UserResponse:Decodable {
     var address: String?
     var create_date: Double?
     var status: Int?
-//    var shops: [ShopResponse]?
-//    var comments: [CommentResponse]?
-//    var favorites: [FavoritesResponse]?
     
     var birthdayDate: Date? {
         if let day = self.birthday {
@@ -37,8 +34,8 @@ class UserResponse:Decodable {
     }
     
     
-    init( name: String, email: String, phone: String,  birthday: Date, avatar: String, address: String, create_date: Date, status: Int) {
-    
+    init( id: String, name: String, email: String, phone: String,  birthday: Date, avatar: String, address: String, create_date: Date, status: Int) {
+        self.id = id
         self.name = name
         self.email = email
         self.phone = phone
@@ -50,6 +47,6 @@ class UserResponse:Decodable {
     }
     
     convenience init() {
-        self.init( name: "", email: "", phone: "",  birthday: Date(), avatar: "", address: "", create_date: Date(), status: 0)
+        self.init( id: "", name: "", email: "", phone: "",  birthday: Date(), avatar: "", address: "", create_date: Date(), status: 0)
     }
 }

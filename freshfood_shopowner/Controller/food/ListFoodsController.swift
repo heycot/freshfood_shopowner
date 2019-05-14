@@ -40,14 +40,21 @@ class ListFoodsController: UIViewController {
             self.tableView.reloadData()
         }
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is OneFoodController {
+            let vc = segue.destination as? OneFoodController
+            let index = sender as! Int
+            vc?.item = listItem[index]
+        }
+    }
 }
 
 
 extension ListFoodsController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        performSegue(withIdentifier: SegueIdentifier.listFoodToOne.rawValue, sender: indexPath.row)
     }
     
     

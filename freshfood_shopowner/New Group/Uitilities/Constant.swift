@@ -150,4 +150,6 @@ enum Icon : String{
 
 enum ReferenceImage : String {
     case shop = "shop_images"
+    case user = "user_images"
+    case shopItem = "shop_item_images"
 }
