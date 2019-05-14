@@ -101,9 +101,6 @@
                                     <constraint firstAttribute="height" constant="30" id="IVB-1Y-0YI"/>
                                 </constraints>
                                 <state key="normal" title="Add images"/>
-                                <connections>
-                                    <action selector="addImagePressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ANH-b7-mg5"/>
-                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Chj-Ke-PTH">
                                 <rect key="frame" x="0.0" y="160" width="474" height="0.0"/>

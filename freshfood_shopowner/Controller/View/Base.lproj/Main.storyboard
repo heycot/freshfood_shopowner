@@ -541,7 +541,7 @@
                     <navigationItem key="navigationItem" id="nop-5m-D6d">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="WXe-lt-Lwl">
                             <connections>
-                                <segue destination="WX8-hB-6qY" kind="push" identifier="ListFoodToAddFood" id="GBF-3k-lPa"/>
+                                <segue destination="WX8-hB-6qY" kind="show" identifier="ListFoodToAddFood" id="GBF-3k-lPa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -550,7 +550,7 @@
                         <outlet property="notification" destination="a67-mS-kbz" id="Uqh-bN-MmZ"/>
                         <outlet property="notificationHeight" destination="3wJ-L8-86S" id="ihU-A6-asf"/>
                         <outlet property="tableView" destination="wru-i6-dJn" id="qxG-Uj-rCg"/>
-                        <segue destination="0V8-eN-pgm" kind="push" identifier="ListFoodToOne" id="37a-Jt-Us2"/>
+                        <segue destination="0V8-eN-pgm" kind="show" identifier="ListFoodToOne" id="37a-Jt-Us2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOx-TV-bod" userLabel="First Responder" sceneMemberID="firstResponder"/>

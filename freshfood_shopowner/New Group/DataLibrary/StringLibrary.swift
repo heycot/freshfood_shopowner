@@ -102,6 +102,32 @@ extension String {
         return permutations
     }
     
+    
+    
+    static func generateNameForImage() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "AVATAR_hh.mm.ss.dd.MM.yyyy"
+        return formatter.string(from: date)
+    }
+    
+    
+    static func getImageFormatFromUrl(url : URL) -> String {
+        
+        if url.absoluteString.hasSuffix("JPG") {
+            return"JPG"
+        }
+        else if url.absoluteString.hasSuffix("PNG") {
+            return "PNG"
+        }
+        else if url.absoluteString.hasSuffix("GIF") {
+            return "GIF"
+        }
+        else {
+            return "jpg"
+        }
+    }
+    
 }
 
 
