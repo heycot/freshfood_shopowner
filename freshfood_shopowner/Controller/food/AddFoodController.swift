@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import YPImagePicker
 
 class AddFoodController: UIViewController {
 
@@ -19,8 +20,11 @@ class AddFoodController: UIViewController {
     var items = [ShopItemResponse]()
     
     var fileName = ""
-    var images = [UIImage]()
+    var imgArr = [[UIImage]]()
     var imageName = [String]()
+    
+    var collectionView : UICollectionView?
+    var collectionHeight: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
@@ -37,6 +41,7 @@ class AddFoodController: UIViewController {
     
     func registerCell() {
         tableView.register(UINib(nibName: CellIdentifier.newFood.rawValue, bundle: nil), forCellReuseIdentifier: CellIdentifier.newFood.rawValue)
+        
     }
     
     @IBAction func newFoodPressed(_ sender: Any) {
@@ -48,9 +53,35 @@ class AddFoodController: UIViewController {
         
     }
     
+    func displayImage() {
+        self.collectionView?.register(UINib(nibName: CellIdentifier.foodImage.rawValue, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.foodImage.rawValue)
+        
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+        collectionHeight.constant = 100
+        collectionView?.reloadData()
+    }
     
 }
 
+extension AddFoodController : UICollectionViewDelegate {
+    
+}
+
+extension AddFoodController : UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imgArr[0].count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.foodImage.rawValue, for: indexPath) as! FoodImageCell
+        
+        cell.image.image = imgArr[0][indexPath.row]
+        return cell
+    }
+    
+    
+}
 
 extension AddFoodController : UITableViewDelegate {
     
@@ -64,8 +95,9 @@ extension AddFoodController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.newFood.rawValue, for: indexPath) as! NewFoodCell
         
-        
         cell.addImageBtn.addTarget(self, action: #selector(addImagePressed), for: UIControl.Event.touchDown)
+        self.collectionView = cell.collectionView
+        self.collectionHeight = cell.collectionHeight
         
         return cell
     }
@@ -78,12 +110,31 @@ extension AddFoodController : UITableViewDataSource {
 extension AddFoodController {
     @objc func addImagePressed(textField: UITextField) {
         
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self;
-        myPickerController.sourceType =  UIImagePickerController.SourceType.photoLibrary
-        self.present(myPickerController, animated: true, completion: nil)
+        
+        var config = YPImagePickerConfiguration()
+        config.library.maxNumberOfItems = 10
+        let picker = YPImagePicker(configuration: config)
+        self.present(picker, animated: true, completion: nil)
+        
+        picker.didFinishPicking { [unowned picker] items, cancelled in
+            
+            var images = [UIImage]()
+            for item in items {
+                switch item {
+                case .photo(let photo):
+                    images.append(photo.image)
+                    print(photo)
+                case .video(let video):
+                    print(video)
+                }
+            }
+            
+            let index = self.imgArr.count
+            self.imgArr.append(images)
+            self.displayImage()
+            picker.dismiss(animated: true, completion: nil)
+        }
     }
-    
     
     
     @objc func dismisHandle() {
@@ -91,39 +142,3 @@ extension AddFoodController {
     }
     
 }
-
-extension AddFoodController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        //        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-        }
-        
-        
-        if let url = info[UIImagePickerController.InfoKey.phAsset] as? URL {
-            let assets = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
-            // get for mat of image
-            let imageFormat = String.getImageFormatFromUrl(url: url)
-            
-            if let firstAsset = assets.firstObject,
-                let firstResource = PHAssetResource.assetResources(for: firstAsset).first {
-                fileName = firstResource.originalFilename
-            } else {
-                fileName = String.generateNameForImage() + "." + imageFormat
-            }
-        } else {
-            fileName = String.generateNameForImage() + ".jpg"
-        }
-        
-        if (fileName != "") {
-            self.images.append(selectedImage)
-            self.imageName.append(fileName)
-        }
-        self.dismisHandle()
-    }
-}
-

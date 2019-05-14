@@ -18,6 +18,6 @@ target 'freshfood_shopowner' do
     pod 'Alamofire'
     pod 'ObjectMapper'
     pod 'Firebase/Storage'
-    pod 'ImagePicker'
+    pod 'YPImagePicker', '~> 3.5.2'
 
 end

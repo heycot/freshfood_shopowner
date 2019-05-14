@@ -108,7 +108,6 @@ PODS:
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.14.0)
   - GTMSessionFetcher/Core (1.2.1)
-  - ImagePicker (3.1.0)
   - IQKeyboardManagerSwift (6.2.0)
   - leveldb-library (1.20)
   - nanopb (0.3.901):
@@ -118,6 +117,11 @@ PODS:
   - nanopb/encode (0.3.901)
   - ObjectMapper (3.4.2)
   - Protobuf (3.6.1)
+  - PryntTrimmerView (3.0.0)
+  - SteviaLayout (4.4.3)
+  - YPImagePicker (3.5.3):
+    - PryntTrimmerView (~> 3.0.0)
+    - SteviaLayout (~> 4.4.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -127,9 +131,9 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - GoogleMaps
-  - ImagePicker
   - IQKeyboardManagerSwift
   - ObjectMapper
+  - YPImagePicker (~> 3.5.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -149,12 +153,14 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
-    - ImagePicker
     - IQKeyboardManagerSwift
     - leveldb-library
     - nanopb
     - ObjectMapper
     - Protobuf
+    - PryntTrimmerView
+    - SteviaLayout
+    - YPImagePicker
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
@@ -173,13 +179,15 @@ SPEC CHECKSUMS:
   "gRPC-C++": 19eec1ffd34de29453f5fab5b4697ad0f240ad51
   gRPC-Core: f4836515817c0eb479aeeb9cc27c91c4ba62a9f6
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  ImagePicker: db1fd7626337b2577c523bef5f499bbbe5a37079
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
+  SteviaLayout: ae5ee66101e03607a93c9b3773b84ab7ba7b3d17
+  YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: 4dce3916be74092032f07c6ab50356f596daa290
+PODFILE CHECKSUM: 222823b2613ad629f1584a3992589443f25838ab
 
 COCOAPODS: 1.5.2
