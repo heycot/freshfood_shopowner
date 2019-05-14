@@ -46,4 +46,69 @@ class ShopItemService {
         })
     }
     
+    func addNewList( items: [ShopItemResponse],  completion: @escaping (Bool?) -> Void) {
+        let date = Date().timeIntervalSince1970
+        var result = 0
+        
+        for item in items {
+            let item = ["name": item.name,
+                        "avatar": item.avatar ?? "logo" as Any,
+                        "comment_number": 0,
+                        "favorites_number": 0,
+                        "create_date": date,
+                        "rating": 0.0,
+                        "shop_id": item.shop_id as Any,
+                        "status": 1,
+                        "unit": item.unit as Any,
+                        "price": item.price as Any] as [String : Any]
+            
+            let db = Firestore.firestore()
+            db.collection("shop_item").document().setData(item) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    result += 1
+                    print("Document successfully written!")
+                }
+                
+            }
+        }
+        
+        if result == items.count {
+            DispatchQueue.main.async {
+                completion(true)
+            }
+        } else {
+            DispatchQueue.main.async {
+                completion(false)
+            }
+        }
+        
+    }
+    
+    func editOne( item: ShopItemResponse,  completion: @escaping (Bool?) -> Void) {
+        
+        let db = Firestore.firestore()
+        
+        let values = ["name": item.name,
+                      "avatar": item.avatar ?? "logo" as Any,
+                      "unit": item.unit as Any,
+                      "price": item.price as Any] as [String : Any]
+        
+        db.collection("shop_item").document(item.id ?? "").updateData(values) { err in
+            var result = true
+            if let err = err {
+                result = false
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+            
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+        
+    }
+    
 }
