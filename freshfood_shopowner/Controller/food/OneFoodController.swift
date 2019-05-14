@@ -12,6 +12,7 @@ class OneFoodController: UIViewController {
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var price: UITextField!
     @IBOutlet weak var unit: UITextField!
+    @IBOutlet weak var notification: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -36,22 +37,26 @@ class OneFoodController: UIViewController {
     @IBAction func doneBtnPressed(_ sender: Any) {
         
         if name.text == "" || price.text == "" || unit.text == "" {
-            let alert = UIAlertController(title: "Error", message: "All the information is required.", preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-            
-            self.present(alert, animated: true)
+            notification.text = "All the information are required"
         } else {
+            
             item.name = name.text
-            let str = String(format: "%0.2f", price.text!)
-            item.price = Double(str)
+            item.price = Double(price.text ?? "0.0")
             item.unit = unit.text
             
+            ShopItemService.instance.editOne(item: item) { (data) in
+                guard let data = data else { return }
+                
+                if data {
+                    self.notification.text = "Edit success"
+                    self.notification.textColor = APP_COLOR
+                } else {
+                    
+                    self.notification.text = "Something went wrong. Please try again"
+                }
+            }
         }
-        
-        
-        
     }
     
     func registerCell() {
@@ -63,7 +68,7 @@ class OneFoodController: UIViewController {
 //        let priceStr = "VND " + String(priceFormat).replace(target: "$", withString: "")    + "/\(item.unit!)"
         
         name.text = item.name
-        price.text = String(format:"%2f", item.price ?? 0.0)
+        price.text = String(format: "%0.2f", item.price ?? 0.0)
         unit.text = item.unit
         
     }

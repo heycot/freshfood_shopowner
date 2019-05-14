@@ -90,7 +90,7 @@ class ShopItemService {
         
         let db = Firestore.firestore()
         
-        let values = ["name": item.name,
+        let values = ["name": item.name as Any,
                       "avatar": item.avatar ?? "logo" as Any,
                       "unit": item.unit as Any,
                       "price": item.price as Any] as [String : Any]
