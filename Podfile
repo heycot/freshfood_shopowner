@@ -18,5 +18,6 @@ target 'freshfood_shopowner' do
     pod 'Alamofire'
     pod 'ObjectMapper'
     pod 'Firebase/Storage'
+    pod 'ImagePicker'
 
 end
