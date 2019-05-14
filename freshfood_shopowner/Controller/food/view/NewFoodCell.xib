@@ -134,7 +134,7 @@
                 <outlet property="price" destination="4N1-Ip-xnp" id="okT-PW-Ld4"/>
                 <outlet property="unit" destination="I81-V6-dvC" id="kUR-uk-YY2"/>
             </connections>
-            <point key="canvasLocation" x="65.599999999999994" y="43.628185907046479"/>
+            <point key="canvasLocation" x="-46" y="23"/>
         </tableViewCell>
     </objects>
 </document>

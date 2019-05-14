@@ -21,10 +21,12 @@ class AddFoodController: UIViewController {
     
     var fileName = ""
     var imgArr = [[UIImage]]()
-    var imageName = [String]()
+    var imageName = [[String]]()
     
     var collectionView : UICollectionView?
     var collectionHeight: NSLayoutConstraint!
+    var foodCells = [UITableViewCell]()
+    var foodTFs = [[UITextField]]()
     
     
     override func viewDidLoad() {
@@ -51,6 +53,12 @@ class AddFoodController: UIViewController {
     
     @IBAction func doneBtnPressed(_ sender: Any) {
         
+        foodCells.forEach { cell in
+        }
+        
+        for i in 0 ..< arrayCount {
+            print(foodTFs[i][1].text)
+        }
     }
     
     func displayImage() {
@@ -98,6 +106,14 @@ extension AddFoodController : UITableViewDataSource {
         cell.addImageBtn.addTarget(self, action: #selector(addImagePressed), for: UIControl.Event.touchDown)
         self.collectionView = cell.collectionView
         self.collectionHeight = cell.collectionHeight
+        self.foodCells.append(cell)
+        
+        var foodTextField = [UITextField]()
+        foodTextField.append(cell.name)
+        foodTextField.append(cell.price)
+        foodTextField.append(cell.unit)
+        
+        foodTFs.append(foodTextField)
         
         return cell
     }
@@ -129,7 +145,6 @@ extension AddFoodController {
                 }
             }
             
-            let index = self.imgArr.count
             self.imgArr.append(images)
             self.displayImage()
             picker.dismiss(animated: true, completion: nil)
