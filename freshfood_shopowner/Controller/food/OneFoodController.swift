@@ -42,7 +42,12 @@ class OneFoodController: UIViewController {
     }
     
     func getAllComment() {
-        
+        CommentServices.instance.getAllCommentByFood(foodID: item.id) { (data) in
+            guard let data = data else { return }
+            
+            self.comments = data
+            self.tableView.reloadData()
+        }
     }
     
     

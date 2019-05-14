@@ -24,7 +24,7 @@ class  CommentServices {
             let jsonData = try? JSONSerialization.data(withJSONObject: cmtDoct.data() as Any)
     
             do {
-                var cmt = try JSONDecoder().decode(CommentResponse.self, from: jsonData!)
+                let cmt = try JSONDecoder().decode(CommentResponse.self, from: jsonData!)
                 cmt.id = cmtDoct.documentID
                 cmts.append(cmt)
             }catch let jsonError {
