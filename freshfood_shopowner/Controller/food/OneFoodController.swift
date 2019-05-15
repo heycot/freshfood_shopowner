@@ -18,6 +18,7 @@ class OneFoodController: UIViewController {
     
     var item = ShopItemResponse()
     var comments = [CommentResponse]()
+    var shop = ShopResponse()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,7 @@ class OneFoodController: UIViewController {
             item.name = name.text
             item.price = Double(price.text ?? "0.0")
             item.unit = unit.text
+            item.keywords = String.gennerateKeywords([item.name ?? "", shop.address ?? "", shop.name ?? ""])
             
             ShopItemService.instance.editOne(item: item) { (data) in
                 guard let data = data else { return }

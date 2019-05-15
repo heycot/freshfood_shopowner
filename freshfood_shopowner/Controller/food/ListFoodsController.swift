@@ -76,6 +76,8 @@ class ListFoodsController: UIViewController {
             let vc = segue.destination as? OneFoodController
             let index = sender as! Int
             vc?.item = ShopItemList[index]
+            vc?.shop = shop
+            
         } else if segue.destination is AddFoodController {
             let vc = segue.destination as? AddFoodController
             vc?.itemList = newItems
