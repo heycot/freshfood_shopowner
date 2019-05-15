@@ -26,7 +26,7 @@ class AddFoodController: UIViewController {
     
     var itemList = [ItemResponse]()
     var item = ShopItemResponse()
-    var shopAddress = ""
+    var shop = ShopResponse()
     
     var toolBar = UIToolbar()
     var picker  = UIPickerView()

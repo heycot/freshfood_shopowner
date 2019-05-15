@@ -15,8 +15,7 @@ class ListFoodsController: UIViewController {
     @IBOutlet weak var notificationHeight: NSLayoutConstraint!
     
     var ShopItemList = [ShopItemResponse]()
-    var shopID = ""
-    var shopAddress = ""
+    var shop = ShopResponse()
     var itemList = [ItemResponse]()
     var newItems = [ItemResponse]()
     
@@ -37,7 +36,7 @@ class ListFoodsController: UIViewController {
     }
     
     func getList() {
-        ShopItemService.instance.getListShopItem(shopID: shopID) { (data) in
+        ShopItemService.instance.getListShopItem(shopID: shop.id ?? "") { (data) in
             guard let data = data else { return }
             
             self.ShopItemList = data
@@ -80,7 +79,7 @@ class ListFoodsController: UIViewController {
         } else if segue.destination is AddFoodController {
             let vc = segue.destination as? AddFoodController
             vc?.itemList = newItems
-            
+            vc?.shop = shop
         }
     }
 }
