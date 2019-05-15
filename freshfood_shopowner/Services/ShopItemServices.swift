@@ -46,12 +46,43 @@ class ShopItemService {
         })
     }
     
+    func addOne( item: ShopItemResponse,  completion: @escaping (Bool?) -> Void) {
+        let date = Date().timeIntervalSince1970
+        var result = true
+        
+        let item = ["name": item.name as Any,
+                    "avatar": item.avatar ?? "logo" as Any,
+                    "comment_number": 0,
+                    "favorites_number": 0,
+                    "create_date": date,
+                    "rating": 0.0,
+                    "shop_id": item.shop_id as Any,
+                    "status": 1,
+                    "unit": item.unit as Any,
+                    "price": item.price as Any] as [String : Any]
+            
+        let db = Firestore.firestore()
+        db.collection("shop_item").document().setData(item) { err in
+            if let err = err {
+                result = false
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+            
+            DispatchQueue.main.async {
+                completion(true)
+            }
+        }
+        
+    }
+    
     func addNewList( items: [ShopItemResponse],  completion: @escaping (Bool?) -> Void) {
         let date = Date().timeIntervalSince1970
         var result = 0
         
         for item in items {
-            let item = ["name": item.name,
+            let item = ["name": item.name as Any,
                         "avatar": item.avatar ?? "logo" as Any,
                         "comment_number": 0,
                         "favorites_number": 0,

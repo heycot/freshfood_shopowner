@@ -49,6 +49,7 @@ class ImageServices {
 
     }
     
+    
     func downloadImages( folderPath: String, success:@escaping (_ image:UIImage)->(),failure:@escaping (_ error:Error)->()){
         let reference = Storage.storage().reference(withPath: "\(folderPath)")
         reference.getData(maxSize: (1 * 1024 * 1024)) { (data, error) in

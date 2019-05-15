@@ -13,61 +13,100 @@ import YPImagePicker
 class AddFoodController: UIViewController {
 
     @IBOutlet weak var notification: UILabel!
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var notificationHeight: NSLayoutConstraint!
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    var arrayCount = 1
-    var items = [ShopItemResponse]()
+    @IBOutlet weak var nameTxt: UITextField!
+    @IBOutlet weak var priceTxt: UITextField!
+    @IBOutlet weak var unitTxt: UITextField!
     
     var fileName = ""
-    var imgArr = [[UIImage]]()
-    var imageName = [[String]]()
+    var images = [UIImage]()
+    var imageName = [String]()
     
-    var collectionView : UICollectionView?
-    var collectionHeight: NSLayoutConstraint!
-    var foodCells = [UITableViewCell]()
-    var foodTFs = [[UITextField]]()
-    
+    var item = ShopItemResponse()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerCell() 
+        registerView()
         setupView()
     }
     
-    func setupView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.tableFooterView =  UIView()
+    func registerView() {
+        collectionView.register(UINib(nibName: CellIdentifier.foodImage.rawValue, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.foodImage.rawValue)
     }
     
-    func registerCell() {
-        tableView.register(UINib(nibName: CellIdentifier.newFood.rawValue, bundle: nil), forCellReuseIdentifier: CellIdentifier.newFood.rawValue)
+    func setupView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
     }
     
-    @IBAction func newFoodPressed(_ sender: Any) {
-        arrayCount += 1
-        tableView.reloadData()
+    
+    @IBAction func addImagePressed(_ sender: Any) {
+      
+        var config = YPImagePickerConfiguration()
+        config.library.maxNumberOfItems = 10
+        let picker = YPImagePicker(configuration: config)
+        self.present(picker, animated: true, completion: nil)
+        
+        picker.didFinishPicking { [unowned picker] items, cancelled in
+            
+            for item in items {
+                switch item {
+                case .photo(let photo):
+                    self.images.append(photo.image)
+                    print(photo)
+                case .video(let video):
+                    print(video)
+                }
+            }
+            
+            self.collectionView.reloadData()
+            picker.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func doneBtnPressed(_ sender: Any) {
-        
-        foodCells.forEach { cell in
-        }
-        
-        for i in 0 ..< arrayCount {
-            print(foodTFs[i][1].text)
+        if nameTxt.text == "" || priceTxt.text == "" || unitTxt.text == "" {
+            notification.text = "All the information is required"
+            notificationHeight.constant = 30
+        } else {
+            self.startSpinnerActivity()
+            
+            item.avatar = String.generateNameForImage()
+            ShopItemService.instance.addOne(item: item) { (data) in
+                guard let data = data else { return }
+                
+                if data {
+                    self.notificationHeight.constant = 30
+                    self.notification.text = "Add success"
+                    self.notification.textColor = APP_COLOR
+                    self.uploadImages()
+                } else {
+                    self.notificationHeight.constant = 30
+                    self.notification.text = "Something went wrong. Please try again"
+                }
+            }
         }
     }
     
-    func displayImage() {
-        self.collectionView?.register(UINib(nibName: CellIdentifier.foodImage.rawValue, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.foodImage.rawValue)
-        
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
-        collectionHeight.constant = 100
-        collectionView?.reloadData()
+    
+    
+    func uploadImages() {
+        for i in 0 ..< images.count {
+            var fileName = item.avatar ?? ""
+            if i != 0 {
+                fileName = String.generateNameForImage()
+            }
+            
+            let reference = "\(ReferenceImage.shopItem.rawValue)/\(item.id ?? "")/\(fileName)"
+            ImageServices.instance.uploadMedia(image: images[i], reference: reference, completion: { (data) in
+                guard data != nil else { return }
+                self.stopSpinnerActivity()
+            })
+            
+        }
     }
     
 }
@@ -78,82 +117,14 @@ extension AddFoodController : UICollectionViewDelegate {
 
 extension AddFoodController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imgArr[0].count
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.foodImage.rawValue, for: indexPath) as! FoodImageCell
         
-        cell.image.image = imgArr[0][indexPath.row]
+        cell.image.image = images[indexPath.row]
         return cell
     }
-    
-    
 }
 
-extension AddFoodController : UITableViewDelegate {
-    
-}
-
-extension AddFoodController : UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayCount
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.newFood.rawValue, for: indexPath) as! NewFoodCell
-        
-        cell.addImageBtn.addTarget(self, action: #selector(addImagePressed), for: UIControl.Event.touchDown)
-        self.collectionView = cell.collectionView
-        self.collectionHeight = cell.collectionHeight
-        self.foodCells.append(cell)
-        
-        var foodTextField = [UITextField]()
-        foodTextField.append(cell.name)
-        foodTextField.append(cell.price)
-        foodTextField.append(cell.unit)
-        
-        foodTFs.append(foodTextField)
-        
-        return cell
-    }
-    
-    
-}
-
-
-// extension for add image
-extension AddFoodController {
-    @objc func addImagePressed(textField: UITextField) {
-        
-        
-        var config = YPImagePickerConfiguration()
-        config.library.maxNumberOfItems = 10
-        let picker = YPImagePicker(configuration: config)
-        self.present(picker, animated: true, completion: nil)
-        
-        picker.didFinishPicking { [unowned picker] items, cancelled in
-            
-            var images = [UIImage]()
-            for item in items {
-                switch item {
-                case .photo(let photo):
-                    images.append(photo.image)
-                    print(photo)
-                case .video(let video):
-                    print(video)
-                }
-            }
-            
-            self.imgArr.append(images)
-            self.displayImage()
-            picker.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    
-    @objc func dismisHandle() {
-         dismiss(animated: true, completion: nil)
-    }
-    
-}
