@@ -14,6 +14,7 @@ class FoodCell: UITableViewCell {
     @IBOutlet weak var nameTxt: UILabel!
     @IBOutlet weak var priceTxt: UILabel!
     @IBOutlet weak var ratingTxt: UILabel!
+    @IBOutlet weak var status: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +34,19 @@ class FoodCell: UITableViewCell {
         nameTxt.text = item.name
         priceTxt.text = price
         viewRating(rating: item.rating ?? 0.0, cmt: item.comment_number!)
+        viewStatus(st: item.status ?? 0)
+    }
+    
+    func viewStatus(st: Int) {
+        if st == 0 {
+            status.text = "Waiting"
+            status.textColor = UIColor.lightGray
+        } else if st == 1 {
+            status.text = "Selling"
+        } else {
+            status.text = "Stoped"
+            status.textColor = .red
+        }
     }
     
     func viewRating(rating: Double, cmt: Int) {
