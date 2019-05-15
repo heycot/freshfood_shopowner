@@ -859,10 +859,10 @@
                                         </constraints>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zeg-4q-F33">
-                                        <rect key="frame" x="0.0" y="170" width="355" height="150"/>
+                                        <rect key="frame" x="0.0" y="170" width="355" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="xj4-Ch-X75"/>
+                                            <constraint firstAttribute="height" id="xj4-Ch-X75"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hqb-4A-5T9">
                                             <size key="itemSize" width="167" height="131"/>
@@ -872,8 +872,31 @@
                                         </collectionViewFlowLayout>
                                         <cells/>
                                     </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IV-Yx-ef2">
+                                        <rect key="frame" x="0.0" y="180" width="355" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="o6k-We-mT0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fTd-rt-eMh">
+                                        <rect key="frame" x="0.0" y="210" width="355" height="70"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="1TT-4g-Go7"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oaE-zG-Cb3">
+                                            <size key="itemSize" width="167" height="131"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2O1-xg-kq1">
-                                        <rect key="frame" x="0.0" y="330" width="355" height="20"/>
+                                        <rect key="frame" x="0.0" y="290" width="355" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Okc-5x-tix"/>
                                         </constraints>
@@ -882,7 +905,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rda-1U-oGb">
-                                        <rect key="frame" x="0.0" y="360" width="355" height="140"/>
+                                        <rect key="frame" x="0.0" y="320" width="355" height="180"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
@@ -891,6 +914,8 @@
                                     <constraint firstItem="Rda-1U-oGb" firstAttribute="width" secondItem="7Dr-DV-ON4" secondAttribute="width" id="BCW-SA-wEZ"/>
                                     <constraint firstItem="zeg-4q-F33" firstAttribute="width" secondItem="7Dr-DV-ON4" secondAttribute="width" id="Btd-pd-Ag0"/>
                                     <constraint firstItem="YtK-Yf-ueF" firstAttribute="width" secondItem="7Dr-DV-ON4" secondAttribute="width" id="JRX-WL-RJk"/>
+                                    <constraint firstItem="7IV-Yx-ef2" firstAttribute="width" secondItem="7Dr-DV-ON4" secondAttribute="width" id="UVy-vo-6Vc"/>
+                                    <constraint firstItem="fTd-rt-eMh" firstAttribute="width" secondItem="7Dr-DV-ON4" secondAttribute="width" id="cYE-ud-9Xv"/>
                                     <constraint firstItem="YtK-Yf-ueF" firstAttribute="top" secondItem="3Mf-Wr-vn1" secondAttribute="bottom" constant="10" id="nDJ-LD-zuJ"/>
                                     <constraint firstItem="tNM-DG-eLe" firstAttribute="width" secondItem="7Dr-DV-ON4" secondAttribute="width" id="oFh-Mr-lB8"/>
                                     <constraint firstItem="3Mf-Wr-vn1" firstAttribute="width" secondItem="7Dr-DV-ON4" secondAttribute="width" id="sw5-ME-6XT"/>
@@ -915,10 +940,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="collectionView" destination="zeg-4q-F33" id="WPA-JN-uNI"/>
+                        <outlet property="cmtLB" destination="2O1-xg-kq1" id="l9d-ei-zaq"/>
                         <outlet property="nameTxt" destination="MQG-B8-gna" id="FOn-VA-jc4"/>
+                        <outlet property="newCollectionHeight" destination="xj4-Ch-X75" id="fgw-Ob-61K"/>
+                        <outlet property="newCollectionView" destination="zeg-4q-F33" id="BDt-Iv-UnW"/>
                         <outlet property="notification" destination="3Mf-Wr-vn1" id="jNb-wz-3Vf"/>
                         <outlet property="notificationHeight" destination="cpz-U8-pUp" id="mo2-dT-WJe"/>
+                        <outlet property="oldCollectionView" destination="fTd-rt-eMh" id="RJ7-t8-UYG"/>
+                        <outlet property="photoLB" destination="7IV-Yx-ef2" id="thD-Sc-Ffy"/>
                         <outlet property="priceTxt" destination="egi-U0-uzL" id="fyM-mG-CxL"/>
                         <outlet property="tableView" destination="Rda-1U-oGb" id="6s6-h5-bbd"/>
                         <outlet property="unitTxt" destination="ciU-bA-YKS" id="olH-VF-wZy"/>
@@ -926,7 +955,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUa-tu-seb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5888.8000000000002" y="70.614692653673174"/>
+            <point key="canvasLocation" x="5921" y="-6"/>
         </scene>
         <!--Shop-->
         <scene sceneID="l9G-Fh-SKf">

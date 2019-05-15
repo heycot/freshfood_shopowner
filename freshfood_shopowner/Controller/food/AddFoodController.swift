@@ -14,20 +14,25 @@ class AddFoodController: UIViewController {
 
     @IBOutlet weak var notification: UILabel!
     @IBOutlet weak var notificationHeight: NSLayoutConstraint!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var newCollectionView: UICollectionView!
+    @IBOutlet weak var newCollectionHeight: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var oldCollectionView: UICollectionView!
     
     @IBOutlet weak var nameTxt: UITextField!
     @IBOutlet weak var priceTxt: UITextField!
     @IBOutlet weak var unitTxt: UITextField!
+    @IBOutlet weak var cmtLB: UILabel!
+    @IBOutlet weak var photoLB: UILabel!
     
     var fileName = ""
     var images = [UIImage]()
-    var imageName = [String]()
+    var oldImages = [UIImage]()
     
     var itemList = [ItemResponse]()
     var item = ShopItemResponse()
     var shop = ShopResponse()
+    var comments = [CommentResponse]()
     var rowSelected = -1
     var isNew = true
     
@@ -41,6 +46,9 @@ class AddFoodController: UIViewController {
         
         if !isNew {
             showData()
+        } else {
+            photoLB.isHidden = true
+            cmtLB.isHidden = true
         }
     }
     
@@ -48,18 +56,28 @@ class AddFoodController: UIViewController {
         nameTxt.text = item.name
         priceTxt.text = String(format: "%0.2f", item.price ?? 25000.0)
         unitTxt.text = item.unit
+        getAllComment()
     }
     
     
     func registerView() {
-        collectionView.register(UINib(nibName: CellIdentifier.foodImage.rawValue, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.foodImage.rawValue)
+        tableView.register(UINib(nibName: CellIdentifier.userComment.rawValue, bundle: nil), forCellReuseIdentifier: CellIdentifier.userComment.rawValue)
+        newCollectionView.register(UINib(nibName: CellIdentifier.foodImage.rawValue, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.foodImage.rawValue)
+        oldCollectionView.register(UINib(nibName: CellIdentifier.foodImage.rawValue, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.foodImage.rawValue)
     }
     
     func setupView() {
         priceTxt.keyboardType = .numberPad
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        
+        newCollectionView.delegate = self
+        newCollectionView.dataSource = self
+        
+        oldCollectionView.delegate = self
+        oldCollectionView.dataSource = self
     }
     
     
@@ -127,6 +145,27 @@ class AddFoodController: UIViewController {
     
 }
 
+// extention for edit food
+extension AddFoodController {
+    
+    func getAllComment() {
+        CommentServices.instance.getAllCommentByFood(foodID: item.id!) { (data) in
+            guard let data = data else { return }
+            
+            if data.count > 0 {
+                self.comments = data
+                self.tableView.reloadData()
+            } else {
+                self.cmtLB.text = "Comment: No data"
+            }
+        }
+    }
+    
+    func getAllPhotos() {
+        
+    }
+}
+
 //extention for images {
 extension AddFoodController {
     
@@ -149,7 +188,8 @@ extension AddFoodController {
                 }
             }
             
-            self.collectionView.reloadData()
+            self.newCollectionHeight.constant = 70
+            self.newCollectionView.reloadData()
             picker.dismiss(animated: true, completion: nil)
         }
     }
@@ -231,15 +271,33 @@ extension AddFoodController : UIPickerViewDelegate, UIPickerViewDataSource {
     
 }
 
+extension AddFoodController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return  comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.userComment.rawValue, for: indexPath) as! UserCommentCell
+        cell.updateView(cmt: comments[indexPath.row], user: nil, item: nil)
+        return cell
+    }
+    
+}
+
 extension AddFoodController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return collectionView == newCollectionView ? images.count : oldImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.foodImage.rawValue, for: indexPath) as! FoodImageCell
         
-        cell.image.image = images[indexPath.row]
+        if collectionView == newCollectionView {
+            cell.image.image = images[indexPath.row]
+        } else {
+            cell.image.image = oldImages[indexPath.row]
+        }
+        
         return cell
     }
 }
