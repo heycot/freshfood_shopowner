@@ -17,6 +17,7 @@ class ListFoodsController: UIViewController {
     var ShopItemList = [ShopItemResponse]()
     var shopID = ""
     var itemList = [ItemResponse]()
+    var newItems = [ItemResponse]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,15 +41,33 @@ class ListFoodsController: UIViewController {
             
             self.ShopItemList = data
             self.tableView.reloadData()
+            self.getItemNotAlreadyExists()
         }
     }
     
     func getListItem() {
         ItemService.instance.getAllItem { (data) in
             guard let data = data else { return }
-            
             self.itemList = data
         }
+    }
+    
+    func getItemNotAlreadyExists() {
+        for item in itemList {
+            if !checkItemInList(itemID: item.id ?? "") {
+                newItems.append(item)
+            }
+        }
+    }
+    
+    func checkItemInList(itemID: String) -> Bool {
+        for item in ShopItemList {
+            if item.item_id == itemID {
+                return true
+            }
+        }
+        
+        return false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -56,7 +75,7 @@ class ListFoodsController: UIViewController {
             let vc = segue.destination as? OneFoodController
             let index = sender as! Int
             vc?.item = ShopItemList[index]
-        }
+        } 
     }
 }
 
