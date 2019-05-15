@@ -25,14 +25,44 @@ class AddFoodController: UIViewController {
     var imageName = [String]()
     
     var itemList = [ItemResponse]()
-    
     var item = ShopItemResponse()
+    var shopAddress = ""
+    
+    var toolBar = UIToolbar()
+    var picker  = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerView()
         setupView()
-        showPicker() 
+    }
+    
+    @IBAction func pcikerBtnPressed(_ sender: Any) {
+        if itemList.count > 0 {
+            
+            picker = UIPickerView.init()
+            picker.delegate = self
+            picker.backgroundColor = UIColor.white
+            picker.setValue(UIColor.black, forKey: "textColor")
+            picker.autoresizingMask = .flexibleWidth
+            picker.contentMode = .center
+            picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
+            self.view.addSubview(picker)
+            
+            toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
+            //        toolBar.barStyle = .blackTranslucent
+            toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
+            self.view.addSubview(toolBar)
+        }
+    }
+    
+    @objc func onDoneButtonTapped() {
+        let row =  picker.selectedRow(inComponent: 0)
+        nameTxt.text = itemList[row].name
+        unitTxt.text = itemList[row].unit
+        
+        toolBar.removeFromSuperview()
+        picker.removeFromSuperview()
     }
     
     func registerView() {
@@ -40,16 +70,11 @@ class AddFoodController: UIViewController {
     }
     
     func setupView() {
+        
         collectionView.delegate = self
         collectionView.dataSource = self
-        
     }
     
-    func showPicker() {
-        let picker = UIPickerView()
-        picker.delegate = self
-        nameTxt.inputView = picker
-    }
     
     
     @IBAction func addImagePressed(_ sender: Any) {

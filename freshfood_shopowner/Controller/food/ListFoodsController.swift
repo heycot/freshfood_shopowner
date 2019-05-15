@@ -16,6 +16,7 @@ class ListFoodsController: UIViewController {
     
     var ShopItemList = [ShopItemResponse]()
     var shopID = ""
+    var shopAddress = ""
     var itemList = [ItemResponse]()
     var newItems = [ItemResponse]()
     
@@ -53,6 +54,7 @@ class ListFoodsController: UIViewController {
     }
     
     func getItemNotAlreadyExists() {
+        newItems = [ItemResponse]()
         for item in itemList {
             if !checkItemInList(itemID: item.id ?? "") {
                 newItems.append(item)
@@ -78,6 +80,7 @@ class ListFoodsController: UIViewController {
         } else if segue.destination is AddFoodController {
             let vc = segue.destination as? AddFoodController
             vc?.itemList = newItems
+            
         }
     }
 }
@@ -106,6 +109,10 @@ extension ListFoodsController : UITableViewDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
         getList()
+        
+        if self.itemList.count == 0 {
+            self.getListItem()
+        }
         super.viewWillAppear(true)
         tableView.reloadData()
     }
