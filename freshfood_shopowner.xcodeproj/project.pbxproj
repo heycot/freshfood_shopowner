@@ -57,6 +57,7 @@
 		235C921F2289054A00059D5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235C921E2289054A00059D5C /* GoogleService-Info.plist */; };
 		235E144B22852886009109EC /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144A22852886009109EC /* ShopCell.swift */; };
 		235E144D22854DAF009109EC /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144C22854DAF009109EC /* ShopService.swift */; };
+		2368A25E228BACBE00B6CB76 /* ItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2368A25D228BACBE00B6CB76 /* ItemService.swift */; };
 		236E3501228285E00031E02B /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 236E3500228285E00031E02B /* SignUp.storyboard */; };
 		236E35032282885B0031E02B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236E35022282885B0031E02B /* LoginController.swift */; };
 		2383FCF22287B950004A403A /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2383FCF12287B950004A403A /* ImageServices.swift */; };
@@ -116,6 +117,7 @@
 		235C922022890E1200059D5C /* freshfood_shopowner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "freshfood_shopowner-Bridging-Header.h"; sourceTree = "<group>"; };
 		235E144A22852886009109EC /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
 		235E144C22854DAF009109EC /* ShopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopService.swift; sourceTree = "<group>"; };
+		2368A25D228BACBE00B6CB76 /* ItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemService.swift; sourceTree = "<group>"; };
 		236E3500228285E00031E02B /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		236E35022282885B0031E02B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		2383FCF12287B950004A403A /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				2337F7792286EE0A00D9E35F /* ShopItemServices.swift */,
 				2383FCF12287B950004A403A /* ImageServices.swift */,
 				2316DADE22897CEC00378745 /* CommentServices.swift */,
+				2368A25D228BACBE00B6CB76 /* ItemService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				233B40A3228911E70041D562 /* MBProgressHUD.m in Sources */,
 				23075B66228295A50088AB24 /* ExtensionButton.swift in Sources */,
 				23075B8E2282C9A00088AB24 /* ShopResponse.swift in Sources */,
+				2368A25E228BACBE00B6CB76 /* ItemService.swift in Sources */,
 				232274F62287FF57002EE964 /* UserCommentCell.swift in Sources */,
 				23075B602282956B0088AB24 /* ExtensionUIImage.swift in Sources */,
 				2383FCF22287B950004A403A /* ImageServices.swift in Sources */,
