@@ -69,16 +69,8 @@ class ImageServices {
             }
         }
         
-        if result == images.count {
-            DispatchQueue.main.async {
-                completion(true)
-            }
-            
-        } else {
-            DispatchQueue.main.async {
-                completion(false)
-            }
-            
+        DispatchQueue.main.async {
+            completion( result == images.count ? true : false)
         }
         
     }
