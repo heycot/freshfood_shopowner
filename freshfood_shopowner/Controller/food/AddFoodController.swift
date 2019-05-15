@@ -18,6 +18,7 @@ class AddFoodController: UIViewController {
     @IBOutlet weak var newCollectionHeight: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var oldCollectionView: UICollectionView!
+    @IBOutlet weak var oldCollectionHeight: NSLayoutConstraint!
     
     @IBOutlet weak var nameTxt: UITextField!
     @IBOutlet weak var priceTxt: UITextField!
@@ -59,6 +60,9 @@ class AddFoodController: UIViewController {
         priceTxt.text = String(format: "%0.2f", item.price ?? 25000.0)
         unitTxt.text = item.unit
         getAllComment()
+        if (item.images?.count)! > 0 {
+            oldCollectionHeight.constant = 70
+        }
     }
     
     
@@ -295,7 +299,7 @@ extension AddFoodController : UITableViewDelegate, UITableViewDataSource {
 
 extension AddFoodController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == newCollectionView ? images.count : oldImages.count
+        return collectionView == newCollectionView ? images.count : item.images?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -304,7 +308,13 @@ extension AddFoodController : UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == newCollectionView {
             cell.image.image = images[indexPath.row]
         } else {
-            cell.image.image = oldImages[indexPath.row]
+           
+            let folder = "/\(ReferenceImage.root.rawValue)/\(ReferenceImage.shopItem.rawValue)/\(item.id ?? "")/\(item.images?[indexPath.row] ?? "")"
+            ImageServices.instance.downloadImages(folderPath: folder, success: { (data) in
+                 cell.image.image = data
+            }) { (error) in
+                print("error load image : \(error)")
+            }
         }
         
         return cell

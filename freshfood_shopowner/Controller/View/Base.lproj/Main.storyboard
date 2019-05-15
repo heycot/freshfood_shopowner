@@ -710,10 +710,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fTd-rt-eMh">
-                                        <rect key="frame" x="0.0" y="210" width="355" height="70"/>
+                                        <rect key="frame" x="0.0" y="210" width="355" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="1TT-4g-Go7"/>
+                                            <constraint firstAttribute="height" id="1TT-4g-Go7"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oaE-zG-Cb3">
                                             <size key="itemSize" width="167" height="131"/>
@@ -724,7 +724,7 @@
                                         <cells/>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2O1-xg-kq1">
-                                        <rect key="frame" x="0.0" y="290" width="355" height="20"/>
+                                        <rect key="frame" x="0.0" y="220" width="355" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Okc-5x-tix"/>
                                         </constraints>
@@ -733,7 +733,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rda-1U-oGb">
-                                        <rect key="frame" x="0.0" y="320" width="355" height="180"/>
+                                        <rect key="frame" x="0.0" y="250" width="355" height="250"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
@@ -775,6 +775,7 @@
                         <outlet property="newCollectionView" destination="zeg-4q-F33" id="BDt-Iv-UnW"/>
                         <outlet property="notification" destination="3Mf-Wr-vn1" id="jNb-wz-3Vf"/>
                         <outlet property="notificationHeight" destination="cpz-U8-pUp" id="mo2-dT-WJe"/>
+                        <outlet property="oldCollectionHeight" destination="1TT-4g-Go7" id="yNZ-yL-sES"/>
                         <outlet property="oldCollectionView" destination="fTd-rt-eMh" id="RJ7-t8-UYG"/>
                         <outlet property="photoLB" destination="7IV-Yx-ef2" id="thD-Sc-Ffy"/>
                         <outlet property="priceTxt" destination="egi-U0-uzL" id="fyM-mG-CxL"/>

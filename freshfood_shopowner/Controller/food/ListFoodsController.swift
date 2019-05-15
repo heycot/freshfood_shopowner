@@ -89,12 +89,14 @@ class ListFoodsController: UIViewController {
         if segue.destination is AddFoodController {
             let vc = segue.destination as? AddFoodController
             vc?.itemList = newItems
-            vc?.isNew = true
             vc?.shop = shop
             
-            if isNew {
+            if !isNew {
                 let index = sender as! Int
                 vc?.item = ShopItemList[index]
+                vc?.isNew = false
+            } else {
+                vc?.isNew = true
             }
         }
     }

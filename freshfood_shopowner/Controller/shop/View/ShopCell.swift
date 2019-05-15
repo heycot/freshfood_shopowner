@@ -46,7 +46,7 @@ class ShopCell: UITableViewCell {
     }
     
     func showImage(id: String, avatar: String) {
-        let folderPath = "/images/\(ReferenceImage.shop.rawValue)/\(id)/\(avatar)"
+        let folderPath = "/\(ReferenceImage.root.rawValue)/\(ReferenceImage.shop.rawValue)/\(id)/\(avatar)"
         ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
             self.shopImage.image = data
         }) { (error) in
