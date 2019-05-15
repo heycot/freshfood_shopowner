@@ -14,12 +14,14 @@ class ListFoodsController: UIViewController {
     @IBOutlet weak var notification: UILabel!
     @IBOutlet weak var notificationHeight: NSLayoutConstraint!
     
-    var listItem = [ShopItemResponse]()
+    var ShopItemList = [ShopItemResponse]()
     var shopID = ""
+    var itemList = [ItemResponse]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        self.getListItem()
     }
     
     func setupView() {
@@ -36,8 +38,16 @@ class ListFoodsController: UIViewController {
         ShopItemService.instance.getListShopItem(shopID: shopID) { (data) in
             guard let data = data else { return }
             
-            self.listItem = data
+            self.ShopItemList = data
             self.tableView.reloadData()
+        }
+    }
+    
+    func getListItem() {
+        ItemService.instance.getAllItem { (data) in
+            guard let data = data else { return }
+            
+            self.itemList = data
         }
     }
     
@@ -45,7 +55,7 @@ class ListFoodsController: UIViewController {
         if segue.destination is OneFoodController {
             let vc = segue.destination as? OneFoodController
             let index = sender as! Int
-            vc?.item = listItem[index]
+            vc?.item = ShopItemList[index]
         }
     }
 }
@@ -63,12 +73,12 @@ extension ListFoodsController : UITableViewDelegate {
 extension ListFoodsController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listItem.count
+        return ShopItemList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.food.rawValue, for: indexPath) as! FoodCell
-        cell.updateView(item: listItem[indexPath.row])
+        cell.updateView(item: ShopItemList[indexPath.row])
         return cell
     }
     

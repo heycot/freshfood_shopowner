@@ -21,13 +21,13 @@ class ItemService {
         
         docRef.getDocuments(completion: { (document, error) in
             if let document = document {
-                var tiems = [ItemResponse]()
+                var items = [ItemResponse]()
                 
                 for itemDoct in document.documents{
                     let jsonData = try? JSONSerialization.data(withJSONObject: itemDoct.data() as Any)
                     
                     do {
-                        var item = try JSONDecoder().decode(ItemResponse.self, from: jsonData!)
+                        let item = try JSONDecoder().decode(ItemResponse.self, from: jsonData!)
                         item.id = itemDoct.documentID
                         items.append(item)
                     }
@@ -44,4 +44,5 @@ class ItemService {
             }
         })
     }
+    
 }

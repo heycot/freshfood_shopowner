@@ -68,7 +68,7 @@ class EditInforController: UIViewController {
             return
         }
         
-        let userEdit = User()
+        let userEdit = UserResponse()
 //        userEdit.id = user.id
         userEdit.name = nameStr
         userEdit.phone = phoneTxt.text
