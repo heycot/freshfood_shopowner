@@ -195,19 +195,22 @@ extension AddFoodController {
     }
     
     func uploadImages() {
+        var imageNames = [String]()
         for i in 0 ..< images.count {
+            
             var fileName = item.avatar ?? ""
             if i != 0 {
                 fileName = String.generateNameForImage()
             }
             
-            let reference = "\(ReferenceImage.shopItem.rawValue)/\(item.id ?? "")/\(fileName)"
-            ImageServices.instance.uploadMedia(image: images[i], reference: reference, completion: { (data) in
-                guard data != nil else { return }
-                self.stopSpinnerActivity()
-            })
+            imageNames.append(fileName)
             
         }
+        let reference = "\(ReferenceImage.shopItem.rawValue)/\(item.id ?? "")"
+        ImageServices.instance.uploadListMedia(images: images, imageNames: imageNames, reference: reference, completion: { (data) in
+            guard data != nil else { return }
+            self.stopSpinnerActivity()
+        })
     }
 }
 

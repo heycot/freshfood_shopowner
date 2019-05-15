@@ -49,6 +49,40 @@ class ImageServices {
 
     }
     
+    func uploadListMedia(images: [UIImage], imageNames: [String], reference: String, completion: @escaping (_ url: Bool?) -> Void) {
+        // Points to the root reference
+        let storageRef = Storage.storage().reference()
+        var result = 0
+        
+        for i in 0 ..< images.count {
+            let data = images[i].jpeg(UIImage.JPEGQuality.lowest)
+            
+            // Create a reference to the file you want to upload
+            let riversRef = storageRef.child("images/" + reference + "/\(imageNames[i])")
+            
+            // Upload the file to the path "images/rivers.jpg"
+            _ = riversRef.putData(data!, metadata: nil) { (metadata, error) in
+                guard metadata != nil else {
+                    return
+                }
+                result += 1
+            }
+        }
+        
+        if result == images.count {
+            DispatchQueue.main.async {
+                completion(true)
+            }
+            
+        } else {
+            DispatchQueue.main.async {
+                completion(false)
+            }
+            
+        }
+        
+    }
+    
     
     func downloadImages( folderPath: String, success:@escaping (_ image:UIImage)->(),failure:@escaping (_ error:Error)->()){
         let reference = Storage.storage().reference(withPath: "\(folderPath)")
@@ -64,5 +98,7 @@ class ImageServices {
             }
         }
     }
+    
+    
     
 }

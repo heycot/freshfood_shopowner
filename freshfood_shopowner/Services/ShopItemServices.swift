@@ -65,7 +65,7 @@ class ShopItemService {
                     "price": item.price as Any] as [String : Any]
             
         let db = Firestore.firestore()
-        db.collection("shop_item").document().setData(item) { err in
+       db.collection("shop_item").document().setData(item) { err in
             if let err = err {
                 result = false
                 print("Error writing document: \(err)")
@@ -77,6 +77,7 @@ class ShopItemService {
                 completion(result)
             }
         }
+        
         
     }
     
