@@ -32,6 +32,7 @@ class AddFoodController: UIViewController {
         super.viewDidLoad()
         registerView()
         setupView()
+        showPicker() 
     }
     
     func registerView() {
@@ -42,6 +43,12 @@ class AddFoodController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+    }
+    
+    func showPicker() {
+        let picker = UIPickerView()
+        picker.delegate = self
+        nameTxt.inputView = picker
     }
     
     
@@ -109,6 +116,28 @@ class AddFoodController: UIViewController {
             })
             
         }
+    }
+    
+}
+
+
+extension AddFoodController : UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return itemList.count
+    }
+    
+    
+    func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return itemList[row].name
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        nameTxt.text = itemList[row].name
+        unitTxt.text = itemList[row].unit
     }
     
 }
