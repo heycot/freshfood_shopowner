@@ -19,10 +19,12 @@ class ListFoodsController: UIViewController {
     var itemList = [ItemResponse]()
     var newItems = [ItemResponse]()
     
+    var addNotification: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        self.getListItem()
+        getList(isNew: true)
     }
     
     func setupView() {
@@ -35,14 +37,10 @@ class ListFoodsController: UIViewController {
         tableView.rowHeight = 90
     }
     
-    func getList() {
-        ShopItemService.instance.getListShopItem(shopID: shop.id ?? "") { (data) in
-            guard let data = data else { return }
-            
-            self.ShopItemList = data
-            self.tableView.reloadData()
-            self.getItemNotAlreadyExists()
-        }
+    @IBAction func addBtnPressed(_ sender: Any) {
+        getItemNotAlreadyExists()
+        self.performSegue(withIdentifier: SegueIdentifier.listFoodToAdd.rawValue, sender: nil)
+        
     }
     
     func getListItem() {
@@ -51,6 +49,20 @@ class ListFoodsController: UIViewController {
             self.itemList = data
         }
     }
+    
+    func getList(isNew: Bool) {
+        ShopItemService.instance.getListShopItem(shopID: shop.id ?? "") { (data) in
+            guard let data = data else { return }
+            
+            self.ShopItemList = data
+            self.tableView.reloadData()
+            
+            if isNew {
+                self.getListItem()
+            }
+        }
+    }
+    
     
     func getItemNotAlreadyExists() {
         newItems = [ItemResponse]()
@@ -109,11 +121,8 @@ extension ListFoodsController : UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getList()
         
-        if self.itemList.count == 0 {
-            self.getListItem()
-        }
+        getList(isNew: false)
         super.viewWillAppear(true)
         tableView.reloadData()
     }

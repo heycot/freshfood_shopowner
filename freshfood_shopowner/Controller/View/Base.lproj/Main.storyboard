@@ -541,7 +541,7 @@
                     <navigationItem key="navigationItem" id="nop-5m-D6d">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="WXe-lt-Lwl">
                             <connections>
-                                <segue destination="WX8-hB-6qY" kind="show" identifier="ListFoodToAddFood" id="GBF-3k-lPa"/>
+                                <action selector="addBtnPressed:" destination="x0l-ka-3wc" id="PT4-Fe-L7L"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -551,6 +551,7 @@
                         <outlet property="notificationHeight" destination="3wJ-L8-86S" id="ihU-A6-asf"/>
                         <outlet property="tableView" destination="wru-i6-dJn" id="qxG-Uj-rCg"/>
                         <segue destination="0V8-eN-pgm" kind="show" identifier="ListFoodToOne" id="37a-Jt-Us2"/>
+                        <segue destination="WX8-hB-6qY" kind="show" identifier="ListFoodToAdd" id="LXp-wm-Psj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOx-TV-bod" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -902,6 +903,7 @@
                         <outlet property="notificationHeight" destination="cpz-U8-pUp" id="mo2-dT-WJe"/>
                         <outlet property="priceTxt" destination="egi-U0-uzL" id="fyM-mG-CxL"/>
                         <outlet property="unitTxt" destination="ciU-bA-YKS" id="olH-VF-wZy"/>
+                        <segue destination="x0l-ka-3wc" kind="show" identifier="AddFoodToList" id="mi7-Ix-cF1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUa-tu-seb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1580,6 +1582,7 @@
         <image name="store" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="EuB-kl-ROh"/>
         <segue reference="9KN-9F-7vU"/>
     </inferredMetricsTieBreakers>
 </document>

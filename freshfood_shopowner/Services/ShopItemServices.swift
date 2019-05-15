@@ -57,9 +57,11 @@ class ShopItemService {
                     "create_date": date,
                     "rating": 0.0,
                     "shop_id": item.shop_id as Any,
+                    "shop_name": item.shop_name as Any,
                     "status": 1,
                     "unit": item.unit as Any,
                     "keywords": item.keywords as Any,
+                    "item_id": item.item_id as Any,
                     "price": item.price as Any] as [String : Any]
             
         let db = Firestore.firestore()
@@ -93,6 +95,7 @@ class ShopItemService {
                         "status": 1,
                         "unit": item.unit as Any,
                         "keywords": item.keywords as Any,
+                        "item_id": item.item_id as Any,
                         "price": item.price as Any] as [String : Any]
             
             let db = Firestore.firestore()
@@ -127,6 +130,7 @@ class ShopItemService {
                       "avatar": item.avatar ?? "logo" as Any,
                       "unit": item.unit as Any,
                       "keywords": item.keywords as Any,
+                      "item_id": item.item_id as Any,
                       "price": item.price as Any] as [String : Any]
         
         db.collection("shop_item").document(item.id ?? "").updateData(values) { err in

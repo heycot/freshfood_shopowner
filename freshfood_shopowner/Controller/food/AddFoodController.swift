@@ -27,6 +27,7 @@ class AddFoodController: UIViewController {
     var itemList = [ItemResponse]()
     var item = ShopItemResponse()
     var shop = ShopResponse()
+    var rowSelected = -1
     
     var toolBar = UIToolbar()
     var picker  = UIPickerView()
@@ -53,6 +54,10 @@ class AddFoodController: UIViewController {
             //        toolBar.barStyle = .blackTranslucent
             toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
             self.view.addSubview(toolBar)
+        } else {
+            let alert = UIAlertController(title: "No data", message: "Do not have any data available", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -60,6 +65,7 @@ class AddFoodController: UIViewController {
         let row =  picker.selectedRow(inComponent: 0)
         nameTxt.text = itemList[row].name
         unitTxt.text = itemList[row].unit
+        rowSelected = row
         
         toolBar.removeFromSuperview()
         picker.removeFromSuperview()
@@ -70,6 +76,7 @@ class AddFoodController: UIViewController {
     }
     
     func setupView() {
+        priceTxt.keyboardType = .numberPad
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -108,22 +115,39 @@ class AddFoodController: UIViewController {
         } else {
             self.startSpinnerActivity()
             
-            item.avatar = String.generateNameForImage()
-            item.keywords = String.gennerateKeywords([item.name ?? "", shop.address ?? "", shop.name ?? "" ])
+            saveDataToItem()
             ShopItemService.instance.addOne(item: item) { (data) in
                 guard let data = data else { return }
                 
                 if data {
-                    self.notificationHeight.constant = 30
-                    self.notification.text = "Add success"
-                    self.notification.textColor = APP_COLOR
                     self.uploadImages()
+                    
+                    let alert = UIAlertController(title: "Success", message: "Your food is added success ", preferredStyle: UIAlertController.Style.alert)
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
+                        self.navigationController?.popViewController(animated: true)
+                    }))
+                    self.present(alert, animated: true)
                 } else {
                     self.notificationHeight.constant = 30
                     self.notification.text = "Something went wrong. Please try again"
                 }
             }
         }
+    }
+    
+    func saveDataToItem() {
+        
+        item.name = nameTxt.text
+//        let priceStr = String(format: "%0.2f", priceTxt.text ?? "")
+        item.price = Double(priceTxt.text ?? "25000")
+        item.unit = unitTxt.text
+        
+        item.shop_id = shop.id
+        item.shop_name = shop.name
+        item.item_id = rowSelected >= 0 ? itemList[rowSelected].id : ""
+        item.avatar = String.generateNameForImage()
+        item.keywords = String.gennerateKeywords([item.name ?? "", shop.address ?? "", shop.name ?? "" ])
     }
     
     
@@ -141,6 +165,13 @@ class AddFoodController: UIViewController {
                 self.stopSpinnerActivity()
             })
             
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ListFoodsController {
+            let vc = segue.destination as? ListFoodsController
+            vc?.addNotification = "Add Success"
         }
     }
     
@@ -164,6 +195,7 @@ extension AddFoodController : UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         nameTxt.text = itemList[row].name
         unitTxt.text = itemList[row].unit
+        rowSelected = row
     }
     
 }
