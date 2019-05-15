@@ -24,6 +24,7 @@ class AddFoodController: UIViewController {
     @IBOutlet weak var unitTxt: UITextField!
     @IBOutlet weak var cmtLB: UILabel!
     @IBOutlet weak var photoLB: UILabel!
+    @IBOutlet weak var doneBtn: UIBarButtonItem!
     
     var fileName = ""
     var images = [UIImage]()
@@ -88,13 +89,15 @@ class AddFoodController: UIViewController {
             notification.text = "All the information is required"
             notificationHeight.constant = 30
         } else {
+            self.doneBtn.isEnabled = false
             self.startSpinnerActivity()
             
             saveDataToItem()
             if isNew {
                 ShopItemService.instance.addOne(item: item) { (data) in
                     guard let data = data else { return }
-                    self.handleAfterUpdateData(isSuccess: data)
+                    self.item.id = data
+                    self.handleAfterUpdateData(isSuccess: true)
                 }
             } else {
                 ShopItemService.instance.editOne(item: item) { (data) in
@@ -107,14 +110,9 @@ class AddFoodController: UIViewController {
     
     func handleAfterUpdateData(isSuccess: Bool) {
         if isSuccess {
+            notificationHeight.constant = 30
+            self.notification.text = "Your food is saved success. But please wait to upload images."
             self.uploadImages()
-            
-            let alert = UIAlertController(title: "Success", message: "Your food is saved success ", preferredStyle: UIAlertController.Style.alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
-                self.navigationController?.popViewController(animated: true)
-            }))
-            self.present(alert, animated: true)
         } else {
             self.notificationHeight.constant = 30
             self.notification.text = "Something went wrong. Please try again"
@@ -209,7 +207,16 @@ extension AddFoodController {
         
         let reference = "\(ReferenceImage.shopItem.rawValue)/\(item.id ?? "")"
         ImageServices.instance.uploadListMedia(images: images, imageNames: imageNames, reference: reference, completion: { (data) in
-            guard data != nil else { return }
+            guard let data = data else { return }
+            if data {
+                
+                let alert = UIAlertController(title: "Success", message: "Your images is saved success ", preferredStyle: UIAlertController.Style.alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
+                    self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true)
+            }
             self.stopSpinnerActivity()
         })
     }

@@ -23,6 +23,7 @@ struct ShopItemResponse: Decodable{
     var item_id: String?
     var keywords: [String]?
     var images : [String]?
+    var create_date: TimeInterval?
     
     // Constructor.
     init(id: String, shop_id: String, price: Double, status: Int, rating: Double, comment_number: Int, favorites_number: Int, name: String, shop_name: String, avatar: String, unit : String, item_id: String, keywords: [String], images: [String]) {

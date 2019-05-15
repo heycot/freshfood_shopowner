@@ -19,7 +19,6 @@ class ShopItemService {
         
         let db = Firestore.firestore()
         let docRef = db.collection("shop_item").whereField("shop_id", isEqualTo: shopID)
-        
         docRef.getDocuments(completion: { (document, error) in
             if let document = document {
                 var shopItemList = [ShopItemResponse]()
@@ -36,6 +35,7 @@ class ShopItemService {
                         print("Error serializing json:", jsonError)
                     }
                 }
+//                shopItemList.sort(by: {$0.create_date >= $1.create_date})
                 DispatchQueue.main.async {
                     completion(shopItemList)
                 }
@@ -46,9 +46,8 @@ class ShopItemService {
         })
     }
     
-    func addOne( item: ShopItemResponse,  completion: @escaping (Bool?) -> Void) {
+    func addOne( item: ShopItemResponse,  completion: @escaping (String?) -> Void) {
         let date = Date().timeIntervalSince1970
-        var result = true
         
         let item = ["name": item.name as Any,
                     "avatar": item.avatar ?? "logo" as Any,
@@ -66,20 +65,32 @@ class ShopItemService {
                     "price": item.price as Any] as [String : Any]
             
         let db = Firestore.firestore()
-       db.collection("shop_item").document().setData(item) { err in
-            if let err = err {
-                result = false
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
+        var ref: DocumentReference? = nil
+        
+        // init first to get ID
+        ref = db.collection("shop_item").document()
+        
+        ref?.setData(item, completion:{ (error) in
+            DispatchQueue.main.async {
+                completion(ref?.documentID)
             }
             
-            DispatchQueue.main.async {
-                completion(result)
-            }
-        }
+        })
         
         
+        // When you use set() to create a document, you must specify an ID for the document to create.
+//       db.collection("shop_item").document().setData(item) { err in
+//            if let err = err {
+//                print("Error writing document: \(err)")
+//            } else {
+//                print("Document successfully written!")
+//            }
+//
+//            let id = ref?.documentID
+//            DispatchQueue.main.async {
+//                completion(id)
+//            }
+//        }
     }
     
     func editOne( item: ShopItemResponse,  completion: @escaping (Bool?) -> Void) {

@@ -941,6 +941,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cmtLB" destination="2O1-xg-kq1" id="l9d-ei-zaq"/>
+                        <outlet property="doneBtn" destination="c8R-xm-LYF" id="6HL-28-1QB"/>
                         <outlet property="nameTxt" destination="MQG-B8-gna" id="FOn-VA-jc4"/>
                         <outlet property="newCollectionHeight" destination="xj4-Ch-X75" id="fgw-Ob-61K"/>
                         <outlet property="newCollectionView" destination="zeg-4q-F33" id="BDt-Iv-UnW"/>
