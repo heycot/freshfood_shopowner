@@ -18,6 +18,7 @@ class ListFoodsController: UIViewController {
     var shop = ShopResponse()
     var itemList = [ItemResponse]()
     var newItems = [ItemResponse]()
+    var isNew = true
     
     var addNotification: String?
     
@@ -38,6 +39,7 @@ class ListFoodsController: UIViewController {
     }
     
     @IBAction func addBtnPressed(_ sender: Any) {
+        isNew = true
         getItemNotAlreadyExists()
         self.performSegue(withIdentifier: SegueIdentifier.listFoodToAdd.rawValue, sender: nil)
         
@@ -84,18 +86,16 @@ class ListFoodsController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is OneFoodController {
-            let vc = segue.destination as? OneFoodController
-            let index = sender as! Int
-            vc?.item = ShopItemList[index]
-            vc?.itemList = newItems
-            vc?.shop = shop
-            
-        } else if segue.destination is AddFoodController {
+        if segue.destination is AddFoodController {
             let vc = segue.destination as? AddFoodController
             vc?.itemList = newItems
             vc?.isNew = true
             vc?.shop = shop
+            
+            if isNew {
+                let index = sender as! Int
+                vc?.item = ShopItemList[index]
+            }
         }
     }
 }
@@ -104,7 +104,8 @@ class ListFoodsController: UIViewController {
 extension ListFoodsController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: SegueIdentifier.listFoodToOne.rawValue, sender: indexPath.row)
+        isNew = false
+        performSegue(withIdentifier: SegueIdentifier.listFoodToAdd.rawValue, sender: indexPath.row)
     }
     
     
