@@ -859,9 +859,12 @@
                                         </constraints>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zeg-4q-F33">
-                                        <rect key="frame" x="0.0" y="170" width="355" height="330"/>
+                                        <rect key="frame" x="0.0" y="170" width="355" height="150"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hqb-4A-5T9">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="xj4-Ch-X75"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hqb-4A-5T9">
                                             <size key="itemSize" width="167" height="131"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -869,8 +872,23 @@
                                         </collectionViewFlowLayout>
                                         <cells/>
                                     </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2O1-xg-kq1">
+                                        <rect key="frame" x="0.0" y="330" width="355" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Okc-5x-tix"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rda-1U-oGb">
+                                        <rect key="frame" x="0.0" y="360" width="355" height="140"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="2O1-xg-kq1" firstAttribute="width" secondItem="7Dr-DV-ON4" secondAttribute="width" id="5QB-uR-yhY"/>
+                                    <constraint firstItem="Rda-1U-oGb" firstAttribute="width" secondItem="7Dr-DV-ON4" secondAttribute="width" id="BCW-SA-wEZ"/>
                                     <constraint firstItem="zeg-4q-F33" firstAttribute="width" secondItem="7Dr-DV-ON4" secondAttribute="width" id="Btd-pd-Ag0"/>
                                     <constraint firstItem="YtK-Yf-ueF" firstAttribute="width" secondItem="7Dr-DV-ON4" secondAttribute="width" id="JRX-WL-RJk"/>
                                     <constraint firstItem="YtK-Yf-ueF" firstAttribute="top" secondItem="3Mf-Wr-vn1" secondAttribute="bottom" constant="10" id="nDJ-LD-zuJ"/>
@@ -902,8 +920,8 @@
                         <outlet property="notification" destination="3Mf-Wr-vn1" id="jNb-wz-3Vf"/>
                         <outlet property="notificationHeight" destination="cpz-U8-pUp" id="mo2-dT-WJe"/>
                         <outlet property="priceTxt" destination="egi-U0-uzL" id="fyM-mG-CxL"/>
+                        <outlet property="tableView" destination="Rda-1U-oGb" id="6s6-h5-bbd"/>
                         <outlet property="unitTxt" destination="ciU-bA-YKS" id="olH-VF-wZy"/>
-                        <segue destination="x0l-ka-3wc" kind="show" identifier="AddFoodToList" id="mi7-Ix-cF1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUa-tu-seb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1582,7 +1600,6 @@
         <image name="store" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EuB-kl-ROh"/>
         <segue reference="9KN-9F-7vU"/>
     </inferredMetricsTieBreakers>
 </document>

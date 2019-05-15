@@ -19,6 +19,7 @@ class OneFoodController: UIViewController {
     var item = ShopItemResponse()
     var comments = [CommentResponse]()
     var shop = ShopResponse()
+    var itemList = [ItemResponse]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

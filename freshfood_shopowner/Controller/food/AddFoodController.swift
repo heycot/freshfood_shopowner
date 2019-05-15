@@ -15,6 +15,7 @@ class AddFoodController: UIViewController {
     @IBOutlet weak var notification: UILabel!
     @IBOutlet weak var notificationHeight: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var nameTxt: UITextField!
     @IBOutlet weak var priceTxt: UITextField!
@@ -28,6 +29,7 @@ class AddFoodController: UIViewController {
     var item = ShopItemResponse()
     var shop = ShopResponse()
     var rowSelected = -1
+    var isNew = true
     
     var toolBar = UIToolbar()
     var picker  = UIPickerView()
@@ -36,7 +38,141 @@ class AddFoodController: UIViewController {
         super.viewDidLoad()
         registerView()
         setupView()
+        
+        if !isNew {
+            showData()
+        }
     }
+    
+    func showData() {
+        nameTxt.text = item.name
+        priceTxt.text = String(format: "%0.2f", item.price ?? 25000.0)
+        unitTxt.text = item.unit
+    }
+    
+    
+    func registerView() {
+        collectionView.register(UINib(nibName: CellIdentifier.foodImage.rawValue, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.foodImage.rawValue)
+    }
+    
+    func setupView() {
+        priceTxt.keyboardType = .numberPad
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
+    
+    
+    @IBAction func doneBtnPressed(_ sender: Any) {
+        if nameTxt.text == "" || priceTxt.text == "" || unitTxt.text == "" {
+            notification.text = "All the information is required"
+            notificationHeight.constant = 30
+        } else {
+            self.startSpinnerActivity()
+            
+            saveDataToItem()
+            if isNew {
+                ShopItemService.instance.addOne(item: item) { (data) in
+                    guard let data = data else { return }
+                    self.handleAfterUpdateData(isSuccess: data)
+                }
+            } else {
+                ShopItemService.instance.editOne(item: item) { (data) in
+                    guard let data = data else { return }
+                    self.handleAfterUpdateData(isSuccess: data)
+                }
+            }
+        }
+    }
+    
+    func handleAfterUpdateData(isSuccess: Bool) {
+        if isSuccess {
+            self.uploadImages()
+            
+            let alert = UIAlertController(title: "Success", message: "Your food is saved success ", preferredStyle: UIAlertController.Style.alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            self.present(alert, animated: true)
+        } else {
+            self.notificationHeight.constant = 30
+            self.notification.text = "Something went wrong. Please try again"
+        }
+    }
+    
+    func saveDataToItem() {
+        
+        item.name = nameTxt.text
+//        let priceStr = String(format: "%0.2f", priceTxt.text ?? "")
+        item.price = Double(priceTxt.text ?? "25000")
+        item.unit = unitTxt.text
+        
+        item.shop_id = shop.id
+        item.shop_name = shop.name
+        item.item_id = rowSelected >= 0 ? itemList[rowSelected].id : ""
+        item.avatar = String.generateNameForImage()
+        item.keywords = String.gennerateKeywords([item.name ?? "", shop.address ?? "", shop.name ?? "" ])
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ListFoodsController {
+            let vc = segue.destination as? ListFoodsController
+            vc?.addNotification = "Add Success"
+        }
+    }
+    
+}
+
+//extention for images {
+extension AddFoodController {
+    
+    @IBAction func addImagePressed(_ sender: Any) {
+        
+        var config = YPImagePickerConfiguration()
+        config.library.maxNumberOfItems = 10
+        let picker = YPImagePicker(configuration: config)
+        self.present(picker, animated: true, completion: nil)
+        
+        picker.didFinishPicking { [unowned picker] items, cancelled in
+            
+            for item in items {
+                switch item {
+                case .photo(let photo):
+                    self.images.append(photo.image)
+                    print(photo)
+                case .video(let video):
+                    print(video)
+                }
+            }
+            
+            self.collectionView.reloadData()
+            picker.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func uploadImages() {
+        for i in 0 ..< images.count {
+            var fileName = item.avatar ?? ""
+            if i != 0 {
+                fileName = String.generateNameForImage()
+            }
+            
+            let reference = "\(ReferenceImage.shopItem.rawValue)/\(item.id ?? "")/\(fileName)"
+            ImageServices.instance.uploadMedia(image: images[i], reference: reference, completion: { (data) in
+                guard data != nil else { return }
+                self.stopSpinnerActivity()
+            })
+            
+        }
+    }
+}
+
+// extension for name
+extension AddFoodController {
     
     @IBAction func pcikerBtnPressed(_ sender: Any) {
         if itemList.count > 0 {
@@ -70,111 +206,6 @@ class AddFoodController: UIViewController {
         toolBar.removeFromSuperview()
         picker.removeFromSuperview()
     }
-    
-    func registerView() {
-        collectionView.register(UINib(nibName: CellIdentifier.foodImage.rawValue, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.foodImage.rawValue)
-    }
-    
-    func setupView() {
-        priceTxt.keyboardType = .numberPad
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
-    
-    
-    
-    @IBAction func addImagePressed(_ sender: Any) {
-      
-        var config = YPImagePickerConfiguration()
-        config.library.maxNumberOfItems = 10
-        let picker = YPImagePicker(configuration: config)
-        self.present(picker, animated: true, completion: nil)
-        
-        picker.didFinishPicking { [unowned picker] items, cancelled in
-            
-            for item in items {
-                switch item {
-                case .photo(let photo):
-                    self.images.append(photo.image)
-                    print(photo)
-                case .video(let video):
-                    print(video)
-                }
-            }
-            
-            self.collectionView.reloadData()
-            picker.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    @IBAction func doneBtnPressed(_ sender: Any) {
-        if nameTxt.text == "" || priceTxt.text == "" || unitTxt.text == "" {
-            notification.text = "All the information is required"
-            notificationHeight.constant = 30
-        } else {
-            self.startSpinnerActivity()
-            
-            saveDataToItem()
-            ShopItemService.instance.addOne(item: item) { (data) in
-                guard let data = data else { return }
-                
-                if data {
-                    self.uploadImages()
-                    
-                    let alert = UIAlertController(title: "Success", message: "Your food is added success ", preferredStyle: UIAlertController.Style.alert)
-                    
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
-                        self.navigationController?.popViewController(animated: true)
-                    }))
-                    self.present(alert, animated: true)
-                } else {
-                    self.notificationHeight.constant = 30
-                    self.notification.text = "Something went wrong. Please try again"
-                }
-            }
-        }
-    }
-    
-    func saveDataToItem() {
-        
-        item.name = nameTxt.text
-//        let priceStr = String(format: "%0.2f", priceTxt.text ?? "")
-        item.price = Double(priceTxt.text ?? "25000")
-        item.unit = unitTxt.text
-        
-        item.shop_id = shop.id
-        item.shop_name = shop.name
-        item.item_id = rowSelected >= 0 ? itemList[rowSelected].id : ""
-        item.avatar = String.generateNameForImage()
-        item.keywords = String.gennerateKeywords([item.name ?? "", shop.address ?? "", shop.name ?? "" ])
-    }
-    
-    
-    
-    func uploadImages() {
-        for i in 0 ..< images.count {
-            var fileName = item.avatar ?? ""
-            if i != 0 {
-                fileName = String.generateNameForImage()
-            }
-            
-            let reference = "\(ReferenceImage.shopItem.rawValue)/\(item.id ?? "")/\(fileName)"
-            ImageServices.instance.uploadMedia(image: images[i], reference: reference, completion: { (data) in
-                guard data != nil else { return }
-                self.stopSpinnerActivity()
-            })
-            
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is ListFoodsController {
-            let vc = segue.destination as? ListFoodsController
-            vc?.addNotification = "Add Success"
-        }
-    }
-    
 }
 
 
@@ -200,11 +231,7 @@ extension AddFoodController : UIPickerViewDelegate, UIPickerViewDataSource {
     
 }
 
-extension AddFoodController : UICollectionViewDelegate {
-    
-}
-
-extension AddFoodController : UICollectionViewDataSource {
+extension AddFoodController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
@@ -214,6 +241,12 @@ extension AddFoodController : UICollectionViewDataSource {
         
         cell.image.image = images[indexPath.row]
         return cell
+    }
+}
+
+extension AddFoodController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 120, height: 70)
     }
 }
 

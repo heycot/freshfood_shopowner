@@ -80,6 +80,32 @@ class ShopItemService {
         
     }
     
+    func editOne( item: ShopItemResponse,  completion: @escaping (Bool?) -> Void) {
+        
+        let db = Firestore.firestore()
+        
+        let values = ["name": item.name as Any,
+                      "unit": item.unit as Any,
+                      "keywords": item.keywords as Any,
+                      "item_id": item.item_id as Any,
+                      "price": item.price as Any] as [String : Any]
+        
+        db.collection("shop_item").document(item.id ?? "").updateData(values) { err in
+            var result = true
+            if let err = err {
+                result = false
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+            
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+        
+    }
+    
     func addNewList( items: [ShopItemResponse],  completion: @escaping (Bool?) -> Void) {
         let date = Date().timeIntervalSince1970
         var result = 0
@@ -122,31 +148,5 @@ class ShopItemService {
         
     }
     
-    func editOne( item: ShopItemResponse,  completion: @escaping (Bool?) -> Void) {
-        
-        let db = Firestore.firestore()
-        
-        let values = ["name": item.name as Any,
-                      "avatar": item.avatar ?? "logo" as Any,
-                      "unit": item.unit as Any,
-                      "keywords": item.keywords as Any,
-                      "item_id": item.item_id as Any,
-                      "price": item.price as Any] as [String : Any]
-        
-        db.collection("shop_item").document(item.id ?? "").updateData(values) { err in
-            var result = true
-            if let err = err {
-                result = false
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
-            }
-            
-            DispatchQueue.main.async {
-                completion(result)
-            }
-        }
-        
-    }
     
 }
