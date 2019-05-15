@@ -114,7 +114,6 @@ class AddFoodController: UIViewController {
     
     func handleAfterUpdateData(isSuccess: Bool) {
         
-        self.notificationHeight.constant = 30
         
         if isSuccess {
             self.uploadImages()
@@ -126,27 +125,32 @@ class AddFoodController: UIViewController {
             }))
             self.present(alert, animated: true)
         } else {
+            self.notificationHeight.constant = 30
             self.notification.text = "Something went wrong. Please try again"
         }
     }
     
     func saveDataToItem() {
         
-        item.avatar = String.generateNameForImage()
-        
-        for i in 0 ..< images.count {
-            var fileName = item.avatar ?? ""
-            if i != 0 {
-                fileName = String.generateNameForImage()
+        if isNew {
+            for _ in 0 ..< images.count {
+                imageNames.append(String.generateNameForImage())
             }
-            imageNames.append(fileName)
             
+            item.avatar = imageNames[0]
+            item.images = imageNames
+        } else {
+            for _ in 0 ..< images.count {
+                let filename = String.generateNameForImage()
+                imageNames.append(filename)
+                item.images?.append(filename)
+            }
         }
+        
         
         item.name = nameTxt.text
         item.price = Double(priceTxt.text ?? "25000")
         item.unit = unitTxt.text
-        item.images = imageNames
         
         item.shop_id = shop.id
         item.shop_name = shop.name

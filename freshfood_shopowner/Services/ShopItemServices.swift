@@ -98,10 +98,11 @@ class ShopItemService {
         let db = Firestore.firestore()
         
         let values = ["name": item.name as Any,
+                      "price": item.price as Any,
                       "unit": item.unit as Any,
                       "keywords": item.keywords as Any,
                       "item_id": item.item_id as Any,
-                      "price": item.price as Any] as [String : Any]
+                      "images": item.images as Any] as [String : Any]
         
         db.collection("shop_item").document(item.id ?? "").updateData(values) { err in
             var result = true
