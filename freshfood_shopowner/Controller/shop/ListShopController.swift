@@ -89,6 +89,41 @@ extension ListShopController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        
+        if editingStyle == .delete
+        {
+            
+            let alert = UIAlertController(title: "Alert", message: "Are you sure want to deactivate this shop?", preferredStyle: UIAlertController.Style.alert)
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                
+                ShopService.instance.deactivate(id: self.listItem[indexPath.row].id ?? "") { (data) in
+                    guard let data = data else { return }
+                    
+                    if data {
+                        self.listItem[indexPath.row].status = 2
+                        self.tableView.reloadData()
+                    } else {
+                        let alert = UIAlertController(title: "Failed", message: "Please try next time", preferredStyle: UIAlertController.Style.alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                        self.present(alert, animated: true)
+                    }
+                }
+            }))
+            
+            self.present(alert, animated: true)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         getAllShop()
         super.viewWillAppear(true)

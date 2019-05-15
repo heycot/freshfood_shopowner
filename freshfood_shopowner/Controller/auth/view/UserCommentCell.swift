@@ -29,6 +29,7 @@ class UserCommentCell: UITableViewCell {
     func updateView(cmt: CommentResponse, user: UserResponse?, item: ShopItemResponse?) {
         cmtTitle.text = cmt.title
         cmtContent.text = cmt.content
+         viewRating(rating: cmt.rating ?? 3.0) 
         
         if user != nil {
             guard let user = user else { return }

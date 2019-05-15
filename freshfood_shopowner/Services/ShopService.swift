@@ -80,6 +80,28 @@ class ShopService {
         }
     }
     
+    func deactivate( id: String,  completion: @escaping (Bool?) -> Void) {
+        
+        let db = Firestore.firestore()
+        
+        let values = ["status": 2] as [String : Any]
+        
+        db.collection("shop").document(id).updateData(values) { err in
+            var result = true
+            if let err = err {
+                result = false
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+            
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+        
+    }
+    
     func editShop(shop: ShopResponse, completion: @escaping (Bool?) -> Void) {
         
         let db = Firestore.firestore()

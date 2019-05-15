@@ -120,6 +120,28 @@ class ShopItemService {
         
     }
     
+    func deactivate( id: String,  completion: @escaping (Bool?) -> Void) {
+        
+        let db = Firestore.firestore()
+        
+        let values = ["status": 2] as [String : Any]
+        
+        db.collection("shop_item").document(id).updateData(values) { err in
+            var result = true
+            if let err = err {
+                result = false
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+            
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+        
+    }
+    
     func addNewList( items: [ShopItemResponse],  completion: @escaping (Bool?) -> Void) {
         let date = Date().timeIntervalSince1970
         var result = 0

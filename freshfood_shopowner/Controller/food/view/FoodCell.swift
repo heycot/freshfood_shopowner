@@ -29,7 +29,7 @@ class FoodCell: UITableViewCell {
         let priceFormat = (item.price?.formatPrice())!
         let price = "VND " + String(priceFormat).replace(target: "$", withString: "")    + "/\(item.unit!)"
         
-        
+        showImage(id: item.id ?? "", avatar: item.avatar ?? "")
         nameTxt.text = item.name
         priceTxt.text = price
         viewRating(rating: item.rating ?? 0.0, cmt: item.comment_number!)
@@ -53,5 +53,13 @@ class FoodCell: UITableViewCell {
         
     }
     
+    func showImage(id: String, avatar: String)  {
+        let folderPath = "/\(ReferenceImage.root.rawValue)/\(ReferenceImage.shopItem.rawValue)/\(id)/\(avatar)"
+        ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
+            self.avatar.image = data
+        }) { (error) in
+            print("something wrong with url imgae")
+        }
+    }
 
 }
