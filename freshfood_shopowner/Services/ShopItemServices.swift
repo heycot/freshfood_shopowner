@@ -62,6 +62,7 @@ class ShopItemService {
                     "unit": item.unit as Any,
                     "keywords": item.keywords as Any,
                     "item_id": item.item_id as Any,
+                    "images": item.images as Any,
                     "price": item.price as Any] as [String : Any]
             
         let db = Firestore.firestore()

@@ -22,9 +22,10 @@ struct ShopItemResponse: Decodable{
     var unit : String?
     var item_id: String?
     var keywords: [String]?
+    var images : [String]?
     
     // Constructor.
-    init(id: String, shop_id: String, price: Double, status: Int, rating: Double, comment_number: Int, favorites_number: Int, name: String, shop_name: String, avatar: String, unit : String, item_id: String, keywords: [String]) {
+    init(id: String, shop_id: String, price: Double, status: Int, rating: Double, comment_number: Int, favorites_number: Int, name: String, shop_name: String, avatar: String, unit : String, item_id: String, keywords: [String], images: [String]) {
         self.id = id
         self.shop_id = shop_id
         self.price = price
@@ -38,9 +39,10 @@ struct ShopItemResponse: Decodable{
         self.unit = unit
         self.item_id = item_id
         self.keywords = keywords
+        self.images = images
     }
     
     init() {
-        self.init(id: "", shop_id: "", price: 0.0, status: 1, rating: 0, comment_number: 0, favorites_number: 0, name: "", shop_name: "", avatar: "", unit: "", item_id: "", keywords: [])
+        self.init(id: "", shop_id: "", price: 0.0, status: 1, rating: 0, comment_number: 0, favorites_number: 0, name: "", shop_name: "", avatar: "", unit: "", item_id: "", keywords: [], images: [])
     }
 }

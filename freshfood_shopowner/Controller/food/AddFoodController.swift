@@ -28,6 +28,7 @@ class AddFoodController: UIViewController {
     var fileName = ""
     var images = [UIImage]()
     var oldImages = [UIImage]()
+    var imageNames = [String]()
     
     var itemList = [ItemResponse]()
     var item = ShopItemResponse()
@@ -121,11 +122,21 @@ class AddFoodController: UIViewController {
     }
     
     func saveDataToItem() {
+        for i in 0 ..< images.count {
+            
+            var fileName = item.avatar ?? ""
+            if i != 0 {
+                fileName = String.generateNameForImage()
+            }
+            
+            imageNames.append(fileName)
+            
+        }
         
         item.name = nameTxt.text
-//        let priceStr = String(format: "%0.2f", priceTxt.text ?? "")
         item.price = Double(priceTxt.text ?? "25000")
         item.unit = unitTxt.text
+        item.images = imageNames
         
         item.shop_id = shop.id
         item.shop_name = shop.name
@@ -195,17 +206,7 @@ extension AddFoodController {
     }
     
     func uploadImages() {
-        var imageNames = [String]()
-        for i in 0 ..< images.count {
-            
-            var fileName = item.avatar ?? ""
-            if i != 0 {
-                fileName = String.generateNameForImage()
-            }
-            
-            imageNames.append(fileName)
-            
-        }
+        
         let reference = "\(ReferenceImage.shopItem.rawValue)/\(item.id ?? "")"
         ImageServices.instance.uploadListMedia(images: images, imageNames: imageNames, reference: reference, completion: { (data) in
             guard data != nil else { return }
