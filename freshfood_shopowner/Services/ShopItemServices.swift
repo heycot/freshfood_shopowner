@@ -59,6 +59,7 @@ class ShopItemService {
                     "shop_id": item.shop_id as Any,
                     "status": 1,
                     "unit": item.unit as Any,
+                    "keywords": item.keywords as Any,
                     "price": item.price as Any] as [String : Any]
             
         let db = Firestore.firestore()
@@ -71,7 +72,7 @@ class ShopItemService {
             }
             
             DispatchQueue.main.async {
-                completion(true)
+                completion(result)
             }
         }
         
@@ -91,6 +92,7 @@ class ShopItemService {
                         "shop_id": item.shop_id as Any,
                         "status": 1,
                         "unit": item.unit as Any,
+                        "keywords": item.keywords as Any,
                         "price": item.price as Any] as [String : Any]
             
             let db = Firestore.firestore()
@@ -124,6 +126,7 @@ class ShopItemService {
         let values = ["name": item.name as Any,
                       "avatar": item.avatar ?? "logo" as Any,
                       "unit": item.unit as Any,
+                      "keywords": item.keywords as Any,
                       "price": item.price as Any] as [String : Any]
         
         db.collection("shop_item").document(item.id ?? "").updateData(values) { err in

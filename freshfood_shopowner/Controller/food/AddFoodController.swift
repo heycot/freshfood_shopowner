@@ -109,6 +109,7 @@ class AddFoodController: UIViewController {
             self.startSpinnerActivity()
             
             item.avatar = String.generateNameForImage()
+            item.keywords = String.gennerateKeywords([item.name ?? "", shop.address ?? "", shop.name ?? "" ])
             ShopItemService.instance.addOne(item: item) { (data) in
                 guard let data = data else { return }
                 
