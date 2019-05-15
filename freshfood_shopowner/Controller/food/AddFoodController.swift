@@ -24,6 +24,8 @@ class AddFoodController: UIViewController {
     var images = [UIImage]()
     var imageName = [String]()
     
+    var itemList = [ItemResponse]()
+    
     var item = ShopItemResponse()
     
     override func viewDidLoad() {
