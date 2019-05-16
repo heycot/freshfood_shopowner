@@ -71,7 +71,7 @@
                                                 <color key="tintColor" red="0.17254901959999999" green="0.65098039220000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Need an account? Sign up"/>
                                                 <connections>
-                                                    <segue destination="b1B-ht-ATI" kind="show" animates="NO" id="jq1-fV-I7Z"/>
+                                                    <segue destination="b1B-ht-ATI" kind="show" identifier="LoginToSignUp" animates="NO" id="jq1-fV-I7Z"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -801,7 +801,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F6V-mH-ITv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Shop" image="store" id="tDk-lg-KvR"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CWs-h2-X74">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="CWs-h2-X74">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.66274509800000003" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -951,6 +951,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fdb-ta-PpM">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="gxc-7B-wfN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="donePressed:" destination="BlV-vs-ZYp" id="bKA-Ia-CWM"/>
                             </connections>
@@ -977,9 +978,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b1B-ht-ATI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="zXB-A2-XQ2"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8c2-QW-m62">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="8c2-QW-m62">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.25490196079999999" green="0.66274509800000003" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -999,6 +1001,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.25490196079999999" green="0.66274509800000003" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="F6V-mH-ITv" kind="relationship" relationship="viewControllers" id="e9r-cK-WS9"/>
@@ -1016,9 +1019,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nu5-JP-vyC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Comment" image="speech-bubbles-comment-option(1)" id="xtg-Uf-MyG"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7rO-hO-9Lb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="7rO-hO-9Lb">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.25490196079999999" green="0.66274509800000003" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1446,7 +1450,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T9p-4D-9y4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Account" image="man-user" id="U1z-zi-UEV"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QQ1-UZ-nlx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="QQ1-UZ-nlx">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.25490196079999999" green="0.66274509800000003" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
