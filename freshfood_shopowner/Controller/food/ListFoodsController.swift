@@ -130,22 +130,30 @@ extension ListFoodsController : UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
-    {
-        
-        if editingStyle == .delete
-        {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if ShopItemList[indexPath.row].status ?? 0 <= 1 {
+            return handleChangeStatus(title: "Disable", message: "Are you sure want to disable this food?", status: 1, color: .red)
             
-            let alert = UIAlertController(title: "Alert", message: "Are you sure want to deactivate this food?", preferredStyle: UIAlertController.Style.alert)
+        } else {
+            return handleChangeStatus(title: "Enable", message: "Are you sure want to enable this food?", status: 1, color: APP_COLOR)
+        }
+            
+    }
+    
+    func handleChangeStatus(title: String, message: String, status: Int, color: UIColor) -> [UITableViewRowAction]? {
+        let share = UITableViewRowAction(style: .normal, title: title) { (action, indexPath) in
+            // share item at indexPath
+            let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 
-                ShopItemService.instance.deactivate(id: self.ShopItemList[indexPath.row].id ?? "") { (data) in
+                ShopItemService.instance.changeStatus(id: self.ShopItemList[indexPath.row].id ?? "", status: status) { (data) in
                     guard let data = data else { return }
                     
                     if data {
-                        self.ShopItemList[indexPath.row].status = 2
+                        self.ShopItemList[indexPath.row].status = status
                         self.tableView.reloadData()
                     } else {
                         let alert = UIAlertController(title: "Failed", message: "Please try next time", preferredStyle: UIAlertController.Style.alert)
@@ -158,7 +166,12 @@ extension ListFoodsController : UITableViewDataSource {
             
             self.present(alert, animated: true)
         }
+        
+        share.backgroundColor = color
+        
+        return [share]
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         

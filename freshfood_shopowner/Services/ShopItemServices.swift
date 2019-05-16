@@ -120,11 +120,11 @@ class ShopItemService {
         
     }
     
-    func deactivate( id: String,  completion: @escaping (Bool?) -> Void) {
+    func changeStatus( id: String, status: Int,  completion: @escaping (Bool?) -> Void) {
         
         let db = Firestore.firestore()
         
-        let values = ["status": 2] as [String : Any]
+        let values = ["status": status] as [String : Any]
         
         db.collection("shop_item").document(id).updateData(values) { err in
             var result = true
