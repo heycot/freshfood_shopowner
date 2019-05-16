@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AccountController: UIViewController {
 
@@ -112,7 +113,8 @@ class AccountController: UIViewController {
     }
     
     func getProfile() {
-        AuthServices.instance.getProfile { (data) in
+        let userID = Auth.auth().currentUser!.uid
+        AuthServices.instance.getProfile(userID: userID) { (data) in
             guard let data = data else { return }
             
             self.user = data
@@ -160,7 +162,7 @@ extension AccountController: UITableViewDelegate, UITableViewDataSource {
         if isActivity {
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.userComment.rawValue, for: indexPath) as! UserCommentCell
             
-            cell.updateView(cmt: listComment[indexPath.row], user: nil, item: nil)
+            cell.updateView(cmt: listComment[indexPath.row], isUser: false)
             return cell
             
         } else {

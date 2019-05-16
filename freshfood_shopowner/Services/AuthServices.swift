@@ -112,8 +112,7 @@ class AuthServices {
     }
     
     
-    func getProfile(completion: @escaping (UserResponse?) -> Void){
-        let userID = Auth.auth().currentUser!.uid
+    func getProfile(userID: String, completion: @escaping (UserResponse?) -> Void){
         
         let db = Firestore.firestore()
         let docRef = db.collection("user_profile").document(userID)

@@ -296,7 +296,7 @@ extension AddFoodController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.userComment.rawValue, for: indexPath) as! UserCommentCell
-        cell.updateView(cmt: comments[indexPath.row], user: nil, item: nil)
+        cell.updateView(cmt: comments[indexPath.row], isUser: true)
         return cell
     }
     

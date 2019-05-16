@@ -26,28 +26,39 @@ class UserCommentCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func updateView(cmt: CommentResponse, user: UserResponse?, item: ShopItemResponse?) {
+    func updateView(cmt: CommentResponse, isUser: Bool) {
         cmtTitle.text = cmt.title
         cmtContent.text = cmt.content
-         viewRating(rating: cmt.rating ?? 3.0) 
+         viewRating(rating: cmt.rating ?? 3.0)
         
-        if user != nil {
-            guard let user = user else { return }
-            foodName.text = user.name
-            showUserAvatar(id: user.id ?? "", avatar: user.avatar ?? "")
-        }
-        
-        if item != nil {
-            guard let item = item else { return }
-            foodName.text = item.name
-            showFoodAvatar(id: item.id ?? "" , avatar: item.avatar ?? "")
+        if isUser {
+            getUserInfor(id: cmt.user_id ?? "")
+        } else {
+            getShopItemInfor(id: cmt.shopitem_id ?? "")
         }
     }
     
-    func showUserAvatar(id: String, avatar: String) {
-        let folderPath = ReferenceImage.user.rawValue + "/\(id)/\(avatar)"
+    func getUserInfor(id: String) {
+        AuthServices.instance.getProfile(userID: id) { (data) in
+            guard let data = data else { return }
+            self.foodName.text = data.name
+            self.showUserAvatar(avatar: data.avatar ?? "")
+        }
+    }
+    
+    func getShopItemInfor(id: String) {
+        ShopItemService.instance.getOneById(shop_item_id: id) { (data) in
+            guard let data = data else { return }
+            self.foodName.text = data.name
+            self.showFoodAvatar(id: data.id ?? "", avatar: data.avatar ?? "")
+        }
+    }
+    
+    func showUserAvatar( avatar: String) {
+        let folderPath = ReferenceImage.user.rawValue + "/\(avatar)"
         ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
             self.cmtImage.image = data
+            self.cmtImage.setRounded(color: .white)
         }) { (error) in
             print("something wrong with url imgae")
         }
@@ -57,6 +68,7 @@ class UserCommentCell: UITableViewCell {
         let folderPath = ReferenceImage.shopItem.rawValue + "/\(id)/\(avatar)"
         ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
             self.cmtImage.image = data
+            self.cmtImage.setRounded(color: .white)
         }) { (error) in
             print("something wrong with url imgae")
         }

@@ -46,6 +46,31 @@ class ShopItemService {
         })
     }
     
+    func getOneById( shop_item_id: String,  completion: @escaping (ShopItemResponse?) -> Void) {
+        
+        let db = Firestore.firestore()
+        let docRef = db.collection("shop_item").document(shop_item_id)
+        
+        docRef.getDocument(completion: { (document, error) in
+            if let document = document, document.exists {
+                let jsonData = try? JSONSerialization.data(withJSONObject: document.data() as Any)
+                do {
+                    var shopItem = try JSONDecoder().decode(ShopItemResponse.self, from: jsonData!)
+                    shopItem.id = document.documentID
+                    
+                    DispatchQueue.main.async {
+                        completion(shopItem)
+                    }
+                } catch let jsonError {
+                    print("Error serializing json:", jsonError)
+                }
+                
+            } else {
+                print("User have no profile")
+            }
+        })
+    }
+    
     func addOne( item: ShopItemResponse,  completion: @escaping (String?) -> Void) {
         let date = Date().timeIntervalSince1970
         
