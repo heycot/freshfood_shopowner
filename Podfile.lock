@@ -116,6 +116,7 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - ObjectMapper (3.4.2)
+  - PKHUD (5.2.0)
   - Protobuf (3.6.1)
   - PryntTrimmerView (3.0.0)
   - SteviaLayout (4.4.3)
@@ -133,6 +134,7 @@ DEPENDENCIES:
   - GoogleMaps
   - IQKeyboardManagerSwift
   - ObjectMapper
+  - PKHUD (~> 5.0)
   - YPImagePicker (~> 3.5.2)
 
 SPEC REPOS:
@@ -157,6 +159,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - ObjectMapper
+    - PKHUD
     - Protobuf
     - PryntTrimmerView
     - SteviaLayout
@@ -183,11 +186,12 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  PKHUD: dd5357ac65f26115c35c4a68e9b328053326c5fe
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
   SteviaLayout: ae5ee66101e03607a93c9b3773b84ab7ba7b3d17
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: 222823b2613ad629f1584a3992589443f25838ab
+PODFILE CHECKSUM: 18a61c3825f13ebd60dbf174ec7e91b794e2b2be
 
 COCOAPODS: 1.5.2

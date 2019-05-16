@@ -45,7 +45,7 @@ class ShopService {
         })
     }
     
-    func addNewShop(shop: ShopResponse, completion: @escaping (Bool?) -> Void) {
+    func addNewShop(shop: ShopResponse, completion: @escaping (String?, Bool?) -> Void) {
         let userID = Auth.auth().currentUser!.uid
         //Truy cập vào user_profile để lấy user profile với uid
         let db = Firestore.firestore()
@@ -65,19 +65,17 @@ class ShopService {
             "latitude": shop.latitude as Any,
             "address": shop.address as Any] as [String : Any]
         
-        db.collection("shop").document().setData(shop) { err in
-            var result = true
-            if let err = err {
-                result = false
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
+        var ref: DocumentReference? = nil
+        
+        // init first to get ID
+        ref = db.collection("shop").document()
+        
+        ref?.setData(shop, completion:{ (error) in
+            DispatchQueue.main.async {
+                completion(ref?.documentID, true)
             }
             
-            DispatchQueue.main.async {
-                completion(result)
-            }
-        }
+        })
     }
     
     func deactivate( id: String,  completion: @escaping (Bool?) -> Void) {

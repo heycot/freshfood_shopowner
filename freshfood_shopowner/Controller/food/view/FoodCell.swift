@@ -43,6 +43,7 @@ class FoodCell: UITableViewCell {
             status.textColor = UIColor.lightGray
         } else if st == 1 {
             status.text = "Selling"
+            status.textColor = .green
         } else {
             status.text = "Stoped"
             status.textColor = .red

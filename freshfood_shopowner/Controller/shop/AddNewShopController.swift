@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import Firebase
 import Photos
+import PKHUD
 
 class AddNewShopController: UIViewController {
     
@@ -126,13 +127,15 @@ class AddNewShopController: UIViewController {
     @IBAction func doneBtnPressed(_ sender: Any) {
         if checkValidateInput() {
             
-            startSpinnerActivity()
+            HUD.flash(.success, delay: 1.5)
             if self.isNew {
                 
-                ShopService.instance.addNewShop(shop: self.shop) { (data) in
+                ShopService.instance.addNewShop(shop: self.shop) { (data, check) in
                     guard let data = data else { return }
+                    guard let check = check else { return }
+                    self.shop.id = data
                     
-                    if data {
+                    if check {
                         
                         self.showNotification(mess: "Add success, We will contact you soon", color: APP_COLOR)
                         self.disbaleView()
@@ -161,6 +164,10 @@ class AddNewShopController: UIViewController {
     }
     
     func uploadImage() {
+        if isNew && image == nil {
+            image = UIImage(named: "logo")
+        }
+        
         let reference = "\(ReferenceImage.shop.rawValue)/\(shop.id ?? "")/\(fileName)"
         ImageServices.instance.uploadMedia(image: image!, reference: reference, completion: { (data) in
             guard let data = data else { return }

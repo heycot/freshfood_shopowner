@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import YPImagePicker
+import PKHUD
 
 class AddFoodController: UIViewController {
 
@@ -94,7 +95,7 @@ class AddFoodController: UIViewController {
             notificationHeight.constant = 30
         } else {
             self.doneBtn.isEnabled = false
-            self.startSpinnerActivity()
+            HUD.flash(.success, delay: 1.5)
             
             saveDataToItem()
             if isNew {

@@ -39,6 +39,7 @@ class ShopCell: UITableViewCell {
             infor.textColor = UIColor.lightGray
         } else if shop.status == 1 {
             infor.text = "Selling"
+            infor.textColor = .green
         } else {
             infor.text = "Stoped"
             infor.textColor = .red
