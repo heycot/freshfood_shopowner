@@ -133,7 +133,7 @@ extension ListFoodsController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if ShopItemList[indexPath.row].status ?? 0 <= 1 {
-            return handleChangeStatus(title: "Disable", message: "Are you sure want to disable this food?", status: 1, color: .red)
+            return handleChangeStatus(title: "Disable", message: "Are you sure want to disable this food?", status: 2, color: .red)
             
         } else {
             return handleChangeStatus(title: "Enable", message: "Are you sure want to enable this food?", status: 1, color: APP_COLOR)

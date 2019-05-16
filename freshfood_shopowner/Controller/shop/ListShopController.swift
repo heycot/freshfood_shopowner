@@ -22,6 +22,7 @@ class ListShopController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = APP_COLOR
         setupCurrentLocation()
         setupView()
     }
@@ -94,22 +95,30 @@ extension ListShopController: UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
-    {
-        
-        if editingStyle == .delete
-        {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if listItem[indexPath.row].status ?? 0 <= 1 {
+            return handleChangeStatus(title: "Disable", message: "Are you sure want to disable this shop?", status: 2, color: .red)
             
-            let alert = UIAlertController(title: "Alert", message: "Are you sure want to deactivate this shop?", preferredStyle: UIAlertController.Style.alert)
+        } else {
+            return handleChangeStatus(title: "Enable", message: "Are you sure want to enable this shop?", status: 1, color: APP_COLOR)
+        }
+        
+    }
+    
+    func handleChangeStatus(title: String, message: String, status: Int, color: UIColor) -> [UITableViewRowAction]? {
+        let share = UITableViewRowAction(style: .normal, title: title) { (action, indexPath) in
+            // share item at indexPath
+            let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 
-                ShopService.instance.deactivate(id: self.listItem[indexPath.row].id ?? "") { (data) in
+                ShopService.instance.changeStatus(id: self.listItem[indexPath.row].id ?? "", status: status) { (data) in
                     guard let data = data else { return }
                     
                     if data {
-                        self.listItem[indexPath.row].status = 2
+                        self.listItem[indexPath.row].status = status
                         self.tableView.reloadData()
                     } else {
                         let alert = UIAlertController(title: "Failed", message: "Please try next time", preferredStyle: UIAlertController.Style.alert)
@@ -122,6 +131,10 @@ extension ListShopController: UITableViewDataSource {
             
             self.present(alert, animated: true)
         }
+        
+        share.backgroundColor = color
+        
+        return [share]
     }
     
     override func viewWillAppear(_ animated: Bool) {
