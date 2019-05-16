@@ -12,10 +12,10 @@ class UserResponse:Decodable {
     var name: String?
     var email: String?
     var phone: String?
-    var birthday: Double?
+    var birthday: TimeInterval?
     var avatar: String?
     var address: String?
-    var create_date: Double?
+    var create_date: TimeInterval?
     var status: Int?
     
     var birthdayDate: Date? {
@@ -34,19 +34,19 @@ class UserResponse:Decodable {
     }
     
     
-    init( id: String, name: String, email: String, phone: String,  birthday: Date, avatar: String, address: String, create_date: Date, status: Int) {
+    init( id: String, name: String, email: String, phone: String,  birthday: TimeInterval, avatar: String, address: String, create_date: TimeInterval, status: Int) {
         self.id = id
         self.name = name
         self.email = email
         self.phone = phone
-        self.birthday = birthday.timeIntervalSince1970
+        self.birthday = birthday
         self.avatar = avatar
         self.address = address
-        self.create_date = create_date.timeIntervalSince1970
+        self.create_date = create_date
         self.status = status
     }
     
     convenience init() {
-        self.init( id: "", name: "", email: "", phone: "",  birthday: Date(), avatar: "", address: "", create_date: Date(), status: 0)
+        self.init( id: "", name: "", email: "", phone: "",  birthday: Date().timeIntervalSince1970, avatar: "", address: "", create_date: Date().timeIntervalSince1970, status: 0)
     }
 }

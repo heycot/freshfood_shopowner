@@ -24,7 +24,7 @@ class AccountController: UIViewController {
     var detailCell = [String]()
     
     var user = UserResponse()
-//    var listComment = [CommentResponse]()
+    var listComment = [CommentResponse]()
     var isActivity = true
     
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class AccountController: UIViewController {
     }
     
     func viewInfor() {
-        userAvatar.loadImageUsingUrlString(urlString: BASE_URL_IMAGE + user.avatar!)
+//        userAvatar.loadImageUsingUrlString(urlString: BASE_URL_IMAGE + user.avatar!)
         userAvatar.setRounded(color: .white)
         userName.text = user.name!
         userDescription.text = "newbee - Top 1000 - 10 Followers"
@@ -68,12 +68,9 @@ class AccountController: UIViewController {
         detailCell.append(user.address!)
         detailCell.append(createDate)
         detailCell.append("")
+        detailCell.append("")
         
-        for i in 0 ..< titleCell.count {
-            detailCell.append("")
-        }
-        
-        
+        self.tableView.reloadData()
     }
     
     func setUpForTableView() {
@@ -88,6 +85,7 @@ class AccountController: UIViewController {
     }
     
     @IBAction func accountBtnPressed(_ sender: Any) {
+        getProfile()
         isActivity = false
         tableView.reloadData()
     }
@@ -95,32 +93,27 @@ class AccountController: UIViewController {
     
     func getDataFromAPI(offset: Int, isLoadMore: Bool) {
         
-//        CommentServices.shared.getReviewsDTOOfUser(offset: offset) { (data) in
-//            guard let data = data else { return }
-//
-//            if isLoadMore {
-//                for comment in data {
-//                    self.listComment.append(comment)
-//                }
-//            } else {
-//                self.listComment = data
-//            }
-//            self.setupDetailInfor()
-//            self.tableView.reloadData()
-//        }
-        
-        setupDetailInfor()
+        CommentServices.instance.getAllCommentByUser() { (data) in
+            guard let data = data else { return }
+            
+            self.listComment = data
+            self.getProfile()
+        }
+    }
+    
+    func getProfile() {
+        AuthServices.instance.getProfile { (data) in
+            guard let data = data else { return }
+            
+            self.user = data
+            self.setupDetailInfor()
+            self.tableView.reloadData()
+        }
     }
     
     func disableUIView() {
         userName.isEnabled = false
         userDescription.isEnabled = false
-    }
-    
-    @objc func activityPressedFunction(btn: UIButton) {
-        
-        
-        //        performSegueFunc(identifier: SegueIdentifier.detailToDelivery.rawValue)
     }
     
     
@@ -149,17 +142,14 @@ class AccountController: UIViewController {
 
 extension AccountController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isActivity ? 10 : titleCell.count
+        return isActivity ? listComment.count : titleCell.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isActivity {
             let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.userComment.rawValue, for: indexPath) as! UserCommentCell
             
-            //            cell.activityImage.addTarget(self, action: #selector(activityPressedFunction), for: UIControl.Event.touchDown)
-            //            cell.activityTitle.addTarget(self, action: #selector(activityPressedFunction), for: UIControl.Event.touchDown)
-            
-//            cell.updateView(comment: listComment[indexPath.row])
+            cell.updateView(cmt: listComment[indexPath.row], user: nil, item: nil)
             return cell
             
         } else {

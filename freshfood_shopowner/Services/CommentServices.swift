@@ -41,8 +41,9 @@ class  CommentServices {
         })
     }
     
-    func getAllCommentByUser(userID: String,   completion: @escaping ([CommentResponse]?) -> Void) {
+    func getAllCommentByUser( completion: @escaping ([CommentResponse]?) -> Void) {
         let db = Firestore.firestore()
+        let userID = Auth.auth().currentUser!.uid
         let docRef = db.collection("comment").whereField("user_id", isEqualTo: userID)
         
         docRef.getDocuments(completion: { (document, error) in
