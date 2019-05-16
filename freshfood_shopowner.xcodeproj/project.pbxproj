@@ -58,6 +58,8 @@
 		235E144D22854DAF009109EC /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144C22854DAF009109EC /* ShopService.swift */; };
 		23679F49228D6D7D00F427DD /* ListCommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23679F48228D6D7D00F427DD /* ListCommentController.swift */; };
 		23679F4C228D6DB100F427DD /* OneCommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23679F4B228D6DB100F427DD /* OneCommentController.swift */; };
+		23679F52228D7EF100F427DD /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23679F50228D7EF100F427DD /* CommentCell.swift */; };
+		23679F53228D7EF100F427DD /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23679F51228D7EF100F427DD /* CommentCell.xib */; };
 		2368A25E228BACBE00B6CB76 /* ItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2368A25D228BACBE00B6CB76 /* ItemService.swift */; };
 		2368A260228BADE100B6CB76 /* ItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2368A25F228BADE100B6CB76 /* ItemResponse.swift */; };
 		236E3501228285E00031E02B /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 236E3500228285E00031E02B /* SignUp.storyboard */; };
@@ -120,6 +122,8 @@
 		235E144C22854DAF009109EC /* ShopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopService.swift; sourceTree = "<group>"; };
 		23679F48228D6D7D00F427DD /* ListCommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCommentController.swift; sourceTree = "<group>"; };
 		23679F4B228D6DB100F427DD /* OneCommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneCommentController.swift; sourceTree = "<group>"; };
+		23679F50228D7EF100F427DD /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		23679F51228D7EF100F427DD /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		2368A25D228BACBE00B6CB76 /* ItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemService.swift; sourceTree = "<group>"; };
 		2368A25F228BADE100B6CB76 /* ItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemResponse.swift; sourceTree = "<group>"; };
 		236E3500228285E00031E02B /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
@@ -388,11 +392,21 @@
 		23679F4A228D6D8900F427DD /* comment */ = {
 			isa = PBXGroup;
 			children = (
+				23679F4D228D7EB100F427DD /* view */,
 				23679F4B228D6DB100F427DD /* OneCommentController.swift */,
 				23679F48228D6D7D00F427DD /* ListCommentController.swift */,
 			);
 			name = comment;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		23679F4D228D7EB100F427DD /* view */ = {
+			isa = PBXGroup;
+			children = (
+				23679F50228D7EF100F427DD /* CommentCell.swift */,
+				23679F51228D7EF100F427DD /* CommentCell.xib */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		23DA2771CF5FA53A4FA8A14A /* Frameworks */ = {
@@ -477,6 +491,7 @@
 				236E3501228285E00031E02B /* SignUp.storyboard in Resources */,
 				235C921F2289054A00059D5C /* GoogleService-Info.plist in Resources */,
 				2332DD9B22827F40008F0CBE /* LaunchScreen.storyboard in Resources */,
+				23679F53228D7EF100F427DD /* CommentCell.xib in Resources */,
 				2332DD9822827F40008F0CBE /* Assets.xcassets in Resources */,
 				232274F72287FF57002EE964 /* UserCommentCell.xib in Resources */,
 				2322750522883004002EE964 /* FoodImageCell.xib in Resources */,
@@ -586,6 +601,7 @@
 				23075B992282D22D0088AB24 /* MapTaskManager.swift in Sources */,
 				23075B6E228295E80088AB24 /* CustomImageView.swift in Sources */,
 				232274EE2287FB2A002EE964 /* AccountController.swift in Sources */,
+				23679F52228D7EF100F427DD /* CommentCell.swift in Sources */,
 				235E144D22854DAF009109EC /* ShopService.swift in Sources */,
 				23075B8B2282C0AF0088AB24 /* UserResponse.swift in Sources */,
 				23679F49228D6D7D00F427DD /* ListCommentController.swift in Sources */,

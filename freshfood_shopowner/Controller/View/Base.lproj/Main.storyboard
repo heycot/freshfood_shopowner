@@ -824,6 +824,13 @@
                     <view key="view" contentMode="scaleToFill" id="hcM-D2-sIZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RTK-EV-RbO">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qpN-hQ-hQK"/>
                     </view>
@@ -831,7 +838,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUy-v0-9vU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3655.1999999999998" y="1604.3478260869567"/>
+            <point key="canvasLocation" x="3524" y="1603.4482758620691"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="BSe-RG-OGW">
@@ -1022,6 +1029,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="7rO-hO-9Lb">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.25490196079999999" green="0.66274509800000003" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1161,7 +1169,7 @@
                         <outlet property="userName" destination="hN8-yK-xMs" id="xJa-IU-7No"/>
                         <segue destination="tiG-oq-kCA" kind="show" identifier="AccountToPassword" id="DV6-wp-uPR"/>
                         <segue destination="HTh-OC-glk" kind="show" identifier="AccountToEditInfor" id="PCH-HI-PZL"/>
-                        <segue destination="7ri-I9-O4R" kind="push" identifier="AccountToComment" id="jx4-du-Oen"/>
+                        <segue destination="7ri-I9-O4R" kind="show" identifier="AccountToComment" id="jx4-du-Oen"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggG-Vt-uTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1454,6 +1462,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="QQ1-UZ-nlx">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.25490196079999999" green="0.66274509800000003" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1571,7 +1580,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LmI-Gb-I3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4641" y="1604"/>
+            <point key="canvasLocation" x="4516" y="1604"/>
         </scene>
     </scenes>
     <resources>
