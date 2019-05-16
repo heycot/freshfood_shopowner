@@ -1161,7 +1161,7 @@
                         <outlet property="userName" destination="hN8-yK-xMs" id="xJa-IU-7No"/>
                         <segue destination="tiG-oq-kCA" kind="show" identifier="AccountToPassword" id="DV6-wp-uPR"/>
                         <segue destination="HTh-OC-glk" kind="show" identifier="AccountToEditInfor" id="PCH-HI-PZL"/>
-                        <segue destination="7ri-I9-O4R" kind="show" identifier="AccountToComment" id="jx4-du-Oen"/>
+                        <segue destination="7ri-I9-O4R" kind="push" identifier="AccountToComment" id="jx4-du-Oen"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggG-Vt-uTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1465,10 +1465,10 @@
             </objects>
             <point key="canvasLocation" x="2676" y="2524"/>
         </scene>
-        <!--New Comment Controller-->
+        <!--One Comment Controller-->
         <scene sceneID="enR-US-R68">
             <objects>
-                <viewController storyboardIdentifier="CommentStoryboardID" id="7ri-I9-O4R" customClass="NewCommentController" customModule="notritionVendorsAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentStoryboardID" id="7ri-I9-O4R" customClass="OneCommentController" customModule="freshfood_shopowner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gUN-Fd-pC4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1542,11 +1542,6 @@
                                     </textView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moj-Ys-tGW">
-                                <rect key="frame" x="300" y="50" width="59" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1558,9 +1553,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qC0-D7-EDL"/>
                     </view>
+                    <navigationItem key="navigationItem" id="QVQ-aZ-Y3O">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Occ-b4-o9o">
+                            <connections>
+                                <action selector="doneBtnPressed:" destination="7ri-I9-O4R" id="uih-0p-Q96"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="address" destination="gC2-DM-2u5" id="cdL-6a-qLA"/>
                         <outlet property="content" destination="0uf-vS-Ahe" id="a3Q-gV-Knb"/>
+                        <outlet property="doneBtn" destination="Occ-b4-o9o" id="pdO-bV-BcQ"/>
                         <outlet property="ratingview" destination="20t-Q4-SFq" id="hF6-DV-Ebd"/>
                         <outlet property="shopItemName" destination="bdx-eA-3TK" id="cyw-uf-gYQ"/>
                         <outlet property="titleCmt" destination="R8z-ra-PXH" id="cba-zi-GxP"/>

@@ -56,6 +56,8 @@
 		235C921F2289054A00059D5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235C921E2289054A00059D5C /* GoogleService-Info.plist */; };
 		235E144B22852886009109EC /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144A22852886009109EC /* ShopCell.swift */; };
 		235E144D22854DAF009109EC /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144C22854DAF009109EC /* ShopService.swift */; };
+		23679F49228D6D7D00F427DD /* ListCommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23679F48228D6D7D00F427DD /* ListCommentController.swift */; };
+		23679F4C228D6DB100F427DD /* OneCommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23679F4B228D6DB100F427DD /* OneCommentController.swift */; };
 		2368A25E228BACBE00B6CB76 /* ItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2368A25D228BACBE00B6CB76 /* ItemService.swift */; };
 		2368A260228BADE100B6CB76 /* ItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2368A25F228BADE100B6CB76 /* ItemResponse.swift */; };
 		236E3501228285E00031E02B /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 236E3500228285E00031E02B /* SignUp.storyboard */; };
@@ -116,6 +118,8 @@
 		235C922022890E1200059D5C /* freshfood_shopowner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "freshfood_shopowner-Bridging-Header.h"; sourceTree = "<group>"; };
 		235E144A22852886009109EC /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
 		235E144C22854DAF009109EC /* ShopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopService.swift; sourceTree = "<group>"; };
+		23679F48228D6D7D00F427DD /* ListCommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCommentController.swift; sourceTree = "<group>"; };
+		23679F4B228D6DB100F427DD /* OneCommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneCommentController.swift; sourceTree = "<group>"; };
 		2368A25D228BACBE00B6CB76 /* ItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemService.swift; sourceTree = "<group>"; };
 		2368A25F228BADE100B6CB76 /* ItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemResponse.swift; sourceTree = "<group>"; };
 		236E3500228285E00031E02B /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 		23075B6F2282A50E0088AB24 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				23679F4A228D6D8900F427DD /* comment */,
 				232274F8228826D0002EE964 /* food */,
 				235A440622867C89000AC7DA /* auth */,
 				23075B872282B3D60088AB24 /* shop */,
@@ -380,6 +385,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		23679F4A228D6D8900F427DD /* comment */ = {
+			isa = PBXGroup;
+			children = (
+				23679F4B228D6DB100F427DD /* OneCommentController.swift */,
+				23679F48228D6D7D00F427DD /* ListCommentController.swift */,
+			);
+			name = comment;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		23DA2771CF5FA53A4FA8A14A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +496,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-freshfood_shopowner/Pods-freshfood_shopowner-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
@@ -499,6 +515,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
@@ -571,6 +588,7 @@
 				232274EE2287FB2A002EE964 /* AccountController.swift in Sources */,
 				235E144D22854DAF009109EC /* ShopService.swift in Sources */,
 				23075B8B2282C0AF0088AB24 /* UserResponse.swift in Sources */,
+				23679F49228D6D7D00F427DD /* ListCommentController.swift in Sources */,
 				233B40A7228941550041D562 /* CommentResponse.swift in Sources */,
 				23075B902282CACC0088AB24 /* AddNewShopController.swift in Sources */,
 				23075B622282957E0088AB24 /* ExtensionTextField.swift in Sources */,
@@ -608,6 +626,7 @@
 				232274F22287FB4F002EE964 /* EditInforController.swift in Sources */,
 				2354F0142282922F00AC9BC1 /* AuthServices.swift in Sources */,
 				2368A260228BADE100B6CB76 /* ItemResponse.swift in Sources */,
+				23679F4C228D6DB100F427DD /* OneCommentController.swift in Sources */,
 				23075B6C228295D70088AB24 /* ExtensionUiLable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

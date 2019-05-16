@@ -20,5 +20,6 @@ target 'freshfood_shopowner' do
     pod 'Firebase/Storage'
     pod 'YPImagePicker', '~> 3.5.2'
     pod 'PKHUD', '~> 5.0'
+    pod 'Cosmos'
 
 end

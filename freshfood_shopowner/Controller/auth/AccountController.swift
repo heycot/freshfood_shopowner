@@ -131,15 +131,15 @@ class AccountController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.destination is NewCommentController {
-//            let vc = segue.destination as? NewCommentController
-//            let index = sender as! Int
-//
-//            vc?.lastComment = convertCommentDTOToComment(commentDto: listComment[index])
-//            vc?.isNew = false
+        if segue.destination is OneCommentController {
+            let vc = segue.destination as? OneCommentController
+            let index = sender as! Int
+
+            vc?.isView = false
+            vc?.lastComment = listComment[index]
 //            vc?.shopitemId = listComment[index].shopitem_id!
 //            vc?.nameShop = listComment[index].entity_name!
-//        } else
+        } else
             if segue.destination is ChangePasswordController {
             
         } else if segue.destination is EditInforController {

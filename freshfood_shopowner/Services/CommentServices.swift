@@ -70,4 +70,27 @@ class  CommentServices {
             }
         })
     }
+    
+    func editOne(cmt: CommentResponse, completion: @escaping (Bool?) -> Void) {
+        let db = Firestore.firestore()
+        
+        let values = ["title": cmt.title as Any,
+                      "rating": cmt.rating as Any,
+                      "content": cmt.content as Any,
+                      "update_date": cmt.update_date as Any] as [String : Any]
+        
+        db.collection("comment").document(cmt.id ?? "").updateData(values) { err in
+            var result = true
+            if let err = err {
+                result = false
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+            
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+    }
 }
