@@ -34,7 +34,6 @@ class AccountController: UIViewController {
         
         setUpForTableView()
         
-        viewInfor()
     }
     
     func registerCells() {
@@ -43,13 +42,24 @@ class AccountController: UIViewController {
     }
     
     func viewInfor() {
-//        userAvatar.loadImageUsingUrlString(urlString: BASE_URL_IMAGE + user.avatar!)
+
+        showAvatar()
         userAvatar.setRounded(color: .white)
         userName.text = user.name!
         userDescription.text = "newbee - Top 1000 - 10 Followers"
         
         userDescription.setboldSystemFontOfSize(size: 14)
         userName.setboldSystemFontOfSize(size: 18)
+    }
+    
+    func showAvatar() {
+        let fodler = ReferenceImage.user.rawValue  + "/" + user.avatar!
+        ImageServices.instance.downloadImages(folderPath: fodler, success: { (data) in
+            
+            self.userAvatar.image = data
+        }) { (err) in
+            print(err)
+        }
     }
     
     func setupDetailInfor() {
@@ -70,6 +80,7 @@ class AccountController: UIViewController {
         detailCell.append("")
         detailCell.append("")
         
+        viewInfor()
         self.tableView.reloadData()
     }
     
@@ -85,13 +96,12 @@ class AccountController: UIViewController {
     }
     
     @IBAction func accountBtnPressed(_ sender: Any) {
-        getProfile()
         isActivity = false
         tableView.reloadData()
     }
     
     
-    func getDataFromAPI(offset: Int, isLoadMore: Bool) {
+    func getDataFromAPI() {
         
         CommentServices.instance.getAllCommentByUser() { (data) in
             guard let data = data else { return }
@@ -107,6 +117,7 @@ class AccountController: UIViewController {
             
             self.user = data
             self.setupDetailInfor()
+            self.view.reloadInputViews()
             self.tableView.reloadData()
         }
     }
@@ -171,7 +182,7 @@ extension AccountController: UITableViewDelegate, UITableViewDataSource {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         
-        getDataFromAPI(offset: 0, isLoadMore: false)
+        getDataFromAPI()
         isActivity = true
         super.viewWillAppear(true)
         tableView.reloadData()

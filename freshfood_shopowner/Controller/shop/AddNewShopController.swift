@@ -68,7 +68,7 @@ class AddNewShopController: UIViewController {
     }
     
     func showImage(shop: ShopResponse) {
-        let folderPath = "/images/\(ReferenceImage.shop.rawValue)/\(shop.id ?? "" )/\(shop.avatar ?? "")"
+        let folderPath = ReferenceImage.shop.rawValue + "/\(shop.id ?? "" )/\(shop.avatar ?? "")"
         ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
             self.avatar.image = data
         }) { (error) in

@@ -1418,6 +1418,9 @@
                     <navigationItem key="navigationItem" id="Y9g-Gx-Yuo">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="5jR-7W-8DP">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="doneBtnPressed:" destination="HTh-OC-glk" id="vfj-Ab-Fqb"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>

@@ -69,7 +69,7 @@ class FoodCell: UITableViewCell {
     }
     
     func showImage(id: String, avatar: String)  {
-        let folderPath = "/\(ReferenceImage.root.rawValue)/\(ReferenceImage.shopItem.rawValue)/\(id)/\(avatar)"
+        let folderPath = ReferenceImage.shopItem.rawValue + "/\(id)/\(avatar)"
         ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
             self.avatar.image = data
         }) { (error) in

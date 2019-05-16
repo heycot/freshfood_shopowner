@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import YPImagePicker
 import PKHUD
 
 class EditInforController: UIViewController {
@@ -25,7 +26,7 @@ class EditInforController: UIViewController {
     
     var user =  UserResponse()
     var image : UIImage?
-    var fileName = "logo"
+    var fileName : String?
     
     var datePicker = UIDatePicker()
     
@@ -46,6 +47,7 @@ class EditInforController: UIViewController {
         notification.isHidden = true
         detailNotification.isHidden = true
         
+        viewAvatar()
         emailTxt.text = user.email!
         nameTxt.text = user.name!
         phoneTxt.text = user.phone!
@@ -56,6 +58,16 @@ class EditInforController: UIViewController {
             birthdayTxt.text = dateStr
         } else {
             birthdayTxt.text = ""
+        }
+    }
+    
+    func viewAvatar() {
+        let folder = ReferenceImage.user.rawValue + "\(user.avatar ?? "")"
+        
+        ImageServices.instance.downloadImages(folderPath: folder, success: { (data) in
+            self.avatar.image = data
+        }) { (err) in
+            print(err)
         }
     }
     
@@ -70,13 +82,15 @@ class EditInforController: UIViewController {
         }
         
         let userEdit = UserResponse()
-//        userEdit.id = user.id
+        if fileName != nil {
+            userEdit.avatar = fileName
+        }
         userEdit.name = nameStr
         userEdit.phone = phoneTxt.text
         userEdit.birthday = convertToDate(dateString: birthdayTxt.text!).timeIntervalSince1970
         userEdit.address = addressTxt.text
         
-        
+        HUD.flash(.success, delay: 1.5)
         
         AuthServices.instance.edit(user: userEdit) { (data) in
             guard let data = data else { return }
@@ -84,15 +98,20 @@ class EditInforController: UIViewController {
             if data {
                 self.notification.text = "Update successful"
                 self.notification.isHidden = false
+                if self.fileName != nil {
+                    self.uploadAvatar()
+                }
             } else {
                 self.notification.text = "Something went wrong. Please try again."
                 self.notification.isHidden = false
             }
+            
+            
         }
     }
     
     func uploadAvatar() {
-        let foldler = ReferenceImage.root.rawValue + ReferenceImage.user.rawValue + String.generateNameForImage()
+        let foldler =  ReferenceImage.user.rawValue + fileName! 
         
         ImageServices.instance.uploadMedia(image: image ?? UIImage(named: "logo")!, reference: foldler) { (data) in
             guard data != nil else { return }
@@ -135,7 +154,7 @@ extension EditInforController {
     @objc func donedatePicker(){
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "dd/MM/yyyy"
         birthdayTxt.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
@@ -150,72 +169,17 @@ extension EditInforController {
 extension EditInforController {
     
     @IBAction func changeAvatarPressed(_ sender: Any) {
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self;
-        myPickerController.sourceType =  UIImagePickerController.SourceType.photoLibrary
-        self.present(myPickerController, animated: true, completion: nil)
-    }
-    
-    func generateNameForImage() -> String {
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "AVATAR_hh.mm.ss.dd.MM.yyyy"
-        return formatter.string(from: date)
-    }
-    
-    @objc func dismisHandle() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func getImageFormatFromUrl(url : URL) -> String {
-        
-        if url.absoluteString.hasSuffix("JPG") {
-            return"JPG"
-        }
-        else if url.absoluteString.hasSuffix("PNG") {
-            return "PNG"
-        }
-        else if url.absoluteString.hasSuffix("GIF") {
-            return "GIF"
-        }
-        else {
-            return "jpg"
-        }
-    }
-}
-
-extension EditInforController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-        }
-        
-        
-        if let url = info[UIImagePickerController.InfoKey.phAsset] as? URL {
-            let assets = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
-            // get for mat of image
-            let imageFormat = getImageFormatFromUrl(url: url)
-            
-            if let firstAsset = assets.firstObject,
-                let firstResource = PHAssetResource.assetResources(for: firstAsset).first {
-                fileName = firstResource.originalFilename
-            } else {
-                fileName = generateNameForImage() + "." + imageFormat
+        let picker = YPImagePicker()
+        picker.didFinishPicking { [unowned picker] items, _ in
+            if let photo = items.singlePhoto {
+                self.image = photo.image
+                self.avatar.image = photo.image
+                self.avatar.setRounded(color: .white)
+                self.fileName = String.generateNameForImage()
             }
-        } else {
-            fileName = generateNameForImage() + ".jpg"
+            picker.dismiss(animated: true, completion: nil)
         }
-        
-        if (fileName != "") {
-            self.image = selectedImage
-            self.avatar.image = selectedImage
-            self.avatar.setRounded(color: .white)
-        }
-        self.dismisHandle()
+        present(picker, animated: true, completion: nil)
     }
+    
 }

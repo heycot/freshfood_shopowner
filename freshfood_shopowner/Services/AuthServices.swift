@@ -144,6 +144,7 @@ class AuthServices {
         let db = Firestore.firestore()
         
         let userProfile = ["name": user.name as Any,
+                           "avatar": user.avatar as Any,
                            "phone": user.phone as Any,
                            "birthday": user.birthday as Any,
                            "address": user.address as Any ] as [String : Any]

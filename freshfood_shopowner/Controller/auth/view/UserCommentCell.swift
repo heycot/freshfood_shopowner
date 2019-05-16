@@ -45,7 +45,7 @@ class UserCommentCell: UITableViewCell {
     }
     
     func showUserAvatar(id: String, avatar: String) {
-        let folderPath = "/images/\(ReferenceImage.user.rawValue)/\(id)/\(avatar)"
+        let folderPath = ReferenceImage.user.rawValue + "/\(id)/\(avatar)"
         ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
             self.cmtImage.image = data
         }) { (error) in
@@ -54,7 +54,7 @@ class UserCommentCell: UITableViewCell {
     }
     
     func showFoodAvatar(id: String, avatar: String) {
-        let folderPath = "/images/\(ReferenceImage.shopItem.rawValue)/\(id)/\(avatar)"
+        let folderPath = ReferenceImage.shopItem.rawValue + "/\(id)/\(avatar)"
         ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
             self.cmtImage.image = data
         }) { (error) in
