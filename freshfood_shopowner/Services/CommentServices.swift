@@ -93,4 +93,34 @@ class  CommentServices {
             }
         }
     }
+    
+    func getCommentByShopId(shopID: String, completion: @escaping ([CommentResponse]?) -> Void) {
+        let db = Firestore.firestore()
+        let docRef = db.collection("comment").whereField("shop_id", isEqualTo: shopID)
+        
+        docRef.getDocuments(completion: { (document, error) in
+            if let document = document {
+                var cmts = [CommentResponse]()
+                
+                for cmtDoct in document.documents{
+                    let jsonData = try? JSONSerialization.data(withJSONObject: cmtDoct.data() as Any)
+                    
+                    do {
+                        let cmt = try JSONDecoder().decode(CommentResponse.self, from: jsonData!)
+                        cmt.id = cmtDoct.documentID
+                        cmts.append(cmt)
+                    }catch let jsonError {
+                        print("Error serializing json:", jsonError)
+                    }
+                }
+                DispatchQueue.main.async {
+                    completion(cmts)
+                }
+                
+            } else {
+                print("User have no comment")
+            }
+        })
+    }
+   
 }
