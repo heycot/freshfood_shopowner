@@ -97,6 +97,7 @@ class  CommentServices {
     func getCommentByShopId(shopID: String, completion: @escaping ([CommentResponse]?) -> Void) {
         let db = Firestore.firestore()
         let docRef = db.collection("comment").whereField("shop_id", isEqualTo: shopID).limit(to: 30)
+        docRef.order(by: "update_date", descending: true)
 //            .order(by: "update_date", descending: true)
         
         docRef.getDocuments(completion: { (document, error) in
