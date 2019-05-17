@@ -60,6 +60,8 @@
 		23679F4C228D6DB100F427DD /* OneCommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23679F4B228D6DB100F427DD /* OneCommentController.swift */; };
 		23679F52228D7EF100F427DD /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23679F50228D7EF100F427DD /* CommentCell.swift */; };
 		23679F53228D7EF100F427DD /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23679F51228D7EF100F427DD /* CommentCell.xib */; };
+		23679F56228E5DB000F427DD /* NoCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23679F54228E5DB000F427DD /* NoCommentCell.swift */; };
+		23679F57228E5DB000F427DD /* NoCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23679F55228E5DB000F427DD /* NoCommentCell.xib */; };
 		2368A25E228BACBE00B6CB76 /* ItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2368A25D228BACBE00B6CB76 /* ItemService.swift */; };
 		2368A260228BADE100B6CB76 /* ItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2368A25F228BADE100B6CB76 /* ItemResponse.swift */; };
 		236E3501228285E00031E02B /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 236E3500228285E00031E02B /* SignUp.storyboard */; };
@@ -124,6 +126,8 @@
 		23679F4B228D6DB100F427DD /* OneCommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneCommentController.swift; sourceTree = "<group>"; };
 		23679F50228D7EF100F427DD /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		23679F51228D7EF100F427DD /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		23679F54228E5DB000F427DD /* NoCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCommentCell.swift; sourceTree = "<group>"; };
+		23679F55228E5DB000F427DD /* NoCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoCommentCell.xib; sourceTree = "<group>"; };
 		2368A25D228BACBE00B6CB76 /* ItemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemService.swift; sourceTree = "<group>"; };
 		2368A25F228BADE100B6CB76 /* ItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemResponse.swift; sourceTree = "<group>"; };
 		236E3500228285E00031E02B /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
@@ -405,6 +409,8 @@
 			children = (
 				23679F50228D7EF100F427DD /* CommentCell.swift */,
 				23679F51228D7EF100F427DD /* CommentCell.xib */,
+				23679F54228E5DB000F427DD /* NoCommentCell.swift */,
+				23679F55228E5DB000F427DD /* NoCommentCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -493,6 +499,7 @@
 				2332DD9B22827F40008F0CBE /* LaunchScreen.storyboard in Resources */,
 				23679F53228D7EF100F427DD /* CommentCell.xib in Resources */,
 				2332DD9822827F40008F0CBE /* Assets.xcassets in Resources */,
+				23679F57228E5DB000F427DD /* NoCommentCell.xib in Resources */,
 				232274F72287FF57002EE964 /* UserCommentCell.xib in Resources */,
 				2322750522883004002EE964 /* FoodImageCell.xib in Resources */,
 				2332DD9622827F3D008F0CBE /* Main.storyboard in Resources */,
@@ -617,6 +624,7 @@
 				236E35032282885B0031E02B /* LoginController.swift in Sources */,
 				2316DADF22897CEC00378745 /* CommentServices.swift in Sources */,
 				23075B56228294760088AB24 /* NotificationConstant.swift in Sources */,
+				23679F56228E5DB000F427DD /* NoCommentCell.swift in Sources */,
 				23075B6A228295C50088AB24 /* ExtensionUIView.swift in Sources */,
 				23075B952282D2050088AB24 /* MapManager.swift in Sources */,
 				23075B64228295900088AB24 /* ExtensionStackView.swift in Sources */,

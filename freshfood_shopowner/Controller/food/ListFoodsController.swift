@@ -11,8 +11,8 @@ import UIKit
 class ListFoodsController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var notification: UILabel!
     @IBOutlet weak var notificationHeight: NSLayoutConstraint!
+    @IBOutlet weak var notification: UILabel!
     
     var ShopItemList = [ShopItemResponse]()
     var shop = ShopResponse()
@@ -32,6 +32,7 @@ class ListFoodsController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
+        notificationHeight.constant = 0
         
         self.tableView.reloadData()
         tableView.estimatedRowHeight = UITableView.automaticDimension
@@ -56,11 +57,17 @@ class ListFoodsController: UIViewController {
         ShopItemService.instance.getListShopItem(shopID: shop.id ?? "") { (data) in
             guard let data = data else { return }
             
-            self.ShopItemList = data
-            self.tableView.reloadData()
-            
-            if isNew {
-                self.getListItem()
+            if data.count == 0 {
+                self.notificationHeight.constant = 30
+                self.notification.text = "No data to show"
+            } else {
+                
+                self.ShopItemList = data
+                self.tableView.reloadData()
+                
+                if isNew {
+                    self.getListItem()
+                }
             }
         }
     }

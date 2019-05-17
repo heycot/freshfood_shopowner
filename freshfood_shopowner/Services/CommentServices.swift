@@ -96,7 +96,8 @@ class  CommentServices {
     
     func getCommentByShopId(shopID: String, completion: @escaping ([CommentResponse]?) -> Void) {
         let db = Firestore.firestore()
-        let docRef = db.collection("comment").whereField("shop_id", isEqualTo: shopID)
+        let docRef = db.collection("comment").whereField("shop_id", isEqualTo: shopID).limit(to: 30)
+//            .order(by: "update_date", descending: true)
         
         docRef.getDocuments(completion: { (document, error) in
             if let document = document {
@@ -121,6 +122,26 @@ class  CommentServices {
                 print("User have no comment")
             }
         })
+    }
+    
+    func changeStatus(cmtID: String, status: Int, completion: @escaping (Bool?) -> Void) {
+        let db = Firestore.firestore()
+        
+        let values = ["status": status as Any] as [String : Any]
+        
+        db.collection("comment").document(cmtID).updateData(values) { err in
+            var result = true
+            if let err = err {
+                result = false
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+            
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
     }
    
 }

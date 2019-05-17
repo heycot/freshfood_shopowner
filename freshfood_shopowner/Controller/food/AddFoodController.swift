@@ -300,6 +300,33 @@ extension AddFoodController : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let share = UITableViewRowAction(style: .normal, title: "Report") { (action, indexPath) in
+            // share item at indexPath
+            let alert = UIAlertController(title: "Alert", message: "Are you sure to report this comment to admin", preferredStyle: UIAlertController.Style.alert)
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                CommentServices.instance.changeStatus(cmtID: self.comments[indexPath.row].id ?? "", status: 2, completion: { (data) in
+                    let alert = UIAlertController(title: "Success", message: "Report success", preferredStyle: UIAlertController.Style.alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    
+                    self.present(alert, animated: true)
+                })
+                
+            }))
+            
+            self.present(alert, animated: true)
+        }
+        
+        share.backgroundColor = .red
+        
+        return [share]
+    }
+    
 }
 
 extension AddFoodController : UICollectionViewDelegate, UICollectionViewDataSource {

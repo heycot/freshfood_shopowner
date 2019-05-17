@@ -114,6 +114,8 @@ enum SegueIdentifier: String {
     case listFoodToAdd = "ListFoodToAdd"
     case newFoodToList = "AddFoodToList"
     
+    case listCommentToOne = "ListCommentToOne"
+    
     
     //account
     case accountToPassword = "AccountToPassword"
@@ -128,6 +130,8 @@ enum  CellIdentifier: String {
     case account = "AccountCell"
     case foodImage = "FoodImageCell"
     case newFood = "NewFoodCell"
+    case comment = "CommentCell"
+    case noComment = "NoCommentCell"
 }
 
 

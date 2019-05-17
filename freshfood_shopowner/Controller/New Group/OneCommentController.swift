@@ -12,7 +12,6 @@ import IQKeyboardManagerSwift
 
 class OneCommentController: UIViewController {
     @IBOutlet weak var shopItemName: UILabel!
-    @IBOutlet weak var address: UILabel!
     
     @IBOutlet weak var ratingview: CosmosView!
     @IBOutlet weak var titleCmt: UITextField!
@@ -20,8 +19,6 @@ class OneCommentController: UIViewController {
     @IBOutlet weak var doneBtn: UIBarButtonItem!
     
     var shopitemId = 0
-    var nameShop = ""
-    var addressShop = ""
     var isView = true
     var shopitem = ShopItemResponse()
     var lastComment = CommentResponse()
@@ -30,15 +27,12 @@ class OneCommentController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
         
-        shopItemName.text = nameShop
-        address.text = addressShop
-        
         setUpUI()
         handlerkeyboard()
         viewLastComment()
         
         if isView {
-            doneBtn.title = "Report"
+//            doneBtn.title = "Report"
             getUserInfor(id: lastComment.user_id ?? "")
             disableView()
         } else {
@@ -50,14 +44,14 @@ class OneCommentController: UIViewController {
     func getUserInfor(id: String) {
         AuthServices.instance.getProfile(userID: id) { (data) in
             guard let data = data else { return }
-            self.shopItemName.text = data.name
+            self.shopItemName.text =  "User: \(data.name ?? "")"
         }
     }
 
     func getShopItemInfor(id: String) {
         ShopItemService.instance.getOneById(shop_item_id: id) { (data) in
             guard let data = data else { return }
-            self.shopItemName.text = data.name
+            self.shopItemName.text = "Food: \(data.name ?? "")"
         }
     }
     
@@ -73,9 +67,8 @@ class OneCommentController: UIViewController {
     }
     
     func viewLastComment() {
-        
-        ratingview.rating = lastComment.rating ?? 3.0
         titleCmt.text = lastComment.title ?? ""
+        ratingview.rating = lastComment.rating ?? 3.0
         content.text = lastComment.content ?? ""
         content.textColor = .black
     }
@@ -91,7 +84,6 @@ class OneCommentController: UIViewController {
         titleCmt.delegate = self
         content.delegate = self
         
-        address.setBottomBorder(color: APP_COLOR)
         content.setBorder(with: BORDER_TEXT_COLOR)
         content.setBorderRadious(radious: 10)
         //        ratingview.setBottomBorder(color: .darkGray)
