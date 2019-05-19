@@ -60,7 +60,7 @@ class FoodCell: UITableViewCell {
             if rating < 2.5 {
                 ratingTxt.textColor = .red
             } else if rating >= 4 {
-                ratingTxt.textColor = .green
+                ratingTxt.textColor =  APP_COLOR
             } else if rating <= 5  {
                 ratingTxt.textColor = .orange
             }

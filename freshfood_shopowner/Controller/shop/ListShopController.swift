@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import Firebase
 import FirebaseCore
+import PKHUD
 
 class ListShopController: UIViewController {
     
@@ -25,6 +26,7 @@ class ListShopController: UIViewController {
         navigationController?.navigationBar.barTintColor = APP_COLOR
         setupCurrentLocation()
         setupView()
+        getAllShop()
     }
     
     func setupView() {
@@ -59,9 +61,11 @@ class ListShopController: UIViewController {
     }
     
     func getAllShop() {
+        HUD.show(.progress)
         ShopService.instance.getListShop() { (data) in
             guard let data = data else { return }
             
+            HUD.hide()
             self.listItem = data
             self.tableView.reloadData()
         }
@@ -138,7 +142,6 @@ extension ListShopController: UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getAllShop()
         super.viewWillAppear(true)
         tableView.reloadData()
     }

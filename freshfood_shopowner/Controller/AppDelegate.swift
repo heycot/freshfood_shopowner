@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import Firebase
 import IQKeyboardManagerSwift
 import GoogleMaps
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,7 +25,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(GOOGLE_API_KEY)
 //        GMSPlacesClient.provideAPIKey(GOOGLE_API_KEY)
         
+//        self.splahScreen()
         return true
+    }
+    
+    private func splahScreen() {
+        let lanuchScreenVC = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
+        
+        let rootVC = lanuchScreenVC.instantiateInitialViewController() //(withIdentifier: "splashContrller")
+        self.window?.rootViewController = rootVC
+        self.window?.makeKeyAndVisible()
+        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(dismissSplashController), userInfo: nil, repeats: false)
+    }
+    
+    @objc func dismissSplashController() {
+        let mainVC = UIStoryboard.init(name: "Main", bundle: nil)
+        let rootVC = mainVC.instantiateViewController(withIdentifier: "initController")
+        
+        self.window?.rootViewController = rootVC
+        self.window?.makeKeyAndVisible()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
