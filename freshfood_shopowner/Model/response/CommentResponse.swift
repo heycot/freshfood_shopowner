@@ -13,6 +13,7 @@ class CommentResponse: Decodable {
     var id: String?
     var user_id: String?
     var shopitem_id: String?
+    var shop_id: String?
     var title: String?
     var content: String?
     var create_date: TimeInterval?

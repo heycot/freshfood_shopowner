@@ -28,15 +28,16 @@ class ListShopController: UIViewController {
     }
     
     func setupView() {
-        navigationController?.navigationBar.barTintColor = APP_COLOR
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.tableFooterView = UIView()
-        
-        self.tableView.reloadData()
-        tableView.estimatedRowHeight = UITableView.automaticDimension
-        tableView.rowHeight = 90
+        ShopService.instance.UpdateShopItemByShop()
+//        navigationController?.navigationBar.barTintColor = APP_COLOR
+//
+//        tableView.delegate = self
+//        tableView.dataSource = self
+//        tableView.tableFooterView = UIView()
+//
+//        self.tableView.reloadData()
+//        tableView.estimatedRowHeight = UITableView.automaticDimension
+//        tableView.rowHeight = 90
         
     }
     
