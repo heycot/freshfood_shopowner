@@ -24,7 +24,7 @@ struct ShopItemResponse: Decodable{
     var create_date: TimeInterval?
     var shop_id:    String?
     var shop_name:  String?
-    var latitue:    Double?
+    var latitude:    Double?
     var longitude : Double?
     var time_open : String?
     var time_close: String?

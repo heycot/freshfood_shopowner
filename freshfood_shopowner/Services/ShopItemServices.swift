@@ -19,6 +19,9 @@ class ShopItemService {
         
         let db = Firestore.firestore()
         let docRef = db.collection("shop_item").whereField("shop_id", isEqualTo: shopID)
+        docRef.order(by: "rating", descending: true)
+        
+        
         docRef.getDocuments(completion: { (document, error) in
             if let document = document {
                 var shopItemList = [ShopItemResponse]()
@@ -35,7 +38,6 @@ class ShopItemService {
                         print("Error serializing json:", jsonError)
                     }
                 }
-//                shopItemList.sort(by: {$0.create_date >= $1.create_date})
                 DispatchQueue.main.async {
                     completion(shopItemList)
                 }
