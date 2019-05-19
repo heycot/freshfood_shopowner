@@ -44,7 +44,8 @@ class AccountController: UIViewController {
     
     func viewInfor() {
 
-        showAvatar()
+        let folder = ReferenceImage.user.rawValue + "\(user.avatar ?? "")"
+        userAvatar.loadImageFromFirebase(folder: folder)
         userAvatar.setRounded(color: .white)
         userName.text = user.name!
         userDescription.text = "newbee - Top 1000 - 10 Followers"
@@ -53,15 +54,6 @@ class AccountController: UIViewController {
         userName.setboldSystemFontOfSize(size: 18)
     }
     
-    func showAvatar() {
-        let fodler = ReferenceImage.user.rawValue  + "/" + user.avatar!
-        ImageServices.instance.downloadImages(folderPath: fodler, success: { (data) in
-            
-            self.userAvatar.image = data
-        }) { (err) in
-            print(err)
-        }
-    }
     
     func setupDetailInfor() {
         
@@ -148,9 +140,6 @@ class AccountController: UIViewController {
         }
     }
     
-//    func convertCommentDTOToComment(commentDto : CommentDTOResponse) -> CommentResponse {
-//        return CommentResponse(id: commentDto.id!, title: commentDto.title!, content: commentDto.content!, create_date: commentDto.createDate!, user: user, rating: commentDto.rating!)
-//    }
 }
 
 extension AccountController: UITableViewDelegate, UITableViewDataSource {
@@ -213,18 +202,38 @@ extension AccountController: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let share = UITableViewRowAction(style: .normal, title: title) { (action, indexPath) in
+            // share item at indexPath
+            let alert = UIAlertController(title: "Alert", message: "Are you sure want to delet this comment?", preferredStyle: UIAlertController.Style.alert)
             
-//            CommentServices.shared.deleteOne(id: listComment[indexPath.row].id!) { (data) in
-//                guard let data = data else { return }
-//
-//                if data == 1 {
-//                    self.listComment.remove(at: indexPath.row)
-//                    self.tableView.deleteRows(at: [indexPath], with: .bottom)
-//                }
-//            }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                
+                CommentServices.instance.deleteOne(cmtID: self.listComment[indexPath.row].id ?? "", completion: { (data) in
+                    guard let data = data else { return }
+                    
+                    if data {
+                        
+                        self.listComment.remove(at: indexPath.row)
+                        self.tableView.deleteRows(at: [indexPath], with: .bottom)
+                    } else {
+                        let alert = UIAlertController(title: "Failed", message: "Please try next time", preferredStyle: UIAlertController.Style.alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                        self.present(alert, animated: true)
+                    }
+                })
+            }))
+            
+            self.present(alert, animated: true)
         }
+        
+        share.backgroundColor = .red
+        
+        return [share]
     }
+    
     
 }

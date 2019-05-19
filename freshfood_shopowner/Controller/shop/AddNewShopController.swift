@@ -147,6 +147,7 @@ class AddNewShopController: UIViewController {
             } else {
                 ShopService.instance.editShop(shop: self.shop) { (data) in
                     guard let data = data else { return }
+                    HUD.hide()
                     
                     if data {
                         self.showNotification(mess: "Edit success", color: APP_COLOR)
@@ -172,7 +173,11 @@ class AddNewShopController: UIViewController {
         ImageServices.instance.uploadMedia(image: image!, reference: reference, completion: { (data) in
             guard let data = data else { return }
             self.shop.avatar = data
-            self.stopSpinnerActivity()
+            HUD.hide()
+            
+            ShopService.instance.UpdateShopItemByShop(shop: self.shop, completion: { (data) in
+                
+            })
         })
     }
     

@@ -12,7 +12,7 @@ import Foundation
 class CommentResponse: Decodable {
     var id: String?
     var user_id: String?
-    var shopitem_id: String?
+    var shop_item_id: String?
     var shop_id: String?
     var title: String?
     var content: String?
@@ -35,7 +35,7 @@ class CommentResponse: Decodable {
         self.create_date = create_date.timeIntervalSince1970
         self.rating = rating
         self.user_id = user_id
-        self.shopitem_id = shopitem_id
+        self.shop_item_id = shopitem_id
         self.status = status
         self.update_date = update_date.timeIntervalSince1970
     }

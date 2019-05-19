@@ -49,4 +49,27 @@ class CustomImageView: UIImageView {
     }
     
     
+    func loadImageFromFirebase(folder: String) {
+        
+        imageUrlString = folder
+        
+        
+        image = nil
+        
+        if let imageFromCache = imageCache.object(forKey: folder as NSString) {
+            self.image = imageFromCache
+            return
+        }
+        
+        ImageServices.instance.downloadImages(folderPath: folder, success: { (data) in
+            if data != nil {
+                self.image = data
+            }
+            
+            imageCache.setObject(data, forKey: folder as NSString)
+        }) { (err) in
+            print("something wrong with image folder")
+        }
+    }
+    
 }

@@ -34,7 +34,7 @@ class UserCommentCell: UITableViewCell {
         if isUser {
             getUserInfor(id: cmt.user_id ?? "")
         } else {
-            getShopItemInfor(id: cmt.shopitem_id ?? "")
+            getShopItemInfor(id: cmt.shop_item_id ?? "")
         }
     }
     

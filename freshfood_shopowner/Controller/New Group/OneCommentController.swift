@@ -36,7 +36,7 @@ class OneCommentController: UIViewController {
             getUserInfor(id: lastComment.user_id ?? "")
             disableView()
         } else {
-            getShopItemInfor(id: lastComment.shopitem_id ?? "")
+            getShopItemInfor(id: lastComment.shop_item_id ?? "")
         }
     }
     

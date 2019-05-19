@@ -144,5 +144,23 @@ class  CommentServices {
             }
         }
     }
+    
+    func deleteOne(cmtID: String, completion: @escaping (Bool?) -> Void) {
+        let db = Firestore.firestore()
+        
+        db.collection("comment").document(cmtID).delete() { err in
+            var result = true
+            if let err = err {
+                result = false
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+            
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+    }
    
 }
