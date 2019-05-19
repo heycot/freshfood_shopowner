@@ -9,21 +9,26 @@
 import Foundation
 
 struct ShopItemResponse: Decodable{
-    var id: String?
-    var shop_id: String?
-    var price: Double?
-    var status: Int?
-    var rating: Double?
+    var id:         String?
+    var price:      Double?
+    var status:     Int?
+    var rating:     Double?
     var comment_number: Int?
     var favorites_number: Int?
-    var name: String?
-    var shop_name: String?
-    var avatar: String?
-    var unit : String?
-    var item_id: String?
-    var keywords: [String]?
-    var images : [String]?
+    var name:       String?
+    var avatar:     String?
+    var unit :      String?
+    var item_id:    String?
+    var keywords:   [String]?
+    var images :    [String]?
     var create_date: TimeInterval?
+    var shop_id:    String?
+    var shop_name:  String?
+    var latitue:    Double?
+    var longitude : Double?
+    var time_open : String?
+    var time_close: String?
+    var phone     : String?
     
     // Constructor.
     init(id: String, shop_id: String, price: Double, status: Int, rating: Double, comment_number: Int, favorites_number: Int, name: String, shop_name: String, avatar: String, unit : String, item_id: String, keywords: [String], images: [String]) {
