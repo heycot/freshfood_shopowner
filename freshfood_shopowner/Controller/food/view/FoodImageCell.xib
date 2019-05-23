@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="199" height="148"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b5p-P9-b2A">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b5p-P9-b2A" customClass="CustomImageView" customModule="freshfood_shopowner" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="199" height="148"/>
                     </imageView>
                 </subviews>

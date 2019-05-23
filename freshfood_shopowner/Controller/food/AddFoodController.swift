@@ -15,11 +15,8 @@ class AddFoodController: UIViewController {
 
     @IBOutlet weak var notification: UILabel!
     @IBOutlet weak var notificationHeight: NSLayoutConstraint!
-    @IBOutlet weak var newCollectionView: UICollectionView!
-    @IBOutlet weak var newCollectionHeight: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var oldCollectionView: UICollectionView!
-    @IBOutlet weak var oldCollectionHeight: NSLayoutConstraint!
     
     @IBOutlet weak var nameTxt: UITextField!
     @IBOutlet weak var priceTxt: UITextField!
@@ -28,9 +25,7 @@ class AddFoodController: UIViewController {
     @IBOutlet weak var photoLB: UILabel!
     @IBOutlet weak var doneBtn: UIBarButtonItem!
     
-    var fileName = ""
     var images = [UIImage]()
-    var oldImages = [UIImage]()
     var imageNames = [String]()
     
     var itemList = [ItemResponse]()
@@ -61,15 +56,11 @@ class AddFoodController: UIViewController {
         priceTxt.text = String(format: "%0.2f", item.price ?? 25000.0)
         unitTxt.text = item.unit
         getAllComment()
-        if (item.images?.count)! > 0 {
-            oldCollectionHeight.constant = 70
-        }
     }
     
     
     func registerView() {
         tableView.register(UINib(nibName: CellIdentifier.userComment.rawValue, bundle: nil), forCellReuseIdentifier: CellIdentifier.userComment.rawValue)
-        newCollectionView.register(UINib(nibName: CellIdentifier.foodImage.rawValue, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.foodImage.rawValue)
         oldCollectionView.register(UINib(nibName: CellIdentifier.foodImage.rawValue, bundle: nil), forCellWithReuseIdentifier: CellIdentifier.foodImage.rawValue)
     }
     
@@ -79,9 +70,6 @@ class AddFoodController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
-        
-        newCollectionView.delegate = self
-        newCollectionView.dataSource = self
         
         oldCollectionView.delegate = self
         oldCollectionView.dataSource = self
@@ -95,18 +83,22 @@ class AddFoodController: UIViewController {
             notificationHeight.constant = 30
         } else {
             self.doneBtn.isEnabled = false
-            HUD.flash(.success, delay: 1.5)
+            HUD.show(.progress)
             
             saveDataToItem()
             if isNew {
                 ShopItemService.instance.addOne(item: item) { (data) in
                     guard let data = data else { return }
+                    
+                    HUD.hide()
                     self.item.id = data
                     self.handleAfterUpdateData(isSuccess: true)
                 }
             } else {
                 ShopItemService.instance.editOne(item: item) { (data) in
                     guard let data = data else { return }
+                    
+                    HUD.hide()
                     self.handleAfterUpdateData(isSuccess: data)
                 }
             }
@@ -114,8 +106,6 @@ class AddFoodController: UIViewController {
     }
     
     func handleAfterUpdateData(isSuccess: Bool) {
-        
-        
         if isSuccess {
             self.uploadImages()
             
@@ -194,7 +184,7 @@ extension AddFoodController {
 //extention for images {
 extension AddFoodController {
     
-    @IBAction func addImagePressed(_ sender: Any) {
+    func addImagePressed() {
         
         var config = YPImagePickerConfiguration()
         config.library.maxNumberOfItems = 10
@@ -213,8 +203,7 @@ extension AddFoodController {
                 }
             }
             
-            self.newCollectionHeight.constant = 70
-            self.newCollectionView.reloadData()
+            self.oldCollectionView.reloadData()
             picker.dismiss(animated: true, completion: nil)
         }
     }
@@ -330,19 +319,30 @@ extension AddFoodController : UITableViewDelegate, UITableViewDataSource {
 }
 
 extension AddFoodController : UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        addImagePressed()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == newCollectionView ? images.count : item.images?.count ?? 0
+        return 1 + images.count + (item.images?.count ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.foodImage.rawValue, for: indexPath) as! FoodImageCell
         
-        if collectionView == newCollectionView {
-            cell.image.image = images[indexPath.row]
+        if indexPath.row == 0 {
+            cell.image.image = UIImage(named: "add-image")
         } else {
-           
-            let folder = ReferenceImage.shopItem.rawValue + item.id! + "/\(item.images?[indexPath.row] ?? "")"
-            cell.updateView(folder: folder)
+            
+            if indexPath.row <= images.count {
+                cell.image.image = images[indexPath.row - 1]
+            } else {
+                let index = indexPath.row - images.count - 1
+                
+                let folder = ReferenceImage.shopItem.rawValue + item.id! + "/\(item.images?[index] ?? "")"
+                cell.updateView(folder: folder)
+            }
         }
         
         return cell
@@ -351,7 +351,12 @@ extension AddFoodController : UICollectionViewDelegate, UICollectionViewDataSour
 
 extension AddFoodController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 120, height: 70)
+        
+        if indexPath.row == 0 {
+            return CGSize(width: 80, height: 100)
+        } else {
+            return CGSize(width: 120, height: 100)
+        }
     }
 }
 
