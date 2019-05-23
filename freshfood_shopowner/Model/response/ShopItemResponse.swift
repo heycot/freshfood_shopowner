@@ -29,6 +29,8 @@ struct ShopItemResponse: Decodable{
     var time_open : String?
     var time_close: String?
     var phone     : String?
+    var address:    String?
+    
     
     // Constructor.
     init(id: String, shop_id: String, price: Double, status: Int, rating: Double, comment_number: Int, favorites_number: Int, name: String, shop_name: String, avatar: String, unit : String, item_id: String, keywords: [String], images: [String]) {
@@ -50,5 +52,18 @@ struct ShopItemResponse: Decodable{
     
     init() {
         self.init(id: "", shop_id: "", price: 0.0, status: 1, rating: 0, comment_number: 0, favorites_number: 0, name: "", shop_name: "", avatar: "", unit: "", item_id: "", keywords: [], images: [])
+    }
+    
+    
+    func convertToSearchResponse() -> SearchResponse {
+        var search = SearchResponse()
+        
+        search.is_shop = 0
+        search.entity_id = self.id
+        search.address = self.address
+        search.entity_name = "\(self.name ?? "") - \(self.shop_name ?? "")"
+        search.avatar = self.avatar
+        
+        return search
     }
 }

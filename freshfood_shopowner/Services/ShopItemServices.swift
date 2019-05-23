@@ -48,6 +48,8 @@ class ShopItemService {
         })
     }
     
+    
+    
     func getOneById( shop_item_id: String,  completion: @escaping (ShopItemResponse?) -> Void) {
         
         let db = Firestore.firestore()

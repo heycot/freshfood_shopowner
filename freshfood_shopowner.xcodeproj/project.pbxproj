@@ -67,6 +67,8 @@
 		236E3501228285E00031E02B /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 236E3500228285E00031E02B /* SignUp.storyboard */; };
 		236E35032282885B0031E02B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236E35022282885B0031E02B /* LoginController.swift */; };
 		2383FCF22287B950004A403A /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2383FCF12287B950004A403A /* ImageServices.swift */; };
+		23A786AC229645AE00897A2F /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A786AB229645AE00897A2F /* SearchResponse.swift */; };
+		23A786AE229645DB00897A2F /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A786AD229645DB00897A2F /* SearchService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +135,8 @@
 		236E3500228285E00031E02B /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		236E35022282885B0031E02B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		2383FCF12287B950004A403A /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
+		23A786AB229645AE00897A2F /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
+		23A786AD229645DB00897A2F /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		2F0DE686F0108FD94A40D130 /* Pods_freshfood_shopowner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_freshfood_shopowner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80208177153C8BB3C9A1E25 /* Pods-freshfood_shopowner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freshfood_shopowner.release.xcconfig"; path = "Pods/Target Support Files/Pods-freshfood_shopowner/Pods-freshfood_shopowner.release.xcconfig"; sourceTree = "<group>"; };
 		EDFE7BE66087E41D0EF6BA31 /* Pods-freshfood_shopowner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freshfood_shopowner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-freshfood_shopowner/Pods-freshfood_shopowner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 				2337F7772286E4E700D9E35F /* ShopItemResponse.swift */,
 				233B40A6228941550041D562 /* CommentResponse.swift */,
 				2368A25F228BADE100B6CB76 /* ItemResponse.swift */,
+				23A786AB229645AE00897A2F /* SearchResponse.swift */,
 			);
 			path = response;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				2383FCF12287B950004A403A /* ImageServices.swift */,
 				2316DADE22897CEC00378745 /* CommentServices.swift */,
 				2368A25D228BACBE00B6CB76 /* ItemService.swift */,
+				23A786AD229645DB00897A2F /* SearchService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -615,6 +621,7 @@
 				233B40A7228941550041D562 /* CommentResponse.swift in Sources */,
 				23075B902282CACC0088AB24 /* AddNewShopController.swift in Sources */,
 				23075B622282957E0088AB24 /* ExtensionTextField.swift in Sources */,
+				23A786AE229645DB00897A2F /* SearchService.swift in Sources */,
 				2337F77A2286EE0A00D9E35F /* ShopItemServices.swift in Sources */,
 				2322750422883004002EE964 /* FoodImageCell.swift in Sources */,
 				23075B9D2282D2680088AB24 /* MapRequestBodyDirection.swift in Sources */,
@@ -631,6 +638,7 @@
 				23075B5A228294C90088AB24 /* GeneralValueItem.swift in Sources */,
 				2337F7742286DD0800D9E35F /* ListFoodsController.swift in Sources */,
 				23075B542282945E0088AB24 /* Constant.swift in Sources */,
+				23A786AC229645AE00897A2F /* SearchResponse.swift in Sources */,
 				2337F7762286DE9300D9E35F /* FoodCell.swift in Sources */,
 				2337F7782286E4E700D9E35F /* ShopItemResponse.swift in Sources */,
 				232274F02287FB3E002EE964 /* ChangePasswordController.swift in Sources */,
@@ -728,7 +736,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -783,7 +791,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -800,7 +808,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VZVQ3SLGYK;
+				DEVELOPMENT_TEAM = T23PE6R3CV;
 				INFOPLIST_FILE = freshfood_shopowner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -812,7 +820,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "freshfood_shopowner/freshfood_shopowner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -823,7 +831,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VZVQ3SLGYK;
+				DEVELOPMENT_TEAM = T23PE6R3CV;
 				INFOPLIST_FILE = freshfood_shopowner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -834,7 +842,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "freshfood_shopowner/freshfood_shopowner-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
