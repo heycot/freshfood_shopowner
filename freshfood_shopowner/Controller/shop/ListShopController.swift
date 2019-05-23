@@ -118,6 +118,7 @@ extension ListShopController: UITableViewDataSource {
             return handleChangeStatus(title: "Enable", message: "Are you sure want to enable this shop?", status: 1, color: APP_COLOR)
         }
         
+        
     }
     
     func handleChangeStatus(title: String, message: String, status: Int, color: UIColor) -> [UITableViewRowAction]? {
@@ -146,9 +147,15 @@ extension ListShopController: UITableViewDataSource {
             self.present(alert, animated: true)
         }
         
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            
+            self.performSegue(withIdentifier: SegueIdentifier.listShopToNew.rawValue, sender: indexPath.row)
+        }
+        
+        edit.backgroundColor = .blue
         share.backgroundColor = color
         
-        return [share]
+        return [edit, share]
     }
     
     override func viewWillAppear(_ animated: Bool) {

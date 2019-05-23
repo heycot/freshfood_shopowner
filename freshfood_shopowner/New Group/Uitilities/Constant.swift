@@ -101,7 +101,7 @@ let HEADER_COLOR = UIColor(red: CGFloat(82/255.0), green: CGFloat(196/255.0), bl
 
 let BORDER_TEXT_COLOR = UIColor(red: CGFloat(154/255.0), green: CGFloat(154/255.0), blue: CGFloat(154/255.0), alpha: CGFloat(0.25))
 
-
+let EDIT_COLOR = UIColor(red: CGFloat(0.0), green: CGFloat(0.0), blue: CGFloat(1.0), alpha: CGFloat(0.25))
 
 enum SegueIdentifier: String {
     case loginToView = "LoginToListShop"
