@@ -10,15 +10,15 @@ import UIKit
 
 class FoodImageCell: UICollectionViewCell {
 
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var image: CustomImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    func updateView(img: UIImage) {
-        image.image = img
+    func updateView(folder: String) {
+        image.displayImage(folderPath: folder)
     }
 
 }

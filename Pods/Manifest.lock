@@ -63,6 +63,9 @@ PODS:
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.1)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseUI/Storage (5.2.2):
+    - Firebase/Storage (~> 5.0)
+    - SDWebImage (~> 4.0)
   - GoogleAppMeasurement (5.4.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -120,6 +123,9 @@ PODS:
   - PKHUD (5.2.0)
   - Protobuf (3.6.1)
   - PryntTrimmerView (3.0.0)
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
   - SteviaLayout (4.4.3)
   - YPImagePicker (3.5.3):
     - PryntTrimmerView (~> 3.0.0)
@@ -133,6 +139,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Firestore
   - Firebase/Storage
+  - FirebaseUI/Storage
   - GoogleMaps
   - IQKeyboardManagerSwift
   - ObjectMapper
@@ -152,6 +159,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseInstanceID
     - FirebaseStorage
+    - FirebaseUI
     - GoogleAppMeasurement
     - GoogleMaps
     - GoogleUtilities
@@ -165,6 +173,7 @@ SPEC REPOS:
     - PKHUD
     - Protobuf
     - PryntTrimmerView
+    - SDWebImage
     - SteviaLayout
     - YPImagePicker
 
@@ -180,6 +189,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 58043a1c2d2c91efdaa8d8f385cdbaa2ce750cfe
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseStorage: 3d22c041370593e639fba013d1eb698a8dae2881
+  FirebaseUI: 09519bf436a055cd696bf68687d624423150e4c0
   GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
@@ -193,9 +203,10 @@ SPEC CHECKSUMS:
   PKHUD: dd5357ac65f26115c35c4a68e9b328053326c5fe
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   SteviaLayout: ae5ee66101e03607a93c9b3773b84ab7ba7b3d17
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: da33d09b15f20ce2dfdc21eebf3e79325bab01e9
+PODFILE CHECKSUM: 198283602590c5c840b1d323c8f897a3361a698d
 
 COCOAPODS: 1.5.2

@@ -342,11 +342,7 @@ extension AddFoodController : UICollectionViewDelegate, UICollectionViewDataSour
         } else {
            
             let folder = ReferenceImage.shopItem.rawValue + item.id! + "/\(item.images?[indexPath.row] ?? "")"
-            ImageServices.instance.downloadImages(folderPath: folder, success: { (data) in
-                 cell.image.image = data
-            }) { (error) in
-                print("error load image : \(error)")
-            }
+            cell.updateView(folder: folder)
         }
         
         return cell

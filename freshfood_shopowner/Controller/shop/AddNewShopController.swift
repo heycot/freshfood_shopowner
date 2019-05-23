@@ -25,7 +25,7 @@ class AddNewShopController: UIViewController {
     @IBOutlet weak var notificationHeight: NSLayoutConstraint!
     
     @IBOutlet weak var changeAvatarBtn: UIButton!
-    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var avatar: CustomImageView!
     @IBOutlet weak var checkFoodsBtn: UIButton!
     
     var locationManager = CLLocationManager()
@@ -69,11 +69,8 @@ class AddNewShopController: UIViewController {
     
     func showImage(shop: ShopResponse) {
         let folderPath = ReferenceImage.shop.rawValue + "/\(shop.id ?? "" )/\(shop.avatar ?? "")"
-        ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
-            self.avatar.image = data
-        }) { (error) in
-            print("something wrong with url imgae")
-        }
+        
+        self.avatar.displayImage(folderPath: folderPath)
     }
     
     

@@ -45,7 +45,7 @@ class AccountController: UIViewController {
     func viewInfor() {
 
         let folder = ReferenceImage.user.rawValue + "\(user.avatar ?? "")"
-        userAvatar.loadImageFromFirebase(folder: folder)
+        userAvatar.displayImage(folderPath: folder)
         userAvatar.setRounded(color: .white)
         userName.text = user.name!
         userDescription.text = "newbee - Top 1000 - 10 Followers"

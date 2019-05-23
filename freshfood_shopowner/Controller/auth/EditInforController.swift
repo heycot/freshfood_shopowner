@@ -20,7 +20,7 @@ class EditInforController: UIViewController {
     @IBOutlet weak var phoneTxt: UITextField!
     @IBOutlet weak var birthdayTxt: UITextField!
     @IBOutlet weak var addressTxt: UITextField!
-    @IBOutlet weak var avatar : UIImageView!
+    @IBOutlet weak var avatar : CustomImageView!
     
     @IBOutlet weak var notiHeight: NSLayoutConstraint!
     
@@ -63,12 +63,7 @@ class EditInforController: UIViewController {
     
     func viewAvatar() {
         let folder = ReferenceImage.user.rawValue + "\(user.avatar ?? "")"
-        
-        ImageServices.instance.downloadImages(folderPath: folder, success: { (data) in
-            self.avatar.image = data
-        }) { (err) in
-            print(err)
-        }
+        self.avatar.displayImage(folderPath: folder)
     }
     
     

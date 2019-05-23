@@ -22,7 +22,7 @@ class ShopCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBOutlet weak var shopImage: UIImageView!
+    @IBOutlet weak var shopImage: CustomImageView!
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var shopAddress: UILabel!
     @IBOutlet weak var infor: UILabel!
@@ -48,11 +48,7 @@ class ShopCell: UITableViewCell {
     
     func showImage(id: String, avatar: String) {
         let folderPath = ReferenceImage.shop.rawValue + "/\(id)/\(avatar)"
-        ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
-            self.shopImage.image = data
-        }) { (error) in
-            print("something wrong with url imgae")
-        }
+        self.shopImage.displayImage(folderPath: folderPath)
     }
 
 }

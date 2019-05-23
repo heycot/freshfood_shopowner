@@ -10,7 +10,7 @@ import UIKit
 
 class FoodCell: UITableViewCell {
     
-    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var avatar: CustomImageView!
     @IBOutlet weak var nameTxt: UILabel!
     @IBOutlet weak var priceTxt: UILabel!
     @IBOutlet weak var ratingTxt: UILabel!
@@ -27,8 +27,7 @@ class FoodCell: UITableViewCell {
     
     
     func updateView(item: ShopItemResponse) {
-        let priceFormat = (item.price?.formatPrice())!
-        let price = "VND " + String(priceFormat).replace(target: "$", withString: "")    + "/\(item.unit!)"
+        let price = (item.price?.formatPrice() ?? "") + "/\(item.unit!)"
         
         showImage(id: item.id ?? "", avatar: item.avatar ?? "")
         nameTxt.text = item.name
@@ -70,11 +69,7 @@ class FoodCell: UITableViewCell {
     
     func showImage(id: String, avatar: String)  {
         let folderPath = ReferenceImage.shopItem.rawValue + "/\(id)/\(avatar)"
-        ImageServices.instance.downloadImages(folderPath: folderPath, success: { (data) in
-            self.avatar.image = data
-        }) { (error) in
-            print("something wrong with url imgae")
-        }
+        self.avatar.displayImage(folderPath: folderPath)
     }
 
 }
