@@ -107,8 +107,10 @@ enum SegueIdentifier: String {
     case loginToView = "LoginToListShop"
     case loginToSignup = "LoginToSignUP"
     case signupToListShop = "SignUpToListShop"
+    
     case listShopToNew = "ListShopToNew"
     case shoptoListFood = "ShopToListFoods"
+    case listShopToFood = "ListShopToFood"
     
     case listFoodToOne = "ListFoodToOne"
     case listFoodToAdd = "ListFoodToAdd"

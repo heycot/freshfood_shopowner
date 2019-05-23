@@ -43,6 +43,10 @@ class ListShopController: UIViewController {
         
     }
     
+    @IBAction func editBtnPressed(_ sender: Any) {
+        
+    }
+    
     @IBAction func addBtnPressed(_ sender: Any) {
         self.performSegue(withIdentifier: SegueIdentifier.listShopToNew.rawValue, sender: nil)
     }
@@ -58,6 +62,11 @@ class ListShopController: UIViewController {
                 vc?.isNew = false
                 vc?.shop = listItem[index]
             }
+        } else if segue.destination is ListFoodsController {
+            
+            let index = sender as! Int
+            let vc = segue.destination as? ListFoodsController
+            vc?.shop = listItem[index]
         }
     }
     
@@ -77,7 +86,7 @@ class ListShopController: UIViewController {
 extension ListShopController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.performSegue(withIdentifier: SegueIdentifier.listShopToNew.rawValue, sender: indexPath.row)
+        self.performSegue(withIdentifier: SegueIdentifier.listShopToFood.rawValue, sender: indexPath.row)
     }
 }
 

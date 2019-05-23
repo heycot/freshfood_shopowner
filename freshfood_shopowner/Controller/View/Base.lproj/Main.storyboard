@@ -208,7 +208,12 @@
                         <viewLayoutGuide key="safeArea" id="zYy-9e-aa6"/>
                     </view>
                     <navigationItem key="navigationItem" id="rcQ-Io-JjK">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="epn-Ss-HJ7">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="E5E-id-K9W">
+                            <connections>
+                                <action selector="editBtnPressed:" destination="26J-nC-1jE" id="mf3-mr-05j"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="epn-Ss-HJ7">
                             <connections>
                                 <action selector="addBtnPressed:" destination="26J-nC-1jE" id="ggz-uU-6z5"/>
                             </connections>
@@ -217,6 +222,7 @@
                     <connections>
                         <outlet property="tableView" destination="PW0-OX-cpr" id="wtV-RV-rHQ"/>
                         <segue destination="mlr-eN-Vad" kind="show" identifier="ListShopToNew" id="Sa7-wS-cnP"/>
+                        <segue destination="x0l-ka-3wc" kind="show" identifier="ListShopToFood" id="PSi-wn-ztY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bWH-uu-2dX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -425,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlY-62-Xoa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4359.1999999999998" y="826.23688155922048"/>
+            <point key="canvasLocation" x="4406" y="317"/>
         </scene>
         <!--List Foods Controller-->
         <scene sceneID="ZvN-EP-6yE">
@@ -1633,6 +1639,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="QDB-Xb-QPq"/>
+        <segue reference="PSi-wn-ztY"/>
         <segue reference="9KN-9F-7vU"/>
     </inferredMetricsTieBreakers>
 </document>
