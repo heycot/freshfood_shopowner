@@ -21,6 +21,8 @@ class CommentCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBOutlet weak var userImage: CustomImageView!
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var timeAgo: UILabel!
@@ -28,6 +30,10 @@ class CommentCell: UITableViewCell {
     
     
     func updateView(cmt: CommentResponse) {
+        let folder = ReferenceImage.shopItem.rawValue + "\(cmt.shop_item_id ?? "")/\(cmt.shop_item_avatar ?? "")"
+        userImage.displayImage(folderPath: folder)
+        userImage.setBorder(with: .white)
+        userName.text = "\(cmt.shop_item_name ?? "") - \(cmt.user_name ?? "")"
         title.text = cmt.title
         content.text = cmt.content
         viewRating(rt: cmt.rating ?? 3.0)
