@@ -23,6 +23,7 @@ class ListShopController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationController?.navigationBar.barTintColor = APP_COLOR
         setupCurrentLocation()
         setupView()

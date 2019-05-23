@@ -86,9 +86,6 @@ class ShopService {
                         var shop = try JSONDecoder().decode(ShopResponse.self, from: jsonData!)
                         shop.id = shopDoct.documentID
                         shopList.append(shop)
-                        SearchServices.instance.addOneByShop(shop: shop, completion: { (data) in
-                            
-                        })
                     }
                     catch let jsonError {
                         print("Error serializing json:", jsonError)

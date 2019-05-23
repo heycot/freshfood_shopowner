@@ -12,8 +12,8 @@ import Foundation
 import Firebase
 
 class ShopItemService {
-    static let instance = ShopItemService()
     
+    static let instance = ShopItemService()
     
     func getListShopItem( shopID: String,  completion: @escaping ([ShopItemResponse]?) -> Void) {
         
@@ -47,7 +47,6 @@ class ShopItemService {
             }
         })
     }
-    
     
     
     func getOneById( shop_item_id: String,  completion: @escaping (ShopItemResponse?) -> Void) {
