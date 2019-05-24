@@ -158,5 +158,52 @@ class SearchServices {
     }
     
     
+    func search(searchText: String, completion: @escaping ([SearchResponse]?) -> Void) {
+        var results = [SearchResponse]()
+        
+        let db = Firestore.firestore()
+        
+        
+        let docRef = db.collection("search")
+        
+        docRef.getDocuments(completion: { (document, error) in
+            if let document = document {
+                
+                for searchDoct in document.documents{
+                    let jsonData = try? JSONSerialization.data(withJSONObject: searchDoct.data() as Any)
+                    
+                    do {
+                        let search = try JSONDecoder().decode(SearchResponse.self, from: jsonData!)
+                        var k = [String]()
+                        
+                        for key in search.keywords! {
+                            k.append(key.lowercased())
+                        }
+                        
+                        let values = ["keywords": k] as [String : Any]
+                        
+                        
+                        db.collection("search").document(searchDoct.documentID).updateData(values, completion: { (err) in
+                            if err == nil {
+                                print("update success")
+                            }
+                        })
+                        
+                    }
+                    catch let jsonError {
+                        print("Error serializing json:", jsonError)
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    completion(results)
+                }
+                
+            } else {
+                print("User have no profile")
+            }
+        })
+        
+    }
     
 }

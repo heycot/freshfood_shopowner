@@ -105,8 +105,8 @@ extension String {
     static func gennerateKeywordsMod( name: String, address: String) -> [String] {
 
         
-        let nameConvert = self.convertVietNam1(text: name)
-        let addressConvert = self.convertVietNam1(text: address)
+        let nameConvert = self.convertVietNam1(text: name.lowercased())
+        let addressConvert = self.convertVietNam1(text: address.lowercased())
         
         //1. first remove "," from address
         let nameArr = nameConvert.split(separator: ",")
@@ -127,9 +127,9 @@ extension String {
                     let nextWords = addressArr[nextIndex].lowercased()
                     var subWord = ""
                     if nextIndex == 0 {
-                        subWord = subStrings[index] + " " + nextWords
+                        subWord = subStrings[index].lowercased() + " " + nextWords
                     } else {
-                        subWord = subStrings[index] + nextWords
+                        subWord = subStrings[index].lowercased() + nextWords
                     }
                     permutations.append(String(subWord))
                 }
