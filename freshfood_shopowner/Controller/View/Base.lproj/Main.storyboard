@@ -1035,10 +1035,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.25490196079999999" green="0.66274509800000003" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="F6V-mH-ITv" kind="relationship" relationship="viewControllers" id="e9r-cK-WS9"/>
+                        <segue destination="7fa-Vj-tXg" kind="relationship" relationship="viewControllers" id="UMH-aO-Wvm"/>
                         <segue destination="Nu5-JP-vyC" kind="relationship" relationship="viewControllers" id="Tld-WX-Mdq"/>
                         <segue destination="GPF-kT-2qF" kind="relationship" relationship="viewControllers" id="MzL-N5-DoC"/>
                     </connections>
@@ -1046,6 +1046,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXV-EW-j5Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1736.8" y="806.44677661169419"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="RbE-Y7-4IP">
+            <objects>
+                <viewController id="7fa-Vj-tXg" customClass="ChatHostController" customModule="freshfood_shopowner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TzV-oS-Eid">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9Dk-D1-pee"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Chat" image="messenger" id="qsL-ta-Cmh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G7r-IB-tN7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1686" y="2117"/>
         </scene>
         <!--comment-->
         <scene sceneID="NGL-EC-iGM">
@@ -1591,6 +1607,7 @@
         <image name="comment" width="170" height="170"/>
         <image name="logo" width="119" height="119"/>
         <image name="man-user" width="170" height="170"/>
+        <image name="messenger" width="32" height="32"/>
         <image name="store" width="170" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>

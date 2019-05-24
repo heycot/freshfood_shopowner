@@ -27,11 +27,6 @@ target 'freshfood_shopowner' do
     pod 'Firebase/Database'
     
     pod 'MessageKit'
-
-    pod 'FacebookCore'
-    pod 'FacebookLogin'
-    pod 'FacebookShare'
-    
     pod 'Kingfisher'
     pod 'MessageInputBar'
 end
