@@ -8,13 +8,6 @@ target 'freshfood_shopowner' do
   use_frameworks!
 
   # Pods for freshfood_shopowner
-
-    pod 'Firebase/Core'
-    pod 'Firebase/Firestore'
-    pod 'Firebase/Analytics'
-    pod 'Firebase/Auth'
-    pod 'FirebaseUI/Storage'
-    pod 'Firebase/Storage'
     
     pod 'IQKeyboardManagerSwift'
     pod 'GoogleMaps'
@@ -23,5 +16,22 @@ target 'freshfood_shopowner' do
     pod 'YPImagePicker', '~> 3.5.2'
     pod 'PKHUD', '~> 5.0'
     pod 'Cosmos'
+    
+    pod 'FirebaseUI/Storage'
+    pod 'Firebase/Core'
+    pod 'Firebase/Firestore'
+    pod 'Firebase/Analytics'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
+    pod 'Firebase/AdMob'
+    pod 'Firebase/Database'
+    
+    pod 'MessageKit'
 
+    pod 'FacebookCore'
+    pod 'FacebookLogin'
+    pod 'FacebookShare'
+    
+    pod 'Kingfisher'
+    pod 'MessageInputBar'
 end
