@@ -24,6 +24,9 @@ class ListShopController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        SearchServices.instance.search(searchText: "") { (data) in
+//
+//        }
         
         navigationController?.navigationBar.barTintColor = APP_COLOR
         setupCurrentLocation()

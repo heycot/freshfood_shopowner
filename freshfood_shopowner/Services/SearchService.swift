@@ -43,8 +43,9 @@ class SearchServices {
         let db = Firestore.firestore()
         
         let keywords = String.gennerateKeywordsMod(name: shopItem.name ?? "", address: shopItem.address ?? "")
+        let name = ( shopItem.name ?? "") + " - " + (shopItem.shop_name ?? "")
         
-        let values = ["entity_id" : shopItem.id as Any,
+        let values = ["entity_name": name as Any,
                       "entity_name": shopItem.name as Any,
                       "address": shopItem.address as Any,
                       "is_shop": 0,
@@ -118,8 +119,9 @@ class SearchServices {
         
         
         let keywords = String.gennerateKeywordsMod(name: shopItem.name ?? "", address: shopItem.address ?? "")
+        let name = ( shopItem.name ?? "") + " - " + (shopItem.shop_name ?? "")
         
-        let values = ["entity_name": shopItem.name as Any,
+        let values = ["entity_name": name as Any,
                       "address": shopItem.address as Any,
                       "avatar": shopItem.avatar as Any,
                       "keywords": keywords] as [String : Any]
@@ -174,20 +176,23 @@ class SearchServices {
                     
                     do {
                         let search = try JSONDecoder().decode(SearchResponse.self, from: jsonData!)
-                        var k = [String]()
                         
-                        for key in search.keywords! {
-                            k.append(key.lowercased())
+                        if search.is_shop == 0 {
+                            ShopItemService.instance.getOneById(shop_item_id: search.entity_id ?? "", completion: { (data) in
+                                guard let data = data else { return }
+                                
+                                let name = search.entity_name! + " - " + data.shop_name!
+                                let values = ["entity_name": name] as [String : Any]
+                                
+                                
+                                db.collection("search").document(searchDoct.documentID).updateData(values, completion: { (err) in
+                                    if err == nil {
+                                        print("update success")
+                                    }
+                                })
+                            })
                         }
                         
-                        let values = ["keywords": k] as [String : Any]
-                        
-                        
-                        db.collection("search").document(searchDoct.documentID).updateData(values, completion: { (err) in
-                            if err == nil {
-                                print("update success")
-                            }
-                        })
                         
                     }
                     catch let jsonError {

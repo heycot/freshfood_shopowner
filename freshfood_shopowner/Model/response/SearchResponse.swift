@@ -16,6 +16,7 @@ struct SearchResponse: Decodable, Hashable{
     var avatar: String?
     var keywords: [String]?
     
+    
     init( entity_id: String, entity_name: String, address: String, is_shop: Int, avatar: String) {
         self.entity_id = entity_id
         self.entity_name = entity_name
