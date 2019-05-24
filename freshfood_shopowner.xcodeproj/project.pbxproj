@@ -33,6 +33,7 @@
 		23075B9D2282D2680088AB24 /* MapRequestBodyDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B9C2282D2680088AB24 /* MapRequestBodyDirection.swift */; };
 		23075BA02282D2930088AB24 /* LocationServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B9F2282D2930088AB24 /* LocationServicesProtocol.swift */; };
 		2316DADF22897CEC00378745 /* CommentServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316DADE22897CEC00378745 /* CommentServices.swift */; };
+		2319A64E2297C845001D9F20 /* Misc.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2319A6472297C844001D9F20 /* Misc.xcassets */; };
 		232274EE2287FB2A002EE964 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274ED2287FB2A002EE964 /* AccountController.swift */; };
 		232274F02287FB3E002EE964 /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274EF2287FB3E002EE964 /* ChangePasswordController.swift */; };
 		232274F22287FB4F002EE964 /* EditInforController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274F12287FB4F002EE964 /* EditInforController.swift */; };
@@ -97,6 +98,7 @@
 		23075B9C2282D2680088AB24 /* MapRequestBodyDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRequestBodyDirection.swift; sourceTree = "<group>"; };
 		23075B9F2282D2930088AB24 /* LocationServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServicesProtocol.swift; sourceTree = "<group>"; };
 		2316DADE22897CEC00378745 /* CommentServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentServices.swift; sourceTree = "<group>"; };
+		2319A6472297C844001D9F20 /* Misc.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Misc.xcassets; sourceTree = "<group>"; };
 		232274ED2287FB2A002EE964 /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		232274EF2287FB3E002EE964 /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
 		232274F12287FB4F002EE964 /* EditInforController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInforController.swift; sourceTree = "<group>"; };
@@ -298,6 +300,150 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		2319A63B2297C844001D9F20 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2319A63C2297C844001D9F20 /* Models */,
+				2319A63F2297C844001D9F20 /* ViewControllers */,
+				2319A6412297C844001D9F20 /* Views */,
+				2319A6462297C844001D9F20 /* Assets */,
+				2319A6482297C844001D9F20 /* Helpers */,
+				2319A6492297C844001D9F20 /* ThirdParty */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		2319A63C2297C844001D9F20 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2319A63D2297C844001D9F20 /* Filters */,
+				2319A63E2297C844001D9F20 /* Charts */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2319A63D2297C844001D9F20 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		2319A63E2297C844001D9F20 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		2319A63F2297C844001D9F20 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2319A6402297C844001D9F20 /* Walkthrough */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2319A6402297C844001D9F20 /* Walkthrough */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Walkthrough;
+			sourceTree = "<group>";
+		};
+		2319A6412297C844001D9F20 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2319A6422297C844001D9F20 /* Cells */,
+				2319A6452297C844001D9F20 /* Controls */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2319A6422297C844001D9F20 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2319A6432297C844001D9F20 /* Charts */,
+				2319A6442297C844001D9F20 /* Search */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		2319A6432297C844001D9F20 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		2319A6442297C844001D9F20 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		2319A6452297C844001D9F20 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		2319A6462297C844001D9F20 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				2319A6472297C844001D9F20 /* Misc.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		2319A6482297C844001D9F20 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2319A6492297C844001D9F20 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				2319A64A2297C844001D9F20 /* Stepperier */,
+				2319A64B2297C844001D9F20 /* CalendarDateRangePickerViewController */,
+				2319A64C2297C844001D9F20 /* SJSegmentedScrollView */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		2319A64A2297C844001D9F20 /* Stepperier */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Stepperier;
+			sourceTree = "<group>";
+		};
+		2319A64B2297C844001D9F20 /* CalendarDateRangePickerViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CalendarDateRangePickerViewController;
+			sourceTree = "<group>";
+		};
+		2319A64C2297C844001D9F20 /* SJSegmentedScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				2319A64D2297C844001D9F20 /* Classes */,
+			);
+			path = SJSegmentedScrollView;
+			sourceTree = "<group>";
+		};
+		2319A64D2297C844001D9F20 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		232274F32287FF03002EE964 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +494,7 @@
 		2332DD8F22827F3D008F0CBE /* freshfood_shopowner */ = {
 			isa = PBXGroup;
 			children = (
+				2319A63B2297C844001D9F20 /* Core */,
 				23075B9E2282D2770088AB24 /* Protocol */,
 				23075B4F2282939C0088AB24 /* Libraries */,
 				23075B722282A8CC0088AB24 /* Model */,
@@ -509,6 +656,7 @@
 				232274F72287FF57002EE964 /* UserCommentCell.xib in Resources */,
 				2322750522883004002EE964 /* FoodImageCell.xib in Resources */,
 				2332DD9622827F3D008F0CBE /* Main.storyboard in Resources */,
+				2319A64E2297C845001D9F20 /* Misc.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
