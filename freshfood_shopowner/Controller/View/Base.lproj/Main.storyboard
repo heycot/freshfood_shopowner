@@ -1109,7 +1109,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="9Dk-D1-pee"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chat" image="messenger" id="qsL-ta-Cmh"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="messenger(1)" id="qsL-ta-Cmh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7r-IB-tN7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1660,13 +1660,13 @@
         <image name="comment" width="170" height="170"/>
         <image name="logo" width="119" height="119"/>
         <image name="man-user" width="170" height="170"/>
-        <image name="messenger" width="32" height="32"/>
+        <image name="messenger(1)" width="32" height="32"/>
         <image name="plus" width="170" height="170"/>
         <image name="store" width="170" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jx4-du-Oen"/>
-        <segue reference="PSi-wn-ztY"/>
+        <segue reference="EuB-kl-ROh"/>
         <segue reference="9KN-9F-7vU"/>
     </inferredMetricsTieBreakers>
 </document>
