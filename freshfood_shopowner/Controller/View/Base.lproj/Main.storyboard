@@ -1096,7 +1096,7 @@
         <!--Chat-->
         <scene sceneID="RbE-Y7-4IP">
             <objects>
-                <viewController id="7fa-Vj-tXg" customClass="ChatHostController" customModule="freshfood_shopowner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7fa-Vj-tXg" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TzV-oS-Eid">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
