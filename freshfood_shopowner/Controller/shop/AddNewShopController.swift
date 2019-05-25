@@ -221,8 +221,6 @@ class AddNewShopController: UIViewController {
         self.shop.time_close = time_close
         self.shop.address = address
         self.shop.phone = phone
-        let keyword_arr = [name, address]
-        self.shop.keyword = String.gennerateKeywords(keyword_arr)
         return true
     }
     
@@ -424,7 +422,10 @@ extension AddNewShopController: CLLocationManagerDelegate {
         stopUpdateLocation()
         self.currentLocation = location
         
-        configCamera(location: location, zoomLevel: zoomLevel)
+        // show current location if add new shop
+        if isNew {
+            configCamera(location: location, zoomLevel: zoomLevel)
+        }
     }
     
     // Handle incoming location events.
