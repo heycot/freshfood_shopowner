@@ -130,6 +130,9 @@ class AddNewShopController: UIViewController {
                         self.showNotification(mess: "Add success, We will contact you soon", color: APP_COLOR)
                         self.disbaleView()
                         self.uploadImage()
+                        SearchServices.instance.addOneByShop(shop: self.shop, completion: { (data) in
+                            
+                        })
                     } else {
                         self.showNotification(mess: "Something went wrong. Please try again", color: .red)
                     }
@@ -145,6 +148,9 @@ class AddNewShopController: UIViewController {
                         if self.isChangeImage {
                             self.uploadImage()
                         }
+                        SearchServices.instance.updateWhenEditShop(shop: self.shop, completion: { (data) in
+                            
+                        })
                     } else {
                         
                         self.showNotification(mess: "Something went wrong. Please try again", color: .red)

@@ -146,7 +146,6 @@ class AddFoodController: UIViewController {
         item.shop_id = shop.id
         item.shop_name = shop.name
         item.item_id = rowSelected >= 0 ? itemList[rowSelected].id : ""
-        item.keywords = String.gennerateKeywords([item.name ?? "", shop.address ?? "", shop.name ?? "" ])
     }
     
     

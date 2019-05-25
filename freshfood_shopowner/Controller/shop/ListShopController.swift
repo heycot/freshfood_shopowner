@@ -31,7 +31,6 @@ class ListShopController: UIViewController {
         navigationController?.navigationBar.barTintColor = APP_COLOR
         setupCurrentLocation()
         setupView()
-        getAllShop()
     }
     
     func setupView() {
@@ -163,6 +162,8 @@ extension ListShopController: UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        getAllShop()
         super.viewWillAppear(true)
         tableView.reloadData()
     }

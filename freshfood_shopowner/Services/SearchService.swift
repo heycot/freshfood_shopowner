@@ -201,7 +201,7 @@ class SearchServices {
                 }
                 
                 DispatchQueue.main.async {
-                    completion(results)
+//                    completion(results)
                 }
                 
             } else {
