@@ -8,9 +8,9 @@
 
 import UIKit
 import GoogleMaps
-import Firebase
 import Photos
 import PKHUD
+import YPImagePicker
 
 class AddNewShopController: UIViewController {
     
@@ -113,14 +113,6 @@ class AddNewShopController: UIViewController {
     @IBAction func checkFoodBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: SegueIdentifier.shoptoListFood.rawValue, sender: nil)
     }
-    
-    @IBAction func chooseAvatarpressed(_ sender: Any) {
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self;
-        myPickerController.sourceType =  UIImagePickerController.SourceType.photoLibrary
-        self.present(myPickerController, animated: true, completion: nil)
-    }
-    
     
     @IBAction func doneBtnPressed(_ sender: Any) {
         if checkValidateInput() {
@@ -250,74 +242,25 @@ extension AddNewShopController :  UITextFieldDelegate {
     }
 }
 
-
+// extention for choose shop image
 extension AddNewShopController {
-    func generateNameForImage() -> String {
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "AVATAR_hh.mm.ss.dd.MM.yyyy"
-        return formatter.string(from: date)
-    }
     
-    @objc func dismisHandle() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func getImageFormatFromUrl(url : URL) -> String {
+    @IBAction func chooseAvatarpressed(_ sender: Any) {
         
-        if url.absoluteString.hasSuffix("JPG") {
-            return"JPG"
-        }
-        else if url.absoluteString.hasSuffix("PNG") {
-            return "PNG"
-        }
-        else if url.absoluteString.hasSuffix("GIF") {
-            return "GIF"
-        }
-        else {
-            return "jpg"
-        }
-    }
-}
-
-extension AddNewShopController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-        }
-        
-        
-        if let url = info[UIImagePickerController.InfoKey.phAsset] as? URL {
-            let assets = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
-            // get for mat of image
-            let imageFormat = getImageFormatFromUrl(url: url)
-            
-            if let firstAsset = assets.firstObject,
-                let firstResource = PHAssetResource.assetResources(for: firstAsset).first {
-                fileName = firstResource.originalFilename
-            } else {
-                fileName = generateNameForImage() + "." + imageFormat
+        let picker = YPImagePicker()
+        picker.didFinishPicking { [unowned picker] items, _ in
+            if let photo = items.singlePhoto {
+                
+                self.image = photo.image
+                self.avatar.image = photo.image
+                self.avatar.setRounded(color: .white)
+                self.isChangeImage = true
             }
-        } else {
-            fileName = generateNameForImage() + ".jpg"
+            picker.dismiss(animated: true, completion: nil)
         }
-        
-        if (fileName != "") {
-            self.image = selectedImage
-            self.avatar.image = selectedImage
-            self.avatar.setRounded(color: .white)
-            self.isChangeImage = true
-        }
-        self.dismisHandle()
+        present(picker, animated: true, completion: nil)
     }
 }
-
-
 
 // extension for datepicker
 extension AddNewShopController {
