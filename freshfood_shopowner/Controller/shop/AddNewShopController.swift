@@ -71,6 +71,7 @@ class AddNewShopController: UIViewController {
         let folderPath = ReferenceImage.shop.rawValue + "/\(shop.id ?? "" )/\(shop.avatar ?? "")"
         
         self.avatar.displayImage(folderPath: folderPath)
+        self.avatar.setBorder(with: .white)
     }
     
     
