@@ -46,7 +46,6 @@ class AddFoodController: UIViewController {
         if !isNew {
             showData()
         } else {
-            photoLB.isHidden = true
             cmtLB.isHidden = true
         }
     }
@@ -93,6 +92,9 @@ class AddFoodController: UIViewController {
                     HUD.hide()
                     self.item.id = data
                     self.handleAfterUpdateData(isSuccess: true)
+                    SearchServices.instance.addOneByShopItem(shopItem: self.item, completion: { (data) in
+                        print("save search")
+                    })
                 }
             } else {
                 ShopItemService.instance.editOne(item: item) { (data) in
@@ -100,6 +102,9 @@ class AddFoodController: UIViewController {
                     
                     HUD.hide()
                     self.handleAfterUpdateData(isSuccess: data)
+                    SearchServices.instance.updateWhenEditShopItem(shopItem: self.item, completion: { (data) in
+                        print("save search")
+                    })
                 }
             }
         }
@@ -320,7 +325,9 @@ extension AddFoodController : UITableViewDelegate, UITableViewDataSource {
 extension AddFoodController : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        addImagePressed()
+        if indexPath.row == 0 {
+            addImagePressed()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

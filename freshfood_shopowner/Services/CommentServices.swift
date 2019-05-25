@@ -18,24 +18,27 @@ class  CommentServices {
     
         docRef.getDocuments(completion: { (document, error) in
             if let document = document {
-            var cmts = [CommentResponse]()
-    
-            for cmtDoct in document.documents{
-            let jsonData = try? JSONSerialization.data(withJSONObject: cmtDoct.data() as Any)
-    
-            do {
-                let cmt = try JSONDecoder().decode(CommentResponse.self, from: jsonData!)
-                cmt.id = cmtDoct.documentID
-                cmts.append(cmt)
-            }catch let jsonError {
-                print("Error serializing json:", jsonError)
+                var cmts = [CommentResponse]()
+        
+                for cmtDoct in document.documents{
+                let jsonData = try? JSONSerialization.data(withJSONObject: cmtDoct.data() as Any)
+        
+                do {
+                    let cmt = try JSONDecoder().decode(CommentResponse.self, from: jsonData!)
+                    cmt.id = cmtDoct.documentID
+                    cmts.append(cmt)
+                }catch let jsonError {
+                    print("Error serializing json:", jsonError)
+                    }
                 }
-            }
-            DispatchQueue.main.async {
-                completion(cmts)
-             }
+                DispatchQueue.main.async {
+                    completion(cmts)
+                 }
         
             } else {
+                DispatchQueue.main.async {
+                    completion([])
+                }
                 print("Food have no comment")
             }
         })
@@ -66,6 +69,9 @@ class  CommentServices {
                 }
                 
             } else {
+                DispatchQueue.main.async {
+                    completion([])
+                }
                 print("User have no comment")
             }
         })
@@ -120,6 +126,10 @@ class  CommentServices {
                 }
                 
             } else {
+                
+                DispatchQueue.main.async {
+                    completion([])
+                }
                 print("User have no comment")
             }
         })

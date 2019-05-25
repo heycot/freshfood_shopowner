@@ -28,7 +28,8 @@ class ListShopController: UIViewController {
 //
 //        }
         
-        navigationController?.navigationBar.barTintColor = APP_COLOR
+        self.title = "Shops"
+        self.navigationController?.navigationBar.barTintColor = APP_COLOR
         setupCurrentLocation()
         setupView()
     }

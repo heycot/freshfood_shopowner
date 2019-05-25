@@ -46,7 +46,6 @@ class SearchServices {
         let name = ( shopItem.name ?? "") + " - " + (shopItem.shop_name ?? "")
         
         let values = ["entity_name": name as Any,
-                      "entity_name": shopItem.name as Any,
                       "address": shopItem.address as Any,
                       "is_shop": 0,
                       "avatar": shopItem.avatar as Any,
