@@ -161,7 +161,7 @@ class SearchServices {
     
     
     func search(searchText: String, completion: @escaping ([SearchResponse]?) -> Void) {
-        var results = [SearchResponse]()
+//        var results = [SearchResponse]()
         
         let db = Firestore.firestore()
         

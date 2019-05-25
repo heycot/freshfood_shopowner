@@ -87,7 +87,6 @@ class ShopItemService {
                     "shop_name": item.shop_name as Any,
                     "status": 1,
                     "unit": item.unit as Any,
-                    "keywords": item.keywords as Any,
                     "item_id": item.item_id as Any,
                     "images": item.images as Any,
                     "price": item.price as Any] as [String : Any]
@@ -128,7 +127,6 @@ class ShopItemService {
         let values = ["name": item.name as Any,
                       "price": item.price as Any,
                       "unit": item.unit as Any,
-                      "keywords": item.keywords as Any,
                       "item_id": item.item_id as Any,
                       "images": item.images as Any] as [String : Any]
         
@@ -184,7 +182,6 @@ class ShopItemService {
                         "shop_id": item.shop_id as Any,
                         "status": 1,
                         "unit": item.unit as Any,
-                        "keywords": item.keywords as Any,
                         "item_id": item.item_id as Any,
                         "price": item.price as Any] as [String : Any]
             

@@ -27,7 +27,6 @@ struct ShopResponse: Decodable, Hashable {
     var longitude: Double?
     var latitude: Double?
     var address: String?
-    var keyword: [String]?
     
     var distance: Double? {
         if (AuthServices.instance.currentLocation != nil) {
@@ -37,7 +36,7 @@ struct ShopResponse: Decodable, Hashable {
         return nil
     }
     
-    init(id: String, user_id: String, name: String, rating: Double, time_open: String, time_close: String, create_date: TimeInterval, status: Int, phone: String, avatar: String, sell: String, longitude: Double, latitude: Double, address: String, keyword: [String]) {
+    init(id: String, user_id: String, name: String, rating: Double, time_open: String, time_close: String, create_date: TimeInterval, status: Int, phone: String, avatar: String, sell: String, longitude: Double, latitude: Double, address: String) {
         self.id = id
         self.user_id = user_id
         self.name = name
@@ -52,11 +51,10 @@ struct ShopResponse: Decodable, Hashable {
         self.longitude = longitude
         self.latitude = latitude
         self.address = address
-        self.keyword = keyword
     }
     
     init(){
-        self.init(id: "", user_id: "", name: "", rating: 0.0, time_open: "", time_close: "", create_date: NSDate().timeIntervalSince1970, status: 1, phone: "", avatar: "", sell: "",longitude: 0.0, latitude: 0.0, address: "", keyword: [String]())
+        self.init(id: "", user_id: "", name: "", rating: 0.0, time_open: "", time_close: "", create_date: NSDate().timeIntervalSince1970, status: 1, phone: "", avatar: "", sell: "",longitude: 0.0, latitude: 0.0, address: "")
     }
     
     init(id: String, name: String) {
