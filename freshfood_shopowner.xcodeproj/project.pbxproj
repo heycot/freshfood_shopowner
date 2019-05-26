@@ -59,6 +59,7 @@
 		235A16CC229A95F500AD09BB /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A16CB229A95F500AD09BB /* Channel.swift */; };
 		235A16CE229A963900AD09BB /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A16CD229A963900AD09BB /* DatabaseRepresentation.swift */; };
 		235A16D0229A967000AD09BB /* ChannelServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A16CF229A967000AD09BB /* ChannelServices.swift */; };
+		235A16D2229A970D00AD09BB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A16D1229A970D00AD09BB /* ChatViewController.swift */; };
 		235C921F2289054A00059D5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235C921E2289054A00059D5C /* GoogleService-Info.plist */; };
 		235E144B22852886009109EC /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144A22852886009109EC /* ShopCell.swift */; };
 		235E144D22854DAF009109EC /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144C22854DAF009109EC /* ShopService.swift */; };
@@ -132,6 +133,7 @@
 		235A16CB229A95F500AD09BB /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		235A16CD229A963900AD09BB /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
 		235A16CF229A967000AD09BB /* ChannelServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelServices.swift; sourceTree = "<group>"; };
+		235A16D1229A970D00AD09BB /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		235C921E2289054A00059D5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		235C922022890E1200059D5C /* freshfood_shopowner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "freshfood_shopowner-Bridging-Header.h"; sourceTree = "<group>"; };
 		235E144A22852886009109EC /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 			children = (
 				235A16C5229A93D100AD09BB /* view */,
 				235A16C3229A93CB00AD09BB /* ChannelViewController.swift */,
+				235A16D1229A970D00AD09BB /* ChatViewController.swift */,
 			);
 			path = chat;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				23075B902282CACC0088AB24 /* AddNewShopController.swift in Sources */,
 				23075B622282957E0088AB24 /* ExtensionTextField.swift in Sources */,
 				23A786AE229645DB00897A2F /* SearchService.swift in Sources */,
+				235A16D2229A970D00AD09BB /* ChatViewController.swift in Sources */,
 				2337F77A2286EE0A00D9E35F /* ShopItemServices.swift in Sources */,
 				2322750422883004002EE964 /* FoodImageCell.swift in Sources */,
 				23075B9D2282D2680088AB24 /* MapRequestBodyDirection.swift in Sources */,
