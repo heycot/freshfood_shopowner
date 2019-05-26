@@ -55,6 +55,7 @@
 		2354F0142282922F00AC9BC1 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2354F0132282922F00AC9BC1 /* AuthServices.swift */; };
 		235A16C4229A93CB00AD09BB /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A16C3229A93CB00AD09BB /* ChannelViewController.swift */; };
 		235A16C7229A93EB00AD09BB /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A16C6229A93EB00AD09BB /* ChannelCell.swift */; };
+		235A16CA229A95C300AD09BB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A16C9229A95C300AD09BB /* Message.swift */; };
 		235C921F2289054A00059D5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235C921E2289054A00059D5C /* GoogleService-Info.plist */; };
 		235E144B22852886009109EC /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144A22852886009109EC /* ShopCell.swift */; };
 		235E144D22854DAF009109EC /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235E144C22854DAF009109EC /* ShopService.swift */; };
@@ -124,6 +125,7 @@
 		2354F0132282922F00AC9BC1 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
 		235A16C3229A93CB00AD09BB /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		235A16C6229A93EB00AD09BB /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
+		235A16C9229A95C300AD09BB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		235C921E2289054A00059D5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		235C922022890E1200059D5C /* freshfood_shopowner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "freshfood_shopowner-Bridging-Header.h"; sourceTree = "<group>"; };
 		235E144A22852886009109EC /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
@@ -239,7 +241,7 @@
 		23075B722282A8CC0088AB24 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				235A16C8229A956000AD09BB /* New Group */,
+				235A16C8229A956000AD09BB /* chat */,
 				23075B8C2282C9280088AB24 /* response */,
 			);
 			path = Model;
@@ -401,11 +403,12 @@
 			path = view;
 			sourceTree = "<group>";
 		};
-		235A16C8229A956000AD09BB /* New Group */ = {
+		235A16C8229A956000AD09BB /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				235A16C9229A95C300AD09BB /* Message.swift */,
 			);
-			path = "New Group";
+			path = chat;
 			sourceTree = "<group>";
 		};
 		235A440622867C89000AC7DA /* auth */ = {
@@ -663,6 +666,7 @@
 				2337F77A2286EE0A00D9E35F /* ShopItemServices.swift in Sources */,
 				2322750422883004002EE964 /* FoodImageCell.swift in Sources */,
 				23075B9D2282D2680088AB24 /* MapRequestBodyDirection.swift in Sources */,
+				235A16CA229A95C300AD09BB /* Message.swift in Sources */,
 				2332DD9122827F3D008F0CBE /* AppDelegate.swift in Sources */,
 				235E144B22852886009109EC /* ShopCell.swift in Sources */,
 				235A16C7229A93EB00AD09BB /* ChannelCell.swift in Sources */,
