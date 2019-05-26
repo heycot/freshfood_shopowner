@@ -36,7 +36,7 @@ final class ChatViewController: MessagesViewController {
     private var messageListener: ListenerRegistration?
     
     private var user: UserResponse
-    private let channel: Channel
+    private var channel: Channel
     
     
     deinit {
@@ -67,6 +67,7 @@ final class ChatViewController: MessagesViewController {
             if data == nil {
                 self.createChannel()
             } else {
+                self.channel.id = data
                 self.setup(id: data ?? "")
             }
         }
@@ -129,6 +130,7 @@ final class ChatViewController: MessagesViewController {
         ChannelServices.instance.addOne(channel: channel) { (data) in
             guard let data = data else { return }
             self.setup(id: data)
+            self.channel.id = data
         }
     }
     
@@ -151,6 +153,9 @@ final class ChatViewController: MessagesViewController {
     // MARK: - Helpers
     
     private func save(_ message: Message) {
+        
+        reference = db.collection(["channels", channel.id ?? "", "thread"].joined(separator: "/"))
+        
         reference?.addDocument(data: message.representation) { error in
             if let e = error {
                 print("Error sending message: \(e.localizedDescription)")
