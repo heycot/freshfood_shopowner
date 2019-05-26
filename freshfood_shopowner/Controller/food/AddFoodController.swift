@@ -168,6 +168,7 @@ class AddFoodController: UIViewController {
 extension AddFoodController {
     
     func getAllComment() {
+    
         CommentServices.instance.getAllCommentByFood(foodID: item.id!) { (data) in
             guard let data = data else { return }
             
@@ -180,9 +181,6 @@ extension AddFoodController {
         }
     }
     
-    func getAllPhotos() {
-        
-    }
 }
 
 //extention for images {
@@ -217,7 +215,6 @@ extension AddFoodController {
         let reference = "\(ReferenceImage.shopItem.rawValue)/\(item.id ?? "")"
         ImageServices.instance.uploadListMedia(images: images, imageNames: imageNames, reference: reference, completion: { (data) in
             guard data != nil else { return }
-            self.stopSpinnerActivity()
         })
     }
 }

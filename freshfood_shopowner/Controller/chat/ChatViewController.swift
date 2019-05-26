@@ -316,7 +316,8 @@ extension ChatViewController: MessagesDataSource {
     
     
     func currentSender() -> Sender {
-        return Sender(id: user.id ?? "", displayName: AppSettings.displayName ?? "")
+//        return Sender(id: user.id ?? "", displayName: AppSettings.displayName ?? "")
+        return Sender(id: user.id ?? "", displayName: "Cally")
     }
     
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {

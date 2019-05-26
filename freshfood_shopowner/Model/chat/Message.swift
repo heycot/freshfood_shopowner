@@ -36,14 +36,16 @@ struct Message: MessageType {
     var downloadURL: URL? = nil
     
     init(user: UserResponse, content: String) {
-        sender = Sender(id: user.id ?? "", displayName: AppSettings.displayName ?? "")
+//        sender = Sender(id: user.id ?? "", displayName: AppSettings.displayName ?? "")
+        sender = Sender(id: user.id ?? "", displayName:  "Cally")
         self.content = content
         sentDate = Date()
         id = nil
     }
     
     init(user: UserResponse, image: UIImage) {
-        sender = Sender(id: user.id ?? "", displayName: AppSettings.displayName)
+        //        sender = Sender(id: user.id ?? "", displayName: AppSettings.displayName ?? "")
+        sender = Sender(id: user.id ?? "", displayName:  "Cally")
         self.image = image
         content = ""
         sentDate = Date()
