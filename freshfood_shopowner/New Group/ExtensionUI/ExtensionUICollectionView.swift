@@ -28,23 +28,19 @@ extension UICollectionView {
     
 }
 
-
-extension UIViewController {
+extension UIScrollView {
     
-    func startSpinnerActivity() {
-        let spinnerActivity = MBProgressHUD.showAdded(to: self.view, animated: true);
-        
-        spinnerActivity.label.text = "Loading";
-        spinnerActivity.detailsLabel.text = "Please Wait!";
-        spinnerActivity.isUserInteractionEnabled = false;
-        
-        DispatchQueue.main.async {
-            spinnerActivity.hide(animated: true);
-        }
+    var isAtBottom: Bool {
+        return contentOffset.y >= verticalOffsetForBottom
     }
     
-    func stopSpinnerActivity() {
-        MBProgressHUD.hide(for: self.view, animated: true);
+    var verticalOffsetForBottom: CGFloat {
+        let scrollViewHeight = bounds.height
+        let scrollContentSizeHeight = contentSize.height
+        let bottomInset = contentInset.bottom
+        let scrollViewBottomOffset = scrollContentSizeHeight + bottomInset - scrollViewHeight
+        return scrollViewBottomOffset
     }
+    
 }
 

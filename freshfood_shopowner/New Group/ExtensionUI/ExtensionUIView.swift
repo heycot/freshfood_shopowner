@@ -44,4 +44,26 @@ extension UIColor {
         
         self.init(red: CGFloat((hex>>16)&0xFF)/255.0, green:CGFloat((hex>>8)&0xFF)/255.0, blue: CGFloat((hex)&0xFF)/255.0, alpha:  CGFloat(255 * alpha) / 255)
     }
+    
+    static var primary: UIColor {
+        return UIColor(red: 1 / 255, green: 93 / 255, blue: 48 / 255, alpha: 1)
+    }
+    
+    static var incomingMessage: UIColor {
+        return UIColor(red: 230 / 255, green: 230 / 255, blue: 230 / 255, alpha: 1)
+    }
+}
+
+extension UIView {
+    
+    func smoothRoundCorners(to radius: CGFloat) {
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = UIBezierPath(
+            roundedRect: bounds,
+            cornerRadius: radius
+            ).cgPath
+        
+        layer.mask = maskLayer
+    }
+    
 }
