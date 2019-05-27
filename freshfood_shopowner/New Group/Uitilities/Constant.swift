@@ -123,6 +123,8 @@ enum SegueIdentifier: String {
     case accountToPassword = "AccountToPassword"
     case accountToEditInfor = "AccountToEditInfor"
     case accountToComment = "AccountToComment"
+    
+    case channelToFindUser = "ChannelToFindUser"
 }
 
 enum  CellIdentifier: String {

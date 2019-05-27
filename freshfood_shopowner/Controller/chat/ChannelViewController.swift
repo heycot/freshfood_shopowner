@@ -40,6 +40,17 @@ class ChannelViewController: UIViewController {
         
     }
     
+    @IBAction func searchBtnPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: SegueIdentifier.channelToFindUser.rawValue, sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is FindUserController {
+            let vc = segue.destination as? FindUserController
+            vc?.user = self.user
+        }
+    }
+    
     func viewListChannel() {
         ChannelServices.instance.getAllChannelByUser { (data) in
             guard let data = data else { return }
