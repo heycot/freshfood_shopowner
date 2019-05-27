@@ -107,7 +107,7 @@ extension Channel: Comparable {
     }
     
     static func < (lhs: Channel, rhs: Channel) -> Bool {
-        return lhs.name_first < rhs.name_first
+        return lhs.name_first < rhs.name_first || lhs.name_second < rhs.name_second
     }
     
 }
