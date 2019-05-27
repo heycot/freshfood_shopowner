@@ -33,6 +33,7 @@ class AuthServices {
         return (Auth.auth().currentUser?.refreshToken ?? "")
     }
     
+    var user: UserResponse?
     
     func signup(name: String, email: String, password: String, completion: @escaping (Bool?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
@@ -41,12 +42,22 @@ class AuthServices {
             }
             else{
                 let date = Date().timeIntervalSince1970
+                
+                
+                let emails = email.split(separator: "@")
+                
+                var keywords = String.gennerateKeywordsMod(name: name , address: "")
+                keywords.append(email.lowercased())
+                keywords.append(emails[0].lowercased())
+                
+                
                 let userProfile = ["name": name,
                                    "email": email,
                                    "phone": "",
                                    "birthday": 0,
                                    "create_date": date,
-                                   "address": "" ] as [String : Any]
+                                   "address": "" ,
+                                   "keywords": keywords] as [String : Any]
                 
                 let db = Firestore.firestore()
                 db.collection("user_profile").document(authResult!.user.uid).setData(userProfile) { err in
@@ -94,7 +105,10 @@ class AuthServices {
                             //em thử map Data vào như em làm bên app kia coi có đc ko:
                             let jsonData = try? JSONSerialization.data(withJSONObject: document.data() as Any)
                             do {
-                                _ = try JSONDecoder().decode(UserResponse.self, from: jsonData!)
+                                let user = try JSONDecoder().decode(UserResponse.self, from: jsonData!)
+                                self.user = user
+                                self.user?.id = document.documentID
+                                
                             } catch let jsonError {
                                 print("Error serializing json:", jsonError)
                             }
@@ -111,6 +125,10 @@ class AuthServices {
         }
     }
     
+    func signout() {
+        self.user = nil
+        try! Auth.auth().signOut()
+    }
     
     func getProfile(userID: String, completion: @escaping (UserResponse?) -> Void){
         
@@ -137,16 +155,25 @@ class AuthServices {
         })
     }
     
+    
     func edit(user: UserResponse, completion: @escaping (Bool?) -> Void){
         let userID = Auth.auth().currentUser!.uid
+        self.user = user
         
         let db = Firestore.firestore()
+        
+        let emails = user.email!.split(separator: "@")
+        
+        var keywords = String.gennerateKeywordsMod(name: user.name ?? "", address: user.address ?? "")
+        keywords.append((user.email?.lowercased())!)
+        keywords.append(emails[0].lowercased())
         
         let userProfile = ["name": user.name as Any,
                            "avatar": user.avatar as Any,
                            "phone": user.phone as Any,
                            "birthday": user.birthday as Any,
-                           "address": user.address as Any ] as [String : Any]
+                           "address": user.address as Any,
+                           "keywords": keywords] as [String : Any]
         
         db.collection("user_profile").document(userID).updateData(userProfile) { err in
             var result = true
@@ -159,6 +186,42 @@ class AuthServices {
             
             DispatchQueue.main.async {
                 completion(result)
+            }
+        }
+        
+    }
+    
+    func search(searchText: String, completion: @escaping ([UserResponse]?) -> Void){
+        var result = [UserResponse]()
+        
+        let db = Firestore.firestore()
+        let docRef = db.collection("user_profile").whereField("keywords", arrayContains: searchText.lowercased())
+        
+        docRef.getDocuments { (document, error) in
+            if let document = document {
+                
+                for doc in document.documents {
+                    let jsonData = try? JSONSerialization.data(withJSONObject: doc.data() as Any)
+                    do {
+                        let user = try JSONDecoder().decode(UserResponse.self, from: jsonData!)
+                        user.id = doc.documentID
+                        result.append(user)
+                        
+                    } catch let jsonError {
+                        print("Error serializing json:", jsonError)
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+                
+            } else {
+                
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+                print("User have no profile")
             }
         }
         
