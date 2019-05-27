@@ -15,14 +15,8 @@ class ChannelViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var notification: UILabel!
     
-    
-    // firebase variale
-    //    private var channelReference: CollectionReference {
-    //        return db.collection("channels").whereField("users", arrayContains: user.id ?? "") as! CollectionReference
-    //    }
-    
-    var channels = [Channel]()
-    //    private var channelListener: ListenerRegistration?
+    var channels_shop = [Channel]()
+    var channels_user = [Channel]()
     
     var user = UserResponse()
     
@@ -60,7 +54,13 @@ class ChannelViewController: UIViewController {
                 self.notification.isHidden = false
             }
             
-            self.channels = data
+            for item in data {
+                if item.is_with_shop == 1 {
+                    self.channels_shop.append(item)
+                } else {
+                    self.channels_user.append(item)
+                }
+            }
             self.tableView.reloadData()
         }
     }
@@ -119,34 +119,82 @@ class ChannelViewController: UIViewController {
     }
     
     private func addChannelToTable(_ channel: Channel) {
-        guard !channels.contains(channel) else {
-            return
+        var index = 0
+        
+        if channel.is_with_shop == 1 {
+            
+            guard !channels_shop.contains(channel) else {
+                return
+            }
+            
+            channels_shop.append(channel)
+            channels_shop.sort()
+            
+            guard let indexNew = channels_shop.index(of: channel)  else {
+                return
+            }
+            
+            index = indexNew
+        } else {
+            guard !channels_user.contains(channel) else {
+                return
+            }
+            
+            channels_user.append(channel)
+            channels_user.sort()
+            
+            guard  let indexNew = channels_user.index(of: channel) else {
+                return
+            }
+            index = indexNew
         }
         
-        channels.append(channel)
-        channels.sort()
-        
-        guard let index = channels.index(of: channel) else {
-            return
-        }
         tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
     private func updateChannelInTable(_ channel: Channel) {
-        guard let index = channels.index(of: channel) else {
-            return
+        var index = 0
+        
+        if channel.is_with_shop == 1 {
+            
+            guard let indexNew = channels_shop.index(of: channel) else {
+                return
+            }
+            
+            channels_shop[index] = channel
+            index = indexNew
+        } else {
+            guard let indexNew = channels_user.index(of: channel) else {
+                return
+            }
+            
+            channels_user[index] = channel
+            index = indexNew
         }
         
-        channels[index] = channel
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
     private func removeChannelFromTable(_ channel: Channel) {
-        guard let index = channels.index(of: channel) else {
-            return
+        var index  = 0
+        
+        if channel.is_with_shop == 1 {
+            
+            guard let indexNew = channels_shop.index(of: channel) else {
+                return
+            }
+            
+            index = indexNew
+            channels_shop.remove(at: indexNew)
+        } else {
+            guard let indexNew = channels_user.index(of: channel) else {
+                return
+            }
+            
+            index = indexNew
+            channels_user.remove(at: indexNew)
         }
         
-        channels.remove(at: index)
         tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
@@ -154,8 +202,20 @@ class ChannelViewController: UIViewController {
 
 extension ChannelViewController : UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Chat with your customers"
+        } else {
+            return "Chat with your friends"
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -163,21 +223,38 @@ extension ChannelViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return   channels.count
+        
+        if section == 0 {
+            return channels_shop.count
+        } else {
+            
+            return  channels_user.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChannelCellID", for: indexPath) as! ChannelCell
         
         cell.accessoryType = .disclosureIndicator
-        cell.updateView(channel: channels[indexPath.row], userID: user.id ?? "")
+        if indexPath.section == 0 {
+            cell.updateView(channel: channels_shop[indexPath.row], userID: user.id ?? "")
+        } else {
+            
+            cell.updateView(channel: channels_user[indexPath.row], userID: user.id ?? "")
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let channel = channels[indexPath.row]
-        let vc = ChatViewController(user: user, channel: channel)
+        var channel : Channel?
+        if indexPath.section == 0 {
+            channel = channels_shop[indexPath.row]
+        } else {
+            channel = channels_user[indexPath.row]
+        }
+        
+        let vc = ChatViewController(user: user, channel: channel!)
         navigationController?.pushViewController(vc, animated: true)
     }
     

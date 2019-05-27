@@ -136,19 +136,6 @@ final class ChatViewController: MessagesViewController {
     
     // MARK: - Actions
     
-//    @objc private func cameraButtonPressed() {
-//        let picker = UIImagePickerController()
-//        picker.delegate = self
-//
-//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-//            picker.sourceType = .camera
-//        } else {
-//            picker.sourceType = .photoLibrary
-//        }
-//
-//        present(picker, animated: true, completion: nil)
-//    }
-    
     @objc private func cameraButtonPressed() {
         
         var config = YPImagePickerConfiguration()
@@ -390,29 +377,3 @@ extension ChatViewController: MessageInputBarDelegate {
     
 }
 
-// MARK: - UIImagePickerControllerDelegate
-
-//extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-//
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        picker.dismiss(animated: true, completion: nil)
-//
-//        if let asset = info[.phAsset] as? PHAsset { // 1
-//            let size = CGSize(width: 500, height: 500)
-//            PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFit, options: nil) { result, info in
-//                guard let image = result else {
-//                    return
-//                }
-//
-//                self.sendPhoto(image)
-//            }
-//        } else if let image = info[.originalImage] as? UIImage { // 2
-//            sendPhoto(image)
-//        }
-//    }
-//
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        picker.dismiss(animated: true, completion: nil)
-//    }
-//
-//}
