@@ -95,8 +95,8 @@ final class ChatViewController: MessagesViewController {
         navigationItem.largeTitleDisplayMode = .never
         
         maintainPositionOnKeyboardFrameChanged = true
-        messageInputBar.inputTextView.tintColor = .primary
-        messageInputBar.sendButton.setTitleColor(.primary, for: .normal)
+        messageInputBar.inputTextView.tintColor = .primaryCustom
+        messageInputBar.sendButton.setTitleColor(.primaryCustom, for: .normal)
         
         messageInputBar.delegate = self
         messagesCollectionView.messagesDataSource = self
@@ -105,7 +105,7 @@ final class ChatViewController: MessagesViewController {
         
         // 1
         let cameraItem = InputBarButtonItem(type: .system)
-        cameraItem.tintColor = .primary
+        cameraItem.tintColor = .primaryCustom
         cameraItem.image = #imageLiteral(resourceName: "photo-camera")
         
         // 2
@@ -275,7 +275,7 @@ final class ChatViewController: MessagesViewController {
 extension ChatViewController: MessagesDisplayDelegate {
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? .primary : .incomingMessage
+        return isFromCurrentSender(message: message) ? .primaryCustom : .incomingMessage
     }
     
     func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {
