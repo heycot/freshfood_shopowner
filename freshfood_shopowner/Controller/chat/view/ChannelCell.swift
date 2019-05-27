@@ -25,10 +25,19 @@ class ChannelCell: UITableViewCell {
     @IBOutlet weak var channelImage: CustomImageView!
     @IBOutlet weak var newMessage: UILabel!
     
-    func updateView(channel: Channel) {
-        name.text = channel.name
-        name.setboldSystemFontOfSize(size: 18)
-        channelImage.displayImage(folderPath: channel.folder_image)
-        channelImage.setBorder(with: .white)
+    func updateView(channel: Channel, userID: String) {
+        
+        if userID == channel.user_id_first {
+            name.text = channel.name_second
+            name.setboldSystemFontOfSize(size: 18)
+            channelImage.displayImage(folderPath: channel.image_second)
+            channelImage.setBorder(with: .white)
+        } else {
+            
+            name.text = channel.name_first
+            name.setboldSystemFontOfSize(size: 18)
+            channelImage.displayImage(folderPath: channel.image_first)
+            channelImage.setRounded(color: .white)
+        }
     }
 }
