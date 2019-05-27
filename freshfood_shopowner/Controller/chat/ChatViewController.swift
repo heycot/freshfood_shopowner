@@ -103,30 +103,23 @@ final class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
+        // 1
+        let cameraItem = InputBarButtonItem(type: .system)
+        cameraItem.tintColor = .primary
+        cameraItem.image = #imageLiteral(resourceName: "photo-camera")
         
-        let moreButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 50))
-        moreButton.setBackgroundImage(#imageLiteral(resourceName: "photo-camera"), for: .normal)
-        moreButton.addTarget(self, action: #selector(cameraButtonPressed), for: .touchUpInside)
-        //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreButton)
-        
-        
-        //        let button = UIButton(type: .System)
-        //        let cameraItem = UIBarButtonItem(barButtonSystemItem: .done, target:  #selector(cameraButtonPressed), action: nil)
-        //        //            UIButton(type: .system) // 1
-        //        cameraItem.tintColor = .primary
-        //        cameraItem.image = #imageLiteral(resourceName: "photo-camera")
-        //        //        cameraItem.addTarget(
-        //        //            self,
-        //        //            action: #selector(cameraButtonPressed), // 2
-        //        //            for: .primaryActionTriggered
-        //        //        )
-        //        cameraItem.
-        //                cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)
+        // 2
+        cameraItem.addTarget(
+            self,
+            action: #selector(cameraButtonPressed),
+            for: .primaryActionTriggered
+        )
+        cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)
         
         messageInputBar.leftStackView.alignment = .center
         messageInputBar.setLeftStackViewWidthConstant(to: 50, animated: false)
-        //        messageInputBar.setStackViewItems([moreButton as! InputItem], forStack: .left, animated: false)
-        //        messageInputBar.setStackViewItems([moreButton as! InputItem], forStack: .left, animated: false) // 3
+        messageInputBar.setStackViewItems([cameraItem], forStack: .left, animated: false)
+        
     }
     
     private func createChannel() {
