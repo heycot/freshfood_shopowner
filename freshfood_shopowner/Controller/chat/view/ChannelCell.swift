@@ -23,7 +23,6 @@ class ChannelCell: UITableViewCell {
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var channelImage: CustomImageView!
-    @IBOutlet weak var newMessage: UILabel!
     
     func updateView(channel: Channel, userID: String) {
         
