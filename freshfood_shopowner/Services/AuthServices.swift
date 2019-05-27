@@ -106,8 +106,8 @@ class AuthServices {
                             let jsonData = try? JSONSerialization.data(withJSONObject: document.data() as Any)
                             do {
                                 let user = try JSONDecoder().decode(UserResponse.self, from: jsonData!)
-                                self.user = user
-                                self.user?.id = document.documentID
+                                self?.user = user
+                                self?.user?.id = document.documentID
                                 
                             } catch let jsonError {
                                 print("Error serializing json:", jsonError)

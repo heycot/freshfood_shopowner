@@ -136,6 +136,7 @@ enum  CellIdentifier: String {
     case newFood = "NewFoodCell"
     case comment = "CommentCell"
     case noComment = "NoCommentCell"
+    case userCell = "UserCell"
 }
 
 
