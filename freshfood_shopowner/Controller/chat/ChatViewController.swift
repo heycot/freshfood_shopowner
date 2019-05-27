@@ -48,7 +48,11 @@ final class ChatViewController: MessagesViewController {
         self.channel = channel
         super.init(nibName: nil, bundle: nil)
         
-        title = channel.name
+        if user.id == channel.user_id_first {
+            title = channel.name_second
+        } else {
+            title = channel.name_first
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -153,7 +157,6 @@ final class ChatViewController: MessagesViewController {
     // MARK: - Helpers
     
     private func save(_ message: Message) {
-        
         reference = db.collection(["channels", channel.id ?? "", "thread"].joined(separator: "/"))
         
         reference?.addDocument(data: message.representation) { error in
@@ -321,8 +324,7 @@ extension ChatViewController: MessagesDataSource {
     
     
     func currentSender() -> Sender {
-//        return Sender(id: user.id ?? "", displayName: AppSettings.displayName ?? "")
-        return Sender(id: user.id ?? "", displayName: "Cally")
+        return Sender(id: user.id ?? "", displayName: AppSettings.displayName ?? "")
     }
     
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
