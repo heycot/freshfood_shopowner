@@ -159,7 +159,7 @@ extension ChannelViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChannelCellID", for: indexPath) as! ChannelCell
         
         cell.accessoryType = .disclosureIndicator
-        cell.updateView(channel: channels[indexPath.row])
+        cell.updateView(channel: channels[indexPath.row], userID: user.id ?? "")
         
         return cell
     }
