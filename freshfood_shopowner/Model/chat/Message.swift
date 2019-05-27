@@ -20,9 +20,17 @@ struct Message: MessageType {
     let sentDate: Date
     let sender: Sender
     
+//    var kind: MessageKind {
+//        if let image = image {
+//            return .photo(image as! MediaItem)
+//        } else {
+//            return .text(content)
+//        }
+//    }
+    
     var kind: MessageKind {
         if let image = image {
-            return .photo(image as! MediaItem)
+            return .photo(MyMediaItem(image: image))
         } else {
             return .text(content)
         }
@@ -113,4 +121,18 @@ extension Message: Comparable {
         return lhs.sentDate < rhs.sentDate
     }
     
+}
+
+
+struct MyMediaItem: MediaItem {
+    var url: URL?
+    var image: UIImage?
+    var placeholderImage: UIImage
+    var size: CGSize
+    
+    init(image: UIImage) {
+        self.image = image
+        self.size = CGSize(width: 240, height: 240)
+        self.placeholderImage = UIImage()
+    }
 }
