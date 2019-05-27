@@ -14,11 +14,13 @@ class ChannelServices {
     
     static let instance = ChannelServices()
     
-    func checkChannel(channel: Channel, userID: String,  completion: @escaping (String?) -> Void) {
+    
+    func checkChannel(channel: Channel, userID: String, completion: @escaping (String?) -> Void) {
         let db = Firestore.firestore()
         var exists = false
         
-        let docRef = db.collection("channels").whereField("users", arrayContains: userID as Any).whereField("name", isEqualTo: channel.name)
+        let docRef = db.collection("channels").whereField("is_with_shop", isEqualTo: channel.is_with_shop).whereField("users", arrayContains: userID)
+        
         
         docRef.getDocuments { (document, error) in
             
@@ -49,9 +51,15 @@ class ChannelServices {
     
     func addOne(channel: Channel,   completion: @escaping (String?) -> Void) {
         let db = Firestore.firestore()
-        let values = ["folder_image": channel.folder_image as Any,
-                      "users": channel.users as [String],
-                      "name": channel.name as Any] as [String :  Any]
+        
+        let values = ["is_with_shop": channel.is_with_shop as Any,
+                      "name_first": channel.name_first as Any,
+                      "image_first": channel.image_first as Any,
+                      "user_id_first": channel.user_id_first as Any,
+                      "name_second": channel.name_second as Any,
+                      "image_second": channel.image_second as Any,
+                      "user_id_second": channel.user_id_second as Any,
+                      "users": channel.users] as [String :  Any]
         
         let ref = db.collection("channels").document()
         
