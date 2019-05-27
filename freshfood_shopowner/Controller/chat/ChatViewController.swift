@@ -250,11 +250,21 @@ final class ChatViewController: MessagesViewController {
         metadata.contentType = "image/jpeg"
         
         let imageName = [UUID().uuidString, String(Date().timeIntervalSince1970)].joined()
-        storage.child(channelID).child(imageName).putData(data, metadata: metadata) { meta, error in
-            //            completion(meta?.downloadURL())
-            //            completion(meta?.absoluteString())
+        let ref = storage.child(channelID).child(imageName)
+        
+        ref.putData(data, metadata: metadata) { meta, error in
             
-            
+            ref.downloadURL { (url, error) in
+                guard let downloadURL = url else {
+                    // Uh-oh, an error occurred!
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    completion(downloadURL)
+                }
+                
+            }
         }
     }
     

@@ -12,21 +12,12 @@ import FirebaseFirestore
 import MessageInputBar
 
 struct Message: MessageType {
-    //    var kind: MessageKind
-    
     
     let id: String?
     let content: String
     let sentDate: Date
     let sender: Sender
     
-//    var kind: MessageKind {
-//        if let image = image {
-//            return .photo(image as! MediaItem)
-//        } else {
-//            return .text(content)
-//        }
-//    }
     
     var kind: MessageKind {
         if let image = image {
