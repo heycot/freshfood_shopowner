@@ -21,4 +21,12 @@ class UserCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBOutlet weak var userAvatar: CustomImageView!
+    @IBOutlet weak var user_name: UILabel!
+    
+    func updateView(user: UserResponse) {
+        userAvatar.displayImage(folderPath: ReferenceImage.user.rawValue + "\(user.avatar ?? "")")
+        user_name.text = user.name
+        userAvatar.setButtomBorderRadious()
+    }
 }
