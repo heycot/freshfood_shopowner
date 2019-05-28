@@ -11,20 +11,19 @@ import Firebase
 
 class AccountController: UIViewController {
 
-    @IBOutlet weak var userAvatar: CustomImageView!
-    @IBOutlet weak var userName: UITextField!
-    @IBOutlet weak var userDescription: UITextField!
-    @IBOutlet weak var accountBtn: UIButton!
-    @IBOutlet weak var commentBtn: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var userAvatar: CustomImageView!
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var inforUser: UITextField!
+    @IBOutlet weak var activitiesBtn: UIButton!
+    @IBOutlet weak var accountBtn: UIButton!
+    @IBOutlet weak var notification: UILabel!
     
-    
-    let titleCell = ["Email:", "Birthday:", "Address:", "Join on:", "Edit information", "Change password"]
+    var titleCell = ["Email:", "Birthday:", "Address:", "Join on:", "Edit information", "Change password", ""]
     var detailCell = [String]()
     
-    var user = UserResponse()
+    var user : UserResponse?
     var listComment = [CommentResponse]()
     var isActivity = true
     
@@ -33,8 +32,9 @@ class AccountController: UIViewController {
         registerCells()
         disableUIView()
         
-        setUpForTableView()
         
+        setUpForTableView()
+        notification.isHidden = true
     }
     
     func registerCells() {
@@ -42,39 +42,81 @@ class AccountController: UIViewController {
         tableView.register(UINib(nibName: CellIdentifier.userComment.rawValue, bundle: nil), forCellReuseIdentifier: CellIdentifier.userComment.rawValue)
     }
     
-    func viewInfor() {
-
-        let folder = ReferenceImage.user.rawValue + "\(user.avatar ?? "")"
-        userAvatar.displayImage(folderPath: folder)
-        userAvatar.setRounded(color: .white)
-        userName.text = user.name!
-        userDescription.text = "newbee - Top 1000 - 10 Followers"
+    func handleAfterLogOut() {
+        userAvatar.image = UIImage(named: "logo")
+        userAvatar.setBottomBorder(color: .white)
+        username.text = "Guest"
+        inforUser.text = "You are using this application as a guest"
+        notification.text = "No data to show"
+        notification.isHidden = false
         
-        userDescription.setboldSystemFontOfSize(size: 14)
-        userName.setboldSystemFontOfSize(size: 18)
+        detailCell = [String]()
+        
+        for _ in 0 ..< 7 {
+            detailCell.append("")
+        }
+        
+        titleCell[titleCell.count - 1] = "Log in "
+        listComment.removeAll()
+        
+        tableView.reloadData()
+    }
+    
+    func getUser() {
+        
+        AuthServices.instance.checkLogedIn { (data) in
+            guard let data = data else { return }
+            
+            if data {
+                let userID = Auth.auth().currentUser?.uid
+                AuthServices.instance.getProfile(userID: userID ?? "", completion: { (data) in
+                    guard let data = data else { return }
+                    self.user = data
+                    self.getDataFromAPI(offset: 0, isLoadMore: false)
+                    self.setupDetailInfor()
+                })
+            } else {
+                self.handleAfterLogOut()
+                self.notification.text = "No data to show"
+                self.notification.isHidden = false
+            }
+        }
     }
     
     
+    func viewInfor() {
+        userAvatar.displayImage(folderPath: ReferenceImage.user.rawValue + "\(user?.avatar ?? "")")
+        userAvatar.setRounded(color: .white)
+        username.text = user?.name ?? ""
+        inforUser.text = "newbee - Top 1000 - 10 Followers"
+        
+        inforUser.setboldSystemFontOfSize(size: 14)
+        username.setboldSystemFontOfSize(size: 18)
+    }
+    
     func setupDetailInfor() {
         
-        detailCell.append(user.email!)
-
-        if (user.birthday != nil) {
-            let dateStr = NSObject().convertToString(date: user.birthdayDate! , dateformat: DateFormatType.date)
+        titleCell[titleCell.count - 1] = "Log out "
+        detailCell.removeAll()
+        
+        detailCell.append(user?.email ?? "")
+        
+        if (user?.birthday != nil) {
+            let dateStr = NSObject().convertToString(date: user?.birthdayDate ?? Date() , dateformat: DateFormatType.date)
             detailCell.append(dateStr)
         } else {
             detailCell.append("")
         }
-
-        let createDate = NSObject().convertToString(date: user.createDate! , dateformat: DateFormatType.date)
-
-        detailCell.append(user.address!)
+        
+        let createDate = NSObject().convertToString(date: user?.createDate ?? Date(), dateformat: DateFormatType.date)
+        
+        detailCell.append(user?.address ?? "")
         detailCell.append(createDate)
         detailCell.append("")
         detailCell.append("")
-        
+        detailCell.append("")
         viewInfor()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     func setUpForTableView() {
@@ -83,42 +125,51 @@ class AccountController: UIViewController {
         tableView.delegate = self
     }
     
-    @IBAction func commentBtnPressed(_ sender: Any) {
+    @IBAction func activitiesBtnPressed(_ sender: Any) {
         isActivity = true
+        
+        if listComment.count == 0 || user == nil {
+            notification.text = "No data to show"
+            notification.isHidden = false
+        } else {
+            notification.isHidden = true
+        }
+        
         tableView.reloadData()
     }
     
     @IBAction func accountBtnPressed(_ sender: Any) {
         isActivity = false
+        
+        if user == nil {
+            notification.text = "No data to show"
+            notification.isHidden = false
+        } else {
+            notification.isHidden = true
+        }
+        
+        
         tableView.reloadData()
     }
     
     
-    func getDataFromAPI() {
+    func getDataFromAPI(offset: Int, isLoadMore: Bool) {
         
-        CommentServices.instance.getAllCommentByUser() { (data) in
+        CommentServices.instance.getAllCommentByUser { (data) in
             guard let data = data else { return }
+            
+            if data.count == 0 {
+                self.notification.text = "No data to show"
+                self.notification.isHidden = false
+            }
             
             self.listComment = data
-            self.getProfile()
-        }
-    }
-    
-    func getProfile() {
-        let userID = Auth.auth().currentUser!.uid
-        AuthServices.instance.getProfile(userID: userID) { (data) in
-            guard let data = data else { return }
-            
-            self.user = data
-            self.setupDetailInfor()
-            self.view.reloadInputViews()
             self.tableView.reloadData()
         }
     }
     
     func disableUIView() {
-        userName.isEnabled = false
-        userDescription.isEnabled = false
+        username.isEnabled = false
     }
     
     
@@ -129,14 +180,12 @@ class AccountController: UIViewController {
 
             vc?.isView = false
             vc?.lastComment = listComment[index]
-//            vc?.shopitemId = listComment[index].shopitem_id!
-//            vc?.nameShop = listComment[index].entity_name!
         } else
             if segue.destination is ChangePasswordController {
             
         } else if segue.destination is EditInforController {
             let vc = segue.destination as? EditInforController
-            vc?.user = user
+            vc?.user = user ?? UserResponse()
         }
     }
     
@@ -173,7 +222,7 @@ extension AccountController: UITableViewDelegate, UITableViewDataSource {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         
-        getDataFromAPI()
+        getUser()
         isActivity = true
         super.viewWillAppear(true)
         tableView.reloadData()
@@ -188,7 +237,18 @@ extension AccountController: UITableViewDelegate, UITableViewDataSource {
             
         else {
             let index = titleCell.count - 1
+            
             if indexPath?.row == index  {
+                self.user = nil
+                AuthServices.instance.signout()
+                self.handleAfterLogOut()
+            
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginControllerID") as UIViewController
+                // .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
+                
+                self.present(viewController, animated: false, completion: nil)
+                
+            } else if indexPath?.row == index  {
                 performSegue(withIdentifier: SegueIdentifier.accountToPassword.rawValue, sender: nil)
             } else {
                 performSegue(withIdentifier: SegueIdentifier.accountToEditInfor.rawValue, sender: nil)
