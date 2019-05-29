@@ -38,20 +38,20 @@ class FoodCell: UITableViewCell {
     
     func viewStatus(st: Int) {
         if st == 0 {
-            status.text = "Waiting"
+            status.text = NSLocalizedString("Waiting", comment: "")
             status.textColor = UIColor.lightGray
         } else if st == 1 {
-            status.text = "Selling"
+            status.text = NSLocalizedString("Selling", comment: "")
             status.textColor = .green
         } else {
-            status.text = "Stoped"
+            status.text = NSLocalizedString("Stoped", comment: "")
             status.textColor = .red
         }
     }
     
     func viewRating(rating: Double, cmt: Int) {
         if rating == 0.0 {
-            ratingTxt.text = "No comment yet"
+            ratingTxt.text = NSLocalizedString("No comment yet", comment: "")
             ratingTxt.textColor = .gray
         } else {
             ratingTxt.text = String(format: "%0.2f", rating) + " (\(cmt))"

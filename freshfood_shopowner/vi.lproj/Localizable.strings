@@ -1,0 +1,102 @@
+/* 
+  Localizable.strings
+  freshfood_shopowner
+
+  Created by Tu (Callie) T. NGUYEN on 5/29/19.
+  Copyright © 2019 Tu (Callie) T. NGUYEN. All rights reserved.
+*/
+
+
+
+"No data to show" = "Không có dữ liệu";
+"No food to show" = "Không có dữ liệu";
+"Please login to use this task" = "Đăng nhập để sử dụng tính năng này";
+"All the information are required" = "Điền tất cả các thông tin";
+"Something went wrong" = "Có lỗi xảy ra";
+"Please try another time" = "Vui lòng thử lại sau";
+"The title has only letters, underscores and numbers allowed" = "Chỉ bao gồm chữ cái, chữ số và gạch dưới";
+"The content has only letters, underscores and numbers allowed" = "Chỉ bao gồm chữ cái, chữ số và gạch dưới";
+"Invalid username" = "Sai định dạng tên";
+"Only letters, underscores, numbers, and Length should 4-20" = "Chỉ bao gồm chữ cái, chữ số, gạch dưới và từ 4-20 ký tự";
+"Can not log in" = "Hiện tại không thể đăng nhập";
+"Your email and password do not match any account" = "Sai email hoặc pasword";
+"Invalid phone number" = "Sai định dạng số điện thoại";
+"Only 10 numbers" = "Chỉ bao gồm 10 chữ số";
+"Invalid email address" = "Sai định dạng email";
+"Please enter a valid email address." = "Vui lòng nhập đúng email";
+"Invalid new password" = "sai định dạng password";
+"Only letters, underscores, and numbers" = "Chỉ bao gồm chữ cái, chữ số và gạch dưới";
+"Invalid confirm password" = "Sai confrim password";
+"Does not match with password" = "Sai mật khẩu";
+"We would like to access your location" = "Cho phép lấy địa chỉ";
+"Please grant permission to access your location" = "Cho phép chúng tôi lấy địa chỉ của bạn trong quá trình sử dụng";
+"Open Settings" = "Mở cài đặt";
+"Not Now" = "Không phải bây giờ";
+" Search here" = "Tìm kiếm tại đây";
+"%.0f mins" = "%.0f phút";
+"Back" = "Trở về";
+"Can not love" = "Không thể yêu thích";
+"Please sign in!" = "Vui lòng đăng nhập";
+"Yes" = "Có";
+"No" = "Không";
+"Can not chat" = "Không thể nhắn tin";
+"Can not Comment" = "Không thể bình luận";
+"No photo!" = "Không có ảnh nào";
+"Photos" = "Hình ảnh";
+"Done" = "Xong";
+"Shop :" = "Cửa hàng :";
+"Food :" = "Sản phẩm :";
+"Write review" = "Thêm bình luận";
+"Edit review" = "Sửa bình luận của bạn";
+"Enter content" = "Nhập nội dung";
+"Rate me" = "Đánh giá";
+"Send" = "Gửi";
+"enter content" = "nhập nội dung";
+"enter title" = "nhập nội dung";
+"Distance: " = "Khoảng cách: ";
+" (From current location)" = " (từ vị trí hiện tại)";
+"Opening" = "Đang mở cửa";
+"Closed" = "Đóng cửa";
+"price: " = "giá: ";
+"Email:" = "Email:";
+"Birthday:" = "Ngày sinh:" ;
+"Address:" = "Địa chỉ:";
+"Join on:" = "Tham gia:";
+"Edit information" = "Sửa thông tin";
+"Change password" = "Đổi mật khẩu";
+"Guest" = "Khách";
+"You are using this application as a guest" = "Bạn đang sử dụng với tư cách là khách";
+"Log in " = "Đăng nhập ";
+"newbee - Top 1000 - 10 Followers" = "Thành viên mới - top 1000 - 10 theo dõi";
+"Log out " = "Đăng xuất ";
+"Something went wrong. Please try again" = "Xảy ra lỗi, vui lòng thử lại sau";
+"Update successful" = "Cập nhật thành công";
+"Signup failed" = "Lỗi đăng ký";
+"Can not log in!" = "Không thể đăng nhập";
+"Your email and password do not match any account" = "Sai email hoặc password";
+"Categories" = "Danh mục";
+"Foods" = "Sản phẩm";
+"photos" = "hình ảnh";
+"Waiting" = "Chờ phê duyệt";
+"Selling" = "Đang hoạt động";
+"Stoped" = "Ngừng bán";
+"No comment yet" = "Chưa có bình luận";
+"Cancel" = "Đóng";
+"Please try next time" = "Thử lại lần sau";
+"Failed" = "Lỗi";
+"Alert" = "Cảnh báo";
+"Are you sure want to activate this food?" = "Bạn có chắc muôn kích hoạt sản phẩm này?";
+"Activate" = "Kích hoạt";
+"Deactivate" = "huỷ kích hoạt";
+"Are you sure want to deactivate this food?" = "Bạn có chắc muốn huỷ kích hoạt sản phẩm này?";
+"All the information is required" = "Điền tất cả thông tin";
+"Add Success" = "Thêm thành công";
+"Comment: No data" = "Bình luận: Không có dữ liệu";
+"Report" = "Báo cáo";
+"Are you sure to report this comment to admin" = "Bạn có chắc bình luận này có vấn đề";
+"Success" = "Thành công";
+"Report success" = "Báo cáo thành công";
+"No data" = "Không có dữ liệu";
+"Do not have any data available" = "Không có sản phẩm nào có sẵn";
+"Your food is saved success " = "Sản phẩm của bạn đã lưu thành công";
+

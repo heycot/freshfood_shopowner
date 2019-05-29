@@ -59,7 +59,7 @@ class ListFoodsController: UIViewController {
             
             if data.count == 0 {
                 self.notificationHeight.constant = 30
-                self.notification.text = "No data to show"
+                self.notification.text = NSLocalizedString("No data to show", comment: "")
             } else {
                 
                 self.ShopItemList = data
@@ -140,10 +140,10 @@ extension ListFoodsController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if ShopItemList[indexPath.row].status ?? 0 <= 1 {
-            return handleChangeStatus(title: "Disable", message: "Are you sure want to disable this food?", status: 2, color: .red)
+            return handleChangeStatus(title: NSLocalizedString("Deactivate", comment: ""), message: NSLocalizedString("Are you sure want to deactivate this food?", comment: ""), status: 2, color: .red)
             
         } else {
-            return handleChangeStatus(title: "Enable", message: "Are you sure want to enable this food?", status: 1, color: APP_COLOR)
+            return handleChangeStatus(title: NSLocalizedString("Activate", comment: ""), message: NSLocalizedString("Are you sure want to activate this food?", comment: ""), status: 1, color: APP_COLOR)
         }
             
     }
@@ -151,10 +151,10 @@ extension ListFoodsController : UITableViewDataSource {
     func handleChangeStatus(title: String, message: String, status: Int, color: UIColor) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .normal, title: title) { (action, indexPath) in
             // share item at indexPath
-            let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: NSLocalizedString("Alert", comment: ""), message: message, preferredStyle: UIAlertController.Style.alert)
             
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { action in
                 
                 ShopItemService.instance.changeStatus(id: self.ShopItemList[indexPath.row].id ?? "", status: status) { (data) in
                     guard let data = data else { return }
@@ -163,9 +163,9 @@ extension ListFoodsController : UITableViewDataSource {
                         self.ShopItemList[indexPath.row].status = status
                         self.tableView.reloadData()
                     } else {
-                        let alert = UIAlertController(title: "Failed", message: "Please try next time", preferredStyle: UIAlertController.Style.alert)
+                        let alert = UIAlertController(title: NSLocalizedString("Failed", comment: ""), message: NSLocalizedString("Please try next time", comment: ""), preferredStyle: UIAlertController.Style.alert)
                         
-                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
                         self.present(alert, animated: true)
                     }
                 }

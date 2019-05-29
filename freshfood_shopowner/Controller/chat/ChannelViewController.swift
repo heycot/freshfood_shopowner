@@ -50,7 +50,7 @@ class ChannelViewController: UIViewController {
             guard let data = data else { return }
             
             if data.count == 0 {
-                self.notification.text = "No data to show"
+                self.notification.text = NSLocalizedString("No data to show", comment: "")
                 self.notification.isHidden = false
             }
             
@@ -97,7 +97,7 @@ class ChannelViewController: UIViewController {
                 self.viewListChannel()
                 
             } else {
-                self.notification.text = "Please sign in to use this task"
+                self.notification.text = NSLocalizedString("Please sign in to use this task", comment: "")
             }
         }
     }
@@ -210,9 +210,9 @@ extension ChannelViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Your customers"
+            return NSLocalizedString("Customers", comment: "")
         } else {
-            return "Your friends"
+            return NSLocalizedString("Friends", comment: "")
         }
     }
     

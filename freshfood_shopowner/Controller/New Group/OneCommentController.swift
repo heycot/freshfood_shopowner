@@ -44,14 +44,14 @@ class OneCommentController: UIViewController {
     func getUserInfor(id: String) {
         AuthServices.instance.getProfile(userID: id) { (data) in
             guard let data = data else { return }
-            self.shopItemName.text =  "User: \(data.name ?? "")"
+            self.shopItemName.text =  NSLocalizedString("User: ", comment: "") + "\(data.name ?? "")"
         }
     }
 
     func getShopItemInfor(id: String) {
         ShopItemService.instance.getOneById(shop_item_id: id) { (data) in
             guard let data = data else { return }
-            self.shopItemName.text = "Food: \(data.name ?? "")"
+            self.shopItemName.text = NSLocalizedString("Food:", comment: "") + " \(data.name ?? "")"
         }
     }
     
@@ -94,7 +94,7 @@ class OneCommentController: UIViewController {
     
     // handle keyboard when add new comment
     func handlerkeyboard() {
-        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Send"
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = NSLocalizedString("Send", comment: "")
         IQKeyboardManager.shared.shouldResignOnTouchOutside = false
         IQKeyboardManager.shared.shouldPlayInputClicks = false // set to true by default
     }
@@ -136,9 +136,9 @@ class OneCommentController: UIViewController {
                 CommentServices.instance.editOne(cmt: lastComment) { (data) in
                     guard let data = data else { return }
                     if data {
-                        self.showAlert(title: "Error", message: "Something went wrong. Please try again.")
+                        self.showAlert(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("Your data saved", comment: ""))
                     } else {
-                        self.showAlert(title: "Error", message: "Something went wrong. Please try again.")
+                        self.showAlert(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Something went wrong. Please try again", comment: ""))
                     }
                 }
             }
@@ -147,22 +147,22 @@ class OneCommentController: UIViewController {
     
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
     func validateInput() -> Bool {
         
         if titleCmt.text == "" || titleCmt.text?.lowercased() == "enter title" || content.text == "" || content.text.lowercased() == "enter content" {
-            showAlertError(title: "Error", message: Notification.comment.nilWithInfor.rawValue)
+            showAlertError(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString(Notification.comment.nilWithInfor.rawValue, comment: ""))
             return false
         } else if !titleCmt.text!.isValidString() {
-            showAlertError(title: "Error", message: Notification.comment.titleNotValid.rawValue)
+            showAlertError(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString(Notification.comment.titleNotValid.rawValue, comment: ""))
             return false
             
         } else if content.text == nil || !content.text!.isValidString() {
-            showAlertError(title: "Error", message: Notification.comment.contentNotValid.rawValue)
+            showAlertError(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString(Notification.comment.contentNotValid.rawValue, comment: ""))
             return false
             
         } else {
@@ -171,7 +171,7 @@ class OneCommentController: UIViewController {
     }
     
     func showAlertError(title: String, message: String) {
-        
+
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)

@@ -20,7 +20,14 @@ class AccountController: UIViewController {
     @IBOutlet weak var accountBtn: UIButton!
     @IBOutlet weak var notification: UILabel!
     
-    var titleCell = ["Email:", "Birthday:", "Address:", "Join on:", "Edit information", "Change password", ""]
+    var titleCell = [   NSLocalizedString("Email:", comment: ""),
+                        NSLocalizedString("Birthday:", comment: ""),
+                        NSLocalizedString("Address:", comment: ""),
+                        NSLocalizedString("Join on:", comment: ""),
+                        NSLocalizedString("Edit information", comment: ""),
+                        NSLocalizedString("Change password", comment: ""),
+                        NSLocalizedString("", comment: "")]
+    
     var detailCell = [String]()
     
     var user : UserResponse?
@@ -45,9 +52,9 @@ class AccountController: UIViewController {
     func handleAfterLogOut() {
         userAvatar.image = UIImage(named: "logo")
         userAvatar.setBottomBorder(color: .white)
-        username.text = "Guest"
-        inforUser.text = "You are using this application as a guest"
-        notification.text = "No data to show"
+        username.text = NSLocalizedString("Guest", comment: "")
+        inforUser.text = NSLocalizedString("You are using this application as a guest", comment: "")
+        notification.text = NSLocalizedString("No data to show", comment: "")
         notification.isHidden = false
         
         detailCell = [String]()
@@ -56,7 +63,7 @@ class AccountController: UIViewController {
             detailCell.append("")
         }
         
-        titleCell[titleCell.count - 1] = "Log in "
+        titleCell[titleCell.count - 1] = NSLocalizedString("Log in ", comment: "")
         listComment.removeAll()
         
         tableView.reloadData()
@@ -77,7 +84,7 @@ class AccountController: UIViewController {
                 })
             } else {
                 self.handleAfterLogOut()
-                self.notification.text = "No data to show"
+                self.notification.text =  NSLocalizedString("No data to show", comment: "")
                 self.notification.isHidden = false
             }
         }
@@ -88,7 +95,7 @@ class AccountController: UIViewController {
         userAvatar.displayImage(folderPath: ReferenceImage.user.rawValue + "\(user?.avatar ?? "")")
         userAvatar.setRounded(color: .white)
         username.text = user?.name ?? ""
-        inforUser.text = "newbee - Top 1000 - 10 Followers"
+        inforUser.text = NSLocalizedString("newbee - Top 1000 - 10 Followers", comment: "")
         
         inforUser.setboldSystemFontOfSize(size: 14)
         username.setboldSystemFontOfSize(size: 18)
@@ -96,7 +103,7 @@ class AccountController: UIViewController {
     
     func setupDetailInfor() {
         
-        titleCell[titleCell.count - 1] = "Log out "
+        titleCell[titleCell.count - 1] = NSLocalizedString("Log out ", comment: "")
         detailCell.removeAll()
         
         detailCell.append(user?.email ?? "")
@@ -129,7 +136,7 @@ class AccountController: UIViewController {
         isActivity = true
         
         if listComment.count == 0 || user == nil {
-            notification.text = "No data to show"
+            notification.text = NSLocalizedString("No data to show", comment: "")
             notification.isHidden = false
         } else {
             notification.isHidden = true
@@ -142,7 +149,7 @@ class AccountController: UIViewController {
         isActivity = false
         
         if user == nil {
-            notification.text = "No data to show"
+            notification.text = NSLocalizedString("No data to show", comment: "")
             notification.isHidden = false
         } else {
             notification.isHidden = true
@@ -159,7 +166,7 @@ class AccountController: UIViewController {
             guard let data = data else { return }
             
             if data.count == 0 {
-                self.notification.text = "No data to show"
+                self.notification.text = NSLocalizedString("No data to show", comment: "")
                 self.notification.isHidden = false
             }
             

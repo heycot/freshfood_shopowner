@@ -1,0 +1,79 @@
+/* 
+  Localizable.strings
+  freshfood_shopowner
+
+  Created by Tu (Callie) T. NGUYEN on 5/29/19.
+  Copyright © 2019 Tu (Callie) T. NGUYEN. All rights reserved.
+*/
+
+"No data to show" = "No data to show";
+"No food to show" = "No food to show";
+"Please login to use this task" = "Please login to use this task";
+"All the information are required" = "All the information are required";
+"Something went wrong" = "Something went wrong";
+"Please try another time" = "Please try another time";
+"The title has only letters, underscores and numbers allowed" = "The title has only letters, underscores and numbers allowed";
+"The content has only letters, underscores and numbers allowed" = "The content has only letters, underscores and numbers allowed";
+"Invalid username" = "Invalid username";
+"Only letters, underscores, numbers, and Length should 4-20" = "Only letters, underscores, numbers, and Length should 4-20";
+"Can not log in" = "Can not log in";
+"Your email and password do not match any account" = "Your email and password do not match any account";
+"Invalid phone number" = "Invalid phone number";
+"Only 10 numbers" = "Only 10 numbers";
+"Invalid email address" = "Invalid email address";
+"Please enter a valid email address" = "Please enter a valid email address";
+"Invalid new password" = "Invalid new password";
+"Only letters, underscores, and numbers" = "Only letters, underscores, and numbers";
+"Invalid confirm password" = "Invalid confirm password";
+"Does not match with password" = "Does not match with password";
+"We would like to access your location" = "We would like to access your location";
+"Please grant permission to access your location" = "Please grant permission to access your location";
+"Open Settings" = "Open Settings";
+"Not Now" = "Not Now";
+" Search here" = " Search here";
+"%.0f mins" = "%.0f mins";
+"Back" = "Back";
+"Can not love" = "Can not love";
+"Please sign in!" = "Please sign in!";
+"Yes" = "Yes";
+"No" = "No";
+"Can not chat" = "Can not chat";
+"Can not Comment" = "Can not Comment";
+"No photo!" = "No photo!";
+"Photos" = "Photos";
+"photos" = "photos";
+"Done" = "Done";
+"Shop :" = "Shop :";
+"Food :" = "Food :";
+"Write review" = "Write review";
+"Edit review" = "Edit review";
+"Enter content" = "Enter content";
+"Rate me" = "Rate me";
+"Send" = "Send";
+"enter content" = "enter content";
+"enter title" = "enter title";
+"Back" = "Back";
+"Distance: " = "Distance: ";
+" (From current location)" = " (From current location)";
+"Opening" = "Opening";
+"Closed" = "Closed";
+"price: " = "price: ";
+"Email:" = "Email:";
+"Birthday:" = "Birthday:" ;
+"Address:" = "Address:";
+"Join on:" = "Join on:";
+"Edit information" = "Edit information";
+"Change password" = "Change password";
+"Guest" = "Guest";
+"You are using this application as a guest" = "You are using this application as a guest";
+"Log in " = "Log in ";
+"newbee - Top 1000 - 10 Followers" = "newbee - Top 1000 - 10 Followers";
+"Log out " = "Log out ";
+"Something went wrong. Please try again" = "Something went wrong. Please try again";
+"Update successful" = "Update successful";
+"Signup failed" = "Signup failed";
+"Can not log in!" = "Can not log in!";
+"Your email and password do not match any account" = "Your email and password do not match any account";
+"Categories" = "Categories";
+"Foods" = "Foods";
+"Error" = "Error";

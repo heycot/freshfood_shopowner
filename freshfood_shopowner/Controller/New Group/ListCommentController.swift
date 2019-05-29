@@ -14,7 +14,6 @@ class ListCommentController: UIViewController {
     @IBOutlet weak var notification: UILabel!
     
     var shopList = [ShopResponse]()
-//    var cmtList = [[CommentResponse]]()
     var cmtList = [CommentResponse]()
     
     override func viewDidLoad() {
@@ -37,33 +36,6 @@ class ListCommentController: UIViewController {
         tableView.tableFooterView = UIView()
     }
     
-//    func getComment() {
-//        ShopService.instance.getListShop { (data) in
-//            guard let data = data else { return }
-//            self.shopList = data
-//
-//            for i in 0 ..< self.shopList.count {
-//                self.cmtList.append([])
-//                CommentServices.instance.getCommentByShopId(shopID: self.shopList[i].id ?? "", completion: { (data) in
-//                    guard let data = data else { return}
-//                    self.cmtList[i] = [CommentResponse]()
-//
-//                    for cmt in data {
-//                        self.cmtList[i].append(cmt)
-//                    }
-//
-//                    if self.cmtList.count == 0 {
-//                        self.notification.text = "No data to show"
-//                        self.notification.isHidden = false
-//                    }
-//
-//                    self.tableView.reloadData()
-//                })
-//            }
-//
-//        }
-//    }
-    
     func getComment() {
         ShopService.instance.getListShop { (data) in
             guard let data = data else { return }
@@ -78,7 +50,7 @@ class ListCommentController: UIViewController {
                     }
                     
                     if self.cmtList.count == 0 {
-                        self.notification.text = "No data to show"
+                        self.notification.text = NSLocalizedString("No data to show", comment: "")
                         self.notification.isHidden = false
                     }
                     
@@ -109,41 +81,6 @@ extension ListCommentController : UITableViewDelegate {
 
 extension ListCommentController : UITableViewDataSource {
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return shopList.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        print("............... " + shopList[section].name!)
-//        return shopList[section].name
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let vw = UIView()
-//        vw.backgroundColor = APP_COLOR_35
-//
-//        return vw
-//    }
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return CGFloat(30)
-//    }
-    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return cmtList[section].count > 0 ? cmtList[section].count : 1
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        if cmtList[indexPath.section].count == 0 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.noComment.rawValue, for: indexPath) as! NoCommentCell
-//            return cell
-//
-//        } else {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.comment.rawValue, for: indexPath) as! CommentCell
-//            cell.updateView(cmt: cmtList[indexPath.section][indexPath.row])
-//            return cell
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cmtList.count
@@ -158,12 +95,12 @@ extension ListCommentController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
        
-        let share = UITableViewRowAction(style: .normal, title: "Report") { (action, indexPath) in
+        let share = UITableViewRowAction(style: .normal, title: NSLocalizedString("Report", comment: "")) { (action, indexPath) in
             // share item at indexPath
-            let alert = UIAlertController(title: "Alert", message: "Are you sure to report this comment to admin", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: NSLocalizedString("Alert", comment: ""), message: NSLocalizedString("Are you sure to report this comment to admin", comment: ""), preferredStyle: UIAlertController.Style.alert)
             
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { action in
                 CommentServices.instance.changeStatus(cmtID: self.cmtList[indexPath.row].id ?? "", status: 2, completion: { (data) in
                     
                 })

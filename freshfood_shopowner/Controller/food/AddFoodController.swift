@@ -78,7 +78,7 @@ class AddFoodController: UIViewController {
     
     @IBAction func doneBtnPressed(_ sender: Any) {
         if nameTxt.text == "" || priceTxt.text == "" || unitTxt.text == "" {
-            notification.text = "All the information is required"
+            notification.text = NSLocalizedString("All the information is required", comment: "")
             notificationHeight.constant = 30
         } else {
             self.doneBtn.isEnabled = false
@@ -114,15 +114,15 @@ class AddFoodController: UIViewController {
         if isSuccess {
             self.uploadImages()
             
-            let alert = UIAlertController(title: "Success", message: "Your food is saved success ", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("Your food is saved success ", comment: ""), preferredStyle: UIAlertController.Style.alert)
             
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel, handler: { action in
                 self.navigationController?.popViewController(animated: true)
             }))
             self.present(alert, animated: true)
         } else {
             self.notificationHeight.constant = 30
-            self.notification.text = "Something went wrong. Please try again"
+            self.notification.text = NSLocalizedString("Something went wrong. Please try again", comment: "")
         }
     }
     
@@ -158,7 +158,7 @@ class AddFoodController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ListFoodsController {
             let vc = segue.destination as? ListFoodsController
-            vc?.addNotification = "Add Success"
+            vc?.addNotification = NSLocalizedString("Add Success", comment: "")
         }
     }
     
@@ -176,7 +176,7 @@ extension AddFoodController {
                 self.comments = data
                 self.tableView.reloadData()
             } else {
-                self.cmtLB.text = "Comment: No data"
+                self.cmtLB.text = NSLocalizedString("Comment: No data", comment: "")
             }
         }
     }
@@ -236,11 +236,11 @@ extension AddFoodController {
             
             toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
             //        toolBar.barStyle = .blackTranslucent
-            toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
+            toolBar.items = [UIBarButtonItem.init(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(onDoneButtonTapped))]
             self.view.addSubview(toolBar)
         } else {
-            let alert = UIAlertController(title: "No data", message: "Do not have any data available", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: NSLocalizedString("No data", comment: ""), message: NSLocalizedString("Do not have any data available", comment: ""), preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -294,15 +294,15 @@ extension AddFoodController : UITableViewDelegate, UITableViewDataSource {
         
         let share = UITableViewRowAction(style: .normal, title: "Report") { (action, indexPath) in
             // share item at indexPath
-            let alert = UIAlertController(title: "Alert", message: "Are you sure to report this comment to admin", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: NSLocalizedString("Alert", comment: ""), message: NSLocalizedString("Are you sure to report this comment to admin", comment: ""), preferredStyle: UIAlertController.Style.alert)
             
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { action in
                 CommentServices.instance.changeStatus(cmtID: self.comments[indexPath.row].id ?? "", status: 2, completion: { (data) in
-                    let alert = UIAlertController(title: "Success", message: "Report success", preferredStyle: UIAlertController.Style.alert)
+                    let alert = UIAlertController(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("Report success", comment: ""), preferredStyle: UIAlertController.Style.alert)
                     
-                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     
                     self.present(alert, animated: true)
                 })

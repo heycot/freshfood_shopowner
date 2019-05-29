@@ -43,7 +43,7 @@ class CommentCell: UITableViewCell {
     
     func viewRating(rt: Double) {
         if rt == 0.0 {
-            rating.text = "No comment yet"
+            rating.text = NSLocalizedString("No comment yet", comment: "")
             rating.textColor = .gray
         } else {
             rating.text = String(format: "%0.2f", rt)
