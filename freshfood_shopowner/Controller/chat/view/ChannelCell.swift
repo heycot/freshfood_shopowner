@@ -24,16 +24,22 @@ class ChannelCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var channelImage: CustomImageView!
     
-    func updateView(channel: Channel, userID: String) {
+    func updateView(channel: Channel, userID: String, isShop: Bool) {
         
         if userID == channel.user_id_first {
-            name.text = channel.name_second
+            
+            if isShop {
+                name.text = channel.name_second + " - " + channel.name_first
+            }
+            
             name.setboldSystemFontOfSize(size: 18)
             channelImage.displayImage(folderPath: channel.image_second)
             channelImage.setBorder(with: .white)
         } else {
+            if isShop {
+                name.text = channel.name_first + " - " + channel.name_second
+            }
             
-            name.text = channel.name_first
             name.setboldSystemFontOfSize(size: 18)
             channelImage.displayImage(folderPath: channel.image_first)
             channelImage.setRounded(color: .white)

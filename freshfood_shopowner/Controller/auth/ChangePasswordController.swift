@@ -113,12 +113,12 @@ extension ChangePasswordController : UITextFieldDelegate {
         
         switch textField {
         case currentPass:
-            guard let password = currentPass.text, currentPass.text!.isValidPassword()  else {
-                notiTitle.text = Notification.password.detail.rawValue
-                disableInputText()
-                self.isCurrentCorrect = false
-                return
-            }
+//            guard let password = currentPass.text, currentPass.text!.isValidPassword()  else {
+//                notiTitle.text = Notification.password.detail.rawValue
+//                disableInputText()
+//                self.isCurrentCorrect = false
+//                return
+//            }
             
 //            AuthServices.instance.checkPassword(pass: password) { (data) in
 //                guard let data = data else { return }

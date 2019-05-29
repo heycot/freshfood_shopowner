@@ -64,10 +64,8 @@ class CustomImageView: UIImageView {
         }
         
         ImageServices.instance.downloadImages(folderPath: folder, success: { (data) in
-            if data != nil {
-                self.image = data
-            }
-            
+                        
+            self.image = data
             imageCache.setObject(data, forKey: folder as NSString)
         }) { (err) in
             print("something wrong with image folder")

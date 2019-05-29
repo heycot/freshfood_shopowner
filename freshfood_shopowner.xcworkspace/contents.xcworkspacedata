@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/callie/Desktop/senior_project/freshfood_shopowner/freshfood_shopowner/Services/FindUserController.swift">
-   </FileRef>
-   <FileRef
       location = "group:freshfood_shopowner.xcodeproj">
    </FileRef>
    <FileRef

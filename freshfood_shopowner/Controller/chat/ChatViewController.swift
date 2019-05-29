@@ -70,7 +70,7 @@ final class ChatViewController: MessagesViewController {
     
     func checkChannel() {
         
-        ChannelServices.instance.checkChannel(channel: channel, userID: user.id ?? "") { (data) in
+        ChannelServices.instance.checkChannel(channel: channel, userID: channel.user_id_first ?? "", authID: channel.user_id_second ?? "") { (data) in
             if data == nil {
                 self.createChannel()
             } else {
@@ -162,7 +162,11 @@ final class ChatViewController: MessagesViewController {
     // MARK: - Helpers
     
     private func save(_ message: Message) {
-        reference = db.collection(["channels", channel.id ?? "", "thread"].joined(separator: "/"))
+        guard let id = channel.id else {
+            return
+        }
+        
+        reference = db.collection(["channels", id, "thread"].joined(separator: "/"))
         
         reference?.addDocument(data: message.representation) { error in
             if let e = error {
@@ -183,8 +187,8 @@ final class ChatViewController: MessagesViewController {
         messages.sort()
         
         let isLatestMessage = messages.index(of: message) == (messages.count - 1)
-//        let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
-        let shouldScrollToBottom = true
+        let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
+//        let shouldScrollToBottom = true
         
         messagesCollectionView.reloadData()
         

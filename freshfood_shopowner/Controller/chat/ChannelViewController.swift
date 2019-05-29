@@ -18,13 +18,13 @@ class ChannelViewController: UIViewController {
     var channels_shop = [Channel]()
     var channels_user = [Channel]()
     
+    var userID = ""
     var user = UserResponse()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupUser()
-        viewListChannel()
     }
     
     func setupView() {
@@ -62,6 +62,12 @@ class ChannelViewController: UIViewController {
                 }
             }
             self.tableView.reloadData()
+            
+            AuthServices.instance.getProfile(userID: self.userID , completion: { (data) in
+                guard let data = data else { return }
+                self.user = data
+                self.addSnapshot()
+            })
         }
     }
     
@@ -86,13 +92,9 @@ class ChannelViewController: UIViewController {
             guard let data = data else { return }
             
             if data {
-                let userID = Auth.auth().currentUser?.uid
+                self.userID = Auth.auth().currentUser?.uid ?? ""
                 self.notification.isHidden = true
-                AuthServices.instance.getProfile(userID: userID ?? "", completion: { (data) in
-                    guard let data = data else { return }
-                    self.user = data
-                    self.addSnapshot()
-                })
+                self.viewListChannel()
                 
             } else {
                 self.notification.text = "Please sign in to use this task"
@@ -208,9 +210,9 @@ extension ChannelViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Chat with your customers"
+            return "Your customers"
         } else {
-            return "Chat with your friends"
+            return "Your friends"
         }
     }
     
@@ -237,10 +239,10 @@ extension ChannelViewController : UITableViewDelegate, UITableViewDataSource {
         
         cell.accessoryType = .disclosureIndicator
         if indexPath.section == 0 {
-            cell.updateView(channel: channels_shop[indexPath.row], userID: user.id ?? "")
+            cell.updateView(channel: channels_shop[indexPath.row], userID: user.id ?? "", isShop: true)
         } else {
             
-            cell.updateView(channel: channels_user[indexPath.row], userID: user.id ?? "")
+            cell.updateView(channel: channels_user[indexPath.row], userID: user.id ?? "", isShop: false)
         }
         
         return cell

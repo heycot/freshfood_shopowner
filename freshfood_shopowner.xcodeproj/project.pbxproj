@@ -33,7 +33,6 @@
 		23075B9D2282D2680088AB24 /* MapRequestBodyDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B9C2282D2680088AB24 /* MapRequestBodyDirection.swift */; };
 		23075BA02282D2930088AB24 /* LocationServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23075B9F2282D2930088AB24 /* LocationServicesProtocol.swift */; };
 		2316DADF22897CEC00378745 /* CommentServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316DADE22897CEC00378745 /* CommentServices.swift */; };
-		231B4833229D55AB00EE6311 /* FindUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231B4832229D55AB00EE6311 /* FindUserController.swift */; };
 		232274EE2287FB2A002EE964 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274ED2287FB2A002EE964 /* AccountController.swift */; };
 		232274F02287FB3E002EE964 /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274EF2287FB3E002EE964 /* ChangePasswordController.swift */; };
 		232274F22287FB4F002EE964 /* EditInforController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232274F12287FB4F002EE964 /* EditInforController.swift */; };
@@ -107,7 +106,6 @@
 		23075B9C2282D2680088AB24 /* MapRequestBodyDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRequestBodyDirection.swift; sourceTree = "<group>"; };
 		23075B9F2282D2930088AB24 /* LocationServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServicesProtocol.swift; sourceTree = "<group>"; };
 		2316DADE22897CEC00378745 /* CommentServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentServices.swift; sourceTree = "<group>"; };
-		231B4832229D55AB00EE6311 /* FindUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FindUserController.swift; path = /Users/callie/Desktop/senior_project/freshfood_shopowner/freshfood_shopowner/Services/FindUserController.swift; sourceTree = "<absolute>"; };
 		232274ED2287FB2A002EE964 /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		232274EF2287FB3E002EE964 /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
 		232274F12287FB4F002EE964 /* EditInforController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInforController.swift; sourceTree = "<group>"; };
@@ -405,7 +403,6 @@
 				2337F7792286EE0A00D9E35F /* ShopItemServices.swift */,
 				2383FCF12287B950004A403A /* ImageServices.swift */,
 				2316DADE22897CEC00378745 /* CommentServices.swift */,
-				231B4832229D55AB00EE6311 /* FindUserController.swift */,
 				2368A25D228BACBE00B6CB76 /* ItemService.swift */,
 				23A786AD229645DB00897A2F /* SearchService.swift */,
 				235A16CF229A967000AD09BB /* ChannelServices.swift */,
@@ -707,7 +704,6 @@
 				23075B5A228294C90088AB24 /* GeneralValueItem.swift in Sources */,
 				2337F7742286DD0800D9E35F /* ListFoodsController.swift in Sources */,
 				23075B542282945E0088AB24 /* Constant.swift in Sources */,
-				231B4833229D55AB00EE6311 /* FindUserController.swift in Sources */,
 				23A786AC229645AE00897A2F /* SearchResponse.swift in Sources */,
 				2337F7762286DE9300D9E35F /* FoodCell.swift in Sources */,
 				2337F7782286E4E700D9E35F /* ShopItemResponse.swift in Sources */,
