@@ -127,14 +127,14 @@ class AddNewShopController: UIViewController {
                     
                     if check {
                         
-                        self.showNotification(mess: "Add success, We will contact you soon", color: APP_COLOR)
+                        self.showNotification(mess: NSLocalizedString("Add success, We will contact you soon", comment: ""), color: APP_COLOR)
                         self.disbaleView()
                         self.uploadImage()
                         SearchServices.instance.addOneByShop(shop: self.shop, completion: { (data) in
                             
                         })
                     } else {
-                        self.showNotification(mess: "Something went wrong. Please try again", color: .red)
+                        self.showNotification(mess: NSLocalizedString("Something went wrong. Please try again", comment: ""), color: .red)
                     }
                 }
             } else {
@@ -143,7 +143,7 @@ class AddNewShopController: UIViewController {
                     HUD.hide()
                     
                     if data {
-                        self.showNotification(mess: "Edit success", color: APP_COLOR)
+                        self.showNotification(mess: NSLocalizedString("Edit success", comment: ""), color: APP_COLOR)
                         self.disbaleView()
                         if self.isChangeImage {
                             self.uploadImage()
@@ -153,7 +153,7 @@ class AddNewShopController: UIViewController {
                         })
                     } else {
                         
-                        self.showNotification(mess: "Something went wrong. Please try again", color: .red)
+                        self.showNotification(mess: NSLocalizedString("Something went wrong. Please try again", comment: ""), color: .red)
                     }
                 }
             }
@@ -217,7 +217,7 @@ class AddNewShopController: UIViewController {
         }
         
         if !isTapMap && isNew {
-            showNotification(mess: "Please mark your shop's location on the map.", color: APP_COLOR)
+            showNotification(mess: NSLocalizedString("Please mark your shop's location on the map", comment: ""), color: .red)
             return false
         }
         
@@ -279,9 +279,9 @@ extension AddNewShopController {
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneTimeOpenPicker));
+        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .plain, target: self, action: #selector(doneTimeOpenPicker));
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTimeOpenPicker));
+        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(cancelTimeOpenPicker));
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
         timeOpen.inputAccessoryView = toolbar
@@ -312,9 +312,9 @@ extension AddNewShopController {
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneTimeClosePicker));
+        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .plain, target: self, action: #selector(doneTimeClosePicker));
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTimeClosePicker));
+        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(cancelTimeClosePicker));
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
         timeClose.inputAccessoryView = toolbar

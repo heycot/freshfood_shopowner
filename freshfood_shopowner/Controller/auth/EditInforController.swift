@@ -91,13 +91,13 @@ class EditInforController: UIViewController {
             guard let data = data else { return }
             
             if data {
-                self.notification.text = "Update successful"
+                self.notification.text = NSLocalizedString("Update successful", comment: "")
                 self.notification.isHidden = false
                 if self.fileName != nil {
                     self.uploadAvatar()
                 }
             } else {
-                self.notification.text = "Something went wrong. Please try again."
+                self.notification.text = NSLocalizedString("Something went wrong. Please try again", comment: "")
                 self.notification.isHidden = false
             }
             
@@ -137,9 +137,9 @@ extension EditInforController {
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
+        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .plain, target: self, action: #selector(donedatePicker));
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(cancelDatePicker));
         toolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
         birthdayTxt.inputAccessoryView = toolbar

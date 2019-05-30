@@ -35,13 +35,13 @@ class ShopCell: UITableViewCell {
         shopAddress.text = shop.address
         
         if shop.status == 0 {
-            infor.text = "Waiting"
+            infor.text = NSLocalizedString("Waiting", comment: "")
             infor.textColor = UIColor.lightGray
         } else if shop.status == 1 {
-            infor.text = "Selling"
+            infor.text = NSLocalizedString("Selling", comment: "")
             infor.textColor = .green
         } else {
-            infor.text = "Stoped"
+            infor.text = NSLocalizedString("Stoped", comment: "")
             infor.textColor = .red
         }
     }
