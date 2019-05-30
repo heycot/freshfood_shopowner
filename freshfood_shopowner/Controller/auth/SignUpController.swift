@@ -74,26 +74,26 @@ class SignUpController: UIViewController {
     
     func checkInputData() -> Bool {
         guard let _ = nameTxt.text, nameTxt.text!.isValidUserName() else{
-            notification.text = Notification.username.title.rawValue
-            detailNotifi.text = Notification.username.detail.rawValue
+            notification.text = NSLocalizedString(Notification.username.title.rawValue, comment: "")
+            detailNotifi.text = NSLocalizedString(Notification.username.detail.rawValue, comment: "")
             return false
         }
         
         guard let _ = emailTxt.text , emailTxt.text!.isValidEmail() else {
-            notification.text = Notification.email.title.rawValue
-            detailNotifi.text = Notification.email.detail.rawValue
+            notification.text = NSLocalizedString(Notification.email.title.rawValue, comment: "")
+            detailNotifi.text = NSLocalizedString(Notification.email.detail.rawValue, comment: "")
             return false
         }
         
         guard let password = passTxt.text, passTxt.text!.isValidPassword() else {
-            notification.text = Notification.password.title.rawValue
-            detailNotifi.text = Notification.password.detail.rawValue
+            notification.text = NSLocalizedString(Notification.password.title.rawValue, comment: "")
+            detailNotifi.text = NSLocalizedString(Notification.password.detail.rawValue, comment: "")
             return false
         }
         
         guard  let _ = confirmPassTXT.text, confirmPassTXT.text!.isValidPassword(), confirmPassTXT.text! == password else {
-            notification.text = Notification.confirmPass.title.rawValue
-            detailNotifi.text = Notification.confirmPass.detail.rawValue
+            notification.text = NSLocalizedString(Notification.confirmPass.title.rawValue, comment: "")
+            detailNotifi.text = NSLocalizedString(Notification.confirmPass.detail.rawValue, comment: "")
             return false
         }
         

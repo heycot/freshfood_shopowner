@@ -192,27 +192,27 @@ class AddNewShopController: UIViewController {
     
     func checkValidateInput() -> Bool {
         guard let name = nameTxt.text, nameTxt.text != "" else{
-            showNotification(mess: Notification.newShop.rawValue, color: APP_COLOR)
+            showNotification(mess: NSLocalizedString(Notification.newShop.rawValue, comment: ""), color: APP_COLOR)
             return false
         }
         
         guard let time_open = timeOpen.text , timeOpen.text != "" else {
-            showNotification(mess: Notification.newShop.rawValue, color: APP_COLOR)
+            showNotification(mess: NSLocalizedString(Notification.newShop.rawValue, comment: ""), color: APP_COLOR)
             return false
         }
         
         guard let time_close = timeClose.text, timeClose.text != "" else {
-            showNotification(mess: Notification.newShop.rawValue, color: APP_COLOR)
+            showNotification(mess: NSLocalizedString(Notification.newShop.rawValue, comment: "") , color: APP_COLOR)
             return false
         }
         
         guard  let address = addresstxt.text, addresstxt.text != "" else {
-            showNotification(mess: Notification.newShop.rawValue, color: APP_COLOR)
+            showNotification(mess: NSLocalizedString(Notification.newShop.rawValue, comment: "") , color: APP_COLOR)
             return false
         }
         
         guard  let phone = phoneTxt.text, phoneTxt.text != "" else {
-            showNotification(mess: Notification.newShop.rawValue, color: APP_COLOR)
+            showNotification(mess: NSLocalizedString(Notification.newShop.rawValue, comment: "") , color: APP_COLOR)
             return false
         }
         

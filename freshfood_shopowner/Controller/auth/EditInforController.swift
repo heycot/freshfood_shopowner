@@ -69,8 +69,8 @@ class EditInforController: UIViewController {
     
     @IBAction func doneBtnPressed(_ sender: Any) {
         guard let nameStr = nameTxt.text, (nameTxt.text?.isValidUserName())! else {
-            notification.text = Notification.username.title.rawValue
-            detailNotification.text = Notification.username.detail.rawValue
+            notification.text = NSLocalizedString(Notification.username.title.rawValue, comment: "")
+            detailNotification.text = NSLocalizedString(Notification.username.detail.rawValue, comment: "")
             notification.isHidden = false
             detailNotification.isHidden = false
             return

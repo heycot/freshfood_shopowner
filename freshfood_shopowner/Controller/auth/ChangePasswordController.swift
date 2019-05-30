@@ -82,8 +82,8 @@ class ChangePasswordController: UIViewController {
     
     func checkValidNewPass() -> Bool {
         guard let pass = newPass.text, newPass.text!.isValidPassword() else {
-            notiTitle.text = Notification.password.title.rawValue
-            notiDetail.text = Notification.password.detail.rawValue
+            notiTitle.text = NSLocalizedString(Notification.password.title.rawValue, comment: "")
+            notiDetail.text = NSLocalizedString(Notification.password.detail.rawValue, comment: "")
             notiTitle.isHidden = false
             notiDetail.isHidden = false
             return false
@@ -95,8 +95,8 @@ class ChangePasswordController: UIViewController {
     
     func checkValidConfirmPass() -> Bool {
         guard  let _ = confPass.text, confPass.text!.isValidPassword(), confPass.text! == newPassword else {
-            notiTitle.text = Notification.confirmPass.title.rawValue
-            notiDetail.text = Notification.confirmPass.detail.rawValue
+            notiTitle.text = NSLocalizedString(Notification.confirmPass.title.rawValue, comment: "")
+            notiDetail.text = NSLocalizedString(Notification.confirmPass.detail.rawValue, comment: "")
             notiDetail.isHidden = false
             notiTitle.isHidden = false
             return false

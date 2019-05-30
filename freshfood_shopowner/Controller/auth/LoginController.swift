@@ -53,13 +53,19 @@ class LoginController: UIViewController {
     
     @IBAction func loginBtnPressed(_ sender: Any) {
         if !(emailTxt.text?.isValidEmail())! {
-            let alert = UIAlertController(title: Notification.email.title.rawValue, message: Notification.email.detail.rawValue, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString(Notification.email.title.rawValue, comment: ""),
+                                          message: NSLocalizedString(Notification.email.detail.rawValue, comment: "") ,
+                                          preferredStyle: .alert)
+            
             alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
             self.present(alert, animated: true)
     
         } else if !(passwordTxt.text?.isValidPassword())! {
-            let alert = UIAlertController(title: Notification.password.title.rawValue, message: Notification.password.detail.rawValue, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString(Notification.password.title.rawValue, comment: ""),
+                                          message: NSLocalizedString(Notification.password.detail.rawValue, comment: ""),
+                                          preferredStyle: .alert)
+            
             alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
             self.present(alert, animated: true)
