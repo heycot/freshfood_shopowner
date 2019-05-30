@@ -77,3 +77,38 @@
 "Categories" = "Categories";
 "Foods" = "Foods";
 "Error" = "Error";
+
+
+
+"photos" = "photos";
+"Waiting" = "Waiting";
+"Selling" = "Selling";
+"Stoped" = "Stoped";
+"No comment yet" = "No comment yet";
+"Cancel" = "Cancel";
+"Please try next time" = "Please try next time";
+"Failed" = "Failed";
+"Alert" = "Alert";
+"Are you sure want to activate this food?" = "Are you sure want to activate this food?";
+"Activate" = "Activate";
+"Deactivate" = "Deactivate";
+"Are you sure want to deactivate this food?" = "Are you sure want to deactivate this food?";
+"All the information is required" = "All the information is required";
+"Add Success" = "Add Success";
+"Comment: No data" = "Comment: No data";
+"Report" = "Report";
+"Are you sure to report this comment to admin" = "Are you sure to report this comment to admin";
+"Success" = "Success";
+"Report success" = "Report success";
+"No data" = "No data";
+"Do not have any data available" = "Do not have any data available";
+"Your food is saved success " = "Your food is saved success ";
+"Shops" = "Shops";
+"Are you sure want to activate this shop?" = "Are you sure want to activate this shop?";
+"Are you sure want to deactivate this shop?" = "Are you sure want to deactivate this shop?";
+"Edit"  = "Edit";
+"Add success, We will contact you soon" = "Add success, We will contact you soon";
+"Edit success" = "Edit success";
+"Please mark your shop's location on the map" = "Please mark your shop's location on the map";
+"Customers" = "Customers";
+"Friends" = "Friends";

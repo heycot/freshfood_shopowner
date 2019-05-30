@@ -76,6 +76,9 @@
 "Your email and password do not match any account" = "Sai email hoặc password";
 "Categories" = "Danh mục";
 "Foods" = "Sản phẩm";
+"Error" = "Error";
+
+
 "photos" = "hình ảnh";
 "Waiting" = "Chờ phê duyệt";
 "Selling" = "Đang hoạt động";
@@ -106,4 +109,5 @@
 "Add success, We will contact you soon" = "Thêm thành công, chúng tôi sẽ liên hệ với bạn sớm";
 "Edit success" = "Sửa thành công";
 "Please mark your shop's location on the map" = "Vui lòng đánh dấu vị trí của cửa hàng trong bản đồ";
-
+"Customers" = "Khách hàng";
+"Friends" = "Bạn bè";
