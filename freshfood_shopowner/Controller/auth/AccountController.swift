@@ -277,7 +277,7 @@ extension AccountController: UITableViewDelegate, UITableViewDataSource {
                 
                 self.present(viewController, animated: false, completion: nil)
                 
-            } else if indexPath?.row == index  {
+            } else if indexPath?.row == index - 1 {
                 performSegue(withIdentifier: SegueIdentifier.accountToPassword.rawValue, sender: nil)
             } else {
                 performSegue(withIdentifier: SegueIdentifier.accountToEditInfor.rawValue, sender: nil)

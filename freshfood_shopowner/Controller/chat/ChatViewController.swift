@@ -70,7 +70,7 @@ final class ChatViewController: MessagesViewController {
     
     func checkChannel() {
         
-        ChannelServices.instance.checkChannel(channel: channel, userID: channel.user_id_first ?? "", authID: channel.user_id_second ?? "") { (data) in
+        ChannelServices.instance.checkChannel(channel: channel, userID: channel.user_id_first , authID: channel.user_id_second ) { (data) in
             if data == nil {
                 self.createChannel()
             } else {

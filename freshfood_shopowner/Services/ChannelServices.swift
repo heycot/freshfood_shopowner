@@ -19,10 +19,11 @@ class ChannelServices {
         let db = Firestore.firestore()
         var exists = false
         
-        let docRef = db.collection("channels").whereField("is_with_shop", isEqualTo: channel.is_with_shop)
-            docRef.whereField("users", arrayContains: userID)
-            docRef.whereField("users", arrayContains: authID)
+        var users = [String]()
+        users.append(userID)
+        users.append(authID)
         
+        let docRef = db.collection("channels").whereField("is_with_shop", isEqualTo: channel.is_with_shop).whereField("users", isEqualTo: users)
         
         docRef.getDocuments { (document, error) in
             
@@ -38,7 +39,7 @@ class ChannelServices {
                     DispatchQueue.main.async {
                         completion(doc.documentID)
                     }
-                    
+                    break
                 }
                 
                 if !exists {
