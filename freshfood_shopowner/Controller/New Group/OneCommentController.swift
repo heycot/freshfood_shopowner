@@ -25,7 +25,7 @@ class OneCommentController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(donePressed))
         
         setUpUI()
         handlerkeyboard()
@@ -33,6 +33,7 @@ class OneCommentController: UIViewController {
         
         if isView {
 //            doneBtn.title = "Report"
+            doneBtn.isEnabled = false
             getUserInfor(id: lastComment.user_id ?? "")
             disableView()
         } else {
@@ -51,7 +52,7 @@ class OneCommentController: UIViewController {
     func getShopItemInfor(id: String) {
         ShopItemService.instance.getOneById(shop_item_id: id) { (data) in
             guard let data = data else { return }
-            self.shopItemName.text = NSLocalizedString("Food:", comment: "") + " \(data.name ?? "")"
+            self.shopItemName.text = NSLocalizedString("Food: ", comment: "") + " \(data.name ?? "")"
         }
     }
     
@@ -79,7 +80,7 @@ class OneCommentController: UIViewController {
         ratingview.settings.minTouchRating = 1.0
         ratingview.settings.updateOnTouch = true
         ratingview.settings.fillMode = .precise
-        ratingview.text = "Rate me"
+        ratingview.text = NSLocalizedString("Rate me", comment: "")
         
         titleCmt.delegate = self
         content.delegate = self

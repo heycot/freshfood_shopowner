@@ -76,18 +76,18 @@ class EditInforController: UIViewController {
             return
         }
         
-        let userEdit = UserResponse()
+        
         if fileName != nil {
-            userEdit.avatar = fileName
+            user.avatar = fileName
         }
-        userEdit.name = nameStr
-        userEdit.phone = phoneTxt.text
-        userEdit.birthday = convertToDate(dateString: birthdayTxt.text!).timeIntervalSince1970
-        userEdit.address = addressTxt.text
+        user.name = nameStr
+        user.phone = phoneTxt.text
+        user.birthday = convertToDate(dateString: birthdayTxt.text!).timeIntervalSince1970
+        user.address = addressTxt.text
         
         HUD.flash(.success, delay: 1.5)
         
-        AuthServices.instance.edit(user: userEdit) { (data) in
+        AuthServices.instance.edit(user: user) { (data) in
             guard let data = data else { return }
             
             if data {

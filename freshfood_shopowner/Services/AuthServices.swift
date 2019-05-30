@@ -35,7 +35,7 @@ class AuthServices {
     
     var user: UserResponse?
     
-    func signup(name: String, email: String, password: String, completion: @escaping (Bool?) -> Void) {
+    func signup(name: String, email: String, password: String, avatar: String, completion: @escaping (Bool?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let err = error {
                 print(err.localizedDescription)
@@ -57,7 +57,8 @@ class AuthServices {
                                    "birthday": 0,
                                    "create_date": date,
                                    "address": "" ,
-                                   "keywords": keywords] as [String : Any]
+                                   "keywords": keywords,
+                                   "avatar": avatar] as [String : Any]
                 
                 let db = Firestore.firestore()
                 db.collection("user_profile").document(authResult!.user.uid).setData(userProfile) { err in

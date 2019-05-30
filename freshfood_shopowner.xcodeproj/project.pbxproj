@@ -161,6 +161,7 @@
 		23EBC7F3229EAAB100127EE5 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/NoCommentCell.strings; sourceTree = "<group>"; };
 		23EBC7F7229EAAF400127EE5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23EBC7F9229EAAF600127EE5 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		23EBC7FB229F7DA700127EE5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2F0DE686F0108FD94A40D130 /* Pods_freshfood_shopowner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_freshfood_shopowner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80208177153C8BB3C9A1E25 /* Pods-freshfood_shopowner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freshfood_shopowner.release.xcconfig"; path = "Pods/Target Support Files/Pods-freshfood_shopowner/Pods-freshfood_shopowner.release.xcconfig"; sourceTree = "<group>"; };
 		EDFE7BE66087E41D0EF6BA31 /* Pods-freshfood_shopowner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freshfood_shopowner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-freshfood_shopowner/Pods-freshfood_shopowner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -756,6 +757,7 @@
 			children = (
 				2332DD9A22827F40008F0CBE /* Base */,
 				23EBC7EA229EA4F400127EE5 /* vi */,
+				23EBC7FB229F7DA700127EE5 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

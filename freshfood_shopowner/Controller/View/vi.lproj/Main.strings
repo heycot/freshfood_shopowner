@@ -66,7 +66,7 @@
 "Lor-qm-FYC.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "Enter title"; ObjectID = "R8z-ra-PXH"; */
-"R8z-ra-PXH.placeholder" = "Enter title";
+"R8z-ra-PXH.placeholder" = "Nhập nội dung";
 
 /* Class = "UIButton"; normalTitle = "Comments"; ObjectID = "Rtz-mc-xbV"; */
 "Rtz-mc-xbV.normalTitle" = "bình luận";
@@ -120,7 +120,7 @@
 "eHC-1R-FFN.text" = "Mật khẩu mới:";
 
 /* Class = "UIButton"; normalTitle = "Account"; ObjectID = "erc-Ho-Yh8"; */
-"erc-Ho-Yh8.normalTitle" = "Account";
+"erc-Ho-Yh8.normalTitle" = "Tài khoản";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fWT-Iv-tRS"; */
 "fWT-Iv-tRS.text" = "Label";

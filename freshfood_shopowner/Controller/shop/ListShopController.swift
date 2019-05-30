@@ -15,6 +15,7 @@ import PKHUD
 class ListShopController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var notification: UILabel!
     
     var listItem = [ShopResponse]()
     // location manager
@@ -80,8 +81,15 @@ class ListShopController: UIViewController {
             guard let data = data else { return }
             
             HUD.hide()
-            self.listItem = data
-            self.tableView.reloadData()
+            
+            if data.count == 0 {
+                self.notification.text = NSLocalizedString("No data to show", comment: "")
+                self.notification.isHidden = false
+                
+            } else {
+                self.listItem = data
+                self.tableView.reloadData()
+            }
         }
     }
 }

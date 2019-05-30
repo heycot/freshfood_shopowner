@@ -11,6 +11,8 @@ import Photos
 import Firebase
 import FirebaseFirestore
 import FirebaseAuth
+import YPImagePicker
+import PKHUD
 
 class SignUpController: UIViewController {
     // Outlets
@@ -26,6 +28,7 @@ class SignUpController: UIViewController {
     
     // variables
     var image : UIImage?
+    var fileName = "logo"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,9 +61,15 @@ class SignUpController: UIViewController {
                 image = UIImage(named: "logo")
             }
             
-            AuthServices.instance.signup(name: nameTxt.text!, email: emailTxt.text!, password: passTxt.text!) { (data) in
+            HUD.show(.progress)
+            
+            AuthServices.instance.signup(name: nameTxt.text!, email: emailTxt.text!, password: passTxt.text!, avatar: fileName) { (data) in
                 guard let data = data else { return }
+                
+                HUD.hide()
                 if data {
+                    self.uploadImage()
+//                    self.navigationController?.popViewController(animated: true)
                     self.performSegue(withIdentifier: SegueIdentifier.signupToListShop.rawValue, sender: nil)
                 }
             }
@@ -101,38 +110,33 @@ class SignUpController: UIViewController {
     }
     
     @IBAction func chooseAvatarpressed(_ sender: Any) {
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self;
-        myPickerController.sourceType =  UIImagePickerController.SourceType.photoLibrary
-        self.present(myPickerController, animated: true, completion: nil)
-    }
-    
-    func generateNameForImage() -> String {
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "AVATAR_hh.mm.ss.dd.MM.yyyy"
-        return formatter.string(from: date)
-    }
-    
-    @objc func dismisHandle() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func getImageFormatFromUrl(url : URL) -> String {
         
-        if url.absoluteString.hasSuffix("JPG") {
-            return"JPG"
+        let picker = YPImagePicker()
+        picker.didFinishPicking { [unowned picker] items, _ in
+            if let photo = items.singlePhoto {
+                
+                self.avatarImage.image = photo.image
+                self.image = photo.image
+                self.avatarImage.setRounded(color: .white)
+                self.fileName = String.generateNameForImage()
+            }
+            picker.dismiss(animated: true, completion: nil)
         }
-        else if url.absoluteString.hasSuffix("PNG") {
-            return "PNG"
-        }
-        else if url.absoluteString.hasSuffix("GIF") {
-            return "GIF"
-        }
-        else {
-            return "jpg"
-        }
+        present(picker, animated: true, completion: nil)
+        
     }
+    
+    func uploadImage() {
+        if image == nil {
+            image = UIImage(named: "logo")
+        }
+        
+        let reference = "\(ReferenceImage.user.rawValue)\(fileName)"
+        ImageServices.instance.uploadMedia(image: image!, reference: reference, completion: { (data) in
+            guard data != nil else { return }
+        })
+    }
+    
 }
 
 
@@ -150,47 +154,47 @@ extension SignUpController : UITextFieldDelegate {
     
 }
 
-extension SignUpController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-        }
-        
-        var fileName = ""
-        
-        if let url = info[UIImagePickerController.InfoKey.phAsset] as? URL {
-            let assets = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
-            // get for mat of image
-            let imageFormat = getImageFormatFromUrl(url: url)
-            
-            if let firstAsset = assets.firstObject,
-                let firstResource = PHAssetResource.assetResources(for: firstAsset).first {
-                fileName = firstResource.originalFilename
-            } else {
-                fileName = generateNameForImage() + "." + imageFormat
-            }
-        } else {
-            fileName = generateNameForImage() + ".jpg"
-        }
-        
-        if (fileName != "") {
-            //            let fileManager = FileManager.default
-            //            let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(fileName)
-            //            print(paths)
-            //            let imageData = selectedImage.jpegData(compressionQuality: 0.75)
-            //            fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
-            
-//            user?.avatar = fileName
-            self.image = selectedImage
-            self.dismisHandle()
-            self.avatarImage.image = selectedImage
-        }
-        self.dismisHandle()
-    }
-}
+//extension SignUpController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+//
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        dismiss(animated: true, completion: nil)
+//    }
+//
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+//            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+//        }
+//
+//        var fileName = ""
+//
+//        if let url = info[UIImagePickerController.InfoKey.phAsset] as? URL {
+//            let assets = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
+//            // get for mat of image
+//            let imageFormat = getImageFormatFromUrl(url: url)
+//
+//            if let firstAsset = assets.firstObject,
+//                let firstResource = PHAssetResource.assetResources(for: firstAsset).first {
+//                fileName = firstResource.originalFilename
+//            } else {
+//                fileName = generateNameForImage() + "." + imageFormat
+//            }
+//        } else {
+//            fileName = generateNameForImage() + ".jpg"
+//        }
+//
+//        if (fileName != "") {
+//            //            let fileManager = FileManager.default
+//            //            let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(fileName)
+//            //            print(paths)
+//            //            let imageData = selectedImage.jpegData(compressionQuality: 0.75)
+//            //            fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
+//
+////            user?.avatar = fileName
+//            self.image = selectedImage
+//            self.dismisHandle()
+//            self.avatarImage.image = selectedImage
+//        }
+//        self.dismisHandle()
+//    }
+//}
 
