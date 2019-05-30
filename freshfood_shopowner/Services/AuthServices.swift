@@ -282,4 +282,20 @@ class AuthServices {
         }
         
     }
+    
+    func updateAvatar(avatar: String) {
+        let userID = Auth.auth().currentUser?.uid
+        
+        let db = Firestore.firestore()
+        
+        let userProfile = ["avatar": avatar as Any] as [String : Any]
+        
+        db.collection("user_profile").document(userID ?? "").updateData(userProfile) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+    }
 }

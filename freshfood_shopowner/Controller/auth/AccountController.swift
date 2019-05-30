@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import YPImagePicker
 
 class AccountController: UIViewController {
 
@@ -196,6 +197,27 @@ class AccountController: UIViewController {
         }
     }
     
+    @IBAction func avatarPressed(_ sender: Any) {
+        let picker = YPImagePicker()
+        picker.didFinishPicking { [unowned picker] items, _ in
+            if let photo = items.singlePhoto {
+                self.userAvatar.image = photo.image
+                self.userAvatar.setRounded(color: .white)
+                self.updateAvtar(fileName: String.generateNameForImage(), image: photo.image)
+            }
+            picker.dismiss(animated: true, completion: nil)
+        }
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func updateAvtar(fileName: String, image: UIImage) {
+        AuthServices.instance.updateAvatar(avatar: fileName)
+        
+        let reference = ReferenceImage.user.rawValue  + fileName
+        ImageServices.instance.uploadMedia(image: image, reference: reference) { (data) in
+            
+        }
+    }
 }
 
 extension AccountController: UITableViewDelegate, UITableViewDataSource {

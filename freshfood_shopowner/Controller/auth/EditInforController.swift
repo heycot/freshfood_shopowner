@@ -64,6 +64,7 @@ class EditInforController: UIViewController {
     func viewAvatar() {
         let folder = ReferenceImage.user.rawValue + "\(user.avatar ?? "")"
         self.avatar.displayImage(folderPath: folder)
+        self.avatar.setRounded(color: .white)
     }
     
     
