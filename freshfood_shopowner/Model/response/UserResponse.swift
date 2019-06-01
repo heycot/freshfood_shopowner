@@ -21,14 +21,14 @@ class UserResponse:Decodable {
     var birthdayDate: Date? {
         if let day = self.birthday {
             // from milisecond in Java to second in Swift with TimeInterval
-            return Date(timeIntervalSince1970: day / 1000)
+            return Date(timeIntervalSince1970: day )
         }
         return nil
     }
     
     var createDate: Date? {
         if let day = self.create_date {
-            return Date(timeIntervalSince1970: day / 1000)
+            return Date(timeIntervalSince1970: day )
         }
         return nil
     }

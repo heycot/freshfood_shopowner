@@ -194,9 +194,10 @@ class AuthServices {
     
     func search(searchText: String, completion: @escaping ([UserResponse]?) -> Void){
         var result = [UserResponse]()
+        let searchConvert = String.convertVietNam1(text: searchText)
         
         let db = Firestore.firestore()
-        let docRef = db.collection("user_profile").whereField("keywords", arrayContains: searchText.lowercased())
+        let docRef = db.collection("user_profile").whereField("keywords", arrayContains: searchConvert.lowercased())
         
         docRef.getDocuments { (document, error) in
             if let document = document {

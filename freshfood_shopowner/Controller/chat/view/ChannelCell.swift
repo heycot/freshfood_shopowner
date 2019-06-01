@@ -30,6 +30,8 @@ class ChannelCell: UITableViewCell {
             
             if isShop {
                 name.text = channel.name_second + " - " + channel.name_first
+            } else {
+                name.text = channel.name_second
             }
             
             name.setboldSystemFontOfSize(size: 18)
@@ -38,6 +40,8 @@ class ChannelCell: UITableViewCell {
         } else {
             if isShop {
                 name.text = channel.name_first + " - " + channel.name_second
+            } else {
+                name.text = channel.name_first
             }
             
             name.setboldSystemFontOfSize(size: 18)
