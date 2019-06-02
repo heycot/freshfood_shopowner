@@ -15,6 +15,49 @@ class ShopItemService {
     
     static let instance = ShopItemService()
     
+    func getlist( ) {
+        
+        let db = Firestore.firestore()
+        let docRef = db.collection("shop_item")
+        docRef.order(by: "rating", descending: true)
+        
+        
+        docRef.getDocuments(completion: { (document, error) in
+            if let document = document {
+                
+                for shopItemDoct in document.documents{
+                    let jsonData = try? JSONSerialization.data(withJSONObject: shopItemDoct.data() as Any)
+                    
+                    do {
+                        var shopItem = try JSONDecoder().decode(ShopItemResponse.self, from: jsonData!)
+                        shopItem.id = shopItemDoct.documentID
+                        
+                        let values = ["time_open": shopItem.time_close as Any,
+                                      "time_close": shopItem.time_open as Any] as [String : Any]
+                        
+                        db.collection("shop_item").document(shopItemDoct.documentID ).updateData(values) { err in
+                            var result = true
+                            if let err = err {
+                                result = false
+                                print("Error writing document: \(err)")
+                            } else {
+                                print("Document successfully written!")
+                            }
+                            
+                        }
+                    }
+                    catch let jsonError {
+                        print("Error serializing json:", jsonError)
+                    }
+                }
+                
+            } else {
+                print("User have no profile")
+            }
+        })
+    }
+    
+    
     func getListShopItem( shopID: String,  completion: @escaping ([ShopItemResponse]?) -> Void) {
         
         let db = Firestore.firestore()

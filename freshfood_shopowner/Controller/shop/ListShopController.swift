@@ -25,10 +25,6 @@ class ListShopController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        SearchServices.instance.search(searchText: "") { (data) in
-//
-//        }
-        
         self.title = NSLocalizedString("Shops", comment: "")
         self.navigationController?.navigationBar.barTintColor = APP_COLOR
         setupCurrentLocation()

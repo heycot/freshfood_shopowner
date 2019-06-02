@@ -239,8 +239,9 @@ extension AccountController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = titleCell[indexPath.row]
             cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
             
-            if indexPath.row < (titleCell.count - 2) {
+            if indexPath.row < 4 {
                 cell.selectionStyle = UITableViewCell.SelectionStyle.none;
+                cell.accessoryView = UIView()
             }
             
             return cell
@@ -252,7 +253,7 @@ extension AccountController: UITableViewDelegate, UITableViewDataSource {
         tableView.rowHeight = UITableView.automaticDimension
         
         getUser()
-        isActivity = true
+//        isActivity = true
         super.viewWillAppear(true)
         tableView.reloadData()
     }
