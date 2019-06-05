@@ -221,7 +221,9 @@ class AddNewShopController: UIViewController {
             return false
         }
         
-        self.shop.avatar = fileName
+        if image != nil {
+            self.shop.avatar = fileName
+        }
         self.shop.name = name
         self.shop.time_open = time_open
         self.shop.time_close = time_close
