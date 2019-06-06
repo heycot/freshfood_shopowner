@@ -24,7 +24,6 @@ class ShopService {
                 var result = 0
                 
                 for shopItemDoct in document.documents{
-                    print("gé shop item by shop")
                     let jsonData = try? JSONSerialization.data(withJSONObject: shopItemDoct.data() as Any)
                     
                     do {

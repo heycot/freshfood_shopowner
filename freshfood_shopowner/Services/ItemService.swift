@@ -45,4 +45,35 @@ class ItemService {
         })
     }
     
+    func getAllItemForEdit(category_id: String, completion: @escaping ([ItemResponse]?) -> Void) {
+        
+        let db = Firestore.firestore()
+        let docRef = db.collection("item").whereField("category_id", isEqualTo: category_id)
+        
+        docRef.getDocuments(completion: { (document, error) in
+            if let document = document {
+                var items = [ItemResponse]()
+                
+                for itemDoct in document.documents{
+                    let jsonData = try? JSONSerialization.data(withJSONObject: itemDoct.data() as Any)
+                    
+                    do {
+                        let item = try JSONDecoder().decode(ItemResponse.self, from: jsonData!)
+                        item.id = itemDoct.documentID
+                        items.append(item)
+                    }
+                    catch let jsonError {
+                        print("Error serializing json:", jsonError)
+                    }
+                }
+                DispatchQueue.main.async {
+                    completion(items)
+                }
+                
+            } else {
+                print("User have no profile")
+            }
+        })
+    }
+    
 }

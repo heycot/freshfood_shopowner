@@ -29,6 +29,7 @@ struct ShopItemResponse: Decodable{
     var time_close: String?
     var phone     : String?
     var address:    String?
+    var category_id : String?
     
     
     // Constructor.

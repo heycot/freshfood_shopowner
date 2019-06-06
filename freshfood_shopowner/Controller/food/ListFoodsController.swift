@@ -17,6 +17,7 @@ class ListFoodsController: UIViewController {
     var ShopItemList = [ShopItemResponse]()
     var shop = ShopResponse()
     var itemList = [ItemResponse]()
+    var itemListForEdit = [ItemResponse]()
     var newItems = [ItemResponse]()
     var isNew = true
     
@@ -50,6 +51,15 @@ class ListFoodsController: UIViewController {
         ItemService.instance.getAllItem { (data) in
             guard let data = data else { return }
             self.itemList = data
+        }
+    }
+    
+    func getListItemForEdit(index: Int) {
+        ItemService.instance.getAllItemForEdit(category_id: ShopItemList[index].category_id ?? "") { (data) in
+            guard let data = data else { return }
+            self.itemListForEdit = data
+            self.isNew = false
+            self.performSegue(withIdentifier: SegueIdentifier.listFoodToAdd.rawValue, sender: index)
         }
     }
     
@@ -95,14 +105,15 @@ class ListFoodsController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is AddFoodController {
             let vc = segue.destination as? AddFoodController
-            vc?.itemList = newItems
             vc?.shop = shop
             
             if !isNew {
                 let index = sender as! Int
                 vc?.item = ShopItemList[index]
                 vc?.isNew = false
+                vc?.itemList = itemListForEdit
             } else {
+                vc?.itemList = newItems
                 vc?.isNew = true
             }
         }
@@ -113,8 +124,8 @@ class ListFoodsController: UIViewController {
 extension ListFoodsController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        isNew = false
-        performSegue(withIdentifier: SegueIdentifier.listFoodToAdd.rawValue, sender: indexPath.row)
+        
+        self.getListItemForEdit(index: indexPath.row)
     }
     
     

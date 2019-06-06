@@ -32,19 +32,58 @@ class ShopItemService {
                         var shopItem = try JSONDecoder().decode(ShopItemResponse.self, from: jsonData!)
                         shopItem.id = shopItemDoct.documentID
                         
-                        let values = ["time_open": shopItem.time_close as Any,
-                                      "time_close": shopItem.time_open as Any] as [String : Any]
+                        let shopitemRef = db.collection("shop").document(shopItem.shop_id ?? "")
                         
-                        db.collection("shop_item").document(shopItemDoct.documentID ).updateData(values) { err in
-                            var result = true
-                            if let err = err {
-                                result = false
-                                print("Error writing document: \(err)")
+                        shopitemRef.getDocument(completion: { (document, error) in
+                            if let documentShop = document {
+                                    let jsonData = try? JSONSerialization.data(withJSONObject: documentShop.data() as Any)
+                                    
+                                    do {
+                                        var shop = try JSONDecoder().decode(ShopResponse.self, from: jsonData!)
+                                        
+                                        let values = ["shop_name": shop.name as Any] as [String : Any]
+                                        
+                                        db.collection("shop_item").document(shopItem.id ?? "").updateData(values) { err in
+                                            if let err = err {
+                                                print("Error writing document: \(err)")
+                                            } else {
+                                                print("Document successfully written!")
+                                            }
+                                        }
+                                    }
+                                    catch let jsonError {
+                                        print("Error serializing json:", jsonError)
+                                    }
+                                
                             } else {
-                                print("Document successfully written!")
+                                print("User have no profile")
                             }
-                            
-                        }
+                        })
+                        
+                        
+//                            var result = true
+//                            if let err = err {
+//                                result = false
+//                                print("Error writing document: \(err)")
+//                            } else {
+//                                print("Document successfully written!")
+//                            }
+//
+//                        }
+                        
+//                        let values = ["time_open": shopItem.time_close as Any,
+//                                      "time_close": shopItem.time_open as Any] as [String : Any]
+//
+//                        db.collection("shop_item").document(shopItemDoct.documentID ).updateData(values) { err in
+//                            var result = true
+//                            if let err = err {
+//                                result = false
+//                                print("Error writing document: \(err)")
+//                            } else {
+//                                print("Document successfully written!")
+//                            }
+//
+//                        }
                     }
                     catch let jsonError {
                         print("Error serializing json:", jsonError)
