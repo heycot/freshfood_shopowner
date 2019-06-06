@@ -46,9 +46,6 @@ class ListShopController: UIViewController {
         
     }
     
-    @IBAction func editBtnPressed(_ sender: Any) {
-        
-    }
     
     @IBAction func addBtnPressed(_ sender: Any) {
         self.performSegue(withIdentifier: SegueIdentifier.listShopToNew.rawValue, sender: nil)

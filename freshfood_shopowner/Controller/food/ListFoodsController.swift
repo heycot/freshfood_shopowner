@@ -75,10 +75,9 @@ class ListFoodsController: UIViewController {
                 self.ShopItemList = data
                 self.tableView.reloadData()
                 
-                if isNew {
-                    self.getListItem()
-                }
             }
+            
+            self.getListItem()
         }
     }
     

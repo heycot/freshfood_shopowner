@@ -40,6 +40,9 @@ class ItemService {
                 }
                 
             } else {
+                DispatchQueue.main.async {
+                    completion([])
+                }
                 print("User have no profile")
             }
         })
@@ -71,6 +74,9 @@ class ItemService {
                 }
                 
             } else {
+                DispatchQueue.main.async {
+                    completion([])
+                }
                 print("User have no profile")
             }
         })
