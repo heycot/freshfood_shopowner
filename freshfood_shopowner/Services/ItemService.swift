@@ -51,7 +51,7 @@ class ItemService {
     func getAllItemForEdit(category_id: String, completion: @escaping ([ItemResponse]?) -> Void) {
         
         let db = Firestore.firestore()
-        let docRef = db.collection("item").whereField("category_id", isEqualTo: category_id)
+        let docRef = db.collection("item") //.whereField("category_id", isEqualTo: category_id)
         
         docRef.getDocuments(completion: { (document, error) in
             if let document = document {

@@ -15,6 +15,67 @@ class ShopItemService {
     
     static let instance = ShopItemService()
     
+    func getlist() {
+        
+        let db = Firestore.firestore()
+        let docRef = db.collection("comment")
+        
+        
+        docRef.getDocuments(completion: { (document, error) in
+            if let document = document {
+                
+                for cmtDoct in document.documents{
+                    let jsonData = try? JSONSerialization.data(withJSONObject: cmtDoct.data() as Any)
+                    
+                    do {
+                        let cmt = try JSONDecoder().decode(CommentResponse.self, from: jsonData!)
+                        
+                        let itemRef = db.collection("shop_item").document(cmt.shop_item_id ?? "")
+                        itemRef.getDocument(completion: { (document, err) in
+                            if let document = document, document.exists {
+                                let jsonData = try? JSONSerialization.data(withJSONObject: document.data() as Any)
+                                do {
+                                    var shopItem = try JSONDecoder().decode(ShopItemResponse.self, from: jsonData!)
+                                    shopItem.id = document.documentID
+                                    
+                                    let newCommentNumber = shopItem.comment_number ?? 0 + 1
+                                   
+                                    
+                                    let newRating = ((shopItem.rating ?? 0 * Double(shopItem.comment_number ?? 0) ) + (cmt.rating ?? 3.0)) / Double(newCommentNumber)
+                                    
+                                    let values = ["comment_number": newCommentNumber as Any,
+                                                  "rating": newRating as Any] as [String : Any]
+                                    
+                                    
+                                    db.collection("shop_item").document(document.documentID ?? "").updateData(values) { err in
+                                        if let err = err {
+                                            print("Error writing document: \(err)")
+                                        } else {
+                                            print("Document successfully written!")
+                                        }
+                                    }
+                                    
+                                } catch let jsonError {
+                                    print("Error serializing json:", jsonError)
+                                }
+                                
+                            } else {
+                                print("User have no profile")
+                            }
+                            
+                        })
+                        
+                        
+                    }catch let jsonError {
+                        print("Error serializing json:", jsonError)
+                    }
+                }
+                
+            } else {
+                print("User have no profile")
+            }
+        })
+    }
     
     func getListShopItem( shopID: String,  completion: @escaping ([ShopItemResponse]?) -> Void) {
         
@@ -90,7 +151,14 @@ class ShopItemService {
                     "unit": item.unit as Any,
                     "item_id": item.item_id as Any,
                     "images": item.images as Any,
-                    "price": item.price as Any] as [String : Any]
+                    "price": item.price as Any,
+                    "category_id": item.category_id as Any,
+                    "time_open": item.time_open as Any,
+                    "time_close": item.time_close as Any,
+                    "address": item.address as Any,
+                    "longitude": item.longitude as Any,
+                    "latitude": item.latitude as Any,
+                    "phone": item.phone as Any] as [String : Any]
             
         let db = Firestore.firestore()
         var ref: DocumentReference? = nil
@@ -129,7 +197,14 @@ class ShopItemService {
                       "price": item.price as Any,
                       "unit": item.unit as Any,
                       "item_id": item.item_id as Any,
-                      "images": item.images as Any] as [String : Any]
+                      "images": item.images as Any,
+                      "category_id": item.category_id as Any,
+                      "time_open": item.time_open as Any,
+                      "time_close": item.time_close as Any,
+                      "address": item.address as Any,
+                      "longitude": item.longitude as Any,
+                      "latitude": item.latitude as Any,
+                      "phone": item.phone as Any] as [String : Any]
         
         db.collection("shop_item").document(item.id ?? "").updateData(values) { err in
             var result = true
@@ -166,6 +241,37 @@ class ShopItemService {
                 completion(result)
             }
         }
+        
+    }
+    
+    
+    func changeStatusByShop( shopId: String, status: Int) {
+        
+        let db = Firestore.firestore()
+        
+        let values = ["status": status] as [String : Any]
+        
+        let docRef = db.collection("shop_item").whereField("shop_id", isEqualTo: shopId)
+        
+        
+        docRef.getDocuments(completion: { (document, error) in
+            if let document = document {
+                
+                for shopItemDoct in document.documents{
+                    
+                    db.collection("shop_item").document(shopItemDoct.documentID).updateData(values) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+                }
+            } else {
+                print("User have no profile")
+            }
+        })
+        
         
     }
     

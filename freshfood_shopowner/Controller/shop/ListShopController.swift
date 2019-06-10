@@ -25,12 +25,12 @@ class ListShopController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //
-//        ShopItemService.instance.getlist()
+        ShopItemService.instance.getlist()
         
-        self.title = NSLocalizedString("Shops", comment: "")
-        self.navigationController?.navigationBar.barTintColor = APP_COLOR
-        setupCurrentLocation()
-        setupView()
+//        self.title = NSLocalizedString("Shops", comment: "")
+//        self.navigationController?.navigationBar.barTintColor = APP_COLOR
+//        setupCurrentLocation()
+//        setupView()
     }
     
     func setupView() {
@@ -142,6 +142,7 @@ extension ListShopController: UITableViewDataSource {
                     if data {
                         self.listItem[indexPath.row].status = status
                         self.tableView.reloadData()
+                        ShopItemService.instance.changeStatusByShop(shopId: self.listItem[indexPath.row].id ?? "", status: status)
                     } else {
                         let alert = UIAlertController(title: NSLocalizedString("Failed", comment: ""), message: NSLocalizedString("Please try next time", comment: ""), preferredStyle: UIAlertController.Style.alert)
                         

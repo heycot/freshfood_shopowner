@@ -12,6 +12,7 @@ class ItemResponse :Decodable {
     var id: String?
     var name: String?
     var unit: String?
+    var category_id: String?
     
     init(id: String, name: String, unit: String) {
         self.id = id

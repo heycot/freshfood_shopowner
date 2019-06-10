@@ -150,6 +150,13 @@ class AddFoodController: UIViewController {
         
         item.shop_id = shop.id
         item.shop_name = shop.name
+        item.time_open = shop.time_open
+        item.time_close = shop.time_close
+        item.address = shop.address
+        item.longitude = shop.longitude
+        item.latitude = shop.latitude
+        item.phone = shop.phone
+        item.category_id = itemList[rowSelected].category_id
         item.item_id = rowSelected >= 0 ? itemList[rowSelected].id : ""
     }
     
@@ -236,7 +243,8 @@ extension AddFoodController {
             
             toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
             //        toolBar.barStyle = .blackTranslucent
-            toolBar.items = [UIBarButtonItem.init(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(onDoneButtonTapped))]
+            toolBar.items = [UIBarButtonItem.init(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(onDoneButtonTapped)),
+                            UIBarButtonItem.init(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(onCancelButtonTapped))]
             self.view.addSubview(toolBar)
         } else {
             let alert = UIAlertController(title: NSLocalizedString("No data", comment: ""), message: NSLocalizedString("Do not have any data available", comment: ""), preferredStyle: UIAlertController.Style.alert)
@@ -251,6 +259,11 @@ extension AddFoodController {
         unitTxt.text = itemList[row].unit
         rowSelected = row
         
+        toolBar.removeFromSuperview()
+        picker.removeFromSuperview()
+    }
+    
+    @objc func onCancelButtonTapped() {
         toolBar.removeFromSuperview()
         picker.removeFromSuperview()
     }

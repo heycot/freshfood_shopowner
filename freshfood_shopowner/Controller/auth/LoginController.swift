@@ -17,8 +17,6 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailTxt.text = "callie@enclave.vn"
-        passwordTxt.text = "Q!123456"
         
         checkIfUserIsSignedIn()
     }
@@ -33,6 +31,8 @@ class LoginController: UIViewController {
             } else {
                 // user is not signed in
                 // go to login controller
+//                emailTxt.text = "callie@enclave.vn"
+//                passwordTxt.text = "Q!123456"
                 self.setUpUI()
             }
         }
