@@ -54,11 +54,16 @@ class ListCommentController: UIViewController {
                         self.notification.isHidden = false
                     }
                     
-                    self.tableView.reloadData()
+                    self.showData()
                 })
             }
             
         }
+    }
+    
+    func showData() {
+        cmtList.sort(by: {$0.update_date! > $1.update_date! })
+        self.tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

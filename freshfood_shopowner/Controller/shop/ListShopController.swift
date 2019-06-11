@@ -24,13 +24,11 @@ class ListShopController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//
-        ShopItemService.instance.getlist()
         
-//        self.title = NSLocalizedString("Shops", comment: "")
-//        self.navigationController?.navigationBar.barTintColor = APP_COLOR
-//        setupCurrentLocation()
-//        setupView()
+        self.title = NSLocalizedString("Shops", comment: "")
+        self.navigationController?.navigationBar.barTintColor = APP_COLOR
+        setupCurrentLocation()
+        setupView()
     }
     
     func setupView() {
