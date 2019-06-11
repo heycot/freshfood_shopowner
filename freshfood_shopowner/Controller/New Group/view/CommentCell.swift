@@ -27,6 +27,7 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var timeAgo: UILabel!
     @IBOutlet weak var rating: UILabel!
+    @IBOutlet weak var statusImg: UIImageView!
     
     
     func updateView(cmt: CommentResponse) {
@@ -39,6 +40,9 @@ class CommentCell: UITableViewCell {
         viewRating(rt: cmt.rating ?? 3.0)
         let date = Date(timeIntervalSince1970: cmt.update_date ?? 0)
         timeAgo.text = date.timeAgoDisplay()
+        if cmt.status != 1 {
+            statusImg.image = #imageLiteral(resourceName: "error")
+        }
     }
     
     func viewRating(rt: Double) {

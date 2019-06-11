@@ -12,6 +12,8 @@ import Firebase
 class  CommentServices {
     static let instance = CommentServices()
     
+    
+    
     func getAllCommentByFood(foodID: String,   completion: @escaping ([CommentResponse]?) -> Void) {
         let db = Firestore.firestore()
         let docRef = db.collection("comment").whereField("shop_item_id", isEqualTo: foodID)

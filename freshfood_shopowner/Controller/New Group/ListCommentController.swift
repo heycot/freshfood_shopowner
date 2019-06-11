@@ -107,7 +107,8 @@ extension ListCommentController : UITableViewDataSource {
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { action in
                 CommentServices.instance.changeStatus(cmtID: self.cmtList[indexPath.row].id ?? "", status: 2, completion: { (data) in
-                    
+                    self.cmtList[indexPath.row].status = 2
+                    self.tableView.reloadData()
                 })
                 
             }))

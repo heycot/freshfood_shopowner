@@ -33,6 +33,7 @@ class ListShopController: UIViewController {
     
     func setupView() {
         navigationController?.navigationBar.barTintColor = APP_COLOR
+        
 
         tableView.delegate = self
         tableView.dataSource = self
