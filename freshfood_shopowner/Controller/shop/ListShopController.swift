@@ -21,14 +21,18 @@ class ListShopController: UIViewController {
     // location manager
     var locationManager = CLLocationManager()
     var didUpdateLocation: Bool = false
+    var is_refresh = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        ShopService.instance.update()
         
         self.title = NSLocalizedString("Shops", comment: "")
         self.navigationController?.navigationBar.barTintColor = APP_COLOR
         setupCurrentLocation()
         setupView()
+        getAllShop()
     }
     
     func setupView() {
@@ -54,8 +58,9 @@ class ListShopController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is AddNewShopController {
             if sender == nil {
-                
+                self.is_refresh = true
             } else {
+                self.is_refresh = false
                 let index = sender as! Int
                 let vc = segue.destination as? AddNewShopController
                 vc?.isNew = false
@@ -63,6 +68,7 @@ class ListShopController: UIViewController {
             }
         } else if segue.destination is ListFoodsController {
             
+            self.is_refresh = false
             let index = sender as! Int
             let vc = segue.destination as? ListFoodsController
             vc?.shop = listItem[index]
@@ -167,7 +173,10 @@ extension ListShopController: UITableViewDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        getAllShop()
+        if is_refresh {
+            getAllShop()
+        }
+        
         super.viewWillAppear(true)
         tableView.reloadData()
     }

@@ -82,4 +82,25 @@ class ItemService {
         })
     }
     
+    func addOne(item: ItemResponse, completion: @escaping (String?) -> Void) {
+        let db = Firestore.firestore()
+        
+        let values = [
+            "name": item.name as Any,
+            "unit": item.unit as Any,
+            "category_id": item.category_id as Any] as [String : Any]
+        
+        var ref: DocumentReference? = nil
+        
+        // init first to get ID
+        ref = db.collection("item").document()
+        
+        ref?.setData(values, completion:{ (error) in
+            DispatchQueue.main.async {
+                completion(ref?.documentID)
+            }
+            
+        })
+    }
+    
 }

@@ -96,7 +96,7 @@ class AccountController: UIViewController {
         userAvatar.displayImage(folderPath: ReferenceImage.user.rawValue + "\(user?.avatar ?? "")")
         userAvatar.setRounded(color: .white)
         username.text = user?.name ?? ""
-        inforUser.text = NSLocalizedString("newbee - Top 1000 - 10 Followers", comment: "")
+        inforUser.text = NSLocalizedString("newbee - Top 1000", comment: "")
         
         inforUser.setboldSystemFontOfSize(size: 14)
         username.setboldSystemFontOfSize(size: 18)

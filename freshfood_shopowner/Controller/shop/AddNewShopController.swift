@@ -131,7 +131,7 @@ class AddNewShopController: UIViewController {
                         self.disbaleView()
                         self.uploadImage()
                         SearchServices.instance.addOneByShop(shop: self.shop, completion: { (data) in
-                            
+
                         })
                     } else {
                         self.showNotification(mess: NSLocalizedString("Something went wrong. Please try again", comment: ""), color: .red)

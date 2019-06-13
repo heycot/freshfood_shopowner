@@ -13,6 +13,64 @@ import Firebase
 class ShopService {
     static let instance = ShopService()
     
+    func update() {
+        let db = Firestore.firestore()
+        let shopitemRef = db.collection("shop")
+        
+        shopitemRef.getDocuments(completion: { (document, error) in
+            if let document = document {
+                
+                for shopItemDoct in document.documents{
+                    let jsonData = try? JSONSerialization.data(withJSONObject: shopItemDoct.data() as Any)
+                    
+                    do {
+                        var shop = try JSONDecoder().decode(ShopResponse.self, from: jsonData!)
+                        shop.id = shopItemDoct.documentID
+                        
+                        
+                        SearchServices.instance.addOneByShop(shop: shop, completion: { (data) in
+                            
+                        })
+//                        let docRef = db.collection("search").whereField("entity_id", isEqualTo: shopItemDoct.documentID)
+//
+//                        docRef.getDocuments(completion: { (document, error) in
+//                            if let document = document {
+//
+//                                for searchDoct in document.documents{
+//
+//
+//                                    let values = [
+//                                        "latitude": shop.latitude as Any,
+//                                        "longitude": shop.longitude as Any] as [String : Any]
+//
+//                                    db.collection("search").document(searchDoct.documentID ?? "").updateData(values) { err in
+//                                        if let err = err {
+//                                            print("Error writing document: \(err)")
+//                                        } else {
+//                                            print("Document successfully written!")
+//                                        }
+//                                    }
+//
+//                                }
+//
+//                            } else {
+//                                print("User have no profile")
+//                            }
+//                        })
+                        
+                    }
+                    catch let jsonError {
+                        print("Error serializing json:", jsonError)
+                    }
+                }
+            } else {
+                print("User have no profile")
+            }
+        })
+    }
+    
+    
+    
     
     func UpdateShopItemByShop(shop: ShopResponse,  completion: @escaping (Bool?) -> Void) {
         let db = Firestore.firestore()

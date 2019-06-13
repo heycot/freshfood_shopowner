@@ -24,7 +24,9 @@ class SearchServices {
                       "address": shop.address as Any,
                       "is_shop": 1,
                       "avatar": shop.avatar as Any,
-                      "keywords": keywords] as [String : Any]
+                      "keywords": keywords,
+                      "longitude": shop.longitude as Any,
+                      "latitude": shop.latitude as Any] as [String : Any]
         
         db.collection("search").addDocument(data: values) { (err) in
             if err != nil {
@@ -45,11 +47,14 @@ class SearchServices {
         let keywords = String.gennerateKeywordsMod(name: shopItem.name ?? "", address: shopItem.address ?? "")
         let name = ( shopItem.name ?? "") + " - " + (shopItem.shop_name ?? "")
         
-        let values = ["entity_name": name as Any,
+        let values = ["entity_id" : shopItem.id as Any,
+                      "entity_name": name as Any,
                       "address": shopItem.address as Any,
                       "is_shop": 0,
                       "avatar": shopItem.avatar as Any,
-                      "keywords": keywords] as [String : Any]
+                      "keywords": keywords,
+                      "longitude": shopItem.longitude as Any,
+                      "latitude": shopItem.latitude as Any] as [String : Any]
         
         db.collection("search").addDocument(data: values) { (err) in
             if err != nil {
@@ -59,6 +64,7 @@ class SearchServices {
             } else {
                 DispatchQueue.main.async {
                     completion(true)
+                    print( "add search success")
                 }
             }
         }

@@ -305,7 +305,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Callie Nguyen" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAF-zm-GRx">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trái Cây Sạch" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAF-zm-GRx">
                                                         <rect key="frame" x="85" y="40" width="270" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="obX-Mi-RKx"/>
@@ -670,7 +670,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Callie Nguyen" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MQG-B8-gna">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhãn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MQG-B8-gna">
                                                                         <rect key="frame" x="90" y="0.0" width="265" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="30" id="SRr-ev-fQu"/>
@@ -1117,11 +1117,11 @@
             </objects>
             <point key="canvasLocation" x="2676" y="806.44677661169419"/>
         </scene>
-        <!--comment-->
+        <!--Comment-->
         <scene sceneID="NGL-EC-iGM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nu5-JP-vyC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="comment" image="comment" landscapeImage="GMSNavSprites-0-1x.png" id="xtg-Uf-MyG"/>
+                    <tabBarItem key="tabBarItem" title="Comment" image="comment" landscapeImage="GMSNavSprites-0-1x.png" id="xtg-Uf-MyG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="7rO-hO-9Lb">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1951,7 +1951,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="QDB-Xb-QPq"/>
-        <segue reference="PSi-wn-ztY"/>
+        <segue reference="EuB-kl-ROh"/>
         <segue reference="d0J-32-YWZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

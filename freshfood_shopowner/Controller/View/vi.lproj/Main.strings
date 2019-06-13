@@ -131,8 +131,8 @@
 /* Class = "UILabel"; text = "5.00"; ObjectID = "h76-mD-QPn"; */
 "h76-mD-QPn.text" = "5.00";
 
-/* Class = "UITextField"; placeholder = "Callie Nguyen"; ObjectID = "hAF-zm-GRx"; */
-"hAF-zm-GRx.placeholder" = "Callie Nguyen";
+/* Class = "UITextField"; placeholder = "Trái Cây Sạch"; ObjectID = "hAF-zm-GRx"; */
+"hAF-zm-GRx.placeholder" = "Trái Cây Sạch";
 
 /* Class = "UILabel"; text = "Current Password:"; ObjectID = "hGJ-3Z-5C7"; */
 "hGJ-3Z-5C7.text" = "Mật khẩu hiện tại:";
@@ -140,8 +140,8 @@
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "hN8-yK-xMs"; */
 "hN8-yK-xMs.placeholder" = "Tên";
 
-/* Class = "UITextField"; text = "Callie Nguyen"; ObjectID = "hN8-yK-xMs"; */
-"hN8-yK-xMs.text" = "Callie Nguyen";
+/* Class = "UITextField"; text = "Trái Cây Sạch"; ObjectID = "hN8-yK-xMs"; */
+"hN8-yK-xMs.text" = "Trái Cây Sạch";
 
 /* Class = "UILabel"; text = "Name:"; ObjectID = "hsI-cL-rh1"; */
 "hsI-cL-rh1.text" = "Tên:";
@@ -149,8 +149,8 @@
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "iJZ-3S-Vma"; */
 "iJZ-3S-Vma.placeholder" = "Tên";
 
-/* Class = "UITextField"; text = "Callie Nguyen"; ObjectID = "iJZ-3S-Vma"; */
-"iJZ-3S-Vma.text" = "Callie Nguyen";
+/* Class = "UITextField"; text = "Nhãn"; ObjectID = "iJZ-3S-Vma"; */
+"iJZ-3S-Vma.text" = "Nhãn";
 
 /* Class = "UILabel"; text = "Unit:"; ObjectID = "j8I-Zz-UEN"; */
 "j8I-Zz-UEN.text" = "Đơn vị:";

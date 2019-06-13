@@ -92,6 +92,7 @@ class AddFoodController: UIViewController {
                     HUD.hide()
                     self.item.id = data
                     self.handleAfterUpdateData(isSuccess: true)
+                    
                     SearchServices.instance.addOneByShopItem(shopItem: self.item, completion: { (data) in
                         print("save search")
                     })
@@ -113,16 +114,35 @@ class AddFoodController: UIViewController {
     func handleAfterUpdateData(isSuccess: Bool) {
         if isSuccess {
             self.uploadImages()
+            self.saveItem()
             
             let alert = UIAlertController(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("Your food is saved success ", comment: ""), preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel, handler: { action in
-                self.navigationController?.popViewController(animated: true)
+//                self.navigationController?.popViewController(animated: true)
             }))
             self.present(alert, animated: true)
         } else {
             self.notificationHeight.constant = 30
             self.notification.text = NSLocalizedString("Something went wrong. Please try again", comment: "")
+        }
+    }
+    
+    func saveItem() {
+        
+        if rowSelected < 0 {
+            let item = ItemResponse()
+            item.name = nameTxt.text
+            item.unit = unitTxt.text
+            item.category_id = ""
+            
+            ItemService.instance.addOne(item: item) { (data) in
+//                guard data != nil else {
+//                     return
+//                }
+            }
+            
+            
         }
     }
     
@@ -156,7 +176,7 @@ class AddFoodController: UIViewController {
         item.longitude = shop.longitude
         item.latitude = shop.latitude
         item.phone = shop.phone
-        item.category_id = itemList[rowSelected].category_id
+        item.category_id = rowSelected >= 0 ? itemList[rowSelected].category_id : ""
         item.item_id = rowSelected >= 0 ? itemList[rowSelected].id : ""
     }
     
@@ -242,9 +262,15 @@ extension AddFoodController {
             self.view.addSubview(picker)
             
             toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
-            //        toolBar.barStyle = .blackTranslucent
-            toolBar.items = [UIBarButtonItem.init(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(onDoneButtonTapped)),
-                            UIBarButtonItem.init(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(onCancelButtonTapped))]
+            toolBar.barStyle = .blackTranslucent
+            
+            let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .plain, target: self, action: #selector(onDoneButtonTapped));
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(onCancelButtonTapped));
+            toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+            
+//            toolBar.items = [UIBarButtonItem.init(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(onDoneButtonTapped)),
+//                            UIBarButtonItem.init(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(onCancelButtonTapped))]
             self.view.addSubview(toolBar)
         } else {
             let alert = UIAlertController(title: NSLocalizedString("No data", comment: ""), message: NSLocalizedString("Do not have any data available", comment: ""), preferredStyle: UIAlertController.Style.alert)

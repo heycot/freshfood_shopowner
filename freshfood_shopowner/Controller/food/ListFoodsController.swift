@@ -25,6 +25,8 @@ class ListFoodsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         setupView()
         getList(isNew: true)
     }
@@ -51,6 +53,14 @@ class ListFoodsController: UIViewController {
         ItemService.instance.getAllItem { (data) in
             guard let data = data else { return }
             self.itemList = data
+            
+            if data.count == 0 {
+                self.notificationHeight.constant = 30
+                self.notification.text = NSLocalizedString("No data to show", comment: "")
+            } else {
+                self.notificationHeight.constant = 0
+                self.notification.text = NSLocalizedString("", comment: "")
+            }
         }
     }
     
@@ -71,6 +81,9 @@ class ListFoodsController: UIViewController {
                 self.notificationHeight.constant = 30
                 self.notification.text = NSLocalizedString("No data to show", comment: "")
             } else {
+                
+                self.notificationHeight.constant = 0
+                self.notification.text = NSLocalizedString("", comment: "")
                 
                 self.ShopItemList = data
                 self.tableView.reloadData()
